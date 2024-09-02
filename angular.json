@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "DAbubble": {
+    "dabubble": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -32,7 +32,8 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/font.scss"
             ],
             "scripts": []
           },
@@ -64,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "DAbubble:build:production"
+              "buildTarget": "dabubble:build:production"
             },
             "development": {
-              "buildTarget": "DAbubble:build:development"
+              "buildTarget": "dabubble:build:development"
             }
           },
           "defaultConfiguration": "development"

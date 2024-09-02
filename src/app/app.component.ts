@@ -10,5 +10,5 @@ import { LoginComponent } from './auth/login/login.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'DAbubble';
+  title = 'dabubble';
 }
