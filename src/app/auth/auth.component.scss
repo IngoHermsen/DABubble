@@ -1,0 +1,22 @@
+@import '../../mixins.scss';
+
+#intro-overlay {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(119,124,243,1) 30%, rgba(62,70,232,1) 100%);
+    @include dflex($jC: center);
+
+    span {
+        display: none;
+    }
+}
+
+.intro-logo {
+    @include dflex();
+    position: absolute;
+    inset: 50%
+    
+}
+
+

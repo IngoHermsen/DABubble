@@ -6,7 +6,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [],
+  imports: [LoginComponent, SignupComponent, ResetPasswordComponent],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
