@@ -1,9 +1,23 @@
 @import './mixins.scss';
 @import 'material-icons/iconfont/material-icons.css';
 
+//  Font
 * {
     font-family: 'Nunito';
 }
+
+// mmain styles
+
+h2 {
+    font-size: 24px;
+    color: red;
+    margin: unset;
+    text-align: left;
+    display: inline-block;
+}
+
+
+// 
 
 body {
     margin: 0;
@@ -16,5 +30,9 @@ body {
     width: 100%;
 
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.card {
+    background-color: white;
+    border-radius: 25px;
+    border: 1px solid grey;
+}
