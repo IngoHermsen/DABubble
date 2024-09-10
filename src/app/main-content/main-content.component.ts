@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
+import { ChannelComponent } from './channel/channel.component';
+import { ChannelSectionComponent } from './channel-section/channel-section.component';
+import { ThreadComponent } from './thread/thread.component';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [],
+  imports: [ChannelComponent, ChannelSectionComponent, ThreadComponent],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss'
 })
