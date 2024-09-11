@@ -6,12 +6,11 @@
     font-family: 'Nunito';
 }
 
-// mmain styles
+// main styles
 
 h2 {
     font-size: 24px;
-    color: red;
-    margin: unset;
+    font-weight: bold;
     text-align: left;
     display: inline-block;
 }
@@ -32,7 +31,10 @@ body {
 }
 
 .card {
+    box-sizing: border-box;
+    padding: 24px;
     background-color: white;
     border-radius: 25px;
     border: 1px solid grey;
+    height: 100%;
 }
