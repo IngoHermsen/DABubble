@@ -2,7 +2,40 @@
 
 $header-height: 80px;
 
+.toggle-btn {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+
+    left: 50px;
+    top: 50vh;
+    width: 300px;
+    height: 80px;
+    border: unset;
+    border-radius: 32px 32px 0px 0px;
+    transform-origin: top left;
+    transform: rotate(90deg) translateX(-50%);
+    background-color: white;
+    box-shadow: 4px 3px 14px -5px rgb(0 0 0 / 75%);
+
+    >span {
+        transform: rotate(180deg);
+        height: 32px;
+        margin-top: 8px;
+        @include dflex($gap: 8px);
+
+        img {
+            transform: rotate(90deg);
+            height: 16px;
+        }
+    }
+
+}
+
 .wrapper {
+    position: relative;
     background-color: var(--bg-color);
     width: 100vw;
     @include dflex($dir: column);
@@ -31,12 +64,12 @@ $header-height: 80px;
         padding-left: 24px;
         height: 40px;
         object-fit: contain;
-    };
-
-    input {
-        
     }
-    
+
+    ;
+
+    input {}
+
     .user-info {
         text-align: right;
     }
