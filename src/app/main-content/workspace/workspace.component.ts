@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-channel-section',
+  selector: 'app-workspace',
   standalone: true,
   imports: [],
-  templateUrl: './channel-section.component.html',
-  styleUrl: './channel-section.component.scss'
+  templateUrl: './workspace.component.html',
+  styleUrl: './workspace.component.scss'
 })
 export class ChannelSectionComponent {
 
