@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChannelSectionComponent } from './channel-section.component';
+import { ChannelSectionComponent } from './workspace.component';
 
 describe('ChannelSectionComponent', () => {
   let component: ChannelSectionComponent;
