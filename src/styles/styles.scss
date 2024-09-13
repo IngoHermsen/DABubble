@@ -1,6 +1,10 @@
 @import './mixins.scss';
 @import 'material-icons/iconfont/material-icons.css';
 
+:root {
+    --bg-color: #eceefe;
+}
+
 //  Font
 * {
     font-family: 'Nunito';
@@ -35,6 +39,5 @@ body {
     padding: 24px;
     background-color: white;
     border-radius: 25px;
-    border: 1px solid grey;
     height: 100%;
 }

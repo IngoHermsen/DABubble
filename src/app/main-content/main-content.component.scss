@@ -3,19 +3,40 @@
 $header-height: 80px;
 
 .wrapper {
-    // background-color: green; //helper
+    background-color: var(--bg-color);
     width: 100vw;
     @include dflex($dir: column);
 }
 
 .header {
     box-sizing: border-box;
-    padding: 0px 16px;
+    padding: 16px;
     height: $header-height;
     width: 100%;
     @include dflex($gap: 16px);
 
+    input {
+        height: 100%;
+        border: unset;
+        border-radius: 50px;
+        text-indent: 24px;
+        font-size: 18px;
 
+        &:focus-visible {
+            outline: unset;
+        }
+    }
+
+    .logo {
+        padding-left: 24px;
+        height: 40px;
+        object-fit: contain;
+    };
+
+    input {
+        
+    }
+    
     .user-info {
         text-align: right;
     }
