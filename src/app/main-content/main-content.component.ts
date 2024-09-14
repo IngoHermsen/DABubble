@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ChannelComponent } from './channel/channel.component';
-import { ChannelSectionComponent } from './channel-section/channel-section.component';
+import { ChannelSectionComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
 
 @Component({

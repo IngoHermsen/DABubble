@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChannelSectionComponent } from './channel-section.component';
+import { WorkspaceComponent } from './workspace.component';
 
-describe('ChannelSectionComponent', () => {
-  let component: ChannelSectionComponent;
-  let fixture: ComponentFixture<ChannelSectionComponent>;
+describe('WorkspaceComponent', () => {
+  let component: WorkspaceComponent;
+  let fixture: ComponentFixture<WorkspaceComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChannelSectionComponent]
+      imports: [WorkspaceComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ChannelSectionComponent);
+    fixture = TestBed.createComponent(WorkspaceComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
