@@ -1,18 +1,34 @@
+<p>workspace works!</p>
 <div class="wrapper">
-    <section class="header">
-            <div class="flex-item1 logo">LOGO</div>
-            <input class="flex-item2" type="text">
-            <div class="flex-item1 user-info">UserInfo</div>
-    </section>
-    <section class="content">
-        <article class="flex-item1">
-            <app-workspace></app-workspace>
-        </article>
-        <article class="flex-item2">
-            <app-channel></app-channel>
-        </article>
-        <article class="flex-item1">
-            <app-thread></app-thread>
-        </article>
-    </section>
+  <span (click)="showWorkspaceMenu = !showWorkspaceMenu" class="toggle-btn">
+      @switch(showWorkspaceMenu) {
+          @case (false) {
+           <span>Workspace-Menü öffnen<img src="assets/icons/open_menu.png" alt="openMenuIcon"></span>
+          }
+          @default {
+              <span>Workspace-Menü schließen<img src="assets/icons/close_menu.png" alt="closeMenuIcon"></span>
+          }
+      }
+  </span>
+  <section class="header">
+          <div class="logo-div flex-item1">
+              <img class="flex-item1 logo" src="assets/images/Logo-DABubble.png" alt="Logo_DABubble">
+          </div>
+          <input placeholder="Devspace durchsuchen" class="flex-item2" type="text">
+          <div class="flex-item1 user-info">UserInfo</div>
+  </section>
+  <section class="content"> 
+      @if (showWorkspaceMenu) {
+      <section class="flex-item1">
+          <app-workspace></app-workspace>
+      </section> 
+      }
+
+      <section class="flex-item2">
+          <app-channel></app-channel>
+      </section>
+      <section class="flex-item1">
+          <app-thread></app-thread>
+      </section>
+  </section>
 </div>

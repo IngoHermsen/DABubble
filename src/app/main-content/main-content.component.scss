@@ -2,45 +2,75 @@
 
 $header-height: 80px;
 
+.toggle-btn {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  user-select: none;
+  cursor: pointer;
+
+  left: 50px;
+  top: 50vh;
+  width: 300px;
+  height: 80px;
+  border: unset;
+  border-radius: 32px 32px 0px 0px;
+  transform-origin: top left;
+  transform: rotate(90deg) translateX(-50%);
+  background-color: white;
+  box-shadow: 4px 3px 14px -5px rgb(0 0 0 / 75%);
+
+  >span {
+    transform: rotate(180deg);
+    height: 32px;
+    margin-top: 8px;
+    @include dflex($gap: 8px);
+
+    img {
+      transform: rotate(90deg);
+      height: 16px;
+    }
+  }
+
+}
+
 .wrapper {
-    // background-color: green; //helper
-    width: 100vw;
-    @include dflex($dir: column);
+  position: relative;
+  background-color: var(--bg-color);
+  width: 100vw;
+  @include dflex($dir: column);
 }
 
 .header {
-    box-sizing: border-box;
-    padding: 0px 16px;
-    height: $header-height;
-    width: 100%;
-    @include dflex($gap: 16px);
+  box-sizing: border-box;
+  padding: 16px;
+  height: $header-height;
+  width: 100%;
+  @include dflex($gap: 16px);
 
+  input {
+    height: 100%;
+    border: unset;
+    border-radius: 50px;
+    text-indent: 24px;
+    font-size: 18px;
 
-    .user-info {
-        text-align: right;
+    &:focus-visible {
+      outline: unset;
     }
-}
+  }
 
-.content {
-    box-sizing: border-box;
-    padding: 0px 16px 16px 16px;
-    width: 100%;
-    // background-color: red; //helper
-    @include dflex($aI: unset, $gap: 16px);
-    height: calc(100vh - $header-height)
-}
+  .logo {
+    padding-left: 24px;
+    height: 40px;
+    object-fit: contain;
+  }
 
-.flex-item1,
-.flex-item2 {
-    flex-basis: 0;
-}
+  ;
 
-.flex-item1 {
-    // background-color: yellow; //helper
-    flex-grow: 1;
-}
+  input {}
 
-.flex-item2 {
-    // background-color: orange; // helper
-    flex-grow: 2;
+  .user-info {
+    text-align: right;
+  }
 }
