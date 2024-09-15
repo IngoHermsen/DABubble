@@ -1,20 +1,50 @@
 @import '../../styles/mixins.scss';
 
 #intro-overlay {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    background: linear-gradient(180deg, rgba(119,124,243,1) 30%, rgba(62,70,232,1) 100%);
-    @include dflex($jC: center);
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(119, 124, 243, 1) 30%, rgba(62, 70, 232, 1) 100%);
+  @include dflex($jC: center);
 
-    span {
-        display: none;
-    }
+  span {
+    display: none;
+  }
 }
+
 
 .intro-logo {
-    @include dflex();
-    position: absolute;    
+  @include dflex();
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+.logo-da-bubble {
+  width: 6vw
 }
 
 
+/************************* Keyframes & Animations *************************/
+
+@keyframes moveToEndPosition {
+  from {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  to {
+    top: 50px;
+    left: 50px;
+    transform: translate(0, 0); 
+  }
+}
+
+.move-to-end-position{
+  animation-name: moveToPosition;
+  animation-duration: 1.7s;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
