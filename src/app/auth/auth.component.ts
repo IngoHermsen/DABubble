@@ -12,15 +12,6 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
-  constructor(){
-    this.delayAnimation()
-  }
 
-  testBoolean = false
 
-  delayAnimation(){
-    setTimeout(() => {
-      this.testBoolean = true
-    }, 2000);
-  }
 }
