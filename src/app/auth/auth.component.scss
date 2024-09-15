@@ -16,55 +16,52 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%); 
+  gap: 8px;
 }
 span {
   // display: none;
 }
 
 .logo-da-bubble {
-  width: 6vw
+  width: 6vw;
+  background-color: #6369EF;
 }
 
 
 /************************* Keyframes & Animations *************************/
 
-@keyframes moveToEndPosition {
-  from {
+@keyframes wholeAnimation {
+  0% {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  30% {
     top: 50%;
     left: 45%;
     transform: translate(-50%, -50%);
   }
   
-  to {
+  60% {
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    
+  }
+
+  100% {
     top: 50px;
     left: 50px;
     transform: translate(0, 0); 
   }
 }
 
-@keyframes moveSlightlyLeft {
-  from {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  to {
-    top: 50%;
-    left: 45%;
-  }
-}
-
-.move-slightly-left{
-  animation-name: moveSlightlyLeft;
-  animation-duration: 0.7s;
+.whole-animation{
+  animation-name: wholeAnimation;
+  animation-duration: 3s;
   animation-timing-function: ease-in-out;
   animation-fill-mode: forwards;
 }
 
-.move-to-end-position{
-  animation-name: moveToEndPosition;
-  animation-duration: 1.7s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
+
