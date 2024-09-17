@@ -17,10 +17,12 @@ export class AuthComponent {
     this.setColor = "black";
     this.setSize = "50px";
     this.setFontSize = "16px"
+    this.setBackground = "#eceefe"
   }, 2500);
  } 
 
  setColor = "";
  setSize = "";
  setFontSize = "";
+ setBackground = "";
 }
