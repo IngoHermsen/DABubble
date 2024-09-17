@@ -1,10 +1,10 @@
 <section class="main">
     <section id="intro-overlay">
         <div class="intro-logo whole-animation">
-            <img class="logo-da-bubble"  src="assets/images/auth/logo.png" alt="logo">
-            <span class="intro-text text-animation">DABubble</span>
+            <img class="logo-da-bubble" [ngStyle]="{'width' : setSize}"  src="assets/images/auth/logo.png" alt="logo">
+            <div class="background-layer hide-background"></div>
+            <span [ngStyle] = "{'color' : setColor, 'font-size': setFontSize}"   class="intro-text text-animation">DABubble</span>
         </div>
     </section>
 </section>
-
 
