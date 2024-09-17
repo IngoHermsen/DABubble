@@ -13,10 +13,7 @@
 
 .intro-logo {
   @include dflex();
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); 
+  @include centerAbsoulteElement();
   gap: 8px;
 }
 
@@ -40,26 +37,21 @@
 /************************* Keyframes & Animations *************************/
 @keyframes wholeAnimation {
   0% {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @include centerAbsoulteElement()
   }
   
   20% {
-    top: 50%;
-    left: 45%;
+    @include placeAbsoluteElement($top: 50%, $left: 45%);
     transform: translate(-50%, -50%);
   }
   
   70% {
-    top: 50%;
-    left: 45%;
+    @include placeAbsoluteElement($top: 50%, $left: 45%);
     transform: translate(-50%, -50%);
   }
   
   100% {
-    top: 50px;
-    left: 50px;
+    @include placeAbsoluteElement($top: 50px, $left: 50px);
     transform: translate(0, 0); 
   }
 }
@@ -74,20 +66,17 @@
 
 @keyframes textAnimation {
   0%{
-    top: 50%; 
-    left: 0%;
+    @include placeAbsoluteElement($top: 50%, $left: 0%);
     visibility: hidden;
   }
   
   20%{
-    top: 50%; 
-    left: 0%;
+    @include placeAbsoluteElement($top: 50%, $left: 0%);
     visibility: hidden;
   }
 
   40% {
-    top: 50%;
-    left: 100%;
+    @include placeAbsoluteElement($top: 50%, $left: 100%);
   }
 }
 
