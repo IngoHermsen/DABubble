@@ -11,8 +11,6 @@
   @include dflex($jC: center);
 }
 
-
-
 .intro-logo {
   @include dflex();
   position: absolute;
@@ -22,7 +20,6 @@
   gap: 8px;
 }
 
-
 .intro-text {
   z-index: 1;
   width: max-content;
@@ -31,7 +28,6 @@
   left: 110%;
   transform: translateY(-50%); 
   color: white;
-  // display: none;
 }
 
 .logo-da-bubble {
@@ -41,9 +37,7 @@
   background-color: #6369EF;
 }
 
-
 /************************* Keyframes & Animations *************************/
-
 @keyframes wholeAnimation {
   0% {
     top: 50%;
@@ -84,6 +78,7 @@
     left: 0%;
     visibility: hidden;
   }
+  
   20%{
     top: 50%; 
     left: 0%;
