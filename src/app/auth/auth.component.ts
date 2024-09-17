@@ -23,5 +23,4 @@ export class AuthComponent {
  setColor = "";
  setSize = "";
  setFontSize = "";
-
 }
