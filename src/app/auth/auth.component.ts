@@ -14,15 +14,9 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 export class AuthComponent {
  constructor(){
   setTimeout(() => {
-    this.setColor = "black";
-    this.setSize = "50px";
-    this.setFontSize = "16px"
-    this.setBackground = "#eceefe"
+    this.activateTimedClasses = true
   }, 2500);
  } 
 
- setColor = "";
- setSize = "";
- setFontSize = "";
- setBackground = "";
+ activateTimedClasses = false
 }
