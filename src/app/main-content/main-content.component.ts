@@ -3,7 +3,6 @@ import { ChannelComponent } from './channel/channel.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
 import { OnInit } from '@angular/core';
-import { BrowserAnimation}
 
 @Component({
   selector: 'app-main',
