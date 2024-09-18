@@ -2,10 +2,11 @@
 
 
 // TODO Think about how to hide the text behind the picture. 
-#intro-overlay {
+.intro-overlay {
   position: relative;
   height: 100%;
   width: 100%;
+  
   background: linear-gradient(180deg, rgba(119, 124, 243, 1) 30%, rgba(62, 70, 232, 1) 100%);
   @include dflex($jC: center);
 }
@@ -115,4 +116,22 @@
   animation-duration: 3s;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
+}
+
+/************************* Dynamic classes *************************/
+
+.color-black{
+  color: black;
+}
+
+.font-50px {
+  font-size: 50px;
+}
+
+.width-50px {
+  width: 50px;
+}
+
+.bg-login {
+  background:#eceefe ;
 }
