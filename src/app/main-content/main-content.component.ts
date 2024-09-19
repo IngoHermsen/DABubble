@@ -16,16 +16,13 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       state(
         'open',
         style({
-          maxWidth: '100%',
-          backgroundColor: 'blue',
-       
+          opacity: 1,
         })
       ),
       state(
         'closed',
         style({
-          maxWidth: '100%',
-          backgroundColor: 'green',
+          opacity: 0.5,
         })
       ),
       transition('open <=> closed', [animate(1000)]),
