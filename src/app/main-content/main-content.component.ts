@@ -3,14 +3,37 @@ import { ChannelComponent } from './channel/channel.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
 import { OnInit } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-main',
   standalone: true,
   imports: [ChannelComponent, WorkspaceComponent, ThreadComponent],
   templateUrl: './main-content.component.html',
-  styleUrl: './main-content.component.scss'
+  styleUrl: './main-content.component.scss',
+  animations: [
+    trigger('toggleWorkspace', [
+      state(
+        'open',
+        style({
+          maxWidth: '100%',
+          backgroundColor: 'blue',
+       
+        })
+      ),
+      state(
+        'closed',
+        style({
+          maxWidth: '100%',
+          backgroundColor: 'green',
+        })
+      ),
+      transition('open <=> closed', [animate(1000)]),
+      // transition('closed => open', [animate('1s')]),
+    ])
+  ]
 })
+
 export class MainComponent implements OnInit {
   showWorkspaceMenu: boolean = false;
 
@@ -24,11 +47,8 @@ export class MainComponent implements OnInit {
   }
 
   toggleWorkspace() {
-    if(this.showWorkspaceMenu) {
-      
-    }
 
-    this.showWorkspaceMenu = !this.showWorkspaceMenu
   }
+
 
 }

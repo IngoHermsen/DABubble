@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <span (click)="toggleWorkspace()" class="toggle-btn">
+  <span (click)="showWorkspaceMenu = !showWorkspaceMenu" class="toggle-btn">
       @switch(showWorkspaceMenu) {
           @case (false) {
            <span>Workspace-Menü öffnen<img src="assets/icons/open_menu.png" alt="openMenuIcon"></span>
@@ -17,11 +17,9 @@
           <div class="flex-item1 user-info">UserInfo</div>
   </section>
   <section class="content"> 
-      @if (showWorkspaceMenu) {
-      <section class="flex-item1">
+      <section [@toggleWorkspace]="showWorkspaceMenu ?  'open' : 'closed'" class="flex-item1">
           <app-workspace></app-workspace>
       </section> 
-      }
       <section class="flex-item2">
           <app-channel></app-channel>
       </section>
