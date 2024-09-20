@@ -11,12 +11,8 @@ export class ShowOnHoverDirective {
   }
 
   @HostListener('mouseenter') onMouseEnter() {
-    setTimeout(() => {
       this.el.nativeElement.classList.remove('hideBtn');
       this.el.nativeElement.classList.add('showBtn');
-    }, 250)
-
-
   }
 
   @HostListener('mouseleave') onMouseLeave() {

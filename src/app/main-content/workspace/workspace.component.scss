@@ -4,6 +4,10 @@
   @include dflex();
   margin-bottom: 40px;
 
+  .wrkspace-logo {
+    max-height: 40px;
+  }
+
   .icon {
     cursor: pointer;
     height: 24px;
@@ -11,9 +15,11 @@
 }
 
 .channels {
+  @include dflex($dir: column);
   height: 200px;
 }
 
-section {
-  
+section > .title {
+  @include dflex($jC: unset, $gap: 12px)
 }
+
