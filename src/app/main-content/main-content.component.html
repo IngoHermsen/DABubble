@@ -17,13 +17,13 @@
           <div class="flex-item1 user-info">UserInfo</div>
   </section>
   <section class="content"> 
-      <section [@toggleWorkspace]="showWorkspaceMenu ?  'open' : 'closed'" class="flex-item1">
+      <section [@toggleWorkspace]="showWorkspaceMenu ?  'open' : 'closed'">
           <app-workspace></app-workspace>
       </section> 
-      <section class="flex-item2">
+      <section class="flex-item">
           <app-channel></app-channel>
       </section>
-      <section class="flex-item1">
+      <section>
           <app-thread></app-thread>
       </section>
   </section>

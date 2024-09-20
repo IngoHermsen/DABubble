@@ -85,15 +85,10 @@ $header-height: 80px;
     height: calc(100vh - $header-height)
 }
 
-.flex-item1,
-.flex-item2 {
-    flex-basis: 0;
-}
-
-.flex-item1 {
+.flex-item {
     flex-grow: 1;
 }
 
-.flex-item2 {
-    flex-grow: 2;
+.content > section:not(.flex-item) {
+    min-width: 250px;
 }
