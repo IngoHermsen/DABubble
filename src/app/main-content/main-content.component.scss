@@ -52,10 +52,17 @@ $header-height: 80px;
 
     input {
         height: 100%;
+        width: 100%;
+        max-width: 600px;
         border: unset;
         border-radius: 50px;
         text-indent: 24px;
         font-size: 18px;
+        background-image: url('/assets/icons/search-icon.png');
+        background-position-x: right;
+        background-position-y: 4px;
+        background-size: 40px;
+        background-repeat: no-repeat;
 
         &:focus-visible {
             outline: unset;
@@ -68,13 +75,14 @@ $header-height: 80px;
         object-fit: contain;
     }
 
-    ;
-
-    input {}
-
     .user-info {
         text-align: right;
     }
+
+    > div {
+        min-width: 250px;
+    }
+
 }
 
 .content {
@@ -99,9 +107,11 @@ $header-height: 80px;
     animation: showBtn 0.5s forwards;
 
     @keyframes showBtn {
-        from {
+        40% {
             left: 12px;
-        } to {
+        }
+        
+        100% {
             left: 50px;
         }
     }
