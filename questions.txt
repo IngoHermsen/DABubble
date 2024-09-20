@@ -2,30 +2,11 @@
 
 ## Allgemeine Fragen
 
-### 1. Wollen wir einen seperator in CSS files verwenden?
-        Wenn ja, wie soll dieser aussehen // oder /******************************** sep ********************************/
+
+### 1. Hast du den environments Ordner samt Inhalt selber erstellt oder wurde der generiert?
 - **Datum:** 18.9.2024
 - **Status:** Offen
 - **Antwort:** (Antwort hier hinzufügen, sobald sie verfügbar ist)
 
-### 2. Wollen wir in CSS als  selectors nur classes verwenden?
-      Da in Angular viel mit ngClass gearbeitet wird, bietet sich das an. 
-- **Datum:** 18.9.2024
-- **Status:** Offen
-- **Antwort:** (Antwort hier hinzufügen, sobald sie verfügbar ist)
 
-### 3. Wie hast du definiert das styles.css global verwendet wird, obwohl es jetzt in styles/styles.css liegt?
-- **Datum:** 18.9.2024
-- **Status:** Offen
-- **Antwort:** (Antwort hier hinzufügen, sobald sie verfügbar ist)
-
-### 4. Hast du den environments Ordner samt Inhalt selber erstellt oder wurde der generiert?
-- **Datum:** 18.9.2024
-- **Status:** Offen
-- **Antwort:** (Antwort hier hinzufügen, sobald sie verfügbar ist)
-
-### 5. Wollen wir mit so einer questions.txt Datei Arbeit oder wollen wir soetwas lieber in Kanbanflow organisieren?
-- **Datum:** 18.9.2024
-- **Status:** Offen
-- **Antwort:** (Antwort hier hinzufügen, sobald sie verfügbar ist)
 
