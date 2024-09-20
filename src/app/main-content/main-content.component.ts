@@ -4,11 +4,12 @@ import { WorkspaceComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
 import { OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ChannelComponent, WorkspaceComponent, ThreadComponent],
+  imports: [ShowOnHoverDirective, ChannelComponent, WorkspaceComponent, ThreadComponent],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss',
   animations: [
