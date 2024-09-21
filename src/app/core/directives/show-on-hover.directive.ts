@@ -19,7 +19,6 @@ export class ShowOnHoverDirective {
     this.el.nativeElement.classList.remove('showBtn');
     this.el.nativeElement.classList.add('hideBtn');
 
-
   }
 }
 

@@ -15,11 +15,31 @@
 }
 
 .channels {
-  @include dflex($dir: column);
-  height: 200px;
-}
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 40px;
 
-section > .title {
-  @include dflex($jC: unset, $gap: 12px)
-}
+  .title {
+    display: flex;
+    align-items: center;
 
+    .drop-btn {
+      position: absolute;
+      left: 0px;
+    }
+  }
+
+  .entries {
+  }
+
+  .entry {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  span {
+    display: inline-block;
+    width: 40px;
+    text-align: center;
+  }
+}
