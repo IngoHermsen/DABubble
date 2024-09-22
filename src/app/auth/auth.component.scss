@@ -1,4 +1,5 @@
 @import '../../styles/mixins.scss';
+@import '../../styles/animations.scss';
 
 
 
@@ -46,76 +47,6 @@
 
 
 
-/************************* Keyframes & Animations *************************/
-@keyframes wholeAnimation {
-  0% {
-    @include centerAbsoluteElement()
-  }
-  
-  20% {
-    @include placeAbsoluteElement($top: 50%, $left: 45%);
-    transform: translate(-50%, -50%);
-  }
-  
-  70% {
-    @include placeAbsoluteElement($top: 50%, $left: 45%);
-    transform: translate(-50%, -50%);
-  }
-  
-  100% {
-    @include placeAbsoluteElement($top: 40px, $left: 40px);
-    transform: translate(0, 0); 
-  }
-}
-
-.whole-animation{
-  animation-name: wholeAnimation;
-  animation-duration: 3s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-
-@keyframes textAnimation {
-  0%{
-    @include placeAbsoluteElement($top: 50%, $left: 0%);
-    visibility: hidden;
-  }
-  
-  20%{
-    @include placeAbsoluteElement($top: 50%, $left: 0%);
-    visibility: hidden;
-  }
-
-  40% {
-    @include placeAbsoluteElement($top: 50%, $left: 100%);
-  }
-}
-
-.text-animation{
-  animation-name: textAnimation;
-  animation-duration: 3s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-
-@keyframes hideBackgroundLayer {
-  30% {
-    visibility: hidden;
-  }
-
-  100%{
-    visibility: hidden;
-  }
-}
-
-.hide-background{
-  animation-name: hideBackgroundLayer;
-  animation-duration: 3s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
-}
 
 /************************* Dynamic classes *************************/
 .color-black{
