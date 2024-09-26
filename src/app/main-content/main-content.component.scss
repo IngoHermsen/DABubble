@@ -90,7 +90,7 @@ $header-height: 80px;
     padding: 0px 16px 16px 16px;
     width: 100%;
     @include dflex($aI: unset, $gap: 16px);
-    height: calc(100vh - $header-height)
+    height: calc(100vh - $header-height);
 }
 
 .flex-item {
@@ -98,7 +98,7 @@ $header-height: 80px;
 }
 
 .content > section:not(.flex-item) {
-    min-width: 250px;
+    min-width: 320px;
 }
 
 /******************************** buttonAnimation ********************************/

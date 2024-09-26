@@ -1,20 +1,32 @@
 <div class="card">
     <section class="header">
         <img class="wrkspace-logo" src="assets/icons/Devspace_logo.png" alt="devSpaceLogo">
-        <h2>Workspace</h2><img type="icon" class="icon" src="assets/icons/edit_square.png" alt="editSquareIcon">
+        <h2>DevSpace</h2><img type="icon" class="icon" src="assets/icons/edit_square.png" alt="editSquareIcon">
     </section>
     <section class="channels">
-        <h3 class="title">
-            <div class="drop-btn">x</div><span class="material-icons-outlined">workspaces</span>Channels
+        <h3 (click)="toggleEntries('channels')" class="title">
+            <span class="material-icons drop-btn"
+                [ngClass]="{
+                    'turnUpDropBtn': !showChannelEntries && channelToggleClicked,
+                    'turnDownDropBtn': showChannelEntries && channelToggleClicked
+                }">arrow_drop_down</span>
+                <span class="material-icons-outlined">workspaces</span>Channels
         </h3>
+        @if(showChannelEntries) {
         <div class="entries">
             <div class="entry"><span>#</span>test Eintrag 1</div>
             <div class="entry"><span>#</span>test Eintrag 2</div>
         </div>
-
+        }
     </section>
     <section class="direct-msg">
-        <h3 class="title">Direct Messages</h3>
+        <h3 (click)="toggleEntries('direct-msg')" class="title">
+            <span class="material-icons drop-btn"
+                [ngClass]="{
+                    'turnUpDropBtn': !showDirectMsgEntries && directMsgToggleClicked,
+                    'turnDownDropBtn': showDirectMsgEntries && directMsgToggleClicked
+                }">arrow_drop_down</span>Direct Messages
+        </h3>
         <div class="entries"></div>
     </section>
 
