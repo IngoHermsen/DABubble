@@ -1,4 +1,13 @@
-@import '../../../styles/mixins.scss';
+  @import '../../../styles/mixins.scss';
+
+/***************************** Main Styles *****************************/
+
+
+h3 {
+  user-select: none;
+  cursor: pointer;
+}
+
 
 .header {
   @include dflex();
@@ -14,7 +23,7 @@
   }
 }
 
-.channels {
+.channels, .direct-msg {
   position: relative;
   padding-left: 32px;
   margin-bottom: 40px;
@@ -24,12 +33,11 @@
     align-items: center;
 
     .drop-btn {
+      user-select: none;
       position: absolute;
       left: 0px;
+      cursor: pointer;
     }
-  }
-
-  .entries {
   }
 
   .entry {
@@ -41,5 +49,30 @@
     display: inline-block;
     width: 40px;
     text-align: center;
+  }
+}
+
+/******************************** animations ********************************/
+
+.turnUpDropBtn {
+  animation: rotateLeft 150ms forwards;
+
+  @keyframes rotateLeft {
+    to {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.turnDownDropBtn {
+  animation: rotateRight 500ms forwards;
+
+  @keyframes rotateRight {
+    from {
+      transform: rotate(-90deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
   }
 }
