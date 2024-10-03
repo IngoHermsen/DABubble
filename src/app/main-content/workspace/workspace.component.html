@@ -5,12 +5,11 @@
     </section>
     <section class="channels">
         <h3 (click)="toggleEntries('channels')" class="title">
-            <span class="material-icons drop-btn"
-                [ngClass]="{
+            <span class="material-icons drop-btn" [ngClass]="{
                     'turnUpDropBtn': !showChannelEntries && channelToggleClicked,
                     'turnDownDropBtn': showChannelEntries && channelToggleClicked
                 }">arrow_drop_down</span>
-                <span class="material-icons-outlined">workspaces</span>Channels
+            <span class="material-icons-outlined">workspaces</span>Channels
         </h3>
         @if(showChannelEntries) {
         <div class="entries">
@@ -21,13 +20,23 @@
     </section>
     <section class="direct-msg">
         <h3 (click)="toggleEntries('direct-msg')" class="title">
-            <span class="material-icons drop-btn"
-                [ngClass]="{
+            <span class="material-icons drop-btn" [ngClass]="{
                     'turnUpDropBtn': !showDirectMsgEntries && directMsgToggleClicked,
                     'turnDownDropBtn': showDirectMsgEntries && directMsgToggleClicked
-                }">arrow_drop_down</span>Direct Messages
+                }">arrow_drop_down</span>
+            <span class="material-icons-outlined">account_circle</span>Direct Messages
         </h3>
-        <div class="entries"></div>
+        @if(showDirectMsgEntries) {
+        <div class="entries">
+            <div class="entry">
+                MESSAGE 1
+            </div>
+            <div class="entry">
+                MESSAGE 2
+            </div>
+        </div>
+        }
+
     </section>
 
 </div>
