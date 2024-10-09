@@ -2,7 +2,6 @@
 
 ## Allgemeine Fragen
 
-
 ### 1. Hast du den environments Ordner samt Inhalt selber erstellt oder wurde der generiert?
 - **Datum:** 18.9.2024
 - **Status:** Offen

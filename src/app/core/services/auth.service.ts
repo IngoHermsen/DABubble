@@ -10,7 +10,7 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
   ) { }
 
-      // Sign in with email/password
+  // Sign in with email/password
   SignIn(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
@@ -28,5 +28,5 @@ export class AuthService {
       });
   }
 
-  }
+}
 
