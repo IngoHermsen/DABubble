@@ -12,3 +12,5 @@ export const routes: Routes = [
     { path: 'signup', component: SignupComponent}, 
     { path: 'home', component: MainComponent}, 
 ];
+
+

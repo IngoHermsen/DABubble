@@ -15,10 +15,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(
-      public authService: AuthService
-
-  ){
+  constructor(){
 
   }
 
