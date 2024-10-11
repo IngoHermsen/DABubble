@@ -12,6 +12,5 @@
 // TODO 9.10.2024
 // TODO Weiter am mockup für login arbeiten
 // TODO Gedanken machen über Typographie Schriftgrößen responsive?
-// TODO Welche Breakpoints solen benutzt werden?
+// TODO Welche Breakpoints sollen benutzt werden?
 // TODO Kann man die Responsivness irgendwie auslagern oder ist das Schwachsinn?
-
