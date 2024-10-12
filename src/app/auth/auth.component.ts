@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
+
 @Component({
   selector: 'app-auth',
   standalone: true,
@@ -12,11 +13,15 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
- constructor(){
-  setTimeout(() => {
-    this.activateTimedClasses = true
-  }, 2500);
- } 
 
- activateTimedClasses = false
+  
+
+  constructor() {
+    setTimeout(() => {
+      this.activateTimedClasses = true
+    }, 2500);
+  }
+
+  activateTimedClasses = false
 }
+
