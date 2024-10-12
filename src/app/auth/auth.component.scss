@@ -4,6 +4,10 @@
 @import '../../styles/font.scss';
 
 
+.main{
+  position: relative;
+}
+
 .intro-overlay {
   position: relative;
   height: 100%;
@@ -42,11 +46,12 @@
 }
 
 .create-account{
+  color: #797EF3;
   z-index: 3;
   position: absolute;
-  top: 60px; 
-  right: 40px;
-  font-family: 'Nunito';
+  top: 75px; 
+  right: 46px;
+  font-family: 'Figtree';
   font-weight: 400;
 }
 

@@ -18,7 +18,7 @@ export class AuthComponent {
 
   constructor() {
     setTimeout(() => {
-      this.activateTimedClasses = true
+      this.trueAfter2500ms = true
     }, 2500);
 
     setTimeout(() => {
@@ -26,7 +26,8 @@ export class AuthComponent {
     }, 2700);
   }
 
-  activateTimedClasses = false
+  trueAfter2500ms = false
   hideLogo = false
+  
 }
 
