@@ -51,3 +51,16 @@ body {
     display:none
 }
 
+/************************* Max-Width wrapper *************************/
+
+.site-wrapper{
+    width: 100%;
+    height: 100vh;
+    background-color: #ECEEFE;
+  }
+  
+
+.max-width-wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+}

@@ -1,12 +1,14 @@
-<section class="main">
-  <section class="intro-overlay" [ngClass]="{'bg-login' : activateTimedClasses}">
-    <div class="intro-logo whole-animation">
-      <img class="logo-da-bubble" [ngClass]="{'width-50px' : activateTimedClasses, 'd-none' : hideLogo}" src="assets/images/auth/logo.png"
-        alt="logo">
+<section class="site-wrapper">
+  <section class="main max-width-wrapper">
+    <section class="intro-overlay" [ngClass]="{'bg-login' : activateTimedClasses}">
+      <div class="intro-logo whole-animation">
+        <img class="logo-da-bubble" [ngClass]="{'width-50px' : activateTimedClasses, 'd-none' : hideLogo}"
+          src="assets/images/auth/logo.png" alt="logo">
         <div class="background-layer hide-background"></div>
-      <span class="intro-text text-animation"
-      [ngClass]="{'color-black font-16px': activateTimedClasses}">DABubble</span>
-    </div>
-    <app-login class="d-none" [ngClass]="{'show-login' : activateTimedClasses}" ></app-login>
+        <span class="intro-text text-animation"
+          [ngClass]="{'color-black font-16px': activateTimedClasses}">DABubble</span>
+      </div>
+      <app-login class="d-none" [ngClass]="{'show-login' : activateTimedClasses}"></app-login>
+    </section>
   </section>
 </section>

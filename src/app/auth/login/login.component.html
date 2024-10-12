@@ -2,6 +2,19 @@
   <section class="login-header">
     <header>Anmeldung</header>
     <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
+
+    <form class="sign-up-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+        <input type="text" placeholder="Email" formControlName="email" />
+      </div>
+      <div>
+        <input type="password" placeholder="Password" formControlName="password" />
+      </div>
+      <div>
+        <button class="mt-3" type="submit">Log In</button>
+      </div>
+    </form>
+  
   </section>
 </section>
 
