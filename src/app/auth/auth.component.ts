@@ -20,8 +20,13 @@ export class AuthComponent {
     setTimeout(() => {
       this.activateTimedClasses = true
     }, 2500);
+
+    setTimeout(() => {
+      this.hideLogo = true
+    }, 2700);
   }
 
   activateTimedClasses = false
+  hideLogo = false
 }
 
