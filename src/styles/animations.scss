@@ -68,3 +68,24 @@
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
 }
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  opacity: 0; /* Start hidden */
+  animation: fadeIn 1.5s ease-in forwards; /* Animation lasts for 1.5 seconds */
+}
