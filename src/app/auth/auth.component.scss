@@ -1,7 +1,7 @@
 @import '../../styles/styles.scss';
 @import '../../styles/mixins.scss';
 @import '../../styles/animations.scss';
-
+@import '../../styles/font.scss';
 
 
 .intro-overlay {
@@ -30,6 +30,15 @@
   z-index: 3;
   width: 75px;
   opacity: 1;
+}
+
+.new-at-dabubble{
+  z-index: 3;
+  position: absolute;
+  top: 40px; 
+  right: 40px;
+  font-family: 'Nunito';
+  font-weight: 400;
 }
 
 .background-layer {

@@ -1,5 +1,8 @@
 <section class="site-wrapper">
+
   <section class="main max-width-wrapper">
+    <div class="new-at-dabubble d-none" [ngClass]="{'fade-in show-login' : activateTimedClasses}">Neu bei DABubble?</div>
+    
     <section class="intro-overlay" [ngClass]="{'bg-login' : activateTimedClasses}">
       <div class="intro-logo whole-animation">
         <img class="logo-da-bubble" [ngClass]="{'width-50px' : activateTimedClasses, 'd-none' : hideLogo}"
@@ -8,7 +11,8 @@
         <span class="intro-text text-animation"
           [ngClass]="{'color-black font-16px': activateTimedClasses}">DABubble</span>
       </div>
-      <app-login class="d-none" [ngClass]="{'show-login' : activateTimedClasses}"></app-login>
+      <app-login class="d-none" [ngClass]="{'fade-in show-login' : activateTimedClasses}"></app-login>
     </section>
+  
   </section>
 </section>
