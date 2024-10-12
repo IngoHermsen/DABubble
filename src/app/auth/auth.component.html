@@ -1,7 +1,7 @@
 <section class="main">
   <section class="intro-overlay" [ngClass]="{'bg-login' : activateTimedClasses}">
     <div class="intro-logo whole-animation">
-      <img class="logo-da-bubble" [ngClass]="{'width-50px' : activateTimedClasses}" src="assets/images/auth/logo.png"
+      <img class="logo-da-bubble" [ngClass]="{'width-50px' : activateTimedClasses, 'd-none' : hideLogo}" src="assets/images/auth/logo.png"
         alt="logo">
         <div class="background-layer hide-background"></div>
       <span class="intro-text text-animation"
