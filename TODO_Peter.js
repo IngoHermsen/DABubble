@@ -17,3 +17,4 @@
 
 
 //@ Ingo -- Check mal in styles.css den max-width-wrapper, und ob du den so in deiner Seite einbauen kannst?
+//@ Ingo -- Lass uns kurz über die fonts Einbindungen sprechen. 

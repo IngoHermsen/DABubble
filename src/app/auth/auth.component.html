@@ -1,17 +1,18 @@
 <section class="site-wrapper">
 
   <section class="main max-width-wrapper">
-    <div class="new-at-dabubble d-none" [ngClass]="{'fade-in show-login' : activateTimedClasses}">Neu bei DABubble?</div>
-    <div class="create-account">Konto erstellen</div>
-    <section class="intro-overlay" [ngClass]="{'bg-login' : activateTimedClasses}">
+    <div class="new-at-dabubble d-none" [ngClass]="{'fade-in show-login' : trueAfter2500ms}">Neu bei DABubble?</div>
+    <div class="create-account d-none" [ngClass]="{'fade-in show-login' : trueAfter2500ms}">Konto erstellen</div>
+
+    <section class="intro-overlay" [ngClass]="{'bg-login' : trueAfter2500ms}">
       <div class="intro-logo whole-animation">
-        <img class="logo-da-bubble" [ngClass]="{'width-50px' : activateTimedClasses, 'd-none' : hideLogo}"
+        <img class="logo-da-bubble" [ngClass]="{'width-50px' : trueAfter2500ms}"
           src="assets/images/auth/logo.png" alt="logo">
         <div class="background-layer hide-background"></div>
         <span class="intro-text text-animation"
-          [ngClass]="{'color-black font-16px': activateTimedClasses}">DABubble</span>
+          [ngClass]="{'color-black font-16px': trueAfter2500ms}">DABubble</span>
       </div>
-      <app-login class="d-none" [ngClass]="{'fade-in show-login' : activateTimedClasses}"></app-login>
+      <app-login class="d-none" [ngClass]="{'fade-in show-login' : trueAfter2500ms}"></app-login>
     </section>
   
   </section>
