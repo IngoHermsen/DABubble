@@ -8,7 +8,7 @@ import {
   user
 } from '@angular/fire/auth';
 import { from, Observable } from 'rxjs';
-import { UserInterface } from '../interfaces/user.interface';
+import { UserInterface } from '../auth/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
