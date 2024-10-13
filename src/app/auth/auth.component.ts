@@ -3,12 +3,13 @@ import { NgClass, NgStyle } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [LoginComponent, SignupComponent, ResetPasswordComponent, NgClass, NgStyle],
+  imports: [LoginComponent, SignupComponent, ResetPasswordComponent, NgClass, NgStyle, RouterLink, RouterOutlet],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
