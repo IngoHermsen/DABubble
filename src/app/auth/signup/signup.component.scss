@@ -1,5 +1,8 @@
-@import '../../../styles/mixins.scss';
 @import '../auth.component.scss';
+@import '../../../styles/mixins.scss';
+@import '../../../styles/mixins.scss';
+@import '../../../styles/animations.scss';
+@import '../../../styles/font.scss';
 
 .intro-logo{
   @include placeAbsoluteElement($top: 40px, $left: 40px);
