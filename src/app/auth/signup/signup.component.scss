@@ -5,6 +5,5 @@
 @import '../../../styles/font.scss';
 
 .intro-logo{
-  @include placeAbsoluteElement($top: 40px, $left: 40px);
-  
+  @include placeAbsoluteElement($top: 58px, $left: 58px);
 }
