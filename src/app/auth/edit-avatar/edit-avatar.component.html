@@ -1,11 +1,11 @@
 <div class="card">
     <header>Wähle deinen Avatar</header>
-    <img class="img-preview" src="assets/images/avatar_placeholder.png" alt="person-placeholder">
+    <img class="img-preview" src={{previewImg}} alt="person-placeholder">
    
     <span>Aus der Liste wählen</span>
     <div class="avatar-selection">
         @for (image of avatarImages; track $index) {
-            <img class="preset-icon" src="assets/images/{{ image }}" alt="{{ image }}">
+            <img (click)="setPresetAvatar(image)" class="preset-icon" src="assets/images/{{ image }}" alt="{{ image }}">
         }
     
     </div>
