@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FirebaseApp } from '@angular/fire/app';
 import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
 
@@ -11,6 +11,10 @@ import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
   styleUrl: './edit-avatar.component.scss'
 })
 export class EditAvatarComponent {
+  previewImg: string; // contains path string for preview Image
+
+  placeholderImagePath: string = 'assets/images/avatar_placeholder.png'
+  userImg: string | null = null;
 
   fbStorage = getStorage();
   profileImagesRef = ref(this.fbStorage, 'profileimages/12345/profile-img');
@@ -26,9 +30,11 @@ export class EditAvatarComponent {
 
   constructor(
     private firebaseApp: FirebaseApp
+   
   ) {
-
+    this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath
   }
+
 
   uploadImg(event: Event) {
     let inputEl = event.target as HTMLInputElement
@@ -38,6 +44,11 @@ export class EditAvatarComponent {
           console.log('upload completed', snapshot);
         })
     }
+  }
+
+  setPresetAvatar(imgFileName: string) {
+      this.previewImg = 'assets/images/' + imgFileName;
+      
   }
 
 }
