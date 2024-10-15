@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FirebaseApp } from '@angular/fire/app';
 import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
+import { getDownloadURL } from 'firebase/storage';
 
 
 @Component({
@@ -41,7 +42,10 @@ export class EditAvatarComponent {
     if (inputEl?.files?.length) {
       uploadBytes(this.profileImagesRef, inputEl.files[0])
         .then((snapshot) => {
-          console.log('upload completed', snapshot);
+          getDownloadURL(this.profileImagesRef)
+          .then(url => {
+              this.previewImg = url;
+          });
         })
     }
   }

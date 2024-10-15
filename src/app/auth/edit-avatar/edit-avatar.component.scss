@@ -6,7 +6,7 @@
 }
 
 .upload-btn {
-    
+
     margin: 12px;
 
     span {
@@ -21,9 +21,18 @@
     }
 }
 
-.img-preview {
-    max-height: 152px;
+.preview-img, .preview-img > img {
+    height: 152px;
+    width: 152px;
     border-radius: 50%;
+
+}
+
+.preview-img {
+
+    img {
+        object-fit: cover;
+    }
 }
 
 .avatar-selection {
