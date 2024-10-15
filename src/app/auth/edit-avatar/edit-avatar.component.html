@@ -1,6 +1,16 @@
 <div class="card">
     <header>Wähle deinen Avatar</header>
+    <img class="img-preview" src="assets/images/avatar_placeholder.png" alt="person-placeholder">
+   
+    <span>Aus der Liste wählen</span>
+    <div class="avatar-selection">
+        @for (image of avatarImages; track $index) {
+            <img class="preset-icon" src="assets/images/{{ image }}" alt="{{ image }}">
+        }
+    
+    </div>
     <div class="upload-btn">
+        <span>Eigenes Bild verwenden</span>
         <input type="file" (change)="uploadImg($event)" id="upload-input" hidden>
         <label class="upload-label" for="upload-input">Datei hochladen</label>
     </div>
