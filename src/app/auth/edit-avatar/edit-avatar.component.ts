@@ -11,8 +11,18 @@ import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
   styleUrl: './edit-avatar.component.scss'
 })
 export class EditAvatarComponent {
+ 
   fbStorage = getStorage();
   profileImagesRef = ref(this.fbStorage, 'profileimages/12345/profile-img');
+
+  avatarImages = [
+    "avatar_female_1.png",
+    "avatar_female_2.png",
+    "avatar_male_1.png",
+    "avatar_male_2.png",
+    "avatar_male_3.png",
+    "avatar_male_4.png"
+  ] 
 
   constructor(
     private firebaseApp: FirebaseApp
