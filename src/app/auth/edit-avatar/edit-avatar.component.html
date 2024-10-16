@@ -1,7 +1,13 @@
 <div class="card">
     <header>Wähle deinen Avatar</header>
     <div class="preview-img">
+        @if (imgLoading) {
+        <div class="loading">
+            <mat-spinner mode="indeterminate"></mat-spinner>
+        </div>
+        } @else {
         <img src={{previewImg}} alt="person-placeholder">
+        }
     </div>
 
     <span>Aus der Liste wählen</span>
