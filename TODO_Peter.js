@@ -20,3 +20,4 @@
 // TODO Talk üüber Avatar-Auswahl-Fenster: User wählt entweder preset-Avatar oder eigenes Bild. Umgang im User-Data klären für diese 2 unterschiedlichen Wege (Reminder für @Ingo: Alles in Storage laden, oder bei preset-Avatar anders behandeln?)
 
 // @ Peter -- Teste doch bitte einmal in der route 'localhost.../avatar/' Ob die preset-Auswahl und das Hochladen von eigenen Bildern funktioniert.
+// @ Ingo -- Habe es getestet funktioniert wunderbar!
