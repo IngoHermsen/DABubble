@@ -1,24 +1,26 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FirebaseApp } from '@angular/fire/app';
 import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
 import { getDownloadURL } from 'firebase/storage';
-
+import { MatProgressSpinnerModule, MatProgressSpinner} from '@angular/material/progress-spinner';
+import { finalize, from, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-edit-avatar',
   standalone: true,
-  imports: [],
+  imports: [MatProgressSpinnerModule, MatProgressSpinner],
   templateUrl: './edit-avatar.component.html',
   styleUrl: './edit-avatar.component.scss'
 })
 export class EditAvatarComponent {
+  imgLoading: boolean = false;
   previewImg: string; // contains path string for preview Image
 
   placeholderImagePath: string = 'assets/images/avatar_placeholder.png'
   userImg: string | null = null;
 
   fbStorage = getStorage();
-  profileImagesRef = ref(this.fbStorage, 'profileimages/12345/profile-img');
+  profileImgRef = ref(this.fbStorage, 'profileimages/12345/profile-img');
 
   avatarImages = [
     "avatar_1_female.png",
@@ -38,15 +40,21 @@ export class EditAvatarComponent {
 
 
   uploadImg(event: Event) {
-    let inputEl = event.target as HTMLInputElement
+    this.imgLoading = true;
+    let inputEl = event.target as HTMLInputElement;
+
     if (inputEl?.files?.length) {
-      uploadBytes(this.profileImagesRef, inputEl.files[0])
-        .then((snapshot) => {
-          getDownloadURL(this.profileImagesRef)
-          .then(url => {
-              this.previewImg = url;
-          });
-        })
+      const file = inputEl.files[0];
+
+      from(uploadBytes(this.profileImgRef, inputEl.files[0]))
+      .pipe(
+        switchMap(() => from(getDownloadURL(this.profileImgRef))),
+        finalize(() => this.imgLoading = false)
+      )
+      .subscribe({
+        next: (url) => this.previewImg = url,
+
+      })
     }
   }
 

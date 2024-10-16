@@ -29,7 +29,7 @@
 }
 
 .preview-img {
-
+    @include dflex($jC: center);
     img {
         object-fit: cover;
     }
