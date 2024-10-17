@@ -17,17 +17,15 @@ import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive
       state(
         'open',
         style({
-          opacity: 1,
         })
       ),
       state(
         'closed',
         style({
-          opacity: 0.5,
+          width: '0px'
         })
       ),
-      transition('open <=> closed', [animate(1000)]),
-      // transition('closed => open', [animate('1s')]),
+      transition('open <=> closed', [animate('180ms')]),
     ])
   ]
 })

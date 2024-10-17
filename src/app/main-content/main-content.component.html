@@ -19,12 +19,14 @@
   </section>
   <section class="content"> 
       <section class="workspace-section" [@toggleWorkspace]="showWorkspaceMenu ?  'open' : 'closed'">
-          <app-workspace></app-workspace>
+         <div class="ws-animation-wrapper">
+            <app-workspace></app-workspace>
+         </div> 
       </section> 
       <section class="flex-item">
           <app-channel></app-channel>
       </section>
-      <section>
+      <section class="thread-section">
           <app-thread></app-thread>
       </section>
   </section>
