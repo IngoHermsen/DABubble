@@ -97,8 +97,17 @@ $header-height: 80px;
     flex-grow: 1;
 }
 
-.content > section:not(.flex-item) {
+.workspace-section {
+    overflow: hidden;
+}
+
+.ws-animation-wrapper{
     min-width: 320px;
+    height: 100%;
+}
+
+.thread-section {
+    min-width: 360px;
 }
 
 /******************************** buttonAnimation ********************************/
