@@ -18,6 +18,8 @@ export class AuthComponent {
   
 
   constructor() {
+    
+    
     setTimeout(() => {
       this.trueAfter2500ms = true
     }, 2500);
