@@ -10,8 +10,11 @@ import { AuthPostAnimationComponent } from './auth-post-animation/auth-post-anim
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [LoginComponent, AuthPostAnimationComponent, SignupComponent, ResetPasswordComponent, NgClass, NgStyle, RouterLink, RouterOutlet],
-  templateUrl: './auth.component.html',
+  imports: [
+    AuthPostAnimationComponent, LoginComponent, NgClass, NgStyle,
+    ResetPasswordComponent, RouterLink, RouterOutlet, SignupComponent
+  ],
+    templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
@@ -19,28 +22,28 @@ export class AuthComponent {
   private router = inject(Router);
 
   constructor() { }
-    
+
   ngOnInit(): void {
 
-    if(sessionStorage.getItem("animationDone")){
-      this.router.navigate(['/main'])
+    if (sessionStorage.getItem("animationDone")) {
+      this.router.navigate(['/main']);
     }
 
     setTimeout(() => {
-      this.trueAfter2500ms = true
+      this.trueAfter2500ms = true;
     }, 2500);
 
     setTimeout(() => {
-      this.hideLogo = true
-      sessionStorage.setItem("animationDone", "true")
+      this.hideLogo = true;
+      sessionStorage.setItem("animationDone", "true");
     }, 2700);
   }
-  trueAfter2500ms = false
-  hideLogo = false
+  trueAfter2500ms = false;
+  hideLogo = false;
 
-  }
+}
 
 
-  
+
 
 

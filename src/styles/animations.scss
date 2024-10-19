@@ -15,8 +15,7 @@
   }
   
   100% {
-    @include placeAbsoluteElement($top: 40px, $left: 40px);
-    transform: translate(0, 0); 
+    @include placeAbsoluteElement($top: 58px, $left: 58px);
   }
 }
 

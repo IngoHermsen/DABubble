@@ -10,7 +10,7 @@ import { RouterLink, RouterOutlet, Router } from '@angular/router';
 @Component({
   selector: 'app-auth-post-animation',
   standalone: true,
-  imports: [LoginComponent, NgClass, NgStyle, RouterLink],
+  imports: [NgClass, NgStyle, LoginComponent, RouterLink, RouterOutlet, SignupComponent],
   templateUrl: './auth-post-animation.component.html',
   styleUrl: './auth-post-animation.component.scss'
 })
