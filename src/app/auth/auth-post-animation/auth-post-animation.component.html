@@ -2,7 +2,15 @@
 
   <section class="main max-width-wrapper">
     <div class="new-at-dabubble" >Neu bei DABubble?</div>
-    <div class="create-account d-none" [routerLink]="'signup'" [ngClass]="{'fade-in show-login' : trueAfter2500ms}">Konto erstellen</div>
+    <div class="create-account" [routerLink]="'../signup'">Konto erstellen</div>
+
+    <div class="intro-logo">
+      <img src="assets/images/auth/logo.png" class="logo-da-bubble width-50px" alt="logo">
+      <span class="intro-text color-black font-16px">DABubble</span>
+    </div>
+
+
+
 
       <app-login class=" fade-in" ></app-login>
     </section>
