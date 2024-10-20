@@ -14,12 +14,14 @@ import { AuthPostAnimationComponent } from './auth-post-animation/auth-post-anim
     AuthPostAnimationComponent, LoginComponent, NgClass, NgStyle,
     ResetPasswordComponent, RouterLink, RouterOutlet, SignupComponent
   ],
-    templateUrl: './auth.component.html',
+  templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
 
   private router = inject(Router);
+  trueAfter2500ms = false;
+  hideLogo = false;
 
   constructor() { }
 
@@ -29,17 +31,23 @@ export class AuthComponent {
       this.router.navigate(['/main']);
     }
 
+    /**
+     * Sets trueAfter2500ms to true after 2500ms to trigger content display.
+     */
     setTimeout(() => {
       this.trueAfter2500ms = true;
     }, 2500);
 
+    /**
+     * Hides the logo and marks the animation as completed by setting
+     * the "animationDone" flag in sessionStorage after 2700ms.
+     */
     setTimeout(() => {
       this.hideLogo = true;
       sessionStorage.setItem("animationDone", "true");
     }, 2700);
+
   }
-  trueAfter2500ms = false;
-  hideLogo = false;
 
 }
 
