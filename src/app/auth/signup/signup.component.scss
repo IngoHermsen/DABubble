@@ -3,6 +3,8 @@
 @import '../../../styles/mixins.scss';
 @import '../../../styles/animations.scss';
 @import '../../../styles/font.scss';
+@import '../../../styles/font.scss';
+@import '../login/login.component.scss';
 
 .intro-logo{
   @include placeAbsoluteElement($top: 58px, $left: 58px);
