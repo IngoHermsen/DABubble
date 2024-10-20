@@ -6,6 +6,19 @@
 @import '../../../styles/font.scss';
 @import '../login/login.component.scss';
 
+p{
+  margin: 0
+}
+
 .intro-logo{
   @include placeAbsoluteElement($top: 58px, $left: 58px);
+}
+
+
+.sign-up-container{
+  @include loginSignupWindow($width: 606px)
+}
+
+.create-acount-info{
+  margin: 1em 0 1em 0;
 }
