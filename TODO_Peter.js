@@ -4,7 +4,7 @@
 
 
 // TODO  --- 9.10.2024 --- 
-
+.
 // TODO Sign up Fenster Schreiben
 // TODO Welche Breakpoints sollen benutzt werden?
 // TODO Google Auth auschecken
@@ -23,4 +23,4 @@
 // @ Ingo -- So kann man mehrere commit messages in einem commit abfeuern, damit das in der commit history gut aussieht.
  // git commit -m "Feat: Add this" -m "Doc: Updated README" --> Man benutzt einfach mehrmals -m
  // check mal die p.sh kann für schnelleren git workflow benutzt werden. 
- // Ich rufe die so auf ./p.sh ""
+ // Ich rufe die so auf ./p.sh "Feat: cool feature added"
