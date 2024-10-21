@@ -49,7 +49,6 @@ export class LoginComponent {
  */
   onSubmit(): void {
     const rawForm = this.form.getRawValue();
-    console.log(rawForm);
     this.authService.loginUser(rawForm.email, rawForm.password).subscribe({
       next: () => {
         alert("Login Success")
