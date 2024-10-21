@@ -3,6 +3,12 @@
 $header-height: 80px;
 
 
+.wrapper {
+    background-color: var(--bg-color);
+    @include dflex($dir: column);
+}
+
+
 .toggle-btn {
     position: absolute;
     display: flex;
@@ -36,12 +42,6 @@ $header-height: 80px;
 
 }
 
-.wrapper {
-    position: relative;
-    background-color: var(--bg-color);
-    width: 100vw;
-    @include dflex($dir: column);
-}
 
 .header {
     box-sizing: border-box;
