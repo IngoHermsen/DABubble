@@ -27,5 +27,29 @@ export class SignupComponent {
   
   errorMessage: string | null = null;
 
-
+    /**
+ * Handles the form submission for user signup.
+ * 
+ * This method retrieves the raw values from the signup form, including
+ * the username, email, and password. It then attempts to sign up the user
+ * using the authentication service. On successful signup, the user is 
+ * navigated to the home page ("/"). If the signup fails, an error message 
+ * could be displayed (though not implemented here).
+ * 
+ * @returns {void} This method does not return any value.
+ */
+    onSubmit(): void {
+      const rawForm = this.form.getRawValue();
+      console.log(rawForm);
+      this.authService.signUpUser(rawForm.email, rawForm.username, rawForm.password).subscribe({
+        next: () => {
+          this.router.navigateByUrl("/login");
+        }, 
+        error: (err) => {
+         this.errorMessage = err.code;
+        },
+        
+      });
+    }
+  
 }

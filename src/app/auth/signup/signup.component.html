@@ -15,6 +15,22 @@
           <p>du dein neues DABubble Konto</p>
         </div>
       </section>
+
+      <form class="sign-up-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div>
+          <input type="text" placeholder="Name" formControlName="username" />
+        </div>
+        <div>
+          <input type="text" placeholder="Email" formControlName="email" />
+        </div>
+        <div>
+          <input type="password" placeholder="Password" formControlName="password" />
+        </div>
+        <div>
+          <button class="mt-3" type="submit">Sign Up</button>
+        </div>
+      </form>
+    
     </section>
 
   </section>
