@@ -9,9 +9,7 @@ import { AuthPostAnimationComponent } from './auth/auth-post-animation/auth-post
 export const routes: Routes = [
     {path: '', component: AuthComponent},
     {path: 'main', component: AuthPostAnimationComponent},
-    // { path: '', redirectTo: 'auth', pathMatch: 'full'},
     { path: 'auth', component: AuthComponent},
-    { path: 'login', component: LoginComponent},
     { path: 'signup', component: SignupComponent}, 
     { path: 'home', component: MainComponent}, 
     { path: 'avatar', component: EditAvatarComponent}
