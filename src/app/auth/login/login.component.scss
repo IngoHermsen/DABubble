@@ -13,7 +13,8 @@ $login-header-c: #444df2;
 
 
 .login-container{
-  @include loginSignupWindow($width : 423px)
+  @include loginSignupWindow($width : 423px);
+  @include dflex($dir: column,  $aI: center, $jC: top);
 }
 
 .login-header{
@@ -30,6 +31,14 @@ $login-header-c: #444df2;
 
 }
 
+.input-styling{
+  width: fit-content
+}
+
+.login-form{
+  width: 100%;
+  border: solid orange 1px; 
+}
 
 /************************* Responsivness *************************/
 @media (max-height: 800px) {
