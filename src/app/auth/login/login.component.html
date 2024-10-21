@@ -5,8 +5,9 @@
   </section>
 
   <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
+    <div class="input-box">
       <input class="input-styling" type="text" placeholder="Email" formControlName="email" />
+      <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
     </div>
     <div>
       <input type="password" placeholder="Password" formControlName="password" />
