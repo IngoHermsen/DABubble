@@ -1,0 +1,17 @@
+@import '../../../styles/mixins.scss';
+
+.card {
+    position: relative;
+}
+
+.fixed-header {
+    max-height: 100px;
+    inset: 0px;
+    @include dflex();
+    position: absolute;
+    box-shadow: 2px 9px 12px -8px #cababa;
+
+    h2 {
+        padding: 0px 40px;
+    }
+}
