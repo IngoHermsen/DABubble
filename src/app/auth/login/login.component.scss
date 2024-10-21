@@ -8,6 +8,7 @@
 // }
 //! Mixin reference
 @import '../../../styles/mixins.scss';
+// @import '../../../assets/fonts/nunito-v26-latin-700.woff2';
 
 *{
   box-sizing: border-box;
@@ -16,7 +17,7 @@ $login-header-c: #444df2;
 
 /************************* Login Container *************************/
 .login-container{
-  @include loginSignupWindow($width : 423px);
+  @include loginSignupWindow($width : 500px);
   @include dflex($dir: column,  $aI: center, $jC: top);
 }
 
@@ -27,6 +28,8 @@ $login-header-c: #444df2;
     line-height: 1;
     color: $login-header-c;
     font-size: 46px;
+    font-weight: 600
+    ;
   }
   p{
     text-align: center;
@@ -34,22 +37,23 @@ $login-header-c: #444df2;
 }
 
 .login-form{
-  @include dflex($dir: column, $jC: space-around, $aI: flex-start, $gap: 10px);
+  padding-top: 24px;
+  @include dflex($dir: column, $jC: space-around, $aI: flex-start, $gap: 32px);
   box-sizing: border-box;
   width: 100%;
-  border: solid orange 1px; 
+  // border: solid orange 1px; 
 }
 
 /************************* Input fields *************************/
 .input-box{
   width: 100%;
-  border: solid red;
+  // border: solid red;
   position: relative;
 }
 
 .input-styling{
   width: 100%;
-  height: 60px;
+  height: 50px;
   border-radius: 100px;
   background-color: #ECEEFE;
   border: none;
@@ -63,6 +67,9 @@ $login-header-c: #444df2;
 /************************* Input Placeholder *************************/
 input::placeholder {
   text-align: left;
+  font-family: "Nunito";
+  font-size: 18px;
+  font-weight: 500;
 }
 
 /************************* Input fields imgs *************************/
@@ -73,10 +80,33 @@ input::placeholder {
 .place-input-img{
   position: absolute;
   top: 50%;
-  left: 32px;
+  left: 24px;
   transform: translateY(-50%);
 }
+/**************************************************/
 
+.forgot-pw{
+  align-self: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #797EF3;
+}
+
+.or-wrapper{
+  @include dflex();
+  width: 100%;
+}
+
+.or{
+  padding: 0 12px 0 12px;
+}
+
+.stroke-lightblue{
+  width: 100%;
+  border-bottom: solid  1px ;
+  padding-top: 8px;
+  border-color: #ADB0D9;
+}
 
 /************************* Responsivness *************************/
 @media (max-height: 800px) {
