@@ -1,8 +1,6 @@
 @import '../auth.component.scss';
 @import '../../../styles/mixins.scss';
-@import '../../../styles/mixins.scss';
 @import '../../../styles/animations.scss';
-@import '../../../styles/font.scss';
 @import '../../../styles/font.scss';
 @import '../login/login.component.scss';
 
@@ -18,6 +16,10 @@ p{
 .sign-up-container{
   position: relative;
   @include loginSignupWindow($width: 606px)
+}
+
+.arrow-back{
+  @include placeAbsoluteElement($top: 40px, $left: 25px);
 }
 
 .create-acount-info{
