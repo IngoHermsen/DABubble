@@ -18,7 +18,7 @@ $login-header-c: #444df2;
 
 /************************* Login Container *************************/
 .login-container {
-  @include loginSignupWindow($width : 500px);
+  @include loginSignupWindow($width : 500px, $padding: 30px);
   @include dflex($dir: column, $aI: center, $jC: center);
 }
 

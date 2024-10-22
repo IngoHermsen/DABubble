@@ -84,4 +84,6 @@
 .fade-in {
   opacity: 0; /* Start hidden */
   animation: fadeIn 1.4s ease-in forwards; /* Animation lasts for 1.5 seconds */
+  will-change: opacity;
 }
+

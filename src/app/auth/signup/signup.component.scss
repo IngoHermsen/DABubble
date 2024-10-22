@@ -15,7 +15,7 @@ p{
 /************************* Sign up container *************************/
 .sign-up-container{
   position: relative;
-  @include loginSignupWindow($width: 606px)
+  @include loginSignupWindow($width: 606px, $padding: 30px 80px)
 }
 
 .arrow-back{

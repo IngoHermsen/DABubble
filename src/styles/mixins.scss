@@ -23,8 +23,8 @@
 
 /************************* Login Signup *************************/
 
-@mixin loginSignupWindow($width){
-    padding: 30px;
+@mixin loginSignupWindow($width, $padding){
+    padding: $padding;
     box-sizing: border-box;
     @include centerAbsoluteElement();
     box-shadow: 0px 2px 10px 0px #00000014;
