@@ -1,17 +1,10 @@
 
 
-
-
-
 // TODO  --- 9.10.2024 --- 
 
-// TODO Sign up Fenster Schreiben
 // TODO Welche Breakpoints sollen benutzt werden?
 // TODO Google Auth auschecken
 // TODO CSS / HTML für Direct Messages, mittleren Hauptbereich, mit ersten Pseudo-Einträgen und Pseudo-Usern
-
-
-//@ Ingo -- Check mal in styles.css den max-width-wrapper, und ob du den so in deiner Seite einbauen kannst?
 
 
 // TODO  --- 20.10.2024 ---
