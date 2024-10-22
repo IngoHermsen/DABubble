@@ -45,45 +45,7 @@ $login-header-c: #444df2;
   width: 100%;
 }
 
-/************************* Input fields *************************/
-.input-box {
-  width: 100%;
-  // border: solid red;
-  position: relative;
-}
 
-.input-styling {
-  width: 100%;
-  height: 50px;
-  border-radius: 100px;
-  background-color: #ECEEFE;
-  border: none;
-  padding-left: 80px;
-}
-
-.input-styling:focus {
-  outline: none
-}
-
-/************************* Input Placeholder *************************/
-input::placeholder {
-  text-align: left;
-  font-family: "Nunito";
-  font-size: 18px;
-  font-weight: 500;
-}
-
-/************************* Input fields imgs *************************/
-.input-icon {
-  width: 24px;
-}
-
-.place-input-img {
-  position: absolute;
-  top: 50%;
-  left: 24px;
-  transform: translateY(-50%);
-}
 
 /************************* Post input fields *************************/
 .forgot-pw {
