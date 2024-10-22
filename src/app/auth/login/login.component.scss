@@ -108,6 +108,16 @@ input::placeholder {
   border-color: #ADB0D9;
 }
 
+/************************* Dynamic Classes *************************/
+.dflex-google{
+  @include dflex($jC: center, $gap: 16px);
+  border: solid orange 1px; 
+}
+
+.no-padding-left{
+  padding-left:0
+}
+
 /************************* Responsivness *************************/
 @media (max-height: 800px) {
   .login-wrapper {
