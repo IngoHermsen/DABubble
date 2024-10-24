@@ -15,5 +15,14 @@ import { RouterLink, RouterOutlet, Router } from '@angular/router';
   styleUrl: './auth-post-animation.component.scss'
 })
 export class AuthPostAnimationComponent {
+  ngOnInit() {
+    // Use setTimeout to ensure the class is applied after the initial view rendering
+    setTimeout(() => {
+      this.makeVisible = true;
+    }, 0); // Short delay (0ms) to ensure Angular has rendered the component
+  }
+  
+  
+  makeVisible = false
 
 }

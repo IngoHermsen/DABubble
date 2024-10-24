@@ -20,6 +20,14 @@ import { AuthService } from '../../services/auth.service';
 
 
 export class LoginComponent {
+  ngOnInit() {
+    // Use setTimeout to ensure the class is applied after the initial view rendering
+    setTimeout(() => {
+      this.makeVisible = true;
+    }, 0); // Short delay (0ms) to ensure Angular has rendered the component
+  }
+  
+  makeVisible = false
   
   fb = inject(FormBuilder);
   http = inject(HttpClient);

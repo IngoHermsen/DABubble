@@ -19,6 +19,7 @@ import { AuthPostAnimationComponent } from './auth-post-animation/auth-post-anim
 })
 export class AuthComponent {
 
+  makeVisible = false
   private router = inject(Router);
   trueAfter2500ms = false;
   hideLogo = false;
@@ -30,6 +31,11 @@ export class AuthComponent {
     if (sessionStorage.getItem("animationDone")) {
       this.router.navigate(['/main']);
     }
+
+    setTimeout(() => {
+      this.makeVisible = true;
+    }, 0); // Short delay (0ms) to ensure Angular has rendered the component
+
 
     /**
      * Sets trueAfter2500ms to true after 2500ms to trigger content display.

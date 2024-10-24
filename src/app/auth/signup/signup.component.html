@@ -7,7 +7,7 @@
       <span class="intro-text color-black font-16px">DABubble</span>
     </div>
 
-    <section class="sign-up-container fade-in">
+    <section class="sign-up-container  fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
 
       <div class="arrow-back" [routerLink]="'../main'">
         <img src="../../../assets/icons/arrow_back.png" alt="">
@@ -38,7 +38,7 @@
         </section>
 
         <section>
-          <button class="mt-3" type="submit">Sign Up</button>
+          <button class="" type="submit">Sign Up</button>
         </section>
 
       </form>
