@@ -4,8 +4,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
-
-
 //§ Explanations: 
 //§ When to define imports in the decorator <imports: []> 
 //§ Everything that is needed in the <HTML template> needs to be defined in <imports: []>
