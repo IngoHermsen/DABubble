@@ -69,21 +69,12 @@
 }
 
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
 .fade-in {
-  opacity: 0; /* Start hidden */
-  animation: fadeIn 1.4s ease-in forwards; /* Animation lasts for 1.5 seconds */
-  will-change: opacity;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out
 }
 
+.fade-in-visible {
+  opacity: 1;
+}

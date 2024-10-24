@@ -3,17 +3,27 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
+import { NgClass } from '@angular/common';
 
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, NgClass],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
-
+  
+  ngOnInit() {
+    // Use setTimeout to ensure the class is applied after the initial view rendering
+    setTimeout(() => {
+      this.makeVisible = true;
+    }, 0); // Short delay (0ms) to ensure Angular has rendered the component
+  }
+  
+  
+  makeVisible = false
   fb = inject(FormBuilder);
   http = inject(HttpClient);
   router = inject(Router);
