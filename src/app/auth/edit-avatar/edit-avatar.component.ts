@@ -39,7 +39,7 @@ export class EditAvatarComponent {
     this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath
   }
 
-  // 'Upload Image' function: This function is triggered by a change-event on the 'File Upload input field' (type 'file')
+  // 'Upload Image' function: This function is triggered by a change-event on the 'File Upload input' (type 'file')
   // Function first sets the imgLoading-boolean as "true". This boolean is binded to the view, so the user can see that the upload is running.
   // In the function the Input Element variable 'inputEl' is initialized with the html-Element from the passed event.
   // It is used to check if the user selected an actual file. In that case the Observable takes place (from(uploadBytes...))
