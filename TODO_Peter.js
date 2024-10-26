@@ -9,9 +9,9 @@
 
 // TODO  --- 20.10.2024 ---
 
-// @ Ingo -- Wollen wir die mixins alle unter mixins definieren oder auch thematisch?
-// Die Überlegung war den mixin loginSignupWindow() in auth.scss zu stecken. 
-// Habs aber erstmal in mixins.scss geschoben. Ist wahrscheinlich klarer von der Trennung.
+//TODO Routing in componenten als children anschauen. 
+//TODO Passwort vergessen anschauen
+
 
 // @ Ingo -- So kann man mehrere commit messages in einem commit abfeuern, damit das in der commit history gut aussieht.
  // git commit -m "Feat: Add this" -m "Doc: Updated README" --> Man benutzt einfach mehrmals -m
