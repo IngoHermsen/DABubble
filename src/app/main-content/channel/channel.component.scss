@@ -5,6 +5,8 @@
 }
 
 .fixed-header {
+    border-radius: 25px 25px 0px 0px;
+    background-color: white;
     max-height: 100px;
     inset: 0px;
     @include dflex();
@@ -14,4 +16,14 @@
     h2 {
         padding: 0px 40px;
     }
+}
+
+.posts {
+    max-width: 400px;
+    padding-top: 100px;
+    @include dflex($dir: column, $gap: 24px)
+}
+
+.post-content {
+    text-wrap: wrap;
 }
