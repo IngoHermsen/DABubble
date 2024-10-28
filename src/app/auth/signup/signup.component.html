@@ -7,43 +7,43 @@
       <span class="intro-text color-black font-16px">DABubble</span>
     </div>
 
-    <section class="sign-up-container  fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
+    <div class="sign-up-container  fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
 
       <div class="arrow-back" [routerLink]="'../main'">
         <img src="../../../assets/icons/arrow_back.png" alt="">
       </div>
 
-      <section class="login-header">
+      <div class="login-header">
         <header>Konto Erstellen</header>
         <div class="create-acount-info">
           <p>Mit deinem Namen und deiner E-Mail-Adresse hast</p>
           <p>du dein neues DABubble Konto</p>
         </div>
-      </section>
+      </div>
 
       <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <section class="input-box">
+        <div class="input-box">
           <input class="input-styling" type="text" placeholder="Name" formControlName="username" />
           <img class="place-input-img" src="../../../assets/icons/person.png" alt="">
-        </section>
+        </div>
 
-        <section class="input-box">
+        <div class="input-box">
           <input class="input-styling" type="text" placeholder="Email" formControlName="email" />
           <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
-        </section>
+        </div>
 
-        <section class="input-box">
+        <div class="input-box">
           <input class="input-styling" type="password" placeholder="Password" formControlName="password" />
           <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
-        </section>
+        </div>
 
-        <section>
+        <div>
           <button class="" type="submit">Sign Up</button>
-        </section>
+        </div>
 
       </form>
 
-    </section>
+    </div>
 
   </section>
 
