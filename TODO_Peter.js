@@ -9,6 +9,7 @@
 
 // TODO  --- 20.10.2024 ---
 
+// TODO Validierungen für Login Signup anschauen.
 //TODO Routing in componenten als children anschauen. 
 //TODO Passwort vergessen anschauen
 
