@@ -14,8 +14,8 @@ import { AuthPostAnimationComponent } from '../auth-post-animation/auth-post-ani
     AuthPostAnimationComponent, LoginComponent, NgClass, NgStyle,
     ResetPasswordComponent, RouterLink, RouterOutlet, SignupComponent
   ],
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss'
+  templateUrl: './auth-animation.component.html',
+  styleUrl: './auth-animation.component.scss'
 })
 export class AuthComponent {
 
