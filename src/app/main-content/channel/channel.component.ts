@@ -21,7 +21,7 @@ export class ChannelComponent {
     {
       postId: 'postid',
       creatorId: 'Yogi Bär',
-      text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
+      text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do. Lorem ipsum Do velit velit aute eu mollit qui minim do.',
       reactions: [],
       creationTime: '08:59',
       isAnswer: false,
