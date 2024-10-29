@@ -19,9 +19,12 @@
 }
 
 .posts {
-    max-width: 400px;
     padding-top: 100px;
-    @include dflex($dir: column, $gap: 24px)
+    @include dflex($dir: column, $gap: 24px);
+
+    .post {
+        text-wrap-mode: auto;
+    }
 }
 
 .post-content {
