@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Post } from '../../core/interfaces/post';
 
 @Component({
   selector: 'app-channel',
@@ -8,19 +9,33 @@ import { Component } from '@angular/core';
   styleUrl: './channel.component.scss'
 })
 export class ChannelComponent {
-  posts: any = [
+  posts: Post[] = [
     {
-      userName: "Max Mustermann",
-      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore distinctio, quisquam eligendi dolores error saepe nobis corporis. Quibusdam, nam iste. A possimus quo voluptatem laboriosam fugit totam vero voluptate asperiores."
+      postId: 'postid',
+      creatorId: 'Max Mustermann',
+      text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
+      reactions: [],
+      creationTime: '12:00',
+      isAnswer: false,
     },
     {
-      userName: "Jochen Müller",
-      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore distinctio, quisquam eligendi dolores error saepe nobis corporis. Quibusdam, nam iste. A possimus quo voluptatem laboriosam fugit totam vero voluptate asperiores."
+      postId: 'postid',
+      creatorId: 'Yogi Bär',
+      text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
+      reactions: [],
+      creationTime: '08:59',
+      isAnswer: false,
     },
     {
-      userName: "Martina Musterfrau",
-      content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore distinctio, quisquam eligendi dolores error saepe nobis corporis. Quibusdam, nam iste. A possimus quo voluptatem laboriosam fugit totam vero voluptate asperiores."
+      postId: 'postid',
+      creatorId: 'Tante Emma',
+      text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
+      reactions: [],
+      creationTime: '14:29',
+      isAnswer: false,
+    },
 
-    },
-  ]
+
+  ];
+
 }
