@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthPostAnimationComponent } from './auth-post-animation.component';
+import { AuthPostAnimationComponent } from './auth.component';
 
 describe('AuthPostAnimationComponent', () => {
   let component: AuthPostAnimationComponent;

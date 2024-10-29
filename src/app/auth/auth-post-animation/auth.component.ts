@@ -11,8 +11,8 @@ import { RouterLink, RouterOutlet, Router } from '@angular/router';
   selector: 'app-auth-post-animation',
   standalone: true,
   imports: [NgClass, NgStyle, LoginComponent, RouterLink, RouterOutlet, SignupComponent],
-  templateUrl: './auth-post-animation.component.html',
-  styleUrl: './auth-post-animation.component.scss'
+  templateUrl: './auth.component.html',
+  styleUrl: './auth.component.scss'
 })
 export class AuthPostAnimationComponent {
   ngOnInit() {
