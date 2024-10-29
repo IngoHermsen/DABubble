@@ -22,7 +22,8 @@ import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive
       state(
         'closed',
         style({
-          width: '0px'
+          width: '0px',
+          display: 'none'
         })
       ),
       transition('open <=> closed', [animate('180ms')]),
