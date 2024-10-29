@@ -5,10 +5,12 @@
     <div class="posts">
         @for (post of posts; track $index) {
         <div class="post">
-            <span class="post-username">{{ post.userName }}</span>
-            <span class="post-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Inventore distinctio,
-                quisquam eligendi dolores error saepe nobis corporis. Quibusdam, nam iste. A possimus quo voluptatem
-                laboriosam fugit totam vero voluptate asperiores.</span>
+            <div class="profile-image"></div>
+            <div class="post-content">
+                <span class="post-username">{{ post.creatorId }}</span>
+                <span class="post-text">{{ post.text }}</span>
+            </div>
+
         </div>
         }
     </div>
