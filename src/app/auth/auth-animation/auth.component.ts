@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
 import { NgClass, NgStyle } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { LoginComponent } from '../login/login.component';
+import { SignupComponent } from '../signup/signup.component';
+import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 import { RouterLink, RouterOutlet, Router } from '@angular/router';
-import { AuthPostAnimationComponent } from './auth-post-animation/auth-post-animation.component';
+import { AuthPostAnimationComponent } from '../auth-post-animation/auth-post-animation.component';
 
 @Component({
   selector: 'app-auth',
