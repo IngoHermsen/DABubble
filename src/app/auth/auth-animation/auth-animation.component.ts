@@ -53,6 +53,15 @@ export class AuthComponent {
       sessionStorage.setItem("animationDone", "true");
     }, 2700);
 
+    /**
+     * Navigates to main after the animation. 
+     * Preventing the start animation to start again. 
+     */
+    setTimeout(() => {
+      this.router.navigate(['/main']);
+    }, 3000);
+
+
   }
 
 }
