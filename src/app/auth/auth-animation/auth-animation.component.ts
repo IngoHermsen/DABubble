@@ -44,6 +44,7 @@ export class AuthComponent {
       this.trueAfter2500ms = true;
     }, 2500);
 
+
     /**
      * Hides the logo and marks the animation as completed by setting
      * the "animationDone" flag in sessionStorage after 2700ms.
@@ -53,6 +54,7 @@ export class AuthComponent {
       sessionStorage.setItem("animationDone", "true");
     }, 2700);
 
+    
     /**
      * Navigates to main after the animation. 
      * Preventing the start animation to start again. 
