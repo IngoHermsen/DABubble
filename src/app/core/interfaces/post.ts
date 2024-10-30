@@ -5,4 +5,5 @@ export interface Post {
     reactions: []
     creationTime: string  // type 'string' for first test content, change later to type 'Date'
     isAnswer: boolean;
+    imgPath?: string;
 }
