@@ -62,10 +62,7 @@ export class AuthComponent {
     setTimeout(() => {
       this.router.navigate(['/main']);
     }, 3000);
-
-
   }
-
 }
 
 
