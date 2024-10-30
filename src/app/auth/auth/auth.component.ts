@@ -22,8 +22,5 @@ export class AuthPostAnimationComponent {
       this.makeVisible = true;
     }, 0); 
   }
-  
-  
   makeVisible = false
-
 }
