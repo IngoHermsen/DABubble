@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 
 @Component({
@@ -8,8 +8,11 @@ import { Post } from '../../core/interfaces/post';
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
-export class PostComponent {
+export class PostComponent implements OnInit{
   @Input() post: Post;
-  
+
+  ngOnInit(): void {
+    console.log(this.post)
+  }
 
 }

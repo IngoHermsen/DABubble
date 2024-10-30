@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../post/post.component';
 
@@ -10,7 +10,7 @@ import { PostComponent } from '../post/post.component';
   styleUrl: './channel.component.scss'
 })
 export class ChannelComponent {
-  posts: Post[] = [    // examples - will later be fetched from database / backend
+  posts: Post[] = [   // examples - will later be fetched from database / backend
     {
       postId: 'postid',
       creatorId: 'Max Mustermann',
