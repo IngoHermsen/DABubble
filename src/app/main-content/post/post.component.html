@@ -1,1 +1,11 @@
-<p>post works!</p>
+<div class="posts">
+    @for (post of posts; track $index) {
+    <div class="post">
+        <div class="profile-image"></div>
+        <div class="post-content">
+            <span class="post-username">{{ post.creatorId }}</span>
+            <span class="post-text">{{ post.text }}</span>
+        </div>
+    </div>
+    }
+</div>

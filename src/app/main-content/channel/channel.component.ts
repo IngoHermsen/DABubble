@@ -9,7 +9,7 @@ import { Post } from '../../core/interfaces/post';
   styleUrl: './channel.component.scss'
 })
 export class ChannelComponent {
-  posts: Post[] = [
+  posts: Post[] = [    // examples - will later be fetched from database / backend
     {
       postId: 'postid',
       creatorId: 'Max Mustermann',
@@ -37,5 +37,4 @@ export class ChannelComponent {
 
 
   ];
-
 }
