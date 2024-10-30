@@ -4,7 +4,7 @@
     </div>
     <div class="posts">
         @for (post of posts; track $index) {
-            <app-post [(post)]= {{ post }}></app-post>
+            <app-post [post] = 'post'></app-post>
         }
     </div>
 </div>
