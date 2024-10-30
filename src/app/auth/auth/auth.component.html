@@ -2,7 +2,7 @@
 
   <section class="main max-width-wrapper">
     <div class="new-at-dabubble" >Neu bei DABubble?</div>
-    <div class="create-account" [routerLink]="'../signup'">Konto erstellen</div>
+    <div class="create-account" [routerLink]="'signup'">Konto erstellen</div>
 
     <div class="intro-logo">
       <img src="assets/images/auth/logo.png" class="logo-da-bubble width-50px" alt="logo">
@@ -10,7 +10,7 @@
     </div>
 
 
-      <app-login></app-login>
+      <router-outlet></router-outlet>
     </section>
   
   </section>
