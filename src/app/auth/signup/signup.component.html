@@ -1,15 +1,6 @@
-<section class="site-wrapper">
+    <div class="sign-up-container fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
 
-  <section class="main max-width-wrapper">
-
-    <div class="intro-logo">
-      <img src="assets/images/auth/logo.png" class="logo-da-bubble width-50px" alt="logo">
-      <span class="intro-text color-black font-16px">DABubble</span>
-    </div>
-
-    <div class="sign-up-container  fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
-
-      <div class="arrow-back" [routerLink]="'../main'">
+      <div class="arrow-back" [routerLink]="'/main/login'">
         <img src="../../../assets/icons/arrow_back.png" alt="">
       </div>
 
@@ -44,8 +35,3 @@
       </form>
 
     </div>
-
-  </section>
-
-
-</section>
