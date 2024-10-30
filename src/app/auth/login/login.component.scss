@@ -1,14 +1,6 @@
-//! Mixin reference
-// @mixin dflex($dir: row, $jC: space-between, $aI: center, $gap: 0px) {
-//   display: flex; 
-//   flex-direction: $dir;
-//   justify-content: $jC;
-//   align-items: $aI;
-//   gap: $gap
-// }
-//! Mixin reference
 @import '../../../styles/mixins.scss';
-// @import '../../../assets/fonts/nunito-v26-latin-700.woff2';
+@import '../../../styles/animations.scss';
+
 
 * {
   box-sizing: border-box;
