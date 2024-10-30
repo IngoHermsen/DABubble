@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
+import { PostComponent } from '../post/post.component';
 
 @Component({
   selector: 'app-channel',
   standalone: true,
-  imports: [],
+  imports: [PostComponent],
   templateUrl: './channel.component.html',
   styleUrl: './channel.component.scss'
 })

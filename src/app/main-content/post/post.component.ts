@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 
 @Component({
@@ -9,5 +9,7 @@ import { Post } from '../../core/interfaces/post';
   styleUrl: './post.component.scss'
 })
 export class PostComponent {
- 
+  @Input() post: Post;
+  
+
 }
