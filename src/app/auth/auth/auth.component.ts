@@ -8,21 +8,37 @@ import { RouterLink, RouterOutlet, Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-auth-post-animation',
+  selector: 'app-auth',
   standalone: true,
   imports: [NgClass, NgStyle, LoginComponent, RouterLink, RouterOutlet, SignupComponent],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
 export class AuthPostAnimationComponent {
-  ngOnInit() {
-    // Use setTimeout to ensure the class is applied after the initial view rendering
-    setTimeout(() => {
-      this.makeVisible = true;
-    }, 0); // Short delay (0ms) to ensure Angular has rendered the component
+  constructor(private router: Router){
   }
   
   
-  makeVisible = false
+  navigateToLogin(){
+    this.router.navigate(['main', 'login'])
+  }
 
+  navigateToSignUp(){
+    this.router.navigate(['main', 'signup'])
+  }
+  
+  // Use setTimeout to ensure the class is applied after the initial view rendering
+  // Short delay (0ms) to ensure Angular has rendered the component
+  ngOnInit() {
+    this.navigateToLogin()
+    
+    setTimeout(() => {
+      this.makeVisible = true;
+    }, 0); 
+  }
+<<<<<<< HEAD
+=======
+
+>>>>>>> auth
+  makeVisible = false
 }

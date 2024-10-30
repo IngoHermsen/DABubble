@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthComponent } from './auth/auth-animation/auth-animation.component';
 import { MainComponent } from './main-content/main-content.component';
@@ -8,9 +8,14 @@ import { AuthPostAnimationComponent } from './auth/auth/auth.component';
 
 export const routes: Routes = [
     {path: '', component: AuthComponent},
-    {path: 'main', component: AuthPostAnimationComponent},
+    {path: 'main', component: AuthPostAnimationComponent,
+        children: [
+            {path: 'login', component: LoginComponent},
+            {path: 'signup', component: SignupComponent},
+        ] 
+    },
     { path: 'auth', component: AuthComponent},
-    { path: 'signup', component: SignupComponent}, 
+    // { path: 'signup', component: SignupComponent}, 
     { path: 'home', component: MainComponent}, 
     { path: 'avatar', component: EditAvatarComponent}
 ];
