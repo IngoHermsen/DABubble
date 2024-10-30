@@ -1,10 +1,11 @@
 import { Component, Output } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-channel',
   standalone: true,
-  imports: [],
+  imports: [NgIf],
   templateUrl: './channel.component.html',
   styleUrl: './channel.component.scss'
 })
@@ -25,6 +26,7 @@ export class ChannelComponent {
       reactions: [],
       creationTime: '08:59',
       isAnswer: false,
+      imgPath: 'assets/images/testImg/yogi.png'
     },
     {
       postId: 'postid',
