@@ -47,7 +47,6 @@ ngOnInit() {
    */
   this.router.events.subscribe(event => {
     if (event instanceof NavigationEnd) {
-      // Toggle the visibility of the element based on the current URL.
       this.hideElement = event.url.includes('signup');
     }
   });
