@@ -1,5 +1,5 @@
-<div class="post">
-    @if (post.imgPath) {
+<div class="post" [class.odd]="isOdd">
+    @if (!post.imgPath) {
     <div class="profile-image"></div>
     } @else {
     <div class="profile-image img">

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Post } from '../core/interfaces/post';
 
 @Component({
@@ -8,6 +8,14 @@ import { Post } from '../core/interfaces/post';
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
+  @Input() index: number;
   @Input() post: Post;
+  isOdd: boolean;
+
+  ngOnInit(): void {
+    this.isOdd = this.index % 2 !== 0 // Check if Index is Odd to get the correct style
+    console.log(this.isOdd)
+  }
+
 }
