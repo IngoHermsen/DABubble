@@ -108,13 +108,9 @@ input::placeholder {
 
 .posts {
   padding-top: 100px;
-  @include dflex($dir: column, $gap: 24px);
+  @include dflex($dir: column, $gap: 28px);
 
   .post-wrapper {
       width: 100%;
-  }
-
-  .post {
-      text-wrap-mode: auto;
   }
 }

@@ -3,9 +3,9 @@
         <h2>channel name</h2>
     </div>
     <div class="posts">
-        @for (post of posts; track $index) {
+        @for (post of posts; let index = $index; track $index) {
         <div class="post-wrapper">
-            <app-post [post] = 'post'></app-post>
+            <app-post [index] = "index" [post] = "post"></app-post>
         </div>
         }
     </div>
