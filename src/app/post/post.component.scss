@@ -1,0 +1,75 @@
+@import '../../styles/mixins.scss';
+
+
+// ******************** Post *********************
+
+.post {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  
+    img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50px;
+    };
+  
+    .profile-image {
+      min-width: 40px;
+      height: 40px;
+      border: 1px solid grey;
+      border-radius: 50%;
+    }
+  
+    .post-header {
+      width: 100%;
+      display: flex;
+      justify-content: left;
+      gap: 24px;
+    }
+  
+    .post-username {
+      font-weight: 700;
+      text-align: left;
+    }
+  
+    .post-creationTime {
+      color: grey;
+    }
+  
+    .post-text {
+      padding: 12px;
+      background-color: #eceefe;
+      margin: 0px 36px 0px 0px;
+      border-radius: 0px 24px 24px 24px;
+    }
+  
+    .odd {
+      flex-direction: row-reverse;
+  
+      .post-header {
+        flex-direction: row-reverse;
+        justify-content: right;
+      }
+  
+      .post-username {
+        text-align: right;
+      }
+  
+      .post-text {
+        background-color: #797ef3;
+        color: white;
+        margin: 0px 0px 0px 36px;
+        border-radius: 20px 0px 20px 20px;
+  
+      }
+  
+    }
+  }
+  
+  .post-content {
+    @include dflex($dir: column, $gap: 8px);
+  }
+  
+  
+  // ***********************************************

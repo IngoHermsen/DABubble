@@ -1,8 +1,12 @@
 <div class="post">
-    <div *ngIf="!post.imgPath" class="profile-image"></div>
-    <div *ngIf="post.imgPath" class="profile-image img">
+    @if (post.imgPath) {
+    <div class="profile-image"></div>
+    } @else {
+    <div class="profile-image img">
         <img src="{{ post.imgPath }}" alt="yogi">
     </div>
+    }
+
     <div class="post-content">
         <span class="post-header">
             <span class="post-username">{{ post.creatorId }}</span>
