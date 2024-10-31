@@ -4,7 +4,7 @@ import { NgClass, NgStyle } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
-import { RouterLink, RouterOutlet, Router } from '@angular/router';
+import { RouterLink, RouterOutlet, Router, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -15,9 +15,9 @@ import { RouterLink, RouterOutlet, Router } from '@angular/router';
   styleUrl: './auth.component.scss'
 })
 export class AuthPostAnimationComponent {
-  constructor(private router: Router){
-  }
-  
+
+  private router = inject(Router)
+  hideElement = false
   
   navigateToLogin(){
     this.router.navigate(['main', 'login'])
@@ -27,14 +27,33 @@ export class AuthPostAnimationComponent {
     this.router.navigate(['main', 'signup'])
   }
   
-  // Use setTimeout to ensure the class is applied after the initial view rendering
-  // Short delay (0ms) to ensure Angular has rendered the component
-  ngOnInit() {
-    this.navigateToLogin()
-    
-    setTimeout(() => {
-      this.makeVisible = true;
-    }, 0); 
-  }
-  makeVisible = false
+
+/**
+ * Initializes the component and sets up navigation behavior.
+ * 
+ * - Calls `navigateToLogin()` to show child route login OnInit.
+ * - Subscribes to router events to track navigation changes and conditionally hide/show elements.
+ */
+ngOnInit() {
+  this.navigateToLogin();
+
+  /**
+   * Subscribes to router events to detect when navigation is complete.
+   * 
+   * - If the route includes 'signup' in the URL, sets `hideElement` to `true`.
+   * - Otherwise, `hideElement` remains `false`, making the element visible.
+   * 
+   * @param {Event} event - The router event triggered on navigation.
+   */
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      this.hideElement = event.url.includes('signup');
+    }
+  });
 }
+
+
+}
+
+
+
