@@ -7,15 +7,16 @@ import { EditAvatarComponent } from './auth/edit-avatar/edit-avatar.component';
 import { AuthPostAnimationComponent } from './auth/auth/auth.component';
 
 export const routes: Routes = [
-    {path: '', component: AuthComponent},
-    {path: 'main', component: AuthPostAnimationComponent,
-        children: [
-            {path: 'login', component: LoginComponent},
-            {path: 'signup', component: SignupComponent},
-        ] 
+    { path: '', component: AuthComponent },
+    {
+        path: 'main', component: AuthPostAnimationComponent,
+        children:
+            [
+                { path: 'login', component: LoginComponent },
+                { path: 'signup', component: SignupComponent },
+            ]
     },
-    { path: 'auth', component: AuthComponent},
-    // { path: 'signup', component: SignupComponent}, 
-    { path: 'home', component: MainComponent}, 
-    { path: 'avatar', component: EditAvatarComponent}
+    { path: 'auth', component: AuthComponent },
+    { path: 'home', component: MainComponent },
+    { path: 'avatar', component: EditAvatarComponent }
 ];
