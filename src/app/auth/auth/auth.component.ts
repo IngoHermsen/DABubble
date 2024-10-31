@@ -15,9 +15,9 @@ import { RouterLink, RouterOutlet, Router } from '@angular/router';
   styleUrl: './auth.component.scss'
 })
 export class AuthPostAnimationComponent {
-  constructor(private router: Router){
-  }
-  
+
+  private router = inject(Router)
+  hideElement = false
   
   navigateToLogin(){
     this.router.navigate(['main', 'login'])
@@ -27,14 +27,7 @@ export class AuthPostAnimationComponent {
     this.router.navigate(['main', 'signup'])
   }
   
-  // Use setTimeout to ensure the class is applied after the initial view rendering
-  // Short delay (0ms) to ensure Angular has rendered the component
   ngOnInit() {
     this.navigateToLogin()
-    
-    setTimeout(() => {
-      this.makeVisible = true;
-    }, 0); 
   }
-  makeVisible = false
 }
