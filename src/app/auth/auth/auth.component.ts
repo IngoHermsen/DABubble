@@ -4,7 +4,7 @@ import { NgClass, NgStyle } from '@angular/common';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
-import { RouterLink, RouterOutlet, Router } from '@angular/router';
+import { RouterLink, RouterOutlet, Router, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -29,5 +29,10 @@ export class AuthPostAnimationComponent {
   
   ngOnInit() {
     this.navigateToLogin()
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd){
+        this.hideElement = event.url.includes('signup')
+      }
+    })
   }
 }
