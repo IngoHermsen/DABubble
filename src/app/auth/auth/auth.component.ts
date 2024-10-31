@@ -27,12 +27,34 @@ export class AuthPostAnimationComponent {
     this.router.navigate(['main', 'signup'])
   }
   
-  ngOnInit() {
-    this.navigateToLogin()
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd){
-        this.hideElement = event.url.includes('signup')
-      }
-    })
-  }
+
+/**
+ * Initializes the component and sets up navigation behavior.
+ * 
+ * - Calls `navigateToLogin()` to show child route login OnInit.
+ * - Subscribes to router events to track navigation changes and conditionally hide/show elements.
+ */
+ngOnInit() {
+  this.navigateToLogin();
+
+  /**
+   * Subscribes to router events to detect when navigation is complete.
+   * 
+   * - If the route includes 'signup' in the URL, sets `hideElement` to `true`.
+   * - Otherwise, `hideElement` remains `false`, making the element visible.
+   * 
+   * @param {Event} event - The router event triggered on navigation.
+   */
+  this.router.events.subscribe(event => {
+    if (event instanceof NavigationEnd) {
+      // Toggle the visibility of the element based on the current URL.
+      this.hideElement = event.url.includes('signup');
+    }
+  });
 }
+
+
+}
+
+
+
