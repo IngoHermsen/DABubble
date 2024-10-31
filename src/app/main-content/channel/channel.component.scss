@@ -22,6 +22,10 @@
     padding-top: 100px;
     @include dflex($dir: column, $gap: 24px);
 
+    .post-wrapper {
+        width: 100%;
+    }
+
     .post {
         text-wrap-mode: auto;
     }

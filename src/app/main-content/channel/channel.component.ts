@@ -1,11 +1,12 @@
 import { Component, Output } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
+import { PostComponent } from '../../post/post.component';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-channel',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, PostComponent],
   templateUrl: './channel.component.html',
   styleUrl: './channel.component.scss'
 })
