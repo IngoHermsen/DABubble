@@ -4,19 +4,8 @@
     </div>
     <div class="posts">
         @for (post of posts; track $index) {
-        <div class="post">
-            <div *ngIf="!post.imgPath" class="profile-image"></div>
-            <div *ngIf="post.imgPath" class="profile-image img">
-                <img src="{{ post.imgPath }}" alt="yogi">
-            </div>
-            <div class="post-content">
-                <span class="post-header">
-                    <span class="post-username">{{ post.creatorId }}</span>
-                    <span class="post-creationTime">{{ post.creationTime }}</span>
-                </span>
-                <span class="post-text">{{ post.text }}</span>
-                
-            </div>
+        <div class="post-wrapper">
+            <app-post [post] = 'post'></app-post>
         </div>
         }
     </div>
