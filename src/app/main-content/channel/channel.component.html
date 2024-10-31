@@ -3,19 +3,9 @@
         <h2>channel name</h2>
     </div>
     <div class="posts">
-        @for (post of posts; track $index) {
-        <div class="post">
-            <div *ngIf="!post.imgPath" class="profile-image"></div>
-            <div *ngIf="post.imgPath" class="profile-image img">
-                <img src="{{ post.imgPath }}" alt="yogi">
-            </div>
-            <div class="post-content">
-                <span class="post-header">
-                    <span class="post-username">{{ post.creatorId }}</span>
-                    <span class="post-creationTime">{{ post.creationTime }}</span>
-                </span>
-                <span class="post-text">{{ post.text }}</span>
-            </div>
+        @for (post of posts; let index = $index; track $index) {
+        <div class="post-wrapper">
+            <app-post [index] = "index" [post] = "post"></app-post>
         </div>
         }
     </div>

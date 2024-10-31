@@ -1,0 +1,17 @@
+<div class="post" [class.odd]="isOdd">
+    @if (!post.imgPath) {
+    <div class="profile-image"></div>
+    } @else {
+    <div class="profile-image img">
+        <img src="{{ post.imgPath }}" alt="yogi">
+    </div>
+    }
+
+    <div class="post-content">
+        <span class="post-header">
+            <span class="post-username">{{ post.creatorId }}</span>
+            <span class="post-creationTime">{{ post.creationTime }}</span>
+        </span>
+        <span class="post-text">{{ post.text }}</span>
+    </div>
+</div>
