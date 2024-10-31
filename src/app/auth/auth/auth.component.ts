@@ -36,9 +36,5 @@ export class AuthPostAnimationComponent {
       this.makeVisible = true;
     }, 0); 
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> auth
   makeVisible = false
 }
