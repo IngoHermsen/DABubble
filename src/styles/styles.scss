@@ -1,103 +1,178 @@
 @import 'material-icons/iconfont/material-icons.css';
+@import '../styles/mixins.scss';
 
 :root {
-    --bg-color: #eceefe;
+  --bg-color: #eceefe;
 }
 
 /******************************** Font ********************************/
 * {
-    font-family: 'Nunito';
+  font-family: 'Nunito';
 }
 
 /*****************************Main styles ********************************/
 
 h2 {
-    font-size: 20px;
-    font-weight: 700;
-    text-align: left;
-    display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: left;
+  display: inline-block;
 }
 
 h3 {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 
 body {
-    background-color: var(--bg-color);
-    margin: 0;
-    height: 100vh; 
-    width: 100vw;
+  background-color: var(--bg-color);
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
 }
 
 .main {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 
 }
 
 .card {
-    box-sizing: border-box;
-    padding: 24px;
-    background-color: white;
-    border-radius: 25px;
-    border: unset;
-    height: 100%;
+  box-sizing: border-box;
+  padding: 24px;
+  background-color: white;
+  border-radius: 25px;
+  border: unset;
+  height: 100%;
 }
 
 /************************* Input Field Styles *************************/
 .input-box {
-    width: 100%;
-    position: relative;
-  }
-  
-  .input-styling {
-    width: 100%;
-    height: 50px;
-    border-radius: 100px;
-    background-color: #ECEEFE;
-    border: none;
-    border: 1px solid #ECEEFE; /* Add a border to help with rendering */
-    padding-left: 80px;
-  }
-  
-  .input-styling:focus {
-    outline: none;
-  }
-  
-  input::placeholder {
-    text-align: left;
-    font-family: "Nunito";
-    font-size: 18px;
-    font-weight: 500;
-  }
-  
-  .input-icon {
-    width: 24px;
-  }
-  
-  .place-input-img {
-    position: absolute;
-    top: 50%;
-    left: 24px;
-    transform: translateY(-50%);
-  }
+  width: 100%;
+  position: relative;
+}
+
+.input-styling {
+  width: 100%;
+  height: 50px;
+  border-radius: 100px;
+  background-color: #ECEEFE;
+  border: none;
+  border: 1px solid #ECEEFE;
+  /* Add a border to help with rendering */
+  padding-left: 80px;
+}
+
+.input-styling:focus {
+  outline: none;
+}
+
+input::placeholder {
+  text-align: left;
+  font-family: "Nunito";
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.input-icon {
+  width: 24px;
+}
+
+.place-input-img {
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  transform: translateY(-50%);
+}
 
 /******************************** Display Styles ********************************/
-.d-none{
-    display:none
+.d-none {
+  display: none
 }
 
 /************************* Max-Width wrapper *************************/
 
-.site-wrapper{
-    width: 100%;
-    height: 100vh;
-    background-color: #ECEEFE;
-  }
-  
+.site-wrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: #ECEEFE;
+}
+
 
 .max-width-wrapper {
-    max-width: 1440px;
-    margin: 0 auto;
+  max-width: 1440px;
+  margin: 0 auto;
 }
+
+// ******************** Post *********************
+
+.post {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+
+  img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+  };
+
+  .profile-image {
+    min-width: 40px;
+    height: 40px;
+    border: 1px solid grey;
+    border-radius: 50%;
+  }
+
+  .post-header {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    gap: 24px;
+  }
+
+  .post-username {
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .post-creationTime {
+    color: grey;
+  }
+
+  .post-text {
+    padding: 12px;
+    background-color: #eceefe;
+    margin: 0px 36px 0px 0px;
+    border-radius: 0px 24px 24px 24px;
+  }
+
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+
+    .post-header {
+      flex-direction: row-reverse;
+      justify-content: right;
+    }
+
+    .post-username {
+      text-align: right;
+    }
+
+    .post-text {
+      background-color: #797ef3;
+      color: white;
+      margin: 0px 0px 0px 36px;
+      border-radius: 20px 0px 20px 20px;
+
+    }
+
+  }
+}
+
+.post-content {
+  @include dflex($dir: column, $gap: 8px);
+}
+
+
+// ***********************************************
