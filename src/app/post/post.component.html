@@ -6,12 +6,16 @@
         <img src="{{ post.imgPath }}" alt="yogi">
     </div>
     }
-
     <div class="post-content">
         <span class="post-header">
             <span class="post-username">{{ post.creatorId }}</span>
             <span class="post-creationTime">{{ post.creationTime }}</span>
         </span>
         <span class="post-text">{{ post.text }}</span>
+        <span class="reactions">
+        @for (reaction of post.reactions; track $index) {
+            <span class="reaction">{{ reaction }}</span>
+        }
+        </span>
     </div>
 </div>
