@@ -7,6 +7,9 @@
     </div>
     }
     <div class="post-content">
+        @if (showPostMenu) {
+                    <span class="post-menu">HELLO</span>
+        }
         <span class="post-header">
             <span class="post-username">{{ post.creatorId }}</span>
             <span class="post-creationTime">{{ post.creationTime }}</span>
