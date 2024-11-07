@@ -5,19 +5,19 @@ import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 import { RouterLink, RouterOutlet, Router } from '@angular/router';
-import { AuthComponent } from '../auth/auth.component';
+import { AuthPostAnimationComponent } from '../auth/auth.component';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
   imports: [
-    AuthComponent, LoginComponent, NgClass, NgStyle,
+    AuthPostAnimationComponent, LoginComponent, NgClass, NgStyle,
     ResetPasswordComponent, RouterLink, RouterOutlet, SignupComponent
   ],
   templateUrl: './auth-animation.component.html',
   styleUrl: './auth-animation.component.scss'
 })
-export class AuthAnimationComponent {
+export class AuthComponent {
 
   makeVisible = false
   private router = inject(Router);
