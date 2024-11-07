@@ -14,7 +14,7 @@ import { RouterLink, RouterOutlet, Router, NavigationEnd } from '@angular/router
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
-export class AuthPostAnimationComponent {
+export class AuthComponent {
 
   private router = inject(Router)
   hideElement = false
