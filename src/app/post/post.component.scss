@@ -8,7 +8,7 @@
   gap: 8px;
   width: 100%;
   margin: 8px 0px;
-  padding: 0px 24px;
+  padding: 8px 24px;
   box-sizing: border-box;
 
   .post-menu {
@@ -61,7 +61,9 @@
   }
 
   .reactions {
+    user-select: none;
     display: flex;
+    gap: 8px;
     width: 100%;
     min-height: 8px;
 
@@ -72,6 +74,17 @@
       border: 1px solid black;
       border-radius: 50px;
     }
+
+    span {
+      cursor: pointer;
+    }
+  }
+
+  .add-reaction {
+    position: relative;
+    z-index: 1;
+    border: 5px solid white;
+    border-radius: 50%;
   }
 
 }
@@ -121,7 +134,12 @@
     }
   }
 
+}
 
+
+.emoji-picker {
+  position: absolute; 
+  z-index: 2;
 }
 
 
