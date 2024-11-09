@@ -19,6 +19,13 @@
         @for (reaction of post.reactions; track $index) {
             <span class="reaction">{{ reaction }}</span>
         }
+        <span (click)="showEmojiMart = !showEmojiMart" class="material-icons-outlined add-reaction">add_reaction
+            @if(showEmojiMart) {
+                  <emoji-mart class="emoji-picker" (emojiClick)="addEmoji($event)"></emoji-mart>
+
+            }
+        </span>
         </span>
     </div>
+    
 </div>
