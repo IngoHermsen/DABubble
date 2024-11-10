@@ -20,13 +20,13 @@
                 <span (click)="showEmojiMart = !showEmojiMart" class="material-icons-outlined add-reaction">add_reaction</span>
                 @if(showEmojiMart) {
                 <div class="emoji-picker">
-                    <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart>
+                    <emoji-mart (emojiClick)="addReaction($event)"></emoji-mart>
                 </div>
                 }
             </div>
             <div class="reaction-content">
                 @for (reaction of post.reactions; track $index) {
-                <span class="reaction">{{ reaction }}</span>
+                <span class="reaction">{{ reaction.native }} <span>1</span></span>
                 }
             </div>
         </span>
