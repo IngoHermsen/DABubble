@@ -16,7 +16,7 @@ export class ChannelComponent {
       postId: 'postid',
       creatorId: 'Max Mustermann',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-      reactions: [':)'],
+      reactions: [],
       creationTime: '12:00',
       isAnswer: false,
     },
@@ -24,7 +24,7 @@ export class ChannelComponent {
       postId: 'postid',
       creatorId: 'Yogi Bär',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do. Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-      reactions: [':('],
+      reactions: [],
       creationTime: '08:59',
       isAnswer: false,
       imgPath: 'assets/images/testImg/yogi.png'
