@@ -4,6 +4,7 @@
 // ******************** Post *********************
 
 .post {
+  position: relative;
   display: flex;
   gap: 8px;
   width: 100%;
@@ -27,8 +28,6 @@
     width: 40px;
     border-radius: 50px;
   }
-
-  ;
 
   .profile-image {
     min-width: 40px;
@@ -68,6 +67,7 @@
     min-height: 8px;
 
     .reaction {
+      position: relative;
       display: inline-block;
       padding: 0px 12px;
       min-width: 28px;
@@ -115,7 +115,12 @@
   }
 
   .reactions {
-    justify-content: flex-end;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+  }
+
+  .emoji-picker {
+    right: 0px;
   }
 
 }
@@ -136,10 +141,9 @@
 
 }
 
-
 .emoji-picker {
-  position: absolute; 
-  z-index: 2;
+  position: absolute;
+  z-index: 1;
 }
 
 

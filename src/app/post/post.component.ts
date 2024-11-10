@@ -31,7 +31,8 @@ export class PostComponent implements OnInit {
   }
 
   addEmoji(clickEvent: Event) {
-    console.log('was here');
+    console.log(clickEvent);
+    this.showEmojiMart = !this.showEmojiMart;
   }
 
 }

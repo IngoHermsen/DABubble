@@ -8,7 +8,7 @@
     }
     <div class="post-content">
         @if (showPostMenu) {
-                    <span class="post-menu">POST-MENU</span>
+        <span class="post-menu">POST-MENU</span>
         }
         <span class="post-header">
             <span class="post-username">{{ post.creatorId }}</span>
@@ -16,16 +16,20 @@
         </span>
         <span class="post-text">{{ post.text }}</span>
         <span class="reactions">
-        @for (reaction of post.reactions; track $index) {
-            <span class="reaction">{{ reaction }}</span>
-        }
-        <span (click)="showEmojiMart = !showEmojiMart" class="material-icons-outlined add-reaction">add_reaction
-            @if(showEmojiMart) {
-                  <emoji-mart class="emoji-picker" (emojiClick)="addEmoji($event)"></emoji-mart>
-
-            }
-        </span>
+            <div class="add-reaction">
+                <span (click)="showEmojiMart = !showEmojiMart" class="material-icons-outlined add-reaction">add_reaction</span>
+                @if(showEmojiMart) {
+                <div class="emoji-picker">
+                    <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart>
+                </div>
+                }
+            </div>
+            <div class="reaction-content">
+                @for (reaction of post.reactions; track $index) {
+                <span class="reaction">{{ reaction }}</span>
+                }
+            </div>
         </span>
     </div>
-    
+
 </div>
