@@ -69,7 +69,7 @@
 
     .reaction {
       position: relative;
-      display: inline-block;
+      @include dflex($aI: center, $gap: 8px);
       padding: 0px 12px;
       min-width: 28px;
       border: 1px solid black;

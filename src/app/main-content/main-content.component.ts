@@ -36,7 +36,6 @@ export class MainComponent implements OnInit {
 
   constructor() {
     this.showWorkspaceMenu = true;
-    console.log(this.showWorkspaceMenu)
   }
 
   ngOnInit(): void {
@@ -47,5 +46,5 @@ export class MainComponent implements OnInit {
 
   }
 
-
+  
 }

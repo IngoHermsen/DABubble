@@ -16,7 +16,7 @@ export class ChannelComponent {
       postId: 'postid',
       creatorId: 'Max Mustermann',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-      reactions: [],
+      reactions: [{reactionId: 'smiling_face_with_tear', reactors: ['reactor1', 'reactor2']}],
       creationTime: '12:00',
       isAnswer: false,
     },
