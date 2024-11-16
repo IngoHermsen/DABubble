@@ -13,15 +13,18 @@ import { NgIf } from '@angular/common';
 export class ChannelComponent {
   posts: Post[] = [   // examples - will later be fetched from database / backend
     {
-      postId: 'postid',
+      postId: '23456',
       creatorId: 'Max Mustermann',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-      reactions: [{reactionId: 'smiling_face_with_tear', reactors: ['reactor1', 'reactor2']}],
+      reactions: [
+        { reactionId: 'smiling_face_with_tear', reactors: ['user1', 'user2'] },
+        // { reactionId: 'wink', reactors: ['user1', 'user2'] }
+      ],
       creationTime: '12:00',
       isAnswer: false,
     },
     {
-      postId: 'postid',
+      postId: '12345',
       creatorId: 'Yogi Bär',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do. Lorem ipsum Do velit velit aute eu mollit qui minim do.',
       reactions: [],
@@ -30,7 +33,7 @@ export class ChannelComponent {
       imgPath: 'assets/images/testImg/yogi.png'
     },
     {
-      postId: 'postid',
+      postId: '34567',
       creatorId: 'Tante Emma',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
       reactions: [],

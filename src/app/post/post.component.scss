@@ -81,6 +81,10 @@
     }
   }
 
+  .reaction-content {
+    @include dflex($gap: 8px);
+  }
+
   .add-reaction {
     position: relative;
     border: 5px solid white;

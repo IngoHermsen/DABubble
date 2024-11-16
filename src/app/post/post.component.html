@@ -17,11 +17,11 @@
         <span class="post-text">{{ post.text }}</span>
         <span class="reactions">
             <div class="add-reaction">
-                <span (click)="showEmojiMart = !showEmojiMart"
+                <span (click)="showEmojiPicker = !showEmojiPicker"
                     class="material-icons-outlined add-reaction">add_reaction</span>
-                @if(showEmojiMart) {
+                @if(showEmojiPicker) {
                 <div class="emoji-picker">
-                    <emoji-mart (emojiClick)="addReaction($event)"></emoji-mart>
+                    <emoji-mart (emojiClick)="setReaction($event)"></emoji-mart>
                 </div>
                 }
             </div>
