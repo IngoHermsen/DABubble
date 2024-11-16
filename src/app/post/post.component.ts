@@ -15,9 +15,11 @@ export class PostComponent implements OnInit {
   uid: string = 'guest1' // for testing purpose, can be delete after a real user service is implemented. 
   showPostMenu: boolean;
   showEmojiPicker: boolean;
+  reactions: any[] = []
 
   @Input() index: number;
   @Input() post: Post;
+
 
   isOdd: boolean;
 
@@ -34,6 +36,7 @@ export class PostComponent implements OnInit {
     this.showPostMenu = false;
     this.showEmojiPicker = false;
     localStorage.setItem('userId', this.uid)
+    this.reactions = this.post.reactions
   }
 
   setReaction(event: EmojiEvent) {
@@ -50,13 +53,13 @@ export class PostComponent implements OnInit {
   }
 
   getReactionIndex(emojiId: string) {
-    return this.post.reactions.findIndex((r) => {
+    return this.reactions.findIndex((r) => {
       return r.reactionId == emojiId;
     })
   }
 
   addNewReaction(emojiId: string, uid: string) {
-    this.post.reactions.push(
+    this.reactions.push(
       {
         reactionId: emojiId,
         reactors: [uid]
@@ -76,16 +79,17 @@ export class PostComponent implements OnInit {
   }
 
   addUserToReaction(reactionIndex: number) {
-    this.post.reactions[reactionIndex].reactors.push(this.uid);
-    console.log(this.post.reactions[reactionIndex])
+    const currentReaction = this.reactions[reactionIndex];
+    currentReaction.reactors.push(this.uid);
   }
 
   removeUserFromReaction(reactionIndex: number) {
-
+    
   }
 
   userExists(reactionIndex: number) {
-    return this.post.reactions[reactionIndex].reactors.findIndex((userId: any) => {
+    return this.reactions
+    [reactionIndex].reactors.findIndex((userId: any) => {
       return userId == this.uid;
     })
   }
