@@ -69,7 +69,11 @@
 
     .reaction {
       position: relative;
+<<<<<<< HEAD
       display: inline-block;
+=======
+      @include dflex($aI: center, $gap: 8px);
+>>>>>>> 67d9caf6a392450284ee828b22dc20356f3305ad
       padding: 0px 12px;
       min-width: 28px;
       border: 1px solid black;
@@ -81,6 +85,13 @@
     }
   }
 
+<<<<<<< HEAD
+=======
+  .reaction-content {
+    @include dflex($gap: 8px);
+  }
+
+>>>>>>> 67d9caf6a392450284ee828b22dc20356f3305ad
   .add-reaction {
     position: relative;
     border: 5px solid white;
