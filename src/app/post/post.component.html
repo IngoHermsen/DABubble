@@ -17,31 +17,16 @@
         <span class="post-text">{{ post.text }}</span>
         <span class="reactions">
             <div class="add-reaction">
-<<<<<<< HEAD
                 <span (click)="showEmojiMart = !showEmojiMart" class="material-icons-outlined add-reaction">add_reaction</span>
                 @if(showEmojiMart) {
                 <div class="emoji-picker">
                     <emoji-mart (emojiClick)="addReaction($event)"></emoji-mart>
-=======
-                <span (click)="showEmojiPicker = !showEmojiPicker"
-                    class="material-icons-outlined add-reaction">add_reaction</span>
-                @if(showEmojiPicker) {
-                <div class="emoji-picker">
-                    <emoji-mart (emojiClick)="setReaction($event)"></emoji-mart>
->>>>>>> 67d9caf6a392450284ee828b22dc20356f3305ad
                 </div>
                 }
             </div>
             <div class="reaction-content">
                 @for (reaction of post.reactions; track $index) {
-<<<<<<< HEAD
                 <span class="reaction">{{ reaction.native }} <span>1</span></span>
-=======
-                <span class="reaction">
-                    <ngx-emoji style="display: flex" emoji="{{ reaction.reactionId }}"></ngx-emoji>
-                    <span>{{ reaction.reactors.length }} </span>
-                </span>
->>>>>>> 67d9caf6a392450284ee828b22dc20356f3305ad
                 }
             </div>
         </span>

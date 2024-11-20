@@ -30,7 +30,6 @@ import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive
     ])
   ]
 })
-<<<<<<< HEAD
 
 export class MainComponent implements OnInit {
   showWorkspaceMenu: boolean = false;
@@ -48,23 +47,5 @@ export class MainComponent implements OnInit {
 
   }
 
-=======
->>>>>>> 67d9caf6a392450284ee828b22dc20356f3305ad
 
-export class MainComponent implements OnInit {
-  showWorkspaceMenu: boolean = false;
-
-  constructor() {
-    this.showWorkspaceMenu = true;
-  }
-
-  ngOnInit(): void {
-
-  }
-
-  toggleWorkspace() {
-
-  }
-
-  
 }

@@ -8,5 +8,3 @@ firebaseConfig: {
     appId: "1:481587044171:web:9bd7806ffc5b7c77c592ce"
   }
 };
-
-
