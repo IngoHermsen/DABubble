@@ -17,16 +17,20 @@
         <span class="post-text">{{ post.text }}</span>
         <span class="reactions">
             <div class="add-reaction">
-                <span (click)="showEmojiMart = !showEmojiMart" class="material-icons-outlined add-reaction">add_reaction</span>
+                <span (click)="showEmojiMart = !showEmojiMart"
+                    class="material-icons-outlined add-reaction">add_reaction</span>
                 @if(showEmojiMart) {
                 <div class="emoji-picker">
-                    <emoji-mart (emojiClick)="addReaction($event)"></emoji-mart>
+                    <emoji-mart (emojiClick)="($event)"></emoji-mart>
                 </div>
                 }
             </div>
             <div class="reaction-content">
                 @for (reaction of post.reactions; track $index) {
-                <span class="reaction">{{ reaction.native }} <span>1</span></span>
+                <span class="reaction">
+                    <ngx-emoji [emoji]=reaction.reactionId></ngx-emoji>
+                    <span>{{ reaction.reactors.length }}</span>
+                </span>
                 }
             </div>
         </span>

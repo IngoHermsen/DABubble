@@ -1,12 +1,12 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Post } from '../core/interfaces/post';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
-import { EmojiData, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 
 @Component({
   selector: 'app-post',
   standalone: true,
-  imports: [PickerComponent],
+  imports: [PickerComponent, EmojiComponent],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
@@ -15,7 +15,6 @@ export class PostComponent implements OnInit {
   showEmojiMart: boolean; 
   @Input() index: number;
   @Input() post: Post;
-
   isOdd: boolean;
 
   @HostListener('mouseenter') onMouseEnter() {
@@ -30,10 +29,13 @@ export class PostComponent implements OnInit {
     this.isOdd = this.index % 2 !== 0
     this.showPostMenu = false;
     this.showEmojiMart = false;
+
+    console.log(this.post.reactions)
+
   }
 
   addReaction(event: EmojiEvent) {
-    const emojiObj = event.emoji
+    const emojiObj = event.emoji;
     this.post.reactions.push(emojiObj);
     this.showEmojiMart = !this.showEmojiMart;
   }
