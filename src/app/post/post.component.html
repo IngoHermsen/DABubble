@@ -21,7 +21,7 @@
                     class="material-icons-outlined add-reaction">add_reaction</span>
                 @if(showEmojiMart) {
                 <div class="emoji-picker">
-                    <emoji-mart (emojiClick)="($event)"></emoji-mart>
+                    <emoji-mart (emojiClick)="handleEmojiClick($event)"></emoji-mart>
                 </div>
                 }
             </div>

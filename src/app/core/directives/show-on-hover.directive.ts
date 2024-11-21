@@ -1,4 +1,5 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, Inject } from '@angular/core';
+import { inject } from '@angular/core';
 
 @Directive({
   selector: '[appShowOnHover]',
@@ -6,9 +7,8 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 
 export class ShowOnHoverDirective {
-  constructor(private el: ElementRef) {
+  private el = inject(ElementRef)
 
-  }
 
   @HostListener('mouseenter') onMouseEnter() {
       this.el.nativeElement.classList.remove('hideBtn');

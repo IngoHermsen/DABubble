@@ -34,7 +34,7 @@ export class PostComponent implements OnInit {
 
   }
 
-  addReaction(event: EmojiEvent) {
+  handleEmojiClick(event: EmojiEvent) {
     const emojiObj = event.emoji;
     this.post.reactions.push(emojiObj);
     this.showEmojiMart = !this.showEmojiMart;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FirebaseApp } from '@angular/fire/app';
 import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
 import { getDownloadURL } from 'firebase/storage';
@@ -13,6 +13,8 @@ import { finalize, from, switchMap } from 'rxjs';
   styleUrl: './edit-avatar.component.scss'
 })
 export class EditAvatarComponent {
+  private firebaseApp = inject(FirebaseApp)
+
   imgLoading: boolean = false;
   previewImg: string; // contains path string for preview Image
 
@@ -32,10 +34,7 @@ export class EditAvatarComponent {
     "avatar_6_male_3.png"
   ]
 
-  constructor(
-    private firebaseApp: FirebaseApp
-   
-  ) {
+  constructor() {
     this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath
   }
 
