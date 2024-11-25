@@ -17,7 +17,7 @@ export class ChannelComponent {
       creatorId: 'Max Mustermann',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
       reactions: [
-        {reactionId: 'grin', users: ['user1', 'user2']},
+        {reactionId: 'grin', users: ['1234', 'user2']},
         {reactionId: 'smile', users: ['user1', 'user2']},
       ],
       creationTime: '12:00',

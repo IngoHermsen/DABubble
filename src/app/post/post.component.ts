@@ -34,9 +34,6 @@ export class PostComponent implements OnInit {
     this.isOdd = this.index % 2 !== 0
     this.showPostMenu = false;
     this.showEmojiMart = false;
-
-    console.log(this.post.reactions)
-
   }
 
   handleEmojiClick(event: EmojiEvent) {
@@ -45,29 +42,32 @@ export class PostComponent implements OnInit {
     this.showEmojiMart = !this.showEmojiMart;
   }
 
-  handleReactionClick(event: Event, idx: number) {
+  handleReactionClick(idx: number) {
     const reactionsObj = this.post.reactions[idx];
     const reactingUsers: string[] = reactionsObj.users;
+    console.log(reactingUsers)
 
-    if (!this.userExists(this.uid, reactingUsers)) {
-      this.addUserToReaction(reactingUsers)
+    if (this.userExists(reactingUsers)) {
+      this.removeUserFromReaction(reactingUsers);
     } else {
-      this.removeUserFromReaction(reactingUsers)
+      this.addUserToReaction(reactingUsers);
     }
+
   }
 
   reactionExists(): boolean {
     return true;
   }
-  userExists(uid: string, reactingUsers: string[]): boolean | number {
-    this.userIndex = reactingUsers.indexOf(uid)
-    return this.userIndex == -1 ? false : this.userIndex;
+
+  userExists(reactingUsers: string[]): boolean | number {
+    this.userIndex = reactingUsers.indexOf(this.uid);
+    return this.userIndex > -1 ? true : false;
   }
 
   removeUserFromReaction(reactingUsers: string[]) {
     // will be expanded with an observable or signal as soon the post comes from firebase
     if (this.userIndex !== null) {
-      reactingUsers.splice(this.userIndex, 0)
+      reactingUsers.splice(this.userIndex, 1)
     }
   }
 

@@ -27,7 +27,7 @@
             </div>
             <div class="reaction-content">
                 @for (reaction of post.reactions; track idx; let idx = $index) {
-                <span (click)="handleReactionClick($event, idx)" class="reaction">
+                <span (click)="handleReactionClick(idx)" class="reaction">
                     <ngx-emoji [emoji]=reaction.reactionId></ngx-emoji>
                     <span>{{ reaction.users.length }}</span>
                 </span>
