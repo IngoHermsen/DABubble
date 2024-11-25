@@ -39,6 +39,7 @@ yarn-error.log
 /libpeerconnection.log
 testem.log
 /typings
+src/environments/
 
 # System files
 .DS_Store
@@ -48,4 +49,4 @@ Thumbs.db
 .firebase
 *-debug.log
 .runtimeconfig.json
-src/environments/
+

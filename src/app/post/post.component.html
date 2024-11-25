@@ -26,10 +26,10 @@
                 }
             </div>
             <div class="reaction-content">
-                @for (reaction of post.reactions; track $index) {
-                <span class="reaction">
+                @for (reaction of post.reactions; track idx; let idx = $index) {
+                <span (click)="handleReactionClick($event, idx)" class="reaction">
                     <ngx-emoji [emoji]=reaction.reactionId></ngx-emoji>
-                    <span>{{ reaction.reactors.length }}</span>
+                    <span>{{ reaction.users.length }}</span>
                 </span>
                 }
             </div>
