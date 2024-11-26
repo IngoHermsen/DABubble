@@ -57,7 +57,7 @@ export class PostComponent implements OnInit {
     const reactingUsers: string[] = reaction.users;
 
     if (this.userExists(reactingUsers)) {
-      this.removeUserFromReaction(reactingUsers);
+      this.removeUserFromReaction(reactingUsers, idx);
     } else {
       this.addUserToReaction(reactingUsers);
     }
@@ -81,11 +81,13 @@ export class PostComponent implements OnInit {
     return this.userIdx > -1 ? true : false;
   }
 
-  removeUserFromReaction(reactingUsers: string[]) {
+  removeUserFromReaction(reactingUsers: string[], idx: number) {
     // will be expanded with an observable or signal as soon the post comes from firebase
     if (this.userIdx !== null) {
       reactingUsers.splice(this.userIdx, 1)
     }
+
+    this.handleReactionState(idx)
   }
 
   addUserToReaction(reactingUsers: string[]) {
@@ -103,5 +105,11 @@ export class PostComponent implements OnInit {
     reactions.push(reactionObj);
   }
 
+  handleReactionState(idx: number) {
+
+    if(this.post.reactions[idx].users.length == 0) {
+      this.post.reactions.splice(idx, 1);
+    }
+  }
 
 }
