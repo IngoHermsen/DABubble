@@ -19,8 +19,8 @@ export class PostComponent implements OnInit {
   isOdd: boolean;
 
   // reaction handling
-  userIndex: number | null = null;
-
+  userIdx: number | null = null;
+  reactionIdx: number | null = null;
 
   @HostListener('mouseenter') onMouseEnter() {
     this.showPostMenu = true;
@@ -37,15 +37,24 @@ export class PostComponent implements OnInit {
   }
 
   handleEmojiClick(event: EmojiEvent) {
-    const emojiObj = event.emoji;
-    this.post.reactions.push(emojiObj);
-    this.showEmojiMart = !this.showEmojiMart;
+    const emoji = event.emoji;
+    const emojiId = emoji.id;
+    
+    if(this.reactionExists(emojiId)) {
+      const reaction = this.post.reactions[this.reactionIdx || 0];
+      const reactingUsers = reaction.users;
+      this.handleUser(reactingUsers);
+    } else {
+      this.addReaction(emojiId)
+    }
+
+    this.showEmojiMart = false;
+    
   }
 
   handleReactionClick(idx: number) {
-    const reactionsObj = this.post.reactions[idx];
-    const reactingUsers: string[] = reactionsObj.users;
-    console.log(reactingUsers)
+    const reaction = this.post.reactions[idx];
+    const reactingUsers: string[] = reaction.users;
 
     if (this.userExists(reactingUsers)) {
       this.removeUserFromReaction(reactingUsers);
@@ -55,25 +64,43 @@ export class PostComponent implements OnInit {
 
   }
 
-  reactionExists(): boolean {
-    return true;
+  handleUser(reactingUsers: string[]) {
+    if(!this.userExists(reactingUsers)) {
+      this.addUserToReaction(reactingUsers);
+    }
+  }
+
+  reactionExists(emojiId: string): boolean {
+    const reactions = this.post.reactions;
+    this.reactionIdx = reactions.findIndex(reaction => reaction.reactionId === emojiId)
+    return this.reactionIdx > -1 ? true : false;
   }
 
   userExists(reactingUsers: string[]): boolean | number {
-    this.userIndex = reactingUsers.indexOf(this.uid);
-    return this.userIndex > -1 ? true : false;
+    this.userIdx = reactingUsers.indexOf(this.uid);
+    return this.userIdx > -1 ? true : false;
   }
 
   removeUserFromReaction(reactingUsers: string[]) {
     // will be expanded with an observable or signal as soon the post comes from firebase
-    if (this.userIndex !== null) {
-      reactingUsers.splice(this.userIndex, 1)
+    if (this.userIdx !== null) {
+      reactingUsers.splice(this.userIdx, 1)
     }
   }
 
   addUserToReaction(reactingUsers: string[]) {
     // will be expanded with an observable or signal as soon the post comes from firebase
     reactingUsers.push(this.uid)
+  }
+
+  addReaction(emojiId: string) {
+    const reactions = this.post.reactions;
+
+    const reactionObj = {
+      reactionId: emojiId, users: [this.uid]
+    }
+    
+    reactions.push(reactionObj);
   }
 
 
