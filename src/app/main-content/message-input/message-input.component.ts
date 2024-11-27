@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './message-input.component.scss'
 })
 export class MessageInputComponent {
-
+  focussed: boolean = false;
 }

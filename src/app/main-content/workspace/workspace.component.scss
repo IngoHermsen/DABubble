@@ -12,6 +12,8 @@ h3 {
 .header {
   @include dflex();
   margin-bottom: 40px;
+  padding: 0px 16px;
+  box-sizing: border-box;
 
   .workspace-logo {
     max-height: 40px;

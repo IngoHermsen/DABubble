@@ -120,7 +120,6 @@ input::placeholder {
 // ************************ Posts **************************
 
 .posts {
-  max-height: 75%;
   @include dflex($dir: column, $gap: 28px);
   overflow-y: auto;
 
@@ -132,6 +131,24 @@ input::placeholder {
 // ************************ Message Input Field **************************
 
 div.message-input {
+  box-sizing: border-box;
+  width: 100%;
   color: grey;
+  padding: 16px;
 }
 
+// ************************ Main Content Cards **************************
+
+.fixed-header {
+  height: 90px;
+  width: 100%;
+  border-radius: 25px 25px 0px 0px;
+  background-color: white;
+  box-shadow: 2px 9px 12px -8px #cababa;
+  align-content: center;
+  z-index: 1;
+
+  h2 {
+      padding: 0px 40px;
+  }
+}

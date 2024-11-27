@@ -3,17 +3,13 @@
         <h2>channel name</h2>
     </div>
     <div class="posts">
-        <div class="wrapper">
             @for (post of posts; let index = $index; track $index) {
             <div class="post-wrapper">
                 <app-post [index]="index" [post]="post"></app-post>
             </div>
-            }
-        </div>
-
+            } 
     </div>
     <div class="message-input">
         <app-message-input></app-message-input>
     </div>
-
 </div>
