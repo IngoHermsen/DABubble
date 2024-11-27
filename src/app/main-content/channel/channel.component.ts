@@ -1,12 +1,14 @@
-import { Component, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
 import { NgIf } from '@angular/common';
+import { MessageInputComponent } from '../message-input/message-input.component';
+
 
 @Component({
   selector: 'app-channel',
   standalone: true,
-  imports: [NgIf, PostComponent],
+  imports: [NgIf, PostComponent, MessageInputComponent],
   templateUrl: './channel.component.html',
   styleUrl: './channel.component.scss'
 })
