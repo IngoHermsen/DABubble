@@ -41,7 +41,6 @@ body {
 
 .card {
   box-sizing: border-box;
-  padding: 24px;
   background-color: white;
   border-radius: 25px;
   border: unset;
@@ -121,10 +120,18 @@ input::placeholder {
 // ************************ Posts **************************
 
 .posts {
-  padding-top: 100px;
+  max-height: 75%;
   @include dflex($dir: column, $gap: 28px);
+  overflow-y: auto;
 
   .post-wrapper {
       width: 100%;
   }
 }
+
+// ************************ Message Input Field **************************
+
+div.message-input {
+  color: grey;
+}
+

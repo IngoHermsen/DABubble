@@ -1,18 +1,19 @@
 @import '../../../styles/mixins.scss';
 
 .card {
+    @include dflex($dir: column);
     position: relative;
-    padding: 24px 0px;
+    
 }
 
 .fixed-header {
+    height: 90px;
+    width: 100%;
     border-radius: 25px 25px 0px 0px;
     background-color: white;
-    max-height: 100px;
-    inset: 0px;
     @include dflex();
-    position: absolute;
     box-shadow: 2px 9px 12px -8px #cababa;
+    z-index: 1;
 
     h2 {
         padding: 0px 40px;

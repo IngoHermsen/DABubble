@@ -1,0 +1,12 @@
+@import '../../../styles/mixins.scss';
+
+.content {
+    @include dflex($dir: column);
+    width: 100%;
+    align-items: flex-start;
+}
+
+input {
+    height: 120px;
+    border: unset;
+}
