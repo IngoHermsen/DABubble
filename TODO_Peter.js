@@ -12,3 +12,4 @@
 //TODO Passwort vergessen anschauen
 
 
+// TODO -- Firebase Arrays direkt bearbeiten-- z.B <array-union>
