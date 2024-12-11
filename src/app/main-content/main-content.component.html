@@ -1,3 +1,8 @@
+@if(this.showDialog) {
+   <div class="modal">
+    <app-dialog></app-dialog>
+   </div> 
+}
 <div class="wrapper">
   <span appShowOnHover (click)="showWorkspaceMenu = !showWorkspaceMenu" class="toggle-btn">
       @switch(showWorkspaceMenu) {

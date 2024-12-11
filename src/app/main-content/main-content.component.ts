@@ -5,11 +5,12 @@ import { ThreadComponent } from './thread/thread.component';
 import { OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ShowOnHoverDirective, ChannelComponent, WorkspaceComponent, ThreadComponent],
+  imports: [ShowOnHoverDirective, ChannelComponent, WorkspaceComponent, ThreadComponent, DialogComponent],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss',
   animations: [
@@ -33,6 +34,7 @@ import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive
 
 export class MainComponent implements OnInit {
   showWorkspaceMenu: boolean = false;
+  showDialog: boolean = true;
 
   constructor() {
     this.showWorkspaceMenu = true;
