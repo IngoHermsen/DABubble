@@ -20,6 +20,7 @@ import { AuthService } from '../../services/auth.service';
     NgClass,
     CommonModule,
     FormsModule,
+    NgStyle,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -28,11 +29,16 @@ import { AuthService } from '../../services/auth.service';
 
 export class LoginComponent {
 
-  makeVisible = false;
-  pwPlaceholder = "password"
   router = inject(Router);
   authService = inject(AuthService);
 
+  makeVisible = false;
+  pwPlaceholder = "Passwort"
+  emailPlaceholder = "beispielname@email.com"
+  emailPlaceHolderGray = true;
+  pwPlaceholderGray = true;
+  pwPlaceholderRed = false;
+  emailPlaceHolderRed = false; 
   errorMessage: string | null = null;
 
   ngOnInit() {
@@ -56,13 +62,56 @@ export class LoginComponent {
  * @returns {void} This method does not return any value.
  */
   onSubmit(email: any, password: any): void {
+    this.checkEmail(email)
+    this.checkPassword(password)
+  }
+
+
+  checkEmail(email: any){
     if(email.value === ""){
-      this.pwPlaceholder = "Email is empty"
+      this.emailPlaceholder = "Email is empty";
+      this.emailPlaceHolderRed = true;
+      this.emailPlaceHolderGray = false;
+      this.setBackEmail()
+    }else if(email.value !== ""){
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!re.test(email.value.trim())) {
+        let cachedEmailValue = email.value;
+        email.value = ""
+        this.emailPlaceholder = "Invalid Email"
+        this.emailPlaceHolderRed = true;
+        this.emailPlaceHolderGray = false;
+        this.setBackEmail()
+      }
     }
-    if(email.dirty){
-      console.log("its dirty");
+  }
+
+  emailErrorMsg(errorTxt: string){
+    this.emailPlaceholder = errorTxt
+    this.emailPlaceHolderRed = true;
+    this.emailPlaceHolderGray = false;
+  }
+
+
+  checkPassword(password:any){
+    if(password.value === ""){
+      this.pwPlaceholder = "Password is empty";
+      this.pwPlaceholderRed = true;
+      this.pwPlaceholderGray = false;
+      setTimeout(() => {
+        this.pwPlaceholder = "Password";
+        this.pwPlaceholderGray = true;  
+        
+      }, 2500);
     }
-    console.log(password.value);
+  }
+
+  setBackEmail(){
+    setTimeout(() => {
+      this.emailPlaceholder = "beispielname@email.com";
+      this.emailPlaceHolderGray = true;  
+      
+    }, 2500);
   }
 
   logout() {

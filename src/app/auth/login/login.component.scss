@@ -38,6 +38,18 @@ $login-header-c: #444df2;
 }
 
 
+// #email-input::placeholder{
+//   // color: red;
+//   color: var(--email-placeholder-color, )
+// }
+
+.red-placeholder::placeholder {
+  color: #F24470;
+}
+
+.gray-placeholder::placeholder {
+  color: gray;
+}
 
 /************************* Post input fields *************************/
 .forgot-pw {
