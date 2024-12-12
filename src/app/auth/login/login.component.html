@@ -1,19 +1,30 @@
-<main class="login-container fade-in"  [ngClass]="{'fade-in-visible': makeVisible}">
-  
+<main class="login-container fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
+
   <section class="login-header">
     <header>Anmeldung</header>
     <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
   </section>
 
-  <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-    
+  <form class="login-form" (ngSubmit)="onSubmit(email, password)" #loginForm="ngForm">
+
+    <!------------------------- EMAIL ------------------------->
     <section class="input-box">
-      <input class="input-styling" type="text" placeholder="beispielname@email.com" formControlName="email" />
+      <input id="email-input" class="input-styling" type="text" [placeholder]="emailPlaceholder" name="email" #email
+        autocomplete="off"
+        ngModel required [ngClass]="{
+        'red-placeholder': emailPlaceHolderRed,
+        'gray-placeholder': emailPlaceHolderGray,
+      }" />
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
     </section>
 
+    <!------------------------- PASSWORD ------------------------->
     <section class="input-box">
-      <input class="input-styling" type="password" placeholder="Passwort" formControlName="password" />
+      <input class="input-styling" type="password" [placeholder]="pwPlaceholder" name="password" #password ngModel
+        required [ngClass]="{
+        'red-placeholder': pwPlaceholderRed,
+        'gray-placeholder': pwPlaceholderGray
+      }" />
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
     </section>
 
@@ -36,7 +47,7 @@
       <button class="login-btn" type="submit">Log In</button>
       <button class="guest-login-btn">Gast Login</button>
     </section>
-  
+
   </form>
 
 </main>
