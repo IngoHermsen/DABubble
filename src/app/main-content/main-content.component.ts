@@ -29,7 +29,8 @@ import { DialogService } from '../core/services/dialog.service';
         })
       ),
       transition('open <=> closed', [animate('180ms')]),
-    ])
+    ]),
+    trigger('toggleThread', [])
   ]
 })
 
