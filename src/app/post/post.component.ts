@@ -1,7 +1,8 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, HostListener, inject, Input, OnInit } from '@angular/core';
 import { Post } from '../core/interfaces/post';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
+import { ThreadService } from '../core/services/thread.service';
 
 @Component({
   selector: 'app-post',
@@ -11,9 +12,11 @@ import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
   styleUrl: './post.component.scss'
 })
 export class PostComponent implements OnInit {
+  public threadService = inject(ThreadService);
   uid: string = '1234' //for testing purpose. this will later be the user id from the logged in user from user.service
   showPostMenu: boolean;
   showEmojiMart: boolean;
+
   @Input() index: number;
   @Input() post: Post;
   isOdd: boolean;
@@ -110,6 +113,10 @@ export class PostComponent implements OnInit {
     if(this.post.reactions[idx].users.length == 0) {
       this.post.reactions.splice(idx, 1);
     }
+  }
+
+  openThread() {
+    
   }
 
 }

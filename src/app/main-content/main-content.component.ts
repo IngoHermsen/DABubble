@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ChannelComponent } from './channel/channel.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
@@ -6,6 +6,7 @@ import { OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive';
 import { DialogComponent } from './dialog/dialog.component';
+import { DialogService } from '../core/services/dialog.service';
 
 @Component({
   selector: 'app-main',
@@ -33,11 +34,12 @@ import { DialogComponent } from './dialog/dialog.component';
 })
 
 export class MainComponent implements OnInit {
-  showWorkspaceMenu: boolean = false;
-  showDialog: boolean = true;
+  public dialogService = inject(DialogService);
+  showWorkspaceMenu: boolean = true;
+  showThreadSection: boolean = false;
+
 
   constructor() {
-    this.showWorkspaceMenu = true;
   }
 
   ngOnInit(): void {

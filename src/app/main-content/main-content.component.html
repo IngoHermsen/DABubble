@@ -1,4 +1,4 @@
-@if(this.showDialog) {
+@if(dialogService.showDialog) {
    <div class="modal">
     <app-dialog></app-dialog>
    </div> 
@@ -31,7 +31,7 @@
       <section class="channel-section flex-item">
           <app-channel></app-channel>
       </section>
-      <section class="thread-section">
+      <section class="thread-section" [@toggleThread]="showThreadSection">
           <app-thread></app-thread>
       </section>
   </section>

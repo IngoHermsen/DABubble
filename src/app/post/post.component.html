@@ -8,7 +8,9 @@
     }
     <div class="post-content">
         @if (showPostMenu) {
-        <span class="post-menu">POST-MENU</span>
+        <span class="post-menu">
+            <span class="material-icons-outlined" (click)="openThread()">insert_comment</span>
+        </span>
         }
         <span class="post-header">
             <span class="post-username">{{ post.creatorId }}</span>

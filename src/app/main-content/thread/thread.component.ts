@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './thread.component.scss'
 })
 export class ThreadComponent {
-
+  
 }

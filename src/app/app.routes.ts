@@ -8,8 +8,7 @@ import { AuthPostAnimationComponent } from './auth/auth/auth.component';
 
 export const routes: Routes = [
     { path: '', component: AuthComponent },
-    {
-        path: 'main', component: AuthPostAnimationComponent,
+    { path: 'main', component: AuthPostAnimationComponent,
         children:
             [
                 { path: 'login', component: LoginComponent },

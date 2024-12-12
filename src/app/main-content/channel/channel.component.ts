@@ -13,9 +13,9 @@ import { MessageInputComponent } from '../message-input/message-input.component'
   styleUrl: './channel.component.scss'
 })
 export class ChannelComponent {
-  posts: Post[] = [   // examples - will later be fetched from database / backend
+  posts: Post[] = [   //examples - will later be fetched from database / backend
     {
-      postId: 'postid',
+      postId: '12345',
       creatorId: 'Max Mustermann',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
       reactions: [
@@ -26,7 +26,7 @@ export class ChannelComponent {
       isAnswer: false,
     },
     {
-      postId: 'postid',
+      postId: '23456',
       creatorId: 'Yogi Bär',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do. Lorem ipsum Do velit velit aute eu mollit qui minim do.',
       reactions: [],
@@ -35,7 +35,7 @@ export class ChannelComponent {
       imgPath: 'assets/images/testImg/yogi.png'
     },
     {
-      postId: 'postid',
+      postId: '56789',
       creatorId: 'Tante Emma',
       text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
       reactions: [],
