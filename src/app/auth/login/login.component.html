@@ -5,15 +5,15 @@
     <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
   </section>
 
-  <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form class="login-form"  (ngSubmit)="onSubmit(email, password)" #loginForm = "ngForm">
     
     <section class="input-box">
-      <input class="input-styling" type="text" placeholder="beispielname@email.com" formControlName="email" />
+      <input class="input-styling" type="text" placeholder="beispielname@email.com" name="email" #email ngModel required />
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
     </section>
 
     <section class="input-box">
-      <input class="input-styling" type="password" placeholder="Passwort" formControlName="password" />
+      <input class="input-styling" type="password" [placeholder]="pwPlaceholder" name="password" #password ngModel required />
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
     </section>
 

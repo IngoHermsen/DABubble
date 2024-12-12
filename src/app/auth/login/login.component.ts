@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { NgClass, NgStyle } from '@angular/common';
+import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -14,33 +14,34 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, NgClass],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    NgClass,
+    CommonModule,
+    FormsModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 
 
 export class LoginComponent {
+
+  makeVisible = false;
+  pwPlaceholder = "password"
+  router = inject(Router);
+  authService = inject(AuthService);
+
+  errorMessage: string | null = null;
+
   ngOnInit() {
     // Use setTimeout to ensure the class is applied after the initial view rendering
     setTimeout(() => {
       this.makeVisible = true;
     }, 0); // Short delay (0ms) to ensure Angular has rendered the component
   }
-  
-  makeVisible = false
-  
-  fb = inject(FormBuilder);
-  http = inject(HttpClient);
-  router = inject(Router);
-  authService = inject(AuthService);
 
-  form = this.fb.nonNullable.group({
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-  });
-
-  errorMessage: string | null = null;
 
 
   /**
@@ -54,21 +55,17 @@ export class LoginComponent {
  * 
  * @returns {void} This method does not return any value.
  */
-  onSubmit(): void {
-    const rawForm = this.form.getRawValue();
-    this.authService.loginUser(rawForm.email, rawForm.password).subscribe({
-      next: () => {
-        alert("Login Success")
-        // this.router.navigateByUrl("/");
-      }, 
-      error: (err) => {
-       this.errorMessage = err.code;
-      },
-      
-    });
+  onSubmit(email: any, password: any): void {
+    if(email.value === ""){
+      this.pwPlaceholder = "Email is empty"
+    }
+    if(email.dirty){
+      console.log("its dirty");
+    }
+    console.log(password.value);
   }
 
-  logout(){
-    this.authService.logoutUser()
+  logout() {
+    this.authService.logoutUser();
   }
 }
