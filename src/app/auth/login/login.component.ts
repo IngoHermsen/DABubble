@@ -33,12 +33,12 @@ export class LoginComponent {
   authService = inject(AuthService);
 
   makeVisible = false;
-  pwPlaceholder = "Passwort"
-  emailPlaceholder = "beispielname@email.com"
+  pwPlaceholder = "Passwort";
+  emailPlaceholder = "beispielname@email.com";
   emailPlaceHolderGray = true;
   pwPlaceholderGray = true;
   pwPlaceholderRed = false;
-  emailPlaceHolderRed = false; 
+  emailPlaceHolderRed = false;
   errorMessage: string | null = null;
 
   ngOnInit() {
@@ -62,57 +62,61 @@ export class LoginComponent {
  * @returns {void} This method does not return any value.
  */
   onSubmit(email: any, password: any): void {
-    this.checkEmail(email)
-    this.checkPassword(password)
+    this.checkEmail(email);
+    this.checkPassword(password);
   }
 
 
-  checkEmail(email: any){
-    if(email.value === ""){
-      this.emailPlaceholder = "Email is empty";
-      this.emailPlaceHolderRed = true;
-      this.emailPlaceHolderGray = false;
-      this.setBackEmail()
-    }else if(email.value !== ""){
+  checkEmail(email: any) {
+    if (email.value === "") {
+      this.warningTextAndColor("emailPlaceholder", "Email is empty");
+      this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com")
+    } else if (email.value !== "") {
       const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      if (!re.test(email.value.trim())) {
-        let cachedEmailValue = email.value;
-        email.value = ""
-        this.emailPlaceholder = "Invalid Email"
-        this.emailPlaceHolderRed = true;
-        this.emailPlaceHolderGray = false;
-        this.setBackEmail()
+      const noMatchEmailPattern = !re.test(email.value.trim());
+      
+      if (noMatchEmailPattern) {
+        email.value = "";
+        this.warningTextAndColor("emailPlaceholder", "InvalidEmail");
+        this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com")
       }
     }
   }
 
-  emailErrorMsg(errorTxt: string){
-    this.emailPlaceholder = errorTxt
-    this.emailPlaceHolderRed = true;
-    this.emailPlaceHolderGray = false;
-  }
 
-
-  checkPassword(password:any){
-    if(password.value === ""){
-      this.pwPlaceholder = "Password is empty";
-      this.pwPlaceholderRed = true;
-      this.pwPlaceholderGray = false;
-      setTimeout(() => {
-        this.pwPlaceholder = "Password";
-        this.pwPlaceholderGray = true;  
-        
-      }, 2500);
+  checkPassword(password: any) {
+    if (password.value === "") {
+      this.warningTextAndColor("pwPlaceholder", "Password is empty")
+      this.setPlaceholderDefault("pwPlaceholder", "Passwort")
     }
   }
 
-  setBackEmail(){
+
+  setPlaceholderDefault(placeholder: 'emailPlaceholder' | 'pwPlaceholder', defaultTxt: string) {
     setTimeout(() => {
-      this.emailPlaceholder = "beispielname@email.com";
-      this.emailPlaceHolderGray = true;  
-      
+      if (placeholder === 'emailPlaceholder') {
+        this.emailPlaceholder = defaultTxt;
+        this.emailPlaceHolderGray = true;
+      }else if(placeholder === 'pwPlaceholder'){
+        this.pwPlaceholder = defaultTxt;
+        this.pwPlaceholderGray = true
+      }
     }, 2500);
   }
+  
+
+  warningTextAndColor(placeholder: 'emailPlaceholder' | 'pwPlaceholder', warningText:string ){
+    if(placeholder === "emailPlaceholder"){
+      this.emailPlaceholder = warningText;
+      this.emailPlaceHolderRed = true;
+      this.emailPlaceHolderGray = false;
+    }else if(placeholder === "pwPlaceholder"){
+      this.pwPlaceholder = warningText;
+      this.pwPlaceholderRed = true;
+      this.pwPlaceholderGray = false;
+    }
+  }
+
 
   logout() {
     this.authService.logoutUser();
