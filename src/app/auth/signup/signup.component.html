@@ -1,41 +1,46 @@
-    <div class="sign-up-container fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
+<div class="sign-up-container fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
 
-      <div class="arrow-back" [routerLink]="'/main/login'">
-        <img src="../../../assets/icons/arrow_back.png" alt="">
-      </div>
+  <div class="arrow-back" [routerLink]="'/main/login'">
+    <img src="../../../assets/icons/arrow_back.png" alt="">
+  </div>
 
-      <div class="login-header">
-        <header>Konto Erstellen</header>
-        <div class="create-acount-info">
-          <p>Mit deinem Namen und deiner E-Mail-Adresse hast</p>
-          <p>du dein neues DABubble Konto</p>
-        </div>
-      </div>
-
-      <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="input-box">
-          <input class="input-styling" type="text" placeholder="Name" formControlName="username" />
-          <img class="place-input-img" src="../../../assets/icons/person.png" alt="">
-        </div>
-
-        <div class="input-box">
-          <input class="input-styling" type="text" placeholder="Email" formControlName="email" />
-          <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
-        </div>
-
-        <div class="input-box">
-          <input class="input-styling" type="password" placeholder="Password" formControlName="password" />
-          <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
-        </div>
-
-        <div id="data-privacy">
-          Datenschutzerklärung
-        </div>
-
-        <div>
-          <button class="" type="submit">Sign Up</button>
-        </div>
-
-      </form>
-
+  <div class="login-header">
+    <header>Konto Erstellen</header>
+    <div class="create-acount-info">
+      <p>Mit deinem Namen und deiner E-Mail-Adresse hast</p>
+      <p>du dein neues DABubble Konto</p>
     </div>
+  </div>
+
+  <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="input-box">
+      <input class="input-styling" type="text" placeholder="Name" formControlName="username" />
+      <img class="place-input-img" src="../../../assets/icons/person.png" alt="">
+    </div>
+
+    <div class="input-box">
+      <input class="input-styling" type="text" placeholder="Email" formControlName="email" />
+      <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
+    </div>
+
+    <div class="input-box">
+      <input class="input-styling" type="password" placeholder="Password" formControlName="password" />
+      <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
+    </div>
+
+    <div id="checkbox-wrapper">
+      <input type="checkbox" id="checkbox">
+      <div id="data-policy">
+        Ich stimme der
+        <span class="" id="privacy-policy-href">Datenschutzerklärung</span>
+        zu
+      </div>
+    </div>
+
+    <div id="signup-btn-wrapper">
+      <button id="signup-btn" type="submit">Weiter</button>
+    </div>
+
+  </form>
+
+</div>

@@ -28,3 +28,35 @@ p{
 .create-acount-info{
   margin: 1em 0 1em 0;
 }
+
+#checkbox-wrapper{
+  font-family: Figtree;
+  @include dflex($gap: 10px);
+
+  #checkbox{
+    accent-color: #797EF3;
+  }
+}
+
+
+
+#data-policy{
+  color: #42526E;
+  font-size: 16px;
+
+  #privacy-policy-href{
+    color: #797EF3
+  }
+}
+
+#signup-btn-wrapper{
+  padding-top: 10px;
+  @include dflex($jC: flex-end);
+  width: 100%;
+}
+
+#signup-btn{
+  @include removeBtnStyles();
+  @include roundBtn(107px, 49px, 25px, #444DF2, white, 18px, 700)
+}
+
