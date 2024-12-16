@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, ReactiveFormsModule, Validators, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { ValidationService } from '../../services/validation.service';
 
 //§ Explanations: 
 //§ When to define imports in the decorator <imports: []> 
@@ -29,6 +30,7 @@ import { AuthService } from '../../services/auth.service';
 
 export class LoginComponent {
 
+  validation = inject(ValidationService)
   router = inject(Router);
   authService = inject(AuthService);
 
@@ -42,6 +44,7 @@ export class LoginComponent {
   errorMessage: string | null = null;
 
   ngOnInit() {
+
     // Use setTimeout to ensure the class is applied after the initial view rendering
     setTimeout(() => {
       this.makeVisible = true;
