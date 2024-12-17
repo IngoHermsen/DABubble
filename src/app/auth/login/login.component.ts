@@ -30,7 +30,7 @@ import { ValidationService } from '../../services/validation.service';
 
 export class LoginComponent {
 
-  validation = inject(ValidationService)
+  validation = inject(ValidationService);
   router = inject(Router);
   authService = inject(AuthService);
 
@@ -71,26 +71,37 @@ export class LoginComponent {
 
 
   checkEmail(email: any) {
+    const patternDoesNotMatch = !this.validation.checkEmailPattern(email);
     if (email.value === "") {
       this.warningTextAndColor("emailPlaceholder", "Email is empty");
-      this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com")
-    } else if (email.value !== "") {
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      const noMatchEmailPattern = !re.test(email.value.trim());
-      
-      if (noMatchEmailPattern) {
-        email.value = "";
-        this.warningTextAndColor("emailPlaceholder", "InvalidEmail");
-        this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com")
-      }
+      this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
+    } else if (patternDoesNotMatch) {
+      email.value = ""
+      this.warningTextAndColor("emailPlaceholder", "InvalidEmail");
+      this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
+      console.log("Pattern does not match");
     }
+    // else if(patternDoesNotMatch){
+    //     email.value = "";
+    // }
+
+    // if (email.value !== "") {
+    //   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //   const noMatchEmailPattern = !re.test(email.value.trim());
+
+    //   if (noMatchEmailPattern) {
+    //     email.value = "";
+    //     this.warningTextAndColor("emailPlaceholder", "InvalidEmail");
+    //     this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com")
+    //   }
+    // }
   }
 
 
   checkPassword(password: any) {
     if (password.value === "") {
-      this.warningTextAndColor("pwPlaceholder", "Password is empty")
-      this.setPlaceholderDefault("pwPlaceholder", "Passwort")
+      this.warningTextAndColor("pwPlaceholder", "Password is empty");
+      this.setPlaceholderDefault("pwPlaceholder", "Passwort");
     }
   }
 
@@ -100,20 +111,20 @@ export class LoginComponent {
       if (placeholder === 'emailPlaceholder') {
         this.emailPlaceholder = defaultTxt;
         this.emailPlaceHolderGray = true;
-      }else if(placeholder === 'pwPlaceholder'){
+      } else if (placeholder === 'pwPlaceholder') {
         this.pwPlaceholder = defaultTxt;
-        this.pwPlaceholderGray = true
+        this.pwPlaceholderGray = true;
       }
     }, 2500);
   }
-  
 
-  warningTextAndColor(placeholder: 'emailPlaceholder' | 'pwPlaceholder', warningText:string ){
-    if(placeholder === "emailPlaceholder"){
+
+  warningTextAndColor(placeholder: 'emailPlaceholder' | 'pwPlaceholder', warningText: string) {
+    if (placeholder === "emailPlaceholder") {
       this.emailPlaceholder = warningText;
       this.emailPlaceHolderRed = true;
       this.emailPlaceHolderGray = false;
-    }else if(placeholder === "pwPlaceholder"){
+    } else if (placeholder === "pwPlaceholder") {
       this.pwPlaceholder = warningText;
       this.pwPlaceholderRed = true;
       this.pwPlaceholderGray = false;

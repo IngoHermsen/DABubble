@@ -90,6 +90,11 @@ $login-header-c: #444df2;
     @include roundBtn(137px, 50px, 25px, #444DF2, white, 18px, 700)
   }
 
+  .inactive-login-btn{
+    background-color: #7A7A7A;
+    cursor: default;
+  }
+
   .guest-login-btn {
     @include roundBtn(153px, 50px, 25px, white, #444DF2, 18px, 700);
     border: solid #444DF2 1px;

@@ -14,52 +14,64 @@ import { NgClass } from '@angular/common';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
-  
+
   ngOnInit() {
     // Use setTimeout to ensure the class is applied after the initial view rendering
     setTimeout(() => {
       this.makeVisible = true;
     }, 0); // Short delay (0ms) to ensure Angular has rendered the component
   }
-  
-  
-  makeVisible = false
+
+
   fb = inject(FormBuilder);
   http = inject(HttpClient);
   router = inject(Router);
   authService = inject(AuthService);
+  makeVisible = false;
+  namePlaceholder = "Name";
+  emailPlaceholder = "Email"
+  pwPlaceholder = "Password"
 
   form = this.fb.nonNullable.group({
     username: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
   });
-  
+
   errorMessage: string | null = null;
 
-    /**
- * Handles the form submission for user signup.
- * 
- * This method retrieves the raw values from the signup form, including
- * the username, email, and password. It then attempts to sign up the user
- * using the authentication service. On successful signup, the user is 
- * navigated to the home page ("/"). If the signup fails, an error message 
- * could be displayed (though not implemented here).
- * 
- * @returns {void} This method does not return any value.
- */
-    onSubmit(): void {
-      const rawForm = this.form.getRawValue();
-      console.log(rawForm);
-      this.authService.signUpUser(rawForm.email, rawForm.username, rawForm.password).subscribe({
-        next: () => {
-          this.router.navigateByUrl("/login");
-        }, 
-        error: (err) => {
-         this.errorMessage = err.code;
-        },
-        
-      });
-    }
-  
+  /**
+* Handles the form submission for user signup.
+* 
+* This method retrieves the raw values from the signup form, including
+* the username, email, and password. It then attempts to sign up the user
+* using the authentication service. On successful signup, the user is 
+* navigated to the home page ("/"). If the signup fails, an error message 
+* could be displayed (though not implemented here).
+* 
+* @returns {void} This method does not return any value.
+*/
+  // onSubmit(): void {
+  //   const rawForm = this.form.getRawValue();
+  //   console.log(rawForm);
+  //   this.authService.signUpUser(rawForm.email, rawForm.username, rawForm.password).subscribe({
+  //     next: () => {
+  //       this.router.navigateByUrl("/login");
+  //     }, 
+  //     error: (err) => {
+  //      this.errorMessage = err.code;
+  //     },
+
+  //   });
+  // }
+  onSubmit(email: any, password: any) {
+    const pattern = this.checkPattern(email);
+    console.log(pattern);
+  }
+
+  checkPattern(email: any) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const MatchEmailPattern = re.test(email.value.trim());
+    return MatchEmailPattern ? true : false;
+  }
 }

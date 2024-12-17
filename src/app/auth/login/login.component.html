@@ -5,11 +5,12 @@
     <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
   </section>
 
-  <form class="login-form" (ngSubmit)="onSubmit(email, password)" #loginForm="ngForm">
+  <form class="login-form" (ngSubmit)="onSubmit(emailInput, password)" #loginForm="ngForm">
 
     <!------------------------- EMAIL ------------------------->
     <section class="input-box">
-      <input id="email-input" class="input-styling" type="text" [placeholder]="emailPlaceholder" name="email" #email
+      <input id="email-input" class="input-styling" type="text" [placeholder]="emailPlaceholder" name="email" #email="ngModel"
+        #emailInput
         autocomplete="off"
         ngModel required [ngClass]="{
         'red-placeholder': emailPlaceHolderRed,
@@ -44,7 +45,7 @@
     </section>
 
     <section class="login-btns-wrapper">
-      <button class="login-btn" type="submit">Log In</button>
+      <button class="login-btn" type="submit" [ngClass]="{'inactive-login-btn': loginForm.invalid}">Log In</button>
       <button class="guest-login-btn">Gast Login</button>
     </section>
 

@@ -12,19 +12,19 @@
     </div>
   </div>
 
-  <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit(email, password)">
     <div class="input-box">
-      <input class="input-styling" type="text" placeholder="Name" formControlName="username" />
+      <input class="input-styling" type="text" [placeholder]="namePlaceholder" #name />
       <img class="place-input-img" src="../../../assets/icons/person.png" alt="">
     </div>
 
     <div class="input-box">
-      <input class="input-styling" type="text" placeholder="Email" formControlName="email" />
+      <input class="input-styling" type="text" [placeholder]="emailPlaceholder" #email />
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
     </div>
 
     <div class="input-box">
-      <input class="input-styling" type="password" placeholder="Password" formControlName="password" />
+      <input class="input-styling" type="password" [placeholder]="pwPlaceholder" #password />
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
     </div>
 
