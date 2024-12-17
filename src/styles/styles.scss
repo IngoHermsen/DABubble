@@ -119,6 +119,18 @@ input::placeholder {
   margin: 0 auto;
 }
 
+// ************************ Auth Styles **************************
+
+.red-placeholder::placeholder {
+  color: #F24470;
+}
+
+.gray-placeholder::placeholder {
+  color: gray;
+}
+
+
+
 // ************************ Posts **************************
 
 .posts {

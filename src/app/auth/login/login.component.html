@@ -9,24 +9,30 @@
 
     <!------------------------- EMAIL ------------------------->
     <section class="input-box">
+
       <input id="email-input" class="input-styling" type="text" [placeholder]="validation.emailPlaceholder" name="email" #email="ngModel"
         #emailInput
         autocomplete="off"
-        ngModel required [ngClass]="{
+        ngModel required
+        [ngClass]="{
         'red-placeholder': validation.emailPlaceHolderRed,
         'gray-placeholder': validation.emailPlaceHolderGray,
       }" />
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
+
     </section>
 
     <!------------------------- PASSWORD ------------------------->
     <section class="input-box">
+
       <input class="input-styling" type="password" [placeholder]="validation.pwPlaceholder" name="password" #password ngModel
-        required [ngClass]="{
+        required 
+        [ngClass]="{
         'red-placeholder': validation.pwPlaceholderRed,
         'gray-placeholder': validation.pwPlaceholderGray
       }" />
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
+
     </section>
 
     <div class="forgot-pw">Passwort vergessen?</div>

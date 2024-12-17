@@ -67,14 +67,8 @@ export class SignupComponent {
 
   //   });
   // }
-  onSubmit(email: any, password: any) {
-    const pattern = this.checkPattern(email);
-    console.log(pattern);
-  }
-
-  checkPattern(email: any) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const MatchEmailPattern = re.test(email.value.trim());
-    return MatchEmailPattern ? true : false;
+  onSubmit(email: any, password: any): void {
+    this.validation.checkEmail(email);
+    this.validation.checkPassword(password);
   }
 }

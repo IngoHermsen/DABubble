@@ -35,13 +35,6 @@ export class LoginComponent {
   authService = inject(AuthService);
 
   makeVisible = false;
-  // pwPlaceholder = "Passwort";
-  // emailPlaceholder = "beispielname@email.com";
-  // emailPlaceHolderGray = true;
-  // pwPlaceholderGray = true;
-  // pwPlaceholderRed = false;
-  // emailPlaceHolderRed = false;
-  // errorMessage: string | null = null;
 
   ngOnInit() {
 
@@ -68,8 +61,6 @@ export class LoginComponent {
     this.validation.checkEmail(email);
     this.validation.checkPassword(password);
   }
-
-
 
 
   logout() {
