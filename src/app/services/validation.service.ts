@@ -7,6 +7,14 @@ export class ValidationService {
 
   constructor() { }
 
+  pwPlaceholder = "Passwort";
+  emailPlaceholder = "beispielname@email.com";
+  emailPlaceHolderGray = true;
+  pwPlaceholderGray = true;
+  pwPlaceholderRed = false;
+  emailPlaceHolderRed = false;
+  
+
   checkEmailPattern(email: any){
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const matchEmailPattern = re.test(email.value.trim());
@@ -14,7 +22,53 @@ export class ValidationService {
   }
   
 
-  
+  setPlaceholderDefault(placeholder: 'emailPlaceholder' | 'pwPlaceholder', defaultTxt: string) {
+    setTimeout(() => {
+      if (placeholder === 'emailPlaceholder') {
+        this.emailPlaceholder = defaultTxt;
+        this.emailPlaceHolderGray = true;
+      } else if (placeholder === 'pwPlaceholder') {
+        this.pwPlaceholder = defaultTxt;
+        this.pwPlaceholderGray = true;
+      }
+    }, 2500);
+  }
+
+
+  warningTextAndColor(placeholder: 'emailPlaceholder' | 'pwPlaceholder', warningText: string) {
+    if (placeholder === "emailPlaceholder") {
+      this.emailPlaceholder = warningText;
+      this.emailPlaceHolderRed = true;
+      this.emailPlaceHolderGray = false;
+    } else if (placeholder === "pwPlaceholder") {
+      this.pwPlaceholder = warningText;
+      this.pwPlaceholderRed = true;
+      this.pwPlaceholderGray = false;
+    }
+  }
+
+
+  checkEmail(email: any) {
+    const patternDoesNotMatch = !this.checkEmailPattern(email);
+    if (email.value === "") {
+      this.warningTextAndColor("emailPlaceholder", "Email is empty");
+      this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
+    } else if (patternDoesNotMatch) {
+      email.value = ""
+      this.warningTextAndColor("emailPlaceholder", "InvalidEmail");
+      this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
+      console.log("Pattern does not match");
+    }
+  }
+
+
+  checkPassword(password: any) {
+    if (password.value === "") {
+      this.warningTextAndColor("pwPlaceholder", "Password is empty");
+      this.setPlaceholderDefault("pwPlaceholder", "Passwort");
+    }
+  }
+
 
   logSth(){
     console.log("Service is working");

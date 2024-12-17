@@ -4,6 +4,8 @@ import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { NgClass } from '@angular/common';
+import { ValidationService } from '../../services/validation.service';
+
 
 
 @Component({
@@ -27,10 +29,11 @@ export class SignupComponent {
   http = inject(HttpClient);
   router = inject(Router);
   authService = inject(AuthService);
+  validation = inject(ValidationService);
   makeVisible = false;
   namePlaceholder = "Name";
-  emailPlaceholder = "Email"
-  pwPlaceholder = "Password"
+  // emailPlaceholder = "Email"
+  // pwPlaceholder = "Password"
 
   form = this.fb.nonNullable.group({
     username: ['', Validators.required],

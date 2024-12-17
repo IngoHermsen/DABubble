@@ -35,13 +35,13 @@ export class LoginComponent {
   authService = inject(AuthService);
 
   makeVisible = false;
-  pwPlaceholder = "Passwort";
-  emailPlaceholder = "beispielname@email.com";
-  emailPlaceHolderGray = true;
-  pwPlaceholderGray = true;
-  pwPlaceholderRed = false;
-  emailPlaceHolderRed = false;
-  errorMessage: string | null = null;
+  // pwPlaceholder = "Passwort";
+  // emailPlaceholder = "beispielname@email.com";
+  // emailPlaceHolderGray = true;
+  // pwPlaceholderGray = true;
+  // pwPlaceholderRed = false;
+  // emailPlaceHolderRed = false;
+  // errorMessage: string | null = null;
 
   ngOnInit() {
 
@@ -65,71 +65,57 @@ export class LoginComponent {
  * @returns {void} This method does not return any value.
  */
   onSubmit(email: any, password: any): void {
-    this.checkEmail(email);
-    this.checkPassword(password);
+    this.validation.checkEmail(email);
+    this.validation.checkPassword(password);
   }
 
 
-  checkEmail(email: any) {
-    const patternDoesNotMatch = !this.validation.checkEmailPattern(email);
-    if (email.value === "") {
-      this.warningTextAndColor("emailPlaceholder", "Email is empty");
-      this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
-    } else if (patternDoesNotMatch) {
-      email.value = ""
-      this.warningTextAndColor("emailPlaceholder", "InvalidEmail");
-      this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
-      console.log("Pattern does not match");
-    }
-    // else if(patternDoesNotMatch){
-    //     email.value = "";
-    // }
-
-    // if (email.value !== "") {
-    //   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    //   const noMatchEmailPattern = !re.test(email.value.trim());
-
-    //   if (noMatchEmailPattern) {
-    //     email.value = "";
-    //     this.warningTextAndColor("emailPlaceholder", "InvalidEmail");
-    //     this.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com")
-    //   }
-    // }
-  }
+  // checkEmail(email: any) {
+  //   const patternDoesNotMatch = !this.validation.checkEmailPattern(email);
+  //   if (email.value === "") {
+  //     this.validation.warningTextAndColor("emailPlaceholder", "Email is empty");
+  //     this.validation.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
+  //   } else if (patternDoesNotMatch) {
+  //     email.value = ""
+  //     this.validation.warningTextAndColor("emailPlaceholder", "InvalidEmail");
+  //     this.validation.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
+  //     console.log("Pattern does not match");
+  //   }
+  // }
 
 
-  checkPassword(password: any) {
-    if (password.value === "") {
-      this.warningTextAndColor("pwPlaceholder", "Password is empty");
-      this.setPlaceholderDefault("pwPlaceholder", "Passwort");
-    }
-  }
+  // checkPassword(password: any) {
+  //   if (password.value === "") {
+  //     this.validation.warningTextAndColor("pwPlaceholder", "Password is empty");
+  //     this.validation.setPlaceholderDefault("pwPlaceholder", "Passwort");
+  //   }
+  // }
 
 
-  setPlaceholderDefault(placeholder: 'emailPlaceholder' | 'pwPlaceholder', defaultTxt: string) {
-    setTimeout(() => {
-      if (placeholder === 'emailPlaceholder') {
-        this.emailPlaceholder = defaultTxt;
-        this.emailPlaceHolderGray = true;
-      } else if (placeholder === 'pwPlaceholder') {
-        this.pwPlaceholder = defaultTxt;
-        this.pwPlaceholderGray = true;
-      }
-    }, 2500);
-  }
+  // setPlaceholderDefault(placeholder: 'emailPlaceholder' | 'pwPlaceholder', defaultTxt: string) {
+  //   setTimeout(() => {
+  //     if (placeholder === 'emailPlaceholder') {
+  //       this.validation.emailPlaceholder = defaultTxt;
+  //       this.validation.emailPlaceHolderGray = true;
+  //     } else if (placeholder === 'pwPlaceholder') {
+  //       this.validation.pwPlaceholder = defaultTxt;
+  //       this.validation.pwPlaceholderGray = true;
+  //     }
+  //   }, 2500);
+  // }
 
 
-  warningTextAndColor(placeholder: 'emailPlaceholder' | 'pwPlaceholder', warningText: string) {
-    if (placeholder === "emailPlaceholder") {
-      this.emailPlaceholder = warningText;
-      this.emailPlaceHolderRed = true;
-      this.emailPlaceHolderGray = false;
-    } else if (placeholder === "pwPlaceholder") {
-      this.pwPlaceholder = warningText;
-      this.pwPlaceholderRed = true;
-      this.pwPlaceholderGray = false;
-    }
-  }
+  // warningTextAndColor(placeholder: 'emailPlaceholder' | 'pwPlaceholder', warningText: string) {
+  //   if (placeholder === "emailPlaceholder") {
+  //     this.validation.emailPlaceholder = warningText;
+  //     this.validation.emailPlaceHolderRed = true;
+  //     this.validation.emailPlaceHolderGray = false;
+  //   } else if (placeholder === "pwPlaceholder") {
+  //     this.validation.pwPlaceholder = warningText;
+  //     this.validation.pwPlaceholderRed = true;
+  //     this.validation.pwPlaceholderGray = false;
+  //   }
+  // }
 
 
   logout() {
