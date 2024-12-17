@@ -70,52 +70,6 @@ export class LoginComponent {
   }
 
 
-  // checkEmail(email: any) {
-  //   const patternDoesNotMatch = !this.validation.checkEmailPattern(email);
-  //   if (email.value === "") {
-  //     this.validation.warningTextAndColor("emailPlaceholder", "Email is empty");
-  //     this.validation.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
-  //   } else if (patternDoesNotMatch) {
-  //     email.value = ""
-  //     this.validation.warningTextAndColor("emailPlaceholder", "InvalidEmail");
-  //     this.validation.setPlaceholderDefault("emailPlaceholder", "beispielname@email.com");
-  //     console.log("Pattern does not match");
-  //   }
-  // }
-
-
-  // checkPassword(password: any) {
-  //   if (password.value === "") {
-  //     this.validation.warningTextAndColor("pwPlaceholder", "Password is empty");
-  //     this.validation.setPlaceholderDefault("pwPlaceholder", "Passwort");
-  //   }
-  // }
-
-
-  // setPlaceholderDefault(placeholder: 'emailPlaceholder' | 'pwPlaceholder', defaultTxt: string) {
-  //   setTimeout(() => {
-  //     if (placeholder === 'emailPlaceholder') {
-  //       this.validation.emailPlaceholder = defaultTxt;
-  //       this.validation.emailPlaceHolderGray = true;
-  //     } else if (placeholder === 'pwPlaceholder') {
-  //       this.validation.pwPlaceholder = defaultTxt;
-  //       this.validation.pwPlaceholderGray = true;
-  //     }
-  //   }, 2500);
-  // }
-
-
-  // warningTextAndColor(placeholder: 'emailPlaceholder' | 'pwPlaceholder', warningText: string) {
-  //   if (placeholder === "emailPlaceholder") {
-  //     this.validation.emailPlaceholder = warningText;
-  //     this.validation.emailPlaceHolderRed = true;
-  //     this.validation.emailPlaceHolderGray = false;
-  //   } else if (placeholder === "pwPlaceholder") {
-  //     this.validation.pwPlaceholder = warningText;
-  //     this.validation.pwPlaceholderRed = true;
-  //     this.validation.pwPlaceholderGray = false;
-  //   }
-  // }
 
 
   logout() {
