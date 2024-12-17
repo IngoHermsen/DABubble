@@ -129,9 +129,9 @@ input::placeholder {
   color: gray;
 }
 
-.inactive-login-btn{
-  background-color: #7A7A7A;
-  cursor: default;
+button.inactive-login-btn {
+  background-color: #7A7A7A !important;
+  cursor: default !important;
 }
 
 
