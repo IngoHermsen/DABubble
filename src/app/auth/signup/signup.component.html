@@ -12,20 +12,36 @@
     </div>
   </div>
 
-  <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit(email, password)">
+  <form class="login-form" (ngSubmit)="onSubmit(email, password, name)" #loginForm="ngForm">
     <div class="input-box">
-      <input class="input-styling" type="text" [placeholder]="namePlaceholder" #name />
+      <input class="input-styling" type="text" [placeholder]="validation.namePlaceholder" #name
+      [ngClass]="{
+        'red-placeholder': validation.namePlaceholderRed,
+        'gray-placeholder': validation.namePlaceholderGray
+      }" />
+ 
       <img class="place-input-img" src="../../../assets/icons/person.png" alt="">
     </div>
 
     <div class="input-box">
-      <input class="input-styling" type="text" [placeholder]="validation.emailPlaceholder" #email />
+
+      <input class="input-styling" type="text" [placeholder]="validation.emailPlaceholder" #email
+      [ngClass]="{
+        'red-placeholder': validation.emailPlaceHolderRed,
+        'gray-placeholder': validation.emailPlaceHolderGray,
+      }" />
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
+
     </div>
 
     <div class="input-box">
-      <input class="input-styling" type="password" [placeholder]="validation.pwPlaceholder" #password />
+      <input class="input-styling" type="password" [placeholder]="validation.pwPlaceholder" #password 
+      [ngClass]="{
+        'red-placeholder': validation.pwPlaceholderRed,
+        'gray-placeholder': validation.pwPlaceholderGray
+      }" />
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
+      
     </div>
 
     <div id="checkbox-wrapper">

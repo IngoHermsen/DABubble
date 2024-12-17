@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
@@ -11,7 +11,13 @@ import { ValidationService } from '../../services/validation.service';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, NgClass],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    NgClass,
+  ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
@@ -67,8 +73,9 @@ export class SignupComponent {
 
   //   });
   // }
-  onSubmit(email: any, password: any): void {
+  onSubmit(email: any, password: any, name: any): void {
     this.validation.checkEmail(email);
     this.validation.checkPassword(password);
+    this.validation.checkName(name);
   }
 }
