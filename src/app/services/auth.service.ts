@@ -27,6 +27,7 @@ export class AuthService {
 
   signUpBtnPressed = async (email: any, password: any) => {
     try {
+      console.log(typeof email);
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
       console.log(userCredential.user);
       return true
