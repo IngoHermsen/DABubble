@@ -38,9 +38,6 @@ export class SignupComponent {
   validation = inject(ValidationService);
   hideSignupSuccessMsg = true;
   makeVisible = false;
-  namePlaceholder = "Name";
-  // emailPlaceholder = "Email"
-  // pwPlaceholder = "Password"
 
 
   clearFieldsShowMsgAfterSignUpSuccess(email: any, password: any, name: any, signupSuccess: boolean) {
