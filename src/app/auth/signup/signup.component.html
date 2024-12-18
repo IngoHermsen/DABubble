@@ -14,44 +14,32 @@
 
   <form class="login-form" (ngSubmit)="onSubmit(email, password, name)" #signupForm="ngForm">
     <div class="input-box">
-      <input class="input-styling" type="text" [placeholder]="validation.namePlaceholder" #name name="name"
+<!------------------------- NAME ------------------------->
+      <input class="input-styling" type="text" placeholder="Name" #name name="name"
       ngModel
-      required
-      autocomplete="off"
-      [ngClass]="{
-        'red-placeholder': validation.namePlaceholderRed,
-        'gray-placeholder': validation.namePlaceholderGray
-      }" />
+      required/>
  
       <img class="place-input-img" src="../../../assets/icons/person.png" alt="">
     </div>
 
-    <div class="input-box">
 
-      <input class="input-styling" type="email" [placeholder]="validation.emailPlaceholder" #email name="email"
+    <div class="input-box">
+<!------------------------- EMAIL ------------------------->
+      <input class="input-styling" type="email" placeholder="Email" #email name="email"
       ngModel
       required 
-      autocomplete="off"
+      autocomplete="off"/>
 
-    
-      [ngClass]="{
-        'red-placeholder': validation.emailPlaceHolderRed,
-        'gray-placeholder': validation.emailPlaceHolderGray,
-      }" />
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
-
     </div>
 
+
     <div class="input-box">
-      
-      <input class="input-styling" type="password" [placeholder]="validation.pwPlaceholder" #password name="password"
+<!------------------------- PASSWORD ------------------------->
+      <input class="input-styling" type="password" placeholder="Password" #password name="password"
       ngModel
       required
-      autocomplete="off"
-      [ngClass]="{
-        'red-placeholder': validation.pwPlaceholderRed,
-        'gray-placeholder': validation.pwPlaceholderGray
-      }" />
+      autocomplete="off"/>
 
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
       
