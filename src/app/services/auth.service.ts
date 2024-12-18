@@ -2,11 +2,14 @@ import { Injectable, inject, signal } from '@angular/core';
 import {
   Auth,
   createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
   user
 } from '@angular/fire/auth';
+
 import { from, Observable } from 'rxjs';
 import { UserInterface } from '../auth/interfaces/user.interface';
 
@@ -14,18 +17,7 @@ import { UserInterface } from '../auth/interfaces/user.interface';
   providedIn: 'root'
 })
 
-//§ Explanations: 
-//§ JavaScript/TypeScript, async/await is one way to handle asynchronous operations,
-//§ but it's not the only way. signUpUser function is asynchronous,
-//§ but it uses a different mechanism: Promises and Observables.
-//§ A Promise is an object representing the eventual completion (or failure) of an asynchronous operation.
-//§ Why the $ sign in user$ --> Indicates that the variable holds an Observable.
-//§ currentUserSignal = signal<UserInterface | null | undefined>(undefined)
-//§ This represents a reactive state variable (using the Angular signal API) 
-//§ signal: This is the function being called.
-//§ <UserInterface | null | undefined>: This is the generic type specifying the types the signal can hold.
-//§ (undefined): This is the initial value passed into the signal function.
-//§ 
+
 
 export class AuthService {
 
@@ -33,27 +25,16 @@ export class AuthService {
   user$ = user(this.firebaseAuth);
   currentUserSignal = signal<UserInterface | null | undefined>(undefined);
 
-  /**
- * Signus up a new user with Firebase authentication.
- * 
- * This method creates a new user using the provided email and password,
- * and updates the user's profile with the given username.
- * @method 
- * @param {string} email - The email address of the new user.
- * @param {string} username - The display name to be set for the user.
- * @param {string} password - The password for the new user.
- * @returns {Observable<void>} - An Observable that resolves once the user is registered and the profile is updated.
- */
-  signUpUser(email: string, username: string, password: string): Observable<void> {
-    const promise = (createUserWithEmailAndPassword(this.firebaseAuth, email, password))
-      .then((response) => {
-        console.log("This is response", response);
-        console.log("This is response.user", response.user);
-        updateProfile(response.user, { displayName: username });
-      });
-
-    return from(promise);
-  }
+  signUpBtnPressed = async (email: any, password: any) => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      console.log(userCredential.user);
+      return true
+    } catch (error: any) {
+      console.log(error.code); // error.code gives a somewhat readable format.
+      return false
+    };
+  };
 
 
   /**

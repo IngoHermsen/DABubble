@@ -17,6 +17,7 @@
       <input class="input-styling" type="text" [placeholder]="validation.namePlaceholder" #name name="name"
       ngModel
       required
+      autocomplete="off"
       [ngClass]="{
         'red-placeholder': validation.namePlaceholderRed,
         'gray-placeholder': validation.namePlaceholderGray
@@ -27,9 +28,12 @@
 
     <div class="input-box">
 
-      <input class="input-styling" type="text" [placeholder]="validation.emailPlaceholder" #email name="email"
+      <input class="input-styling" type="email" [placeholder]="validation.emailPlaceholder" #email name="email"
       ngModel
       required 
+      autocomplete="off"
+
+    
       [ngClass]="{
         'red-placeholder': validation.emailPlaceHolderRed,
         'gray-placeholder': validation.emailPlaceHolderGray,
@@ -39,13 +43,16 @@
     </div>
 
     <div class="input-box">
+      
       <input class="input-styling" type="password" [placeholder]="validation.pwPlaceholder" #password name="password"
       ngModel
       required
+      autocomplete="off"
       [ngClass]="{
         'red-placeholder': validation.pwPlaceholderRed,
         'gray-placeholder': validation.pwPlaceholderGray
       }" />
+
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
       
     </div>
@@ -66,3 +73,5 @@
   </form>
 
 </div>
+
+<div class="signup-success-msg" [ngClass]="{'d-none': hideSignupSuccessMsg}">Signup Successful</div>

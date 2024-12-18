@@ -36,46 +36,41 @@ export class SignupComponent {
   router = inject(Router);
   authService = inject(AuthService);
   validation = inject(ValidationService);
+  hideSignupSuccessMsg = true;
   makeVisible = false;
   namePlaceholder = "Name";
   // emailPlaceholder = "Email"
   // pwPlaceholder = "Password"
 
-  form = this.fb.nonNullable.group({
-    username: ['', Validators.required],
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-  });
 
-  errorMessage: string | null = null;
+  clearFieldsShowMsgAfterSignUpSuccess(email: any, password: any, name: any, signupSuccess: boolean) {
+    if (signupSuccess) {
+      this.showSignupSuccessMsg();
+      setTimeout(() => {
+        this.hideSignupSuccessMsg = true;
+        this.clearInputValues(email, password, name);
+      }, 2500);
+    }
+  }
 
-  /**
-* Handles the form submission for user signup.
-* 
-* This method retrieves the raw values from the signup form, including
-* the username, email, and password. It then attempts to sign up the user
-* using the authentication service. On successful signup, the user is 
-* navigated to the home page ("/"). If the signup fails, an error message 
-* could be displayed (though not implemented here).
-* 
-* @returns {void} This method does not return any value.
-*/
-  // onSubmit(): void {
-  //   const rawForm = this.form.getRawValue();
-  //   console.log(rawForm);
-  //   this.authService.signUpUser(rawForm.email, rawForm.username, rawForm.password).subscribe({
-  //     next: () => {
-  //       this.router.navigateByUrl("/login");
-  //     }, 
-  //     error: (err) => {
-  //      this.errorMessage = err.code;
-  //     },
 
-  //   });
-  // }
-  onSubmit(email: any, password: any, name: any): void {
+  showSignupSuccessMsg() {
+    this.hideSignupSuccessMsg = false;
+  }
+
+
+  clearInputValues(email: any, password: any, name: any) {
+    email.value = "";
+    password.value = "",
+      name.value = "";
+  }
+
+
+  async onSubmit(email: any, password: any, name: any) {
     this.validation.checkEmail(email);
     this.validation.checkPassword(password);
     this.validation.checkName(name);
+    const signUpSuccess = await this.authService.signUpBtnPressed(email, password);
+    this.clearFieldsShowMsgAfterSignUpSuccess(email, password, name, signUpSuccess)
   }
 }

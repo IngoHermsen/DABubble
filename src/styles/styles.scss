@@ -102,7 +102,7 @@ input::placeholder {
 
 /******************************** Display Styles ********************************/
 .d-none {
-  display: none
+  display: none !important
 }
 
 /************************* Max-Width wrapper *************************/
