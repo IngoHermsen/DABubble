@@ -88,7 +88,6 @@ input::placeholder {
   
 }
 
-
 .input-icon {
   width: 24px;
 }
@@ -100,6 +99,12 @@ input::placeholder {
   transform: translateY(-50%);
 }
 
+.user-warning-msg{
+  position: absolute; 
+  bottom: -25px;
+  left: 18px;
+  font-size: 16px;
+}
 /******************************** Display Styles ********************************/
 .d-none {
   display: none !important
