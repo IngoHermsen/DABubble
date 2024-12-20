@@ -36,6 +36,13 @@ export class AuthService {
       return false
     };
   };
+    // if (signupSuccess) {
+    //   this.showSignupSuccessMsg();
+    //   setTimeout(() => {
+    //     this.hideSignupSuccessMsg = true;
+    //     this.clearInputValues(email, password, name);
+    //   }, 2500);
+    // }
 
 
   /**

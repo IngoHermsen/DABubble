@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { NgClass } from '@angular/common';
 import { ValidationService } from '../../services/validation.service';
+import { collection } from '@angular/fire/firestore';
 
 
 

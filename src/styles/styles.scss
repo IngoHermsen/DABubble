@@ -121,14 +121,6 @@ input::placeholder {
 
 // ************************ Auth Styles **************************
 
-.red-placeholder::placeholder {
-  color: #F24470;
-}
-
-.gray-placeholder::placeholder {
-  color: gray;
-}
-
 button.inactive-login-btn {
   background-color: #7A7A7A !important;
   cursor: default !important;
