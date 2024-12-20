@@ -18,7 +18,6 @@ import { UserInterface } from '../auth/interfaces/user.interface';
 })
 
 
-
 export class AuthService {
 
   firebaseAuth = inject(Auth);

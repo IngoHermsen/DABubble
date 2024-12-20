@@ -14,7 +14,10 @@
         #emailInput autocomplete="off" ngModel required />
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
 
-      <div class="user-warning-msg">*Das ist eine Warnung</div>
+      <div id="email-error-msg" class="user-warning-msg"
+        [ngClass]="{'d-none': !emailErrorVisible}">{{validation.emailWarningMsg}}
+      </div>
+
     </section>
 
     <!------------------------- PASSWORD ------------------------->
@@ -41,8 +44,14 @@
     </section>
 
     <section class="login-btns-wrapper">
-      <button class="login-btn" type="submit" [ngClass]="{'inactive-login-btn': loginForm.invalid}">Log In</button>
+
+      <button class="login-btn" type="submit" [ngClass]="{'inactive-login-btn': loginForm.invalid}"
+        (click)="validation.toggleVisibility('emailErrorVisible')">
+        Log In
+      </button>
+
       <button class="guest-login-btn">Gast Login</button>
+
     </section>
 
   </form>

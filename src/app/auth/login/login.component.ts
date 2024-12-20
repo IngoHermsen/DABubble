@@ -36,8 +36,11 @@ export class LoginComponent {
 
   makeVisible = false;
 
-  ngOnInit() {
+  
+// validation.service properties assigned to new Variable for better readability.
+  emailErrorVisible = this.validation.elementVisibility.emailErrorVisisble;
 
+  ngOnInit() {
     // Use setTimeout to ensure the class is applied after the initial view rendering
     setTimeout(() => {
       this.makeVisible = true;
@@ -45,19 +48,9 @@ export class LoginComponent {
   }
 
 
-
-  /**
- * Handles the form submission for user signup.
- * 
- * This method retrieves the raw values from the signup form, including
- * the username, email, and password. It then attempts to sign up the user
- * using the authentication service. On successful signup, the user is 
- * navigated to the home page ("/"). If the signup fails, an error message 
- * could be displayed (though not implemented here).
- * 
- * @returns {void} This method does not return any value.
- */
   onSubmit(email: any, password: any): void {
+    console.log("This is emailErrorVisible", this.emailErrorVisible);
+    console.log("Does this change in login.ts ??", this.validation.elementVisibility.emailErrorVisible);
     this.validation.checkEmail(email);
     this.validation.checkPassword(password);
   }

@@ -100,9 +100,7 @@ input::placeholder {
 }
 
 .user-warning-msg{
-  position: absolute; 
-  bottom: -25px;
-  left: 18px;
+  @include placeAbsoluteElement($bottom: -25px, $left: 18px) ;
   font-size: 12px;
   color: #FF2929
 }
@@ -132,6 +130,8 @@ button.inactive-login-btn {
   background-color: #7A7A7A !important;
   cursor: default !important;
 }
+
+
 
 
 // ************************ Posts **************************

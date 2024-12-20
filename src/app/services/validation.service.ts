@@ -5,7 +5,26 @@ import { Injectable } from '@angular/core';
 })
 export class ValidationService {
 
+
   constructor() { }
+  
+  emailWarningMsg = "*Das ist eine Warnung";
+
+  elementVisibility: any = {
+    emailErrorVisible: false,
+    userNameErrorVisislbe: false,
+    passwordErrorVisible: false,
+  };
+
+
+/**
+ * Boolean negation
+ */
+    toggleVisibility(key: string): void {
+      this.elementVisibility[key] = !this.elementVisibility[key];
+      console.log(this.elementVisibility[key]);
+    }
+
 
   checkEmailPattern(email: any) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -33,10 +52,10 @@ export class ValidationService {
   }
 
   checkName(name: any) {
-    if (name.value === ""){
+    if (name.value === "") {
       // Put some logic here.
     }
-    }
+  }
 
   logSth() {
     console.log("Service is working");
