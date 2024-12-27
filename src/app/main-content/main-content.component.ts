@@ -18,8 +18,20 @@ import { DialogService } from '../core/services/dialog.service';
     trigger('toggleWorkspace', [
       state(
         'open',
+        style({})
+      ),
+      state(
+        'closed',
         style({
+          width: '0px',
         })
+      ),
+      transition('open <=> closed', [animate('180ms')]),
+    ]),
+    trigger('toggleThread', [
+      state(
+        'open',
+        style({})
       ),
       state(
         'closed',
@@ -29,15 +41,14 @@ import { DialogService } from '../core/services/dialog.service';
         })
       ),
       transition('open <=> closed', [animate('180ms')]),
-    ]),
-    trigger('toggleThread', [])
+    ])
   ]
 })
 
 export class MainComponent implements OnInit {
   public dialogService = inject(DialogService);
   showWorkspaceMenu: boolean = true;
-  showThreadSection: boolean = false;
+  showThreadSection: boolean = true;
 
 
   constructor() {

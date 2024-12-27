@@ -137,6 +137,7 @@ button.inactive-login-btn {
 // ************************ Posts **************************
 
 .posts {
+  width: 100%;
   @include dflex($dir: column, $gap: 28px);
   overflow-y: auto;
 

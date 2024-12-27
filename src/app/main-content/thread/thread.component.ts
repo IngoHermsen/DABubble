@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-thread',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './thread.component.scss'
 })
 export class ThreadComponent {
-  
+  // @Output('closeThread'): close
 }
