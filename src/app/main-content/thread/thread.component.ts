@@ -9,5 +9,10 @@ import { EventEmitter } from '@angular/core';
   styleUrl: './thread.component.scss'
 })
 export class ThreadComponent {
-  // @Output('closeThread'): close
+  @Output() closeThread = new EventEmitter<boolean>();
+    
+    emitCloseEvent() {
+      this.closeThread.emit(true)
+    }
+
 }

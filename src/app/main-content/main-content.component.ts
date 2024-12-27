@@ -23,7 +23,7 @@ import { DialogService } from '../core/services/dialog.service';
       state(
         'closed',
         style({
-          width: '0px',
+          width: '0px'
         })
       ),
       transition('open <=> closed', [animate('180ms')]),
@@ -38,6 +38,7 @@ import { DialogService } from '../core/services/dialog.service';
         style({
           width: '0px',
           display: 'none'
+          
         })
       ),
       transition('open <=> closed', [animate('180ms')]),
@@ -49,8 +50,7 @@ export class MainComponent implements OnInit {
   public dialogService = inject(DialogService);
   showWorkspaceMenu: boolean = true;
   showThreadSection: boolean = true;
-
-
+  
   constructor() {
   }
 
@@ -58,8 +58,8 @@ export class MainComponent implements OnInit {
 
   }
 
-  toggleWorkspace() {
-
+  closeThreadSection(event: boolean) {
+    this.showThreadSection = false;
   }
 
 

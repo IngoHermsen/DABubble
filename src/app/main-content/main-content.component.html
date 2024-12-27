@@ -33,7 +33,7 @@
         </section>
         <section class="thread-section" [@toggleThread]="showThreadSection ? 'open' : 'closed'">
             <div class="thread-animation-wrapper">
-                <app-thread></app-thread>
+                <app-thread (closeThread)="closeThreadSection($event)"></app-thread>
             </div>
         </section>
     </section>
