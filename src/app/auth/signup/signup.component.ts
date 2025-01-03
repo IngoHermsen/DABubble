@@ -3,9 +3,8 @@ import { FormBuilder, ReactiveFormsModule, Validators, FormsModule, NgForm } fro
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
-import { CommonModule, NgClass, NgStyle, } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { ValidationService } from '../../services/validation.service';
-import { collection } from '@angular/fire/firestore';
 
 
 @Component({
@@ -15,7 +14,6 @@ import { collection } from '@angular/fire/firestore';
     CommonModule,
     FormsModule,
     NgClass,
-    NgStyle,
     ReactiveFormsModule,
     RouterLink,
   ],

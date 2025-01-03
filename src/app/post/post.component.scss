@@ -38,6 +38,7 @@
   }
 
   .post-header {
+    user-select: none;
     width: 100%;
     display: flex;
     justify-content: left;
@@ -95,6 +96,7 @@
   flex-direction: row-reverse;
   
   .post-menu {
+    user-select: none;
     right: unset;
     left: 12px;
   }

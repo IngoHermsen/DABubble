@@ -7,6 +7,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from '../core/services/dialog.service';
+import { ViewService } from '../core/services/view.service';
 
 @Component({
   selector: 'app-main',
@@ -46,9 +47,11 @@ import { DialogService } from '../core/services/dialog.service';
 })
 
 export class MainComponent implements OnInit {
+  public viewService = inject(ViewService);
+
   public dialogService = inject(DialogService);
   showWorkspaceMenu: boolean = true;
-  showThreadSection: boolean = true;
+  // showThreadSection: boolean = true;
   
   constructor() {
   }
@@ -56,7 +59,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {}
 
   closeThreadSection(event: boolean) {
-    this.showThreadSection = false;
+    this.viewService.showThreadSection = false;
   }
 
 

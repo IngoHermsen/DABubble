@@ -3,6 +3,7 @@ import { Post } from '../core/interfaces/post';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ThreadService } from '../core/services/thread.service';
+import { ViewService } from '../core/services/view.service';
 
 @Component({
   selector: 'app-post',
@@ -13,6 +14,8 @@ import { ThreadService } from '../core/services/thread.service';
 })
 export class PostComponent implements OnInit {
   public threadService = inject(ThreadService);
+  public viewService = inject(ViewService);
+
   uid: string = '1234' //for testing purpose. this will later be the user id from the logged in user from user.service
   showPostMenu: boolean;
   showEmojiMart: boolean;
@@ -42,8 +45,8 @@ export class PostComponent implements OnInit {
   handleEmojiClick(event: EmojiEvent) {
     const emoji = event.emoji;
     const emojiId = emoji.id;
-    
-    if(this.reactionExists(emojiId)) {
+
+    if (this.reactionExists(emojiId)) {
       const reaction = this.post.reactions[this.reactionIdx || 0];
       const reactingUsers = reaction.users;
       this.handleUser(reactingUsers);
@@ -52,7 +55,7 @@ export class PostComponent implements OnInit {
     }
 
     this.showEmojiMart = false;
-    
+
   }
 
   handleReactionClick(idx: number) {
@@ -68,7 +71,7 @@ export class PostComponent implements OnInit {
   }
 
   handleUser(reactingUsers: string[]) {
-    if(!this.userExists(reactingUsers)) {
+    if (!this.userExists(reactingUsers)) {
       this.addUserToReaction(reactingUsers);
     }
   }
@@ -104,21 +107,20 @@ export class PostComponent implements OnInit {
     const reactionObj = {
       reactionId: emojiId, users: [this.uid]
     }
-    
+
     reactions.push(reactionObj);
   }
 
   handleReactionState(idx: number) {
 
-    if(this.post.reactions[idx].users.length == 0) {
+    if (this.post.reactions[idx].users.length == 0) {
       this.post.reactions.splice(idx, 1);
     }
   }
 
   openThread() {
     this.threadService.activeThreadId.set(this.post.postId);
-    console.clear();
-    console.log(this.threadService.activeThreadId())
+    this.viewService.showThreadSection = true;
   }
 
 }
