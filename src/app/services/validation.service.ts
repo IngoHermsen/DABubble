@@ -8,7 +8,7 @@ export class ValidationService {
 
   constructor() { }
   
-  emailWarningMsg = "*Das ist eine Warnung";
+  emailWarningMsg = "*Unzulässige Email";
 
   elementVisibility: any = {
     emailErrorVisible: false,
@@ -22,7 +22,9 @@ export class ValidationService {
  */
     toggleVisibility(key: string): void {
       this.elementVisibility[key] = !this.elementVisibility[key];
-      console.log(this.elementVisibility[key]);
+      //! Delete
+      console.log("Toggle action");
+      //! Delete
     }
 
 
@@ -33,14 +35,12 @@ export class ValidationService {
   }
 
 
-
   checkEmail(email: any) {
     const patternDoesNotMatch = !this.checkEmailPattern(email);
-    if (email.value === "") {
-      // Put some logic here
-    } else if (patternDoesNotMatch) {
-      email.value = "";
-      console.log("Pattern does not match");
+    if(patternDoesNotMatch){
+      this.elementVisibility.emailErrorVisible = true
+    } else {
+      this.elementVisibility.emailErrorVisible = false
     }
   }
 
@@ -51,11 +51,13 @@ export class ValidationService {
     }
   }
 
+
   checkName(name: any) {
     if (name.value === "") {
       // Put some logic here.
     }
   }
+
 
   logSth() {
     console.log("Service is working");

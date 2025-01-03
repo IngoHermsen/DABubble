@@ -38,7 +38,9 @@ export class LoginComponent {
 
   
 // validation.service properties assigned to new Variable for better readability.
-  emailErrorVisible = this.validation.elementVisibility.emailErrorVisisble;
+  emailErrorVisible = this.validation.elementVisibility.emailErrorVisible;
+
+  
 
   ngOnInit() {
     // Use setTimeout to ensure the class is applied after the initial view rendering
@@ -48,11 +50,14 @@ export class LoginComponent {
   }
 
 
-  onSubmit(email: any, password: any): void {
-    console.log("This is emailErrorVisible", this.emailErrorVisible);
-    console.log("Does this change in login.ts ??", this.validation.elementVisibility.emailErrorVisible);
-    this.validation.checkEmail(email);
-    this.validation.checkPassword(password);
+  onSubmit(email: any, password: any, loginForm: NgForm): void {
+    // this.validation.checkEmail(email);
+    // this.validation.checkPassword(password);
+    if(loginForm.invalid){
+      return
+    } 
+    this.validation.checkEmail(email)
+    
   }
 
 
