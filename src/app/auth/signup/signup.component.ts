@@ -62,7 +62,12 @@ export class SignupComponent {
   }
 
 
-  async onSubmit(email: any, password: any, name: any) {
+  logSth(){
+  }
+  
+ async onSubmit(email: any, password: any, name: any, signupForm: any ) {
+    console.log("Fires");
+    console.log(signupForm.invalid);
     this.validation.checkEmail(email);
     this.validation.checkPassword(password);
     this.validation.checkName(name);

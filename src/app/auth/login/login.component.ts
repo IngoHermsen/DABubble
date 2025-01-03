@@ -46,13 +46,10 @@ export class LoginComponent {
 
 
   onSubmit(email: any, password: any, loginForm: NgForm): void {
-    // this.validation.checkEmail(email);
-    // this.validation.checkPassword(password);
     if(loginForm.invalid){
       return
     } 
     this.validation.checkEmail(email)
-    
   }
 
 

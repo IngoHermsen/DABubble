@@ -12,11 +12,12 @@
     </div>
   </div>
 
-  <form class="login-form" (ngSubmit)="onSubmit(email, password, name)" #signupForm="ngForm">
+  <form class="login-form" (ngSubmit)="onSubmit(email, password, name, signupForm)" #signupForm="ngForm">
     <div class="input-box">
 <!------------------------- NAME ------------------------->
       <input class="input-styling" type="text" placeholder="Name" #name name="name"
       ngModel
+      autocomplete="off"
       required/>
  
       <img class="place-input-img" src="../../../assets/icons/person.png" alt="">
@@ -55,7 +56,14 @@
     </div>
 
     <div id="signup-btn-wrapper">
-      <button id="signup-btn" type="submit" [ngClass]="{'inactive-login-btn': signupForm.invalid}">Weiter</button>
+
+      <button class="signup-btn" type="submit" 
+      [ngClass]="{'inactive-signup-btn': signupForm.invalid}"
+      (click)="logSth()"
+      >
+      Weiter
+      </button>
+    
     </div>
 
   </form>
