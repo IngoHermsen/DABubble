@@ -8,7 +8,6 @@ import { ValidationService } from '../../services/validation.service';
 import { collection } from '@angular/fire/firestore';
 
 
-
 @Component({
   selector: 'app-signup',
   standalone: true,

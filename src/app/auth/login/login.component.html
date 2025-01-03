@@ -1,5 +1,4 @@
-<main class="login-container fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
-
+<main class="login-container fade-in" [class.fade-in-visible]="makeVisible">
   <section class="login-header">
     <header>Anmeldung</header>
     <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
@@ -15,7 +14,7 @@
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
 
       <div id="email-error-msg" class="user-warning-msg"
-        [ngClass]="{'d-none': !this.validation.elementVisibility.emailErrorVisible}">{{validation.emailWarningMsg}}
+        [class.d-none]="!this.validation.elementVisibility.emailErrorVisible">{{validation.emailWarningMsg}}
       </div>
 
     </section>
@@ -45,7 +44,7 @@
 
     <section class="login-btns-wrapper">
 
-      <button class="login-btn" type="submit" [ngClass]="{'inactive-login-btn': loginForm.invalid}">
+      <button class="login-btn" type="submit" [class.inactive-login-btn]="loginForm.invalid" >
         Log In
       </button>
 
