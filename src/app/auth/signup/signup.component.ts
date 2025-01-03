@@ -3,21 +3,21 @@ import { FormBuilder, ReactiveFormsModule, Validators, FormsModule, NgForm } fro
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass, NgStyle, } from '@angular/common';
 import { ValidationService } from '../../services/validation.service';
 import { collection } from '@angular/fire/firestore';
-
 
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   imports: [
+    CommonModule,
     FormsModule,
-    ReactiveFormsModule,
+    NgClass,
+    NgStyle,
     ReactiveFormsModule,
     RouterLink,
-    NgClass,
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'

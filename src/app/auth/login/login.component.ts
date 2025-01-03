@@ -6,22 +6,17 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ValidationService } from '../../services/validation.service';
 
-//§ Explanations: 
-//§ When to define imports in the decorator <imports: []> 
-//§ Everything that is needed in the <HTML template> needs to be defined in <imports: []>
-//§ Example <import Router> is not needed in the templates
-//§ <import RouterLink> imports: [RouterLink] --> needed in template!
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
-    RouterLink,
-    NgClass,
     CommonModule,
     FormsModule,
+    NgClass,
+    ReactiveFormsModule,
     NgStyle,
+    RouterLink,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -38,7 +33,9 @@ export class LoginComponent {
 
   
 // validation.service properties assigned to new Variable for better readability.
-  emailErrorVisible = this.validation.elementVisibility.emailErrorVisisble;
+  emailErrorVisible = this.validation.elementVisibility.emailErrorVisible;
+
+  
 
   ngOnInit() {
     // Use setTimeout to ensure the class is applied after the initial view rendering
@@ -48,11 +45,14 @@ export class LoginComponent {
   }
 
 
-  onSubmit(email: any, password: any): void {
-    console.log("This is emailErrorVisible", this.emailErrorVisible);
-    console.log("Does this change in login.ts ??", this.validation.elementVisibility.emailErrorVisible);
-    this.validation.checkEmail(email);
-    this.validation.checkPassword(password);
+  onSubmit(email: any, password: any, loginForm: NgForm): void {
+    // this.validation.checkEmail(email);
+    // this.validation.checkPassword(password);
+    if(loginForm.invalid){
+      return
+    } 
+    this.validation.checkEmail(email)
+    
   }
 
 

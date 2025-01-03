@@ -1,21 +1,20 @@
-<main class="login-container fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
-
+<main class="login-container fade-in" [class.fade-in-visible]="makeVisible">
   <section class="login-header">
     <header>Anmeldung</header>
     <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
   </section>
 
-  <form class="login-form" (ngSubmit)="onSubmit(emailInput, password)" #loginForm="ngForm">
+  <form class="login-form" (ngSubmit)="onSubmit(emailInput, password, loginForm)" #loginForm="ngForm">
 
     <!------------------------- EMAIL ------------------------->
     <section class="input-box">
 
-      <input id="email-input" class="input-styling" type="email" placeholder="Email" name="email" #email="ngModel"
+      <input id="email-input" class="input-styling" type="email" placeholder="Email" name="email" 
         #emailInput autocomplete="off" ngModel required />
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
 
       <div id="email-error-msg" class="user-warning-msg"
-        [ngClass]="{'d-none': !emailErrorVisible}">{{validation.emailWarningMsg}}
+        [class.d-none]="!this.validation.elementVisibility.emailErrorVisible">{{validation.emailWarningMsg}}
       </div>
 
     </section>
@@ -45,8 +44,7 @@
 
     <section class="login-btns-wrapper">
 
-      <button class="login-btn" type="submit" [ngClass]="{'inactive-login-btn': loginForm.invalid}"
-        (click)="validation.toggleVisibility('emailErrorVisible')">
+      <button class="login-btn" type="submit" [class.inactive-login-btn]="loginForm.invalid" >
         Log In
       </button>
 
