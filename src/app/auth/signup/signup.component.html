@@ -1,4 +1,4 @@
-<div class="sign-up-container fade-in" [ngClass]="{'fade-in-visible': makeVisible}">
+<div class="sign-up-container fade-in" [class.fade-in-visible]="makeVisible">
 
   <div class="arrow-back" [routerLink]="'/main/login'">
     <img src="../../../assets/icons/arrow_back.png" alt="">
@@ -58,7 +58,7 @@
     <div id="signup-btn-wrapper">
 
       <button class="signup-btn" type="submit" 
-      [ngClass]="{'inactive-signup-btn': signupForm.invalid}"
+      [class.inactive-signup-btn]="signupForm.invalid"
       (click)="logSth()"
       >
       Weiter
@@ -70,4 +70,4 @@
 
 </div>
 
-<div class="signup-success-msg" [ngClass]="{'d-none': hideSignupSuccessMsg}">Signup Successful</div>
+<div class="signup-success-msg" [class.d-none]="hideSignupSuccessMsg">Signup Successful</div>
