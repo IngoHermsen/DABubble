@@ -6,22 +6,17 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { ValidationService } from '../../services/validation.service';
 
-//§ Explanations: 
-//§ When to define imports in the decorator <imports: []> 
-//§ Everything that is needed in the <HTML template> needs to be defined in <imports: []>
-//§ Example <import Router> is not needed in the templates
-//§ <import RouterLink> imports: [RouterLink] --> needed in template!
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    ReactiveFormsModule,
-    RouterLink,
-    NgClass,
     CommonModule,
     FormsModule,
+    NgClass,
+    ReactiveFormsModule,
     NgStyle,
+    RouterLink,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
