@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, Input, OnInit } from '@angular/core';
+import { Component, HostListener, inject, Input, OnInit, Signal } from '@angular/core';
 import { Post } from '../core/interfaces/post';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
@@ -116,7 +116,9 @@ export class PostComponent implements OnInit {
   }
 
   openThread() {
-    
+    this.threadService.activeThreadId.set(this.post.postId);
+    console.clear();
+    console.log(this.threadService.activeThreadId())
   }
 
 }

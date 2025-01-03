@@ -38,7 +38,6 @@ import { DialogService } from '../core/services/dialog.service';
         style({
           width: '0px',
           display: 'none'
-          
         })
       ),
       transition('open <=> closed', [animate('180ms')]),
@@ -54,9 +53,7 @@ export class MainComponent implements OnInit {
   constructor() {
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   closeThreadSection(event: boolean) {
     this.showThreadSection = false;
