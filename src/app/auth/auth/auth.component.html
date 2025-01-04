@@ -3,9 +3,11 @@
   <section class="main max-width-wrapper">
     <div class="new-at-dabubble" [class.d-none]="hideElement">Neu bei DABubble?</div>
 
-    <div class="create-account"  [class.d-none]="hideElement" [routerLink]="'signup'">
-      Konto erstellen
-    </div>
+    <div class="create-account"  [class.d-none]="hideElement" [routerLink]="'signup'"
+    (click)="validation.hideAllErrorMsgs()"
+    >
+    Konto erstellen
+  </div>
 
     <div class="intro-logo">
       <img src="assets/images/auth/logo.png" class="logo-da-bubble width-50px" alt="logo">

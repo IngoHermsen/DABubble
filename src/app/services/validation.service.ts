@@ -9,6 +9,7 @@ export class ValidationService {
   constructor() { }
   
   emailWarningMsg = "*Unzulässige Email";
+  passwordWarningMsg = "* Passwort zu kurz"
 
   elementVisibility: any = {
     emailErrorVisible: false,
@@ -16,6 +17,12 @@ export class ValidationService {
     passwordErrorVisible: false,
   };
 
+
+  hideAllErrorMsgs(){
+    for(let key in this.elementVisibility){
+      this.elementVisibility[key] = false
+    }
+  }
 
 /**
  * Boolean negation
@@ -46,8 +53,8 @@ export class ValidationService {
 
 
   checkPassword(password: any) {
-    if (password.value === "") {
-      // put some logic here
+    if (password.value.length < 8) {
+      this.elementVisibility.passwordErrorVisible = true
     }
   }
 
