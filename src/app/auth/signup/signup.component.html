@@ -32,6 +32,9 @@
       autocomplete="off"/>
 
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
+      <div id="email-error-msg" class="user-warning-msg"
+        [class.d-none]="!this.validation.elementVisibility.emailErrorVisible">{{validation.emailWarningMsg}}
+      </div>
     </div>
 
 
