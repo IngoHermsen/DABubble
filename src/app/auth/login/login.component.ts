@@ -50,6 +50,7 @@ export class LoginComponent {
       return
     } 
     this.validation.checkEmail(email)
+    this.validation.checkPassword(password)
   }
 
 

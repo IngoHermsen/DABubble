@@ -14,22 +14,18 @@
 
   <form class="login-form" (ngSubmit)="onSubmit(email, password, name, signupForm)" #signupForm="ngForm">
     <div class="input-box">
-<!------------------------- NAME ------------------------->
-      <input class="input-styling" type="text" placeholder="Name" #name name="name"
-      ngModel
-      autocomplete="off"
-      required/>
- 
+      <!------------------------- NAME ------------------------->
+      <input class="input-styling" type="text" placeholder="Name" #name name="name" ngModel autocomplete="off"
+        required />
+
       <img class="place-input-img" src="../../../assets/icons/person.png" alt="">
     </div>
 
 
     <div class="input-box">
-<!------------------------- EMAIL ------------------------->
-      <input class="input-styling" type="email" placeholder="Email" #email name="email"
-      ngModel
-      required 
-      autocomplete="off"/>
+      <!------------------------- EMAIL ------------------------->
+      <input class="input-styling" type="email" placeholder="Email" #email name="email" ngModel required
+        autocomplete="off" />
 
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
       <div id="email-error-msg" class="user-warning-msg"
@@ -39,34 +35,36 @@
 
 
     <div class="input-box">
-<!------------------------- PASSWORD ------------------------->
-      <input class="input-styling" type="password" placeholder="Password" #password name="password"
-      ngModel
-      required
-      autocomplete="off"/>
+      <!------------------------- PASSWORD ------------------------->
+      <input class="input-styling" type="password" placeholder="Password" #password name="password" ngModel required
+        autocomplete="off" />
 
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
-      
+      <div id="email-error-msg" class="user-warning-msg"
+        [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
+      </div>
+
     </div>
 
+    <!------------------------- CHECKBOX ------------------------->
     <div id="checkbox-wrapper">
       <input type="checkbox" id="checkbox" name="checkbox" ngModel required>
       <div id="data-policy">
         Ich stimme der
         <span class="" id="privacy-policy-href">Datenschutzerklärung</span>
         zu
+
       </div>
+
+
     </div>
 
     <div id="signup-btn-wrapper">
 
-      <button class="signup-btn" type="submit" 
-      [class.inactive-signup-btn]="signupForm.invalid"
-      (click)="logSth()"
-      >
-      Weiter
+      <button class="signup-btn" type="submit" [class.inactive-signup-btn]="signupForm.invalid" (click)="logSth()">
+        Weiter
       </button>
-    
+
     </div>
 
   </form>

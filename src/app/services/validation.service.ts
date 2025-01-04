@@ -53,11 +53,10 @@ export class ValidationService {
 
 
   checkPassword(password: any) {
-    if (password.value.length < 8) {
-      this.elementVisibility.passwordErrorVisible = true
-    }
+    this.elementVisibility.passwordErrorVisible = 
+      password.value.length < 8 ? true : false;
   }
-
+  
 
   checkName(name: any) {
     if (name.value === "") {

@@ -25,6 +25,10 @@
       <input class="input-styling" type="password" placeholder="Password" name="password" #password ngModel required />
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
 
+      <div id="email-error-msg" class="user-warning-msg"
+      [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
+    </div>
+
     </section>
 
     <div class="forgot-pw">Passwort vergessen?</div>
