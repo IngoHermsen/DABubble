@@ -45,16 +45,18 @@ export class LoginComponent {
   }
 
   logCurrentUser() {
-    console.log(this.authService.currentUser);
+    console.log(this.authService.currentUser?.displayName);
   }
 
 
-  onSubmit(email: any, password: any, loginForm: NgForm): void {
+  async onSubmit(email: any, password: any, loginForm: NgForm){
     if(loginForm.invalid){
       return
     } 
     this.validation.checkEmail(email)
     this.validation.checkPassword(password)
+    await this.authService.loginBtnPressed(email, password);
+    
   }
 
 

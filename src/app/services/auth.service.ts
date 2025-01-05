@@ -25,7 +25,8 @@ export class AuthService {
   currentUser = this.firebaseAuth.currentUser;
   currentUserSignal = signal<UserInterface | null | undefined>(undefined);
   
-  signUpBtnPressed = async (email: any, password: any, username: any) => {
+
+  async signUpBtnPressed(email: any, password: any, username: any)  {
     try {
       console.log(typeof email);
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
@@ -33,51 +34,24 @@ export class AuthService {
       await updateProfile(userCredential.user, {
         displayName: username.value
       });
-      console.log(userCredential.user.displayName);
       this.currentUser = userCredential.user
-      console.log(this.currentUser);
       return true;
     } catch (error: any) {
       console.log(error.code); // error.code gives a somewhat readable format.
       return false;
     };
   };
-  // if (signupSuccess) {
-  //   this.showSignupSuccessMsg();
-  //   setTimeout(() => {
-  //     this.hideSignupSuccessMsg = true;
-  //     this.clearInputValues(email, password, name);
-  //   }, 2500);
-  // }
 
 
-  /**
-   * Logs in a user using their email and password.
-   *
-   * This function attempts to authenticate the user with Firebase using the provided 
-   * email and password. Normally, the `signInWithEmailAndPassword` method returns a 
-   * `Promise<UserCredential>`, which contains details about the authenticated user.
-   *
-   * However, to maintain a clean separation of concerns and to avoid exposing user 
-   * information unnecessarily, we use `.then(() => {})` to explicitly transform the 
-   * returned `UserCredential` into `void`. This ensures that no data is emitted from 
-   * the function, and the consumer only receives a signal that the login process 
-   * completed, without any additional information.
-   *
-   * The `Promise<void>` is then converted into an `Observable<void>` using the 
-   * `from()` operator, allowing the function to return an observable that emits no 
-   * value and simply completes when the authentication is successful.
-   *
-   * @param {string} email - The email of the user trying to log in.
-   * @param {string} password - The password of the user trying to log in.
-   * @returns {Observable<void>} - An observable that completes when the login process 
-   * is successful, emitting no value.
-   */
-  loginUser(email: string, password: string): Observable<void> {
-    const promise = signInWithEmailAndPassword(this.firebaseAuth, email, password)
-      .then(() => { });
-    return from(promise);
-  }
+   async loginBtnPressed(email: any, password: any){
+    try {
+      const userCredential = await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      this.currentUser = userCredential.user
+    } catch (error: any) {
+      console.log(error.code)
+    }
+  };
+  
 
   logoutUser(): Observable<void> {
     const promise = signOut(this.firebaseAuth);
