@@ -44,6 +44,10 @@ export class LoginComponent {
     }, 0); // Short delay (0ms) to ensure Angular has rendered the component
   }
 
+  logCurrentUser() {
+    console.log(this.authService.currentUser);
+  }
+
 
   onSubmit(email: any, password: any, loginForm: NgForm): void {
     if(loginForm.invalid){

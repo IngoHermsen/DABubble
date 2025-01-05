@@ -22,26 +22,33 @@ export class AuthService {
 
   firebaseAuth = inject(Auth);
   user$ = user(this.firebaseAuth);
+  currentUser = this.firebaseAuth.currentUser;
   currentUserSignal = signal<UserInterface | null | undefined>(undefined);
-
-  signUpBtnPressed = async (email: any, password: any) => {
+  
+  signUpBtnPressed = async (email: any, password: any, username: any) => {
     try {
       console.log(typeof email);
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
-      console.log(userCredential.user);
-      return true
+      // Profil des Benutzers aktualisieren (z.B. displayName)
+      await updateProfile(userCredential.user, {
+        displayName: username.value
+      });
+      console.log(userCredential.user.displayName);
+      this.currentUser = userCredential.user
+      console.log(this.currentUser);
+      return true;
     } catch (error: any) {
       console.log(error.code); // error.code gives a somewhat readable format.
-      return false
+      return false;
     };
   };
-    // if (signupSuccess) {
-    //   this.showSignupSuccessMsg();
-    //   setTimeout(() => {
-    //     this.hideSignupSuccessMsg = true;
-    //     this.clearInputValues(email, password, name);
-    //   }, 2500);
-    // }
+  // if (signupSuccess) {
+  //   this.showSignupSuccessMsg();
+  //   setTimeout(() => {
+  //     this.hideSignupSuccessMsg = true;
+  //     this.clearInputValues(email, password, name);
+  //   }, 2500);
+  // }
 
 
   /**
@@ -74,6 +81,6 @@ export class AuthService {
 
   logoutUser(): Observable<void> {
     const promise = signOut(this.firebaseAuth);
-    return from(promise)
+    return from(promise);
   }
 }

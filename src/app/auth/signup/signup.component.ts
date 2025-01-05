@@ -72,7 +72,7 @@ export class SignupComponent {
     this.validation.checkEmail(email);
     this.validation.checkPassword(password);
     this.validation.checkName(name);
-    const signUpSuccess = await this.authService.signUpBtnPressed(email, password);
+    const signUpSuccess = await this.authService.signUpBtnPressed(email, password, name);
     this.clearFieldsShowMsgAfterSignUpSuccess(email, password, name, signUpSuccess)
   }
 }
