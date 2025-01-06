@@ -7,7 +7,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-  user
+  user, 
+  User
 } from '@angular/fire/auth';
 
 import { from, Observable } from 'rxjs';
@@ -22,9 +23,9 @@ export class AuthService {
 
   firebaseAuth = inject(Auth);
   user$ = user(this.firebaseAuth);
-  currentUser = this.firebaseAuth.currentUser;
-  currentUserSignal = signal<UserInterface | null | undefined>(undefined);
-  
+  currentUserEmail: string | null = null
+  // currentUser = this.firebaseAuth.currentUser;
+
 
   async signUpBtnPressed(email: any, password: any, username: any)  {
     try {
@@ -34,7 +35,6 @@ export class AuthService {
       await updateProfile(userCredential.user, {
         displayName: username.value
       });
-      this.currentUser = userCredential.user
       return true;
     } catch (error: any) {
       console.log(error.code); // error.code gives a somewhat readable format.
@@ -45,16 +45,26 @@ export class AuthService {
 
    async loginBtnPressed(email: any, password: any){
     try {
-      const userCredential = await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
-      this.currentUser = userCredential.user
+      // const userCredential = 
+      
+      await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      console.log("I am a login subscriber");
+
     } catch (error: any) {
       console.log(error.code)
     }
   };
   
 
-  logoutUser(): Observable<void> {
-    const promise = signOut(this.firebaseAuth);
-    return from(promise);
+  async logoutUser() {
+    try {
+      await signOut(this.firebaseAuth);
+      console.log("I am a logout subscriber");
+      console.log('User logged out successfully');
+      console.log(this.user$);
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
   }
+    
 }
