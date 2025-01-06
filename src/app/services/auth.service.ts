@@ -29,7 +29,6 @@ export class AuthService {
 
   async signUpBtnPressed(email: any, password: any, username: any)  {
     try {
-      console.log(typeof email);
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
       // Profil des Benutzers aktualisieren (z.B. displayName)
       await updateProfile(userCredential.user, {
@@ -45,11 +44,8 @@ export class AuthService {
 
    async loginBtnPressed(email: any, password: any){
     try {
-      // const userCredential = 
       
       await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
-      console.log("I am a login subscriber");
-
     } catch (error: any) {
       console.log(error.code)
     }
@@ -59,9 +55,6 @@ export class AuthService {
   async logoutUser() {
     try {
       await signOut(this.firebaseAuth);
-      console.log("I am a logout subscriber");
-      console.log('User logged out successfully');
-      console.log(this.user$);
     } catch (error) {
       console.error('Error logging out:', error);
     }
