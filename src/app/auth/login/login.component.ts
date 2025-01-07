@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { ValidationService } from '../../services/validation.service';
 
 
+
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -25,7 +26,7 @@ export class LoginComponent {
   router = inject(Router);
   authService = inject(AuthService);
   makeVisible = false;
-  user: any = null;
+  userEmail: string | null = null;
 
   /**
    * setTimeout used to ensure the class is applied after initial view rendering
@@ -34,14 +35,15 @@ export class LoginComponent {
     setTimeout(() => {
       this.makeVisible = true;
     }, 0);
+    
+    this.updateUserEmail();
   }
+  
 
-
-  logCurrentUser() {
-    console.log("Placeholder");
-    // this.authService.user$.subscribe((user: { email: any; }) => console.log(user?.email));
+  logCurrentUser(): void {
+    console.log('Current user email:', this.authService.getCurrentUserEmail());
   }
-
+    
 
   async onSubmit(email: any, password: any, loginForm: NgForm) {
     if (loginForm.invalid) {
@@ -50,11 +52,18 @@ export class LoginComponent {
     this.validation.checkEmail(email);
     this.validation.checkPassword(password);
     await this.authService.loginBtnPressed(email, password);
-
   }
 
 
-  async logout() {
-    await this.authService.logoutUser();
+  logout(): void {
+    this.authService.logoutUser().then(() => {
+      console.log('After logout:', this.userEmail);
+    });
   }
+
+  
+  private updateUserEmail(): void {
+    this.userEmail = this.authService.getCurrentUserEmail();
+  }
+
 }

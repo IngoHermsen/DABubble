@@ -7,12 +7,9 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-  user, 
-  User
+  User as FirebaseUser,
 } from '@angular/fire/auth';
 
-import { from, Observable } from 'rxjs';
-import { UserInterface } from '../auth/interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,16 +18,27 @@ import { UserInterface } from '../auth/interfaces/user.interface';
 
 export class AuthService {
 
-  firebaseAuth = inject(Auth);
-  user$ = user(this.firebaseAuth);
-  currentUserEmail: string | null = null
-  // currentUser = this.firebaseAuth.currentUser;
+  private firebaseAuth = inject(Auth);
+  private currentUser: { email: string | null; } = { email: null };
 
 
-  async signUpBtnPressed(email: any, password: any, username: any)  {
+  constructor() {
+    onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
+      this.currentUser.email = user?.email || null;
+      console.log('onAuthStateChanged:', this.currentUser.email);
+    });
+  }
+
+
+  /**
+   * Executes on signuUpButton. 
+   * Uses createUserWithEmailAndPassword to register a user.
+   * Uses update Profile to add username to userCredential.
+   * Catches possible errors in the process.
+   */
+  async signUpBtnPressed(email: any, password: any, username: any) {
     try {
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
-      // Profil des Benutzers aktualisieren (z.B. displayName)
       await updateProfile(userCredential.user, {
         displayName: username.value
       });
@@ -42,22 +50,41 @@ export class AuthService {
   };
 
 
-   async loginBtnPressed(email: any, password: any){
+  /**
+   * Executes on loginBtn.
+   * Trys to sign in the user with email password. 
+   * Updates the <currentUser> global.
+   * Catches possible errors and logs their <code> 
+   */
+  async loginBtnPressed(email: any, password: any): Promise<void> {
     try {
-      
-      await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      const userCredential = await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      this.currentUser.email = userCredential.user.email; // Save user data
+      console.log('User logged in:', this.currentUser.email);
     } catch (error: any) {
-      console.log(error.code)
-    }
-  };
-  
-
-  async logoutUser() {
-    try {
-      await signOut(this.firebaseAuth);
-    } catch (error) {
-      console.error('Error logging out:', error);
+      console.error('Login error:', error.code);
     }
   }
-    
+
+
+ /**
+  * Logs out the user, and clears the email.
+  */
+  async logoutUser(): Promise<void> {
+    try {
+      await signOut(this.firebaseAuth);
+      this.currentUser.email = null; // Clear user data
+      console.log('User logged out, email cleared:', this.currentUser.email);
+    } catch (error: any) {
+      console.error('Logout error:', error);
+    }
+  }
+
+
+  /**
+   * Get the email of current user.
+   */
+  getCurrentUserEmail(): string | null {
+    return this.currentUser.email;
+  }
 }
