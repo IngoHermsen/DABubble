@@ -1,5 +1,5 @@
-@if(dialogService.showDialog) {
-<div class="modal">
+@if(viewService.showDialog) {
+<div class="modal" (click)="closeDialog()">
     <app-dialog></app-dialog>
 </div>
 }

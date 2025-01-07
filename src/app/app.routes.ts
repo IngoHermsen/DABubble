@@ -16,6 +16,6 @@ export const routes: Routes = [
             ]
     },
     { path: 'auth', component: AuthComponent },
-    { path: 'home', component: MainComponent },
+    { path: 'workspace', component: MainComponent },
     { path: 'avatar', component: EditAvatarComponent }
 ];

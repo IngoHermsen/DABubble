@@ -48,10 +48,10 @@ import { ViewService } from '../core/services/view.service';
 
 export class MainComponent implements OnInit {
   public viewService = inject(ViewService);
-
   public dialogService = inject(DialogService);
+
   showWorkspaceMenu: boolean = true;
-  // showThreadSection: boolean = true;
+  showThreadSection: boolean = true;
   
   constructor() {
   }
@@ -60,6 +60,10 @@ export class MainComponent implements OnInit {
 
   closeThreadSection(event: boolean) {
     this.viewService.showThreadSection = false;
+  }
+
+  closeDialog() {
+    this.viewService.showDialog = false;
   }
 
 
