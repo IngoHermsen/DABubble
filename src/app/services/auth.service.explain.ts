@@ -13,7 +13,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-  /** as FIREBASEUSER FRAGE
+  /** ------------------- as User as FirebaseUser FRAGE ---------------------------
    * Genau, diese Zeile ist ein sogenannter "Import Alias" oder eine "Import Renaming".
 User as FirebaseUser bedeutet:
 
@@ -31,7 +31,7 @@ Aber wir wollen ihn in unserem Code unter dem Namen FirebaseUser verwenden
 
 
 export class AuthService {
-  /**  PRIVATE FRAGEN
+  /** --------------------------- PRIVATE FRAGEN ---------------------------
    * 
    *private ist ein Access Modifier in TypeScript/Angular und bedeutet,
     dass auf diese Properties nur innerhalb der Klasse zugegriffen werden kann
@@ -55,7 +55,7 @@ export class AuthService {
   private currentUser: { email: string | null; } = { email: null };
 
 
-  /** CONSTRUCTOR FRAGEN
+  /** --------------------------- CONSTRUCTOR FRAGEN ---------------------------
    * Zu deinen Constructor-Fragen:
 
 "Ein constructor hilft die Klasse zu konstruieren?" - Ja, genau! Der Constructor ist eine spezielle Methode,
@@ -73,6 +73,11 @@ Notwendige Setups durchzuführen
    *
    */
   constructor() {
+    /**
+     * onAuthStateChanged ist ein "Listener" - er wird nicht nur einmal ausgeführt,
+     *  sondern jedes Mal wenn sich der Auth-Status ändert (Login, Logout, etc.)
+     */
+
     onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
       this.currentUser.email = user?.email || null;
     });

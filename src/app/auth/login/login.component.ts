@@ -56,6 +56,7 @@ export class LoginComponent {
 
   logout(): void {
     this.authService.logoutUser().then(() => {
+      this.updateUserEmail()
       console.log('After logout:', this.userEmail);
     });
   }

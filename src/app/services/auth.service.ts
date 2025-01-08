@@ -21,12 +21,15 @@ export class AuthService {
   private firebaseAuth = inject(Auth);
   private currentUser: { email: string | null; } = { email: null };
 
+
+/**
+ * Initializes the authentication state listener.
+ * The onAuthStateChanged listener triggers on signup, login, and logout events,
+ * updating currentUser.email accordingly.
+ * @singleton This is instantiated once as a singleton.
+ */
   constructor() {
     console.log("I am a Singelton, that is why i log once.");
-    /**
-     * onAuthStateChanged ist ein "Listener" - er wird nicht nur einmal ausgeführt,
-     *  sondern jedes Mal wenn sich der Auth-Status ändert (Login, Logout, etc.)
-     */
     onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
       this.currentUser.email = user?.email || null;
       console.log('onAuthStateChanged:', this.currentUser.email);
@@ -64,7 +67,7 @@ resetErrors() {
    * Uses createUserWithEmailAndPassword to register a user.
    * Uses update Profile to add username to userCredential.
    * Catches possible errors in the process.
-   * Returns boolean to show <SignupSuccessMsg>
+   * Returns boolean to show SignupSuccessMsg.
    */
   async signUpBtnPressed(email: any, password: any, username: any) {
     try {
@@ -115,7 +118,7 @@ resetErrors() {
 
 
   /**
-   * Get the email of current user.
+   * Getter method to make currentUser available in other components.
    */
   getCurrentUserEmail(): string | null {
     return this.currentUser.email;
