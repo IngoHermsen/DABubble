@@ -37,7 +37,6 @@ $login-header-c: #444df2;
   width: 100%;
 }
 
-
 /************************* Post input fields *************************/
 .forgot-pw {
   align-self: center;
@@ -92,6 +91,7 @@ $login-header-c: #444df2;
 /************************* Dynamic Classes *************************/
 .dflex-google {
   @include dflex($jC: center, $gap: 16px);
+  position:relative;
 }
 
 .no-padding-left {

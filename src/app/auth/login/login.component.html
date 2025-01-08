@@ -9,12 +9,13 @@
     <!------------------------- EMAIL ------------------------->
     <section class="input-box">
 
-      <input id="email-input" class="input-styling" type="email" placeholder="Email" name="email" 
-        #emailInput autocomplete="off" ngModel required />
+      <input id="email-input" class="input-styling" type="email" placeholder="Email" name="email" #emailInput
+        autocomplete="off" ngModel required />
       <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
 
       <div id="email-error-msg" class="user-warning-msg"
-        [class.d-none]="!this.validation.elementVisibility.emailErrorVisible">{{validation.emailWarningMsg}}
+        [class.d-none]="!authService.errorCodesVisibility['auth/invalid-email']">
+        {{authService.errorCodes['auth/invalid-email']}}
       </div>
 
     </section>
@@ -26,8 +27,8 @@
       <img class="place-input-img" src="../../../assets/icons/lock.png" alt="">
 
       <div id="email-error-msg" class="user-warning-msg"
-      [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
-    </div>
+        [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
+      </div>
 
     </section>
 
@@ -40,15 +41,21 @@
     </section>
 
     <section class="input-styling dflex-google no-padding-left">
+
       <div class="google-icon-wrapper dflex-google">
         <img src="../../../assets/icons/google.png" alt="">
         <div class="login-w-google">Anmelden mit Google</div>
       </div>
+      <div id="email-error-msg" class="user-warning-msg"
+        [class.d-none]="!authService.errorCodesVisibility['auth/invalid-credential']">
+        {{authService.errorCodes['auth/invalid-credential']}}
+      </div>
+
     </section>
 
     <section class="login-btns-wrapper">
 
-      <button class="login-btn" type="submit" [class.inactive-login-btn]="loginForm.invalid" >
+      <button class="login-btn" type="submit" [class.inactive-login-btn]="loginForm.invalid">
         Log In
       </button>
 

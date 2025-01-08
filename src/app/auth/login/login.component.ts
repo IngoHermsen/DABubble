@@ -29,7 +29,8 @@ export class LoginComponent {
   userEmail: string | null = null;
 
   /**
-   * setTimeout used to ensure the class is applied after initial view rendering
+   * setTimeout used to ensure the class is applied after initial view rendering.
+   * Updates the userEmail onInit. 
    */
   ngOnInit() {
     setTimeout(() => {
@@ -49,8 +50,6 @@ export class LoginComponent {
     if (loginForm.invalid) {
       return;
     }
-    this.validation.checkEmail(email);
-    this.validation.checkPassword(password);
     await this.authService.loginBtnPressed(email, password);
   }
 
@@ -61,7 +60,7 @@ export class LoginComponent {
     });
   }
 
-  
+
   private updateUserEmail(): void {
     this.userEmail = this.authService.getCurrentUserEmail();
   }

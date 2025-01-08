@@ -21,7 +21,6 @@ export class AuthService {
   private firebaseAuth = inject(Auth);
   private currentUser: { email: string | null; } = { email: null };
 
-
   constructor() {
     onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
       this.currentUser.email = user?.email || null;
@@ -30,11 +29,37 @@ export class AuthService {
   }
 
 
+  errorCodes = {
+    "auth/invalid-credential": "Falsche Email Password Kombination",
+    "auth/invalid-email": "Unzulässige Email",
+  };
+
+
+errorCodesVisibility: any = {
+  "auth/invalid-credential": false,
+  "auth/invalid-email": false
+}
+
+showErrorMsg(errorCode: string) {
+  if (errorCode in this.errorCodesVisibility) {
+    this.errorCodesVisibility[errorCode] = true;
+  } 
+}
+
+resetErrors() {
+  this.errorCodesVisibility = {
+    "auth/invalid-credential": false,
+    "auth/invalid-email": false
+  };
+}
+
+
   /**
    * Executes on signuUpButton. 
    * Uses createUserWithEmailAndPassword to register a user.
    * Uses update Profile to add username to userCredential.
    * Catches possible errors in the process.
+   * Returns boolean to show <SignupSuccessMsg>
    */
   async signUpBtnPressed(email: any, password: any, username: any) {
     try {
@@ -57,19 +82,22 @@ export class AuthService {
    * Catches possible errors and logs their <code> 
    */
   async loginBtnPressed(email: any, password: any): Promise<void> {
+    this.resetErrors()
     try {
       const userCredential = await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
       this.currentUser.email = userCredential.user.email; // Save user data
       console.log('User logged in:', this.currentUser.email);
     } catch (error: any) {
       console.error('Login error:', error.code);
+      this.showErrorMsg(error.code);
+      return error.code;
     }
   }
 
 
- /**
-  * Logs out the user, and clears the email.
-  */
+  /**
+   * Logs out the user, and clears the email.
+   */
   async logoutUser(): Promise<void> {
     try {
       await signOut(this.firebaseAuth);
