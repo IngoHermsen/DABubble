@@ -22,6 +22,11 @@ export class AuthService {
   private currentUser: { email: string | null; } = { email: null };
 
   constructor() {
+    console.log("I am a Singelton, that is why i log once.");
+    /**
+     * onAuthStateChanged ist ein "Listener" - er wird nicht nur einmal ausgeführt,
+     *  sondern jedes Mal wenn sich der Auth-Status ändert (Login, Logout, etc.)
+     */
     onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
       this.currentUser.email = user?.email || null;
       console.log('onAuthStateChanged:', this.currentUser.email);
