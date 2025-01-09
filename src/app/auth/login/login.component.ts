@@ -27,6 +27,7 @@ export class LoginComponent {
   authService = inject(AuthService);
   makeVisible = false;
   userEmail: string | null = null;
+  
 
   /**
    * setTimeout used to ensure the class is applied after initial view rendering.
@@ -62,7 +63,7 @@ export class LoginComponent {
   }
 
 
-  
+
 
   private updateUserEmail(): void {
     this.userEmail = this.authService.getCurrentUserEmail();

@@ -22,7 +22,7 @@ export class AuthService {
 
   private firebaseAuth = inject(Auth);
   private currentUser: { email: string | null; } = { email: null };
-
+  showPassword = false;
 
 /**
  * Initializes the authentication state listener.
@@ -49,6 +49,12 @@ errorCodesVisibility: any = {
   "auth/invalid-credential": false,
   "auth/invalid-email": false
 }
+
+
+togglePasswordVisibility() {
+  this.showPassword = !this.showPassword;
+}
+
 
 showErrorMsg(errorCode: string) {
   if (errorCode in this.errorCodesVisibility) {

@@ -37,6 +37,11 @@ $login-header-c: #444df2;
   width: 100%;
 }
 
+/************************* Input fields *************************/
+#login-pw-icon{
+  cursor: pointer;
+}
+
 /************************* Post input fields *************************/
 .forgot-pw {
   align-self: center;
