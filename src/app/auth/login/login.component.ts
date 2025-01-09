@@ -62,6 +62,8 @@ export class LoginComponent {
   }
 
 
+  
+
   private updateUserEmail(): void {
     this.userEmail = this.authService.getCurrentUserEmail();
   }

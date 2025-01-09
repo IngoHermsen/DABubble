@@ -42,7 +42,7 @@
 
     <section class="input-styling dflex-google no-padding-left">
 
-      <div class="google-icon-wrapper dflex-google">
+      <div (click)="authService.signInWithGoogle()" class="google-icon-wrapper dflex-google">
         <img src="../../../assets/icons/google.png" alt="">
         <div class="login-w-google">Anmelden mit Google</div>
       </div>

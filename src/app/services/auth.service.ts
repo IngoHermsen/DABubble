@@ -3,6 +3,8 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
@@ -101,6 +103,26 @@ resetErrors() {
       return error.code;
     }
   }
+
+
+    /**
+   * Handles Google sign-in using a popup.
+   * Returns void, but updates currentUser on success.
+   * Handles errors consistently with existing error handling pattern.
+   */
+    async signInWithGoogle(): Promise<void> {
+      this.resetErrors();
+      try {
+        const provider = new GoogleAuthProvider();
+        const userCredential = await signInWithPopup(this.firebaseAuth, provider);
+        this.currentUser.email = userCredential.user.email;
+        console.log('User logged in with Google:', this.currentUser.email);
+      } catch (error: any) {
+        console.error('Google login error:', error.code);
+        this.showErrorMsg(error.code);
+        return error.code;
+      }
+    }
 
 
   /**

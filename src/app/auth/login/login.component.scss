@@ -63,6 +63,10 @@ $login-header-c: #444df2;
 
 /************************* Submit Btns *************************/
 
+.google-icon-wrapper{
+  cursor: pointer;
+}
+
 .login-btns-wrapper {
   width: 100%;
   @include dflex($jC: center, $gap: 30px);
