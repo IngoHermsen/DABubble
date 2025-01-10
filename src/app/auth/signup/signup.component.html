@@ -64,7 +64,9 @@
         zu
 
       </div>
-
+      <div class="user-warning-msg" [class.d-none]="!authService.errorCodesVisibility['auth/email-already-in-use']">
+        {{authService.errorCodes['auth/email-already-in-use']}}
+      </div>
 
     </div>
 

@@ -24,12 +24,12 @@ export class AuthService {
   private currentUser: { email: string | null; } = { email: null };
   showPassword = false;
 
-/**
- * Initializes the authentication state listener.
- * The onAuthStateChanged listener triggers on signup, login, and logout events,
- * updating currentUser.email accordingly.
- * @singleton This is instantiated once as a singleton.
- */
+  /**
+   * Initializes the authentication state listener.
+   * The onAuthStateChanged listener triggers on signup, login, and logout events,
+   * updating currentUser.email accordingly.
+   * @singleton This is instantiated once as a singleton.
+   */
   constructor() {
     console.log("I am a Singelton, that is why i log once.");
     onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
@@ -42,32 +42,37 @@ export class AuthService {
   errorCodes = {
     "auth/invalid-credential": "Falsche Email Password Kombination",
     "auth/invalid-email": "Unzulässige Email",
+    "auth/email-already-in-use": "Diese Email wird bereits verwendet"
   };
 
 
-errorCodesVisibility: any = {
-  "auth/invalid-credential": false,
-  "auth/invalid-email": false
-}
-
-
-togglePasswordVisibility() {
-  this.showPassword = !this.showPassword;
-}
-
-
-showErrorMsg(errorCode: string) {
-  if (errorCode in this.errorCodesVisibility) {
-    this.errorCodesVisibility[errorCode] = true;
-  } 
-}
-
-resetErrors() {
-  this.errorCodesVisibility = {
+  errorCodesVisibility: any = {
     "auth/invalid-credential": false,
-    "auth/invalid-email": false
+    "auth/invalid-email": false,
+    "auth/email-already-in-use": false
   };
-}
+
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+
+  showErrorMsg(errorCode: string) {
+    console.log("I am in errorMsg");
+    if (errorCode in this.errorCodesVisibility) {
+      console.log("Error msg is true");
+      this.errorCodesVisibility[errorCode] = true;
+    }
+  }
+
+  resetErrors() {
+    this.errorCodesVisibility = {
+      "auth/invalid-credential": false,
+      "auth/invalid-email": false,
+      "auth/email-already-in-use": false
+    };
+  }
 
 
   /**
@@ -78,6 +83,7 @@ resetErrors() {
    * Returns boolean to show SignupSuccessMsg.
    */
   async signUpBtnPressed(email: any, password: any, username: any) {
+    this.resetErrors();
     try {
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
       await updateProfile(userCredential.user, {
@@ -85,6 +91,7 @@ resetErrors() {
       });
       return true;
     } catch (error: any) {
+      this.showErrorMsg(error.code);
       console.log(error.code); // error.code gives a somewhat readable format.
       return false;
     };
@@ -98,7 +105,7 @@ resetErrors() {
    * Catches possible errors and logs their <code> 
    */
   async loginBtnPressed(email: any, password: any): Promise<void> {
-    this.resetErrors()
+    this.resetErrors();
     try {
       const userCredential = await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
       this.currentUser.email = userCredential.user.email; // Save user data
@@ -111,24 +118,24 @@ resetErrors() {
   }
 
 
-    /**
-   * Handles Google sign-in using a popup.
-   * Returns void, but updates currentUser on success.
-   * Handles errors consistently with existing error handling pattern.
-   */
-    async signInWithGoogle(): Promise<void> {
-      this.resetErrors();
-      try {
-        const provider = new GoogleAuthProvider();
-        const userCredential = await signInWithPopup(this.firebaseAuth, provider);
-        this.currentUser.email = userCredential.user.email;
-        console.log('User logged in with Google:', this.currentUser.email);
-      } catch (error: any) {
-        console.error('Google login error:', error.code);
-        this.showErrorMsg(error.code);
-        return error.code;
-      }
+  /**
+ * Handles Google sign-in using a popup.
+ * Returns void, but updates currentUser on success.
+ * Handles errors consistently with existing error handling pattern.
+ */
+  async signInWithGoogle(): Promise<void> {
+    this.resetErrors();
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(this.firebaseAuth, provider);
+      this.currentUser.email = userCredential.user.email;
+      console.log('User logged in with Google:', this.currentUser.email);
+    } catch (error: any) {
+      console.error('Google login error:', error.code);
+      this.showErrorMsg(error.code);
+      return error.code;
     }
+  }
 
 
   /**

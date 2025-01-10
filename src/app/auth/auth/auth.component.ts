@@ -6,6 +6,7 @@ import { SignupComponent } from '../signup/signup.component';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 import { RouterLink, RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { ValidationService } from '../../services/validation.service';
+import { AuthService } from '../../services/auth.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class AuthPostAnimationComponent {
 
   private router = inject(Router)
   validation = inject(ValidationService);
+  authService = inject(AuthService)
   hideElement = false
   
   navigateToLogin(){

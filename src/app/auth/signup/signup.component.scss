@@ -32,6 +32,7 @@ p{
 #checkbox-wrapper{
   font-family: Figtree;
   @include dflex($gap: 10px);
+  position: relative;
 
   #checkbox{
     accent-color: #797EF3;
@@ -61,6 +62,7 @@ p{
   @include removeBtnStyles();
   @include roundBtn(107px, 49px, 25px, #444DF2, white, 18px, 700)
 }
+
 
 .inactive-signup-btn{
   background-color: #7A7A7A;
