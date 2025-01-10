@@ -4,6 +4,5 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class DialogService {
-  showDialog: boolean = false;
 
 }

@@ -40,8 +40,5 @@ export class WorkspaceComponent implements OnInit {
 
     toggleDialog() {
       this.viewService.showDialog = !this.viewService.showDialog; 
-      setTimeout(() => {
-        this.viewService.showDialog = false;
-      }, 3000)
     }
 }
