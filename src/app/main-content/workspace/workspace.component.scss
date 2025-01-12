@@ -5,7 +5,6 @@
 
 h3 {
   user-select: none;
-  cursor: pointer;
 }
 
 
@@ -28,11 +27,17 @@ h3 {
 .channels, .direct-msg {
   position: relative;
   padding-left: 32px;
-  margin-bottom: 40px;
+  margin: 0px 24px 40px 24px;
 
   .title {
     display: flex;
     align-items: center;
+
+    .left {
+      display: flex;
+      gap: 8px;
+      cursor: pointer;
+    }
 
     .drop-btn {
       user-select: none;
@@ -45,12 +50,17 @@ h3 {
   .entry {
     font-size: 18px;
     margin-bottom: 8px;
+    cursor: pointer;
   }
 
   span {
     display: inline-block;
-    width: 40px;
     text-align: center;
+  }
+
+  .plus {
+    cursor: pointer;
+    margin-left: auto;
   }
 }
 

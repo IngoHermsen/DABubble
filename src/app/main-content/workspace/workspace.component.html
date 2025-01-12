@@ -1,17 +1,22 @@
 <div class="card">
     <section class="fixed-header header">
         <img class="workspace-logo" src="assets/icons/Devspace_logo.png" alt="devSpaceLogo">
-        <h2>DevSpace</h2><img (click)="toggleDialog()" type="icon" class="icon" src="assets/icons/edit_square.png" alt="editSquareIcon">
+        <h2>DevSpace</h2><img (click)="toggleDialog()" type="icon" class="icon" src="assets/icons/edit_square.png"
+            alt="editSquareIcon">
     </section>
     <section class="channels">
-        <h3 (click)="toggleEntries('channels')" class="title">
-            <span class="material-icons drop-btn"
-                [ngClass]="{
+        <h3 class="title">
+            <div class="left" (click)="toggleEntries('channels')" >
+                <span class="material-icons drop-btn" [ngClass]="{
                     'turnUpDropBtn': !showChannelEntries && channelToggleClicked,
                     'turnDownDropBtn': showChannelEntries && channelToggleClicked
                 }">arrow_drop_down</span>
-                <span class="material-icons-outlined">workspaces</span>Channels
+                <span class="material-icons-outlined">workspaces</span>
+                <span>Channels</span>
+            </div>
+            <span class="material-icons-round plus">add</span>
         </h3>
+
         @if(showChannelEntries) {
         <div class="entries">
             <div class="entry"><span>#</span>test Eintrag 1</div>
@@ -21,8 +26,7 @@
     </section>
     <section class="direct-msg">
         <h3 (click)="toggleEntries('direct-msg')" class="title">
-            <span class="material-icons drop-btn"
-                [ngClass]="{
+            <span class="material-icons drop-btn" [ngClass]="{
                     'turnUpDropBtn': !showDirectMsgEntries && directMsgToggleClicked,
                     'turnDownDropBtn': showDirectMsgEntries && directMsgToggleClicked
                 }">arrow_drop_down</span>Direct Messages

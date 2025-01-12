@@ -28,8 +28,12 @@
                 <app-workspace></app-workspace>
             </div>
         </section>
-        <section class="channel-section flex-item">
+        <section class="active-content flex-item">
+            @switch(viewService.activeContent) {
+            @case ('channel') {
             <app-channel></app-channel>
+            }
+            }
         </section>
         <section class="thread-section" [@toggleThread]="this.viewService.showThreadSection ? 'open' : 'closed'">
             <div class="thread-animation-wrapper">
