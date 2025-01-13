@@ -15,20 +15,19 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent {
   title = 'dabubble';
 
-  constructor(router: Router) {
+  // constructor(router: Router) {
     
-    router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        if (event.url === '/') {  // oder welche URL Sie auch immer prüfen möchten
-          document.body.style.background = 'linear-gradient(180deg, rgba(119, 124, 243, 1) 30%, rgba(62, 70, 232, 1) 100%)';
-          setTimeout(() => {
-            document.body.style.background = '#eceefe';
-          }, 2500);
-        }
-        //  else {
-        //   document.body.style.background = '#eceefe';
-        // }
-      }
-    });
-  }
+  //   router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       if (event.url === '/') {  // oder welche URL Sie auch immer prüfen möchten
+  //         document.body.style.background = 'linear-gradient(180deg, rgba(119, 124, 243, 1) 30%, rgba(62, 70, 232, 1) 100%)';
+  //         setTimeout(() => {
+  //           document.body.style.background = '#eceefe';
+  //         }, 2500);
+  //       }
+  //     }
+  //   });
+  // }
+
+
 }
