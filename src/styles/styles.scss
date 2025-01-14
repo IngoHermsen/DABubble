@@ -33,10 +33,22 @@ body {
   width: 100vw;
 }
 
+.full-width-bg{
+  position: fixed;  /* oder absolute, je nach Anforderung */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; 
+  background: linear-gradient(180deg, rgba(119, 124, 243, 1) 30%, rgba(62, 70, 232, 1) 100%);}
+
+.site-bg{
+  background: var(--bg-color)
+}
+
 .main {
   height: 100%;
   width: 100%;
-
 }
 
 .card {

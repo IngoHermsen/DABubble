@@ -15,19 +15,20 @@ import { Router, NavigationEnd } from '@angular/router';
 export class AppComponent {
   title = 'dabubble';
 
-  // constructor(router: Router) {
-    
-  //   router.events.subscribe((event) => {
-  //     if (event instanceof NavigationEnd) {
-  //       if (event.url === '/') {  // oder welche URL Sie auch immer prüfen möchten
-  //         document.body.style.background = 'linear-gradient(180deg, rgba(119, 124, 243, 1) 30%, rgba(62, 70, 232, 1) 100%)';
-  //         setTimeout(() => {
-  //           document.body.style.background = '#eceefe';
-  //         }, 2500);
-  //       }
-  //     }
-  //   });
-  // }
+  trueAfter2500ms = false;
+
+  ngOnInit(): void {
+    /**
+     * Sets trueAfter2500ms to true after 2500ms to trigger content display.
+     */
 
 
+    if (!sessionStorage.getItem("animationDone")) {
+      setTimeout(() => {
+        this.trueAfter2500ms = true;
+      }, 2530);
+    }else {
+      this.trueAfter2500ms = true;
+    }
+  }
 }

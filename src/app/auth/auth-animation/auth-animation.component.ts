@@ -60,7 +60,7 @@ export class AuthComponent {
      * Preventing the start animation to start again. 
      */
     setTimeout(() => {
-      this.router.navigate(['/main']);
+      this.router.navigate(['/main/login']);
     }, 3000);
   }
 }
