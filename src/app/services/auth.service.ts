@@ -127,6 +127,11 @@ export class AuthService {
     this.resetErrors();
     try {
       const provider = new GoogleAuthProvider();
+      // Force user to select account
+      provider.setCustomParameters({
+        prompt: 'select_account'
+      });
+      
       const userCredential = await signInWithPopup(this.firebaseAuth, provider);
       this.currentUser.email = userCredential.user.email;
       console.log('User logged in with Google:', this.currentUser.email);
@@ -135,7 +140,7 @@ export class AuthService {
       this.showErrorMsg(error.code);
       return error.code;
     }
-  }
+}
 
 
   /**

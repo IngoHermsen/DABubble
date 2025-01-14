@@ -19,6 +19,28 @@
   }
 }
 
+@keyframes wholeAnimationMobile {
+  0% {
+    @include centerAbsoluteElement()
+  }
+  
+  35% {
+    @include placeAbsoluteElement($top: 50%, $left: 50%);
+    transform: translate(-50%, -50%);
+  }
+  
+  
+  // 70% {
+  //   @include placeAbsoluteElement($top: 30%, $left: 50%);
+  //   transform: translate(-50%, -50%);
+  // }
+  
+  100% {
+    @include placeAbsoluteElement($top: 58px, $left: 50%);
+  }
+}
+
+
 .whole-animation{
   animation-name: wholeAnimation;
   animation-duration: 3s;
@@ -61,6 +83,7 @@
   }
 }
 
+
 .hide-background{
   animation-name: hideBackgroundLayer;
   animation-duration: 3s;
@@ -76,4 +99,17 @@
 
 .fade-in-visible {
   opacity: 1;
+}
+
+/************************* RESPONSIVNESS *************************/
+
+
+
+@media (width <= 768px) {
+  .whole-animation {
+    animation-name: wholeAnimationMobile;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
 }
