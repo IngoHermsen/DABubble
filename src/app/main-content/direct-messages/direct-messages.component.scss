@@ -1,0 +1,7 @@
+@import '../../../styles/mixins.scss';
+
+.card {
+    @include dflex($dir: column);
+    position: relative;
+    
+}

@@ -10,10 +10,11 @@ export class ViewService {
   
 
   constructor() { 
-    this.activeContent = "channel";
+    this.activeContent = "directMessages";
   }
 
-  handleContentView() {
-
+  setView(content: string) {
+    this.activeContent = content;
+    console.log(content)
   }
 }

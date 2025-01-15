@@ -13,7 +13,7 @@ import { ViewService } from '../core/services/view.service';
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ShowOnHoverDirective, ChannelComponent, WorkspaceComponent, ThreadComponent, DialogComponent],
+  imports: [ShowOnHoverDirective, ChannelComponent, WorkspaceComponent, ThreadComponent, DialogComponent, DirectMessagesComponent],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss',
   animations: [
