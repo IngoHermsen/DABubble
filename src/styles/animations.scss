@@ -103,9 +103,7 @@
 
 /************************* RESPONSIVNESS *************************/
 
-
-
-@media (width <= 768px) {
+@media (width < 768px) {
   .whole-animation {
     animation-name: wholeAnimationMobile;
     animation-duration: 3s;

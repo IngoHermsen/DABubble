@@ -51,7 +51,7 @@ export class AuthComponent {
      */
     setTimeout(() => {
       this.hideLogo = true;
-      // sessionStorage.setItem("animationDone", "true");
+      sessionStorage.setItem("animationDone", "true");
     }, 2700);
 
     
@@ -59,9 +59,9 @@ export class AuthComponent {
      * Navigates to main after the animation. 
      * Preventing the start animation to start again. 
      */
-    // setTimeout(() => {
-    //   this.router.navigate(['/main/login']);
-    // }, 3000);
+    setTimeout(() => {
+      this.router.navigate(['/main/login']);
+    }, 3000);
   }
 }
 

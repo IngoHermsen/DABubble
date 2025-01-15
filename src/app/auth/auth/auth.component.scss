@@ -1,15 +1,46 @@
 @import '../../auth/auth-animation/auth-animation.component.scss';
 @import '../../../styles/animations.scss';  
-
-
-// body {
-//   background-color: red;
-//   margin: 0;
-//   height: 100vh;
-//   width: 100vw;
-// }
+@import '../../../styles/mixins.scss';
 
 .intro-logo{
   @include placeAbsoluteElement($top: 58px, $left: 58px);
 }
+
+
+.width-height-100prct{
+  width: 100%;
+  height: 100%;
+  position: relative; 
+  border: solid red;
+}
+
+/************************* RESPONSIVNESS *************************/ 
+
+@media (width <= 768px){
+  .intro-logo{
+    @include placeAbsoluteElement($top: 58px, $left: 50%);
+  }
+
+  
+    .new-at-dabubble{
+      top:auto;
+      bottom: 40px;
+      right: 50%;
+      transform: translateX(50%)
+    }
+    
+    .create-account{
+      top:auto;
+      bottom: 40px;
+      right: 50%;
+      transform: translateX(50%)
+    }
+  
+}
+
+
+
+
+
+
 

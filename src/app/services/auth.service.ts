@@ -24,6 +24,7 @@ export class AuthService {
   private currentUser: { email: string | null; } = { email: null };
   showPassword = false;
 
+  
   /**
    * Initializes the authentication state listener.
    * The onAuthStateChanged listener triggers on signup, login, and logout events,
@@ -152,7 +153,7 @@ export class AuthService {
       this.currentUser.email = null; // Clear user data
       console.log('User logged out, email cleared:', this.currentUser.email);
     } catch (error: any) {
-      console.error('Logout error:', error);
+      console.error('Logout error:', error);   
     }
   }
 
