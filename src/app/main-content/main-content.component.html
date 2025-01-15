@@ -33,6 +33,9 @@
             @case ('channel') {
             <app-channel></app-channel>
             }
+            @case ('directMessage') {
+            
+            }
             }
         </section>
         <section class="thread-section" [@toggleThread]="this.viewService.showThreadSection ? 'open' : 'closed'">

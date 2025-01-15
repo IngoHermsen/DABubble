@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ChannelComponent } from './channel/channel.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
+import { DirectMessagesComponent } from './direct-messages/direct-messages.component';
 import { OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive';
