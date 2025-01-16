@@ -36,7 +36,8 @@ import { RouterOutlet, Router } from '@angular/router';
       state(
         'closed',
         style({
-          width: '0px'
+          width: '0px',
+          display: 'none'
         })
       ),
       transition('open <=> closed', [animate('180ms')]),
