@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ChannelComponent } from './channel/channel.component';
+import { NewPostComponent } from './new-post/new-post.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
 import { DirectMessagesComponent } from './direct-messages/direct-messages.component';
@@ -9,11 +10,21 @@ import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from '../core/services/dialog.service';
 import { ViewService } from '../core/services/view.service';
+import { RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [ShowOnHoverDirective, ChannelComponent, WorkspaceComponent, ThreadComponent, DialogComponent, DirectMessagesComponent],
+  imports: [
+    ShowOnHoverDirective,
+    // ChannelComponent,
+    WorkspaceComponent,
+    ThreadComponent,
+    DialogComponent,
+    // DirectMessagesComponent,
+    // NewPostComponent,
+    RouterOutlet,
+  ],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss',
   animations: [

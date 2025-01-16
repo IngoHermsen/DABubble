@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MainComponent } from './main-content/main-content.component';
 import { AuthComponent } from './auth/auth-animation/auth-animation.component';
-import { Router, NavigationEnd } from '@angular/router';
 
 
 @Component({

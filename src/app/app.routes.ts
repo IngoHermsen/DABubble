@@ -5,6 +5,9 @@ import { MainComponent } from './main-content/main-content.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { EditAvatarComponent } from './auth/edit-avatar/edit-avatar.component';
 import { AuthPostAnimationComponent } from './auth/auth/auth.component';
+import { NewPostComponent } from './main-content/new-post/new-post.component';
+import { DirectMessagesComponent } from './main-content/direct-messages/direct-messages.component';
+import { ChannelComponent } from './main-content/channel/channel.component';
 
 export const routes: Routes = [
     { path: '', component: AuthComponent },
@@ -16,6 +19,13 @@ export const routes: Routes = [
             ]
     },
     { path: 'auth', component: AuthComponent },
-    { path: 'workspace', component: MainComponent },
+    { path: 'workspace', component: MainComponent, 
+        children: 
+        [
+            { path: 'channel', component: ChannelComponent},
+            { path: 'newPost', component: NewPostComponent},
+            { path: 'directMessages', component: DirectMessagesComponent}
+        ]      
+    },
     { path: 'avatar', component: EditAvatarComponent }
 ];

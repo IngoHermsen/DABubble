@@ -1,7 +1,7 @@
 <div class="card">
     <section class="fixed-header header">
         <img class="workspace-logo" src="assets/icons/Devspace_logo.png" alt="devSpaceLogo">
-        <h2>DevSpace</h2><img (click)="viewService.setView('directMessages')" type="icon" class="icon" src="assets/icons/edit_square.png"
+        <h2>DevSpace</h2><img (click)="viewService.navigate('workspace/newPost')" type="icon" class="icon" src="assets/icons/edit_square.png"
             alt="editSquareIcon">
     </section>
     <section class="channels">
@@ -19,7 +19,7 @@
 
         @if(showChannelEntries) {
         <div class="entries">
-            <div (click)="viewService.setView('channel')" class="entry"><span>#</span>test Eintrag 1</div>
+            <div (click)="viewService.navigate('workspace/channel')" class="entry"><span>#</span>test Eintrag 1</div>
             <div class="entry"><span>#</span>test Eintrag 2</div>
         </div>
         }

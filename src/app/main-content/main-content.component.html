@@ -29,6 +29,9 @@
             </div>
         </section>
         <section class="active-content flex-item">
+            <router-outlet></router-outlet>
+        </section>
+        <!-- <section class="active-content flex-item">
             @switch(viewService.activeContent) {
             @case ('channel') {
             <app-channel></app-channel>
@@ -36,8 +39,11 @@
             @case ('directMessages') {
             <app-direct-messages></app-direct-messages>
             }
+            @case ('newPost') {
+            <app-new-post></app-new-post>
             }
-        </section>
+            }
+        </section> -->
         <section class="thread-section" [@toggleThread]="this.viewService.showThreadSection ? 'open' : 'closed'">
             <div class="thread-animation-wrapper">
                 <app-thread (closeThread)="closeThreadSection($event)"></app-thread>

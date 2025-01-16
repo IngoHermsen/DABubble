@@ -24,7 +24,7 @@ export class WorkspaceComponent implements OnInit {
     ngOnInit(): void {
         this.showChannelEntries = true;
     }
-    
+
 
     toggleEntries(content: string) {
         if(content == 'channels') {

@@ -1,20 +1,19 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViewService {
+  private router = inject(Router)
   showThreadSection: boolean = false;
   showDialog: boolean = false;
-  activeContent: string = ''
   
 
   constructor() { 
-    this.activeContent = "directMessages";
   }
 
-  setView(content: string) {
-    this.activeContent = content;
-    console.log(content)
+  navigate(route: string) {
+    this.router.navigate([route])
   }
 }
