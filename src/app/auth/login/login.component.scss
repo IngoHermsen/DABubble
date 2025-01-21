@@ -12,11 +12,7 @@ $login-header-c: #444df2;
 
 /************************* Login Container *************************/
 
-.login-mobile-wrapper{
-  position: relative;
-  @include centerAbsoluteElement();
-  height: fit-content;
-}
+
 
 .login-container {
   @include loginSignupWindow($width : 500px, $padding: 30px);
@@ -174,13 +170,6 @@ $login-header-c: #444df2;
     left: auto;
   }
 
-  .login-mobile-wrapper{
-    margin-top: 20px; // Minimaler Abstand von oben
-    top: 0; // Überschreibt das top: 50% vom Mixin
-    transform: none; // Überschreibt die Y-Translation
-    transform: translateX(-51%);
-  
-  }
 
   .login-form{
     gap: 28px;
