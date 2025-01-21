@@ -1,51 +1,37 @@
 @import '../../auth/auth-animation/auth-animation.component.scss';
-@import '../../../styles/animations.scss';  
+@import '../../../styles/animations.scss';
 @import '../../../styles/mixins.scss';
 
-.intro-logo{
+* {
+  box-sizing: border-box;
+}
+
+.intro-logo {
   @include placeAbsoluteElement($top: 58px, $left: 58px);
 }
 
 
-.width-height-100prct{
+.width-height-100prct {
   width: 100%;
   height: 100%;
-  position: relative; 
+  position: relative;
   border: solid red;
 }
 
-/************************* RESPONSIVNESS *************************/ 
+/************************* RESPONSIVNESS *************************/
 
-@media (width <= 768px){
-  .intro-logo{
+@media (width <=768px) {
+  .intro-logo {
     display: none;
-    // @include placeAbsoluteElement($top: 58px, $left: 50%);
   }
 
-  
-    .new-at-dabubble{
-      display: none;
-      // top:auto;
-      // bottom: 40px;
-      // right: 50%;
-      // transform: translateX(50%)
-    }
-    
-    .create-account{
-      display: none;
-      // top:auto;
-      // bottom: 20px;
-      // right: 50%;
-      // transform: translateX(50%)
-    }
+  .new-at-dabubble {
+    display: none;
+  }
+
+  .create-account {
+    display: none;
+  }
 }
 
-@media (width <= 470px){
-}
-
-
-
-
-
-
-
+@media (width <=470px) {}
