@@ -1,74 +1,84 @@
-<main class="login-container fade-in" [class.fade-in-visible]="makeVisible">
-  <section class="login-header">
-    <header>Anmeldung</header>
-    <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
-  </section>
+<section class="login-mobile-wrapper">
 
-  <form class="login-form" (ngSubmit)="onSubmit(emailInput, password, loginForm)" #loginForm="ngForm">
+  <div class="intro-logo-mobile">
+    <img src="../../../assets/images/logo.png" class="width-50px logo-mobile" alt="logo">
+    <span class="intro-text intro-text__color">DABubble</span>
+  </div>
 
-    <!------------------------- EMAIL ------------------------->
-    <section class="input-box">
+  <main class="login-container fade-in" [class.fade-in-visible]="makeVisible">
 
-      <input id="email-input" class="input-styling" type="email" placeholder="Email" name="email" #emailInput
-        autocomplete="off" ngModel required />
-      <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
 
-      <div id="email-error-msg" class="user-warning-msg"
-        [class.d-none]="!authService.errorCodesVisibility['auth/invalid-email']">
-        {{authService.errorCodes['auth/invalid-email']}}
-      </div>
-
+    <section class="login-header">
+      <header>Anmeldung</header>
+      <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
     </section>
 
-    <!------------------------- PASSWORD ------------------------->
-    <section class="input-box">
+    <form class="login-form" (ngSubmit)="onSubmit(emailInput, password, loginForm)" #loginForm="ngForm">
 
-      <input class="input-styling" 
-      [type]="authService.showPassword ? 'text' : 'password'" 
-      placeholder="Password" 
-      name="password" 
-      #password 
-      ngModel required />
-      <img id="login-pw-icon" (click)="authService.togglePasswordVisibility()" class="place-input-img" src="../../../assets/icons/lock.png" alt="">
+      <!------------------------- EMAIL ------------------------->
+      <section class="input-box">
 
-      <div id="email-error-msg" class="user-warning-msg"
-        [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
-      </div>
+        <input id="email-input" class="input-styling" type="email" placeholder="Email" name="email" #emailInput
+          autocomplete="off" ngModel required />
+        <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
 
-    </section>
+        <div id="email-error-msg" class="user-warning-msg"
+          [class.d-none]="!authService.errorCodesVisibility['auth/invalid-email']">
+          {{authService.errorCodes['auth/invalid-email']}}
+        </div>
 
-    <div class="forgot-pw">Passwort vergessen?</div>
+      </section>
 
-    <section class="or-wrapper">
-      <span class="stroke-lightblue"></span>
-      <span class="or">ODER</span>
-      <span class="stroke-lightblue"></span>
-    </section>
+      <!------------------------- PASSWORD ------------------------->
+      <section class="input-box">
 
-    <section class="input-styling dflex-google no-padding-left">
+        <input class="input-styling" [type]="authService.showPassword ? 'text' : 'password'" placeholder="Password"
+          name="password" #password ngModel required />
+        <img id="login-pw-icon" (click)="authService.togglePasswordVisibility()" class="place-input-img"
+          src="../../../assets/icons/lock.png" alt="">
 
-      <div (click)="authService.signInWithGoogle()" class="google-icon-wrapper dflex-google">
-        <img src="../../../assets/icons/google.png" alt="">
-        <div class="login-w-google">Anmelden mit Google</div>
-      </div>
-      <div id="email-error-msg" class="user-warning-msg"
-        [class.d-none]="!authService.errorCodesVisibility['auth/invalid-credential']">
-        {{authService.errorCodes['auth/invalid-credential']}}
-      </div>
+        <div id="email-error-msg" class="user-warning-msg"
+          [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
+        </div>
 
-    </section>
+      </section>
 
-    <section class="login-btns-wrapper">
+      <div class="forgot-pw">Passwort vergessen?</div>
 
-      <button class="login-btn" type="submit" [class.inactive-login-btn]="loginForm.invalid">
-        Log In
-      </button>
+      <section class="or-wrapper">
+        <span class="stroke-lightblue"></span>
+        <span class="or">ODER</span>
+        <span class="stroke-lightblue"></span>
+      </section>
 
-      <button (click)="logCurrentUser()" type="button" class="guest-login-btn">Gast Login</button>
-      <button (click)="this.authService.logoutUser()" type="button" class="guest-login-btn">Test Logout</button>
+      <section class="input-styling dflex-google no-padding-left">
 
-    </section>
+        <div (click)="authService.signInWithGoogle()" class="google-icon-wrapper dflex-google">
+          <img src="../../../assets/icons/google.png" alt="">
+          <div class="login-w-google">Anmelden mit Google</div>
+        </div>
+        <div id="email-error-msg" class="user-warning-msg"
+          [class.d-none]="!authService.errorCodesVisibility['auth/invalid-credential']">
+          {{authService.errorCodes['auth/invalid-credential']}}
+        </div>
 
-  </form>
+      </section>
 
-</main>
+      <section class="login-btns-wrapper">
+
+        <button class="login-btn" type="submit" [class.inactive-login-btn]="loginForm.invalid">
+          Log In
+        </button>
+
+        <button (click)="logCurrentUser()" type="button" class="guest-login-btn">Gast Login</button>
+        <!-- <button (click)="this.authService.logoutUser()" type="button" class="guest-login-btn">Test Logout</button> -->
+
+      </section>
+
+    </form>
+    <!-- <div class="create-account-mobile">Konto erstellen</div> -->
+  </main>
+  <div class="new-at-dabubble-mobile">Neu bei DABubble?</div>
+  <button (click)="logCurrentUser()" type="button" class="create-account-mobile">Konto Erstellen</button>
+
+</section>

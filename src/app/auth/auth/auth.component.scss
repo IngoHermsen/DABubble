@@ -18,24 +18,32 @@
 
 @media (width <= 768px){
   .intro-logo{
-    @include placeAbsoluteElement($top: 58px, $left: 50%);
+    display: none;
+    // @include placeAbsoluteElement($top: 58px, $left: 50%);
   }
 
   
     .new-at-dabubble{
-      top:auto;
-      bottom: 40px;
-      right: 50%;
-      transform: translateX(50%)
+      display: none;
+      // top:auto;
+      // bottom: 40px;
+      // right: 50%;
+      // transform: translateX(50%)
     }
     
     .create-account{
-      top:auto;
-      bottom: 40px;
-      right: 50%;
-      transform: translateX(50%)
+      display: none;
+      // top:auto;
+      // bottom: 20px;
+      // right: 50%;
+      // transform: translateX(50%)
     }
-  
+}
+
+@media (width <= 470px){
+
+  .site-wrapper {
+  }
 }
 
 
