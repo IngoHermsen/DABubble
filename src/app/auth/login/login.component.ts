@@ -6,7 +6,6 @@ import { AuthService } from '../../services/auth.service';
 import { ValidationService } from '../../services/validation.service';
 
 
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -14,6 +13,7 @@ import { ValidationService } from '../../services/validation.service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterLink,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'

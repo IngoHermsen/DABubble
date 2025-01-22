@@ -1,5 +1,7 @@
 @import '../../../styles/mixins.scss';
+@import '../../auth/auth-animation/auth-animation.component.scss';
 @import '../../../styles/animations.scss';
+@import '../../auth/auth/auth.component.scss';
 
 
 * {
@@ -9,14 +11,18 @@
 $login-header-c: #444df2;
 
 /************************* Login Container *************************/
+
+
+
 .login-container {
   @include loginSignupWindow($width : 500px, $padding: 30px);
   @include dflex($dir: column, $aI: center, $jC: center);
+  border: solid red;
 }
+
 
 .login-header {
   @include dflex(column);
-
   header {
     margin: 0;
     line-height: 1;
@@ -37,7 +43,38 @@ $login-header-c: #444df2;
   width: 100%;
 }
 
-/************************* Input fields *************************/
+.intro-logo-mobile{
+  display:none;
+  width: fit-content;
+  margin: 0 auto;
+  margin-bottom: 24px;
+  transform: translateX(-100%);
+
+  .intro-text__color{
+    color:black;
+    font-weight: 700;
+  }
+}
+
+.create-account-mobile{
+  @include roundBtn(165px, 39px, 25px, #ECEEFE, #444DF2, 18px, 700);
+  border: solid #444DF2 1px;
+  cursor: pointer;
+  display: none;
+  position: static;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.new-at-dabubble-mobile{
+  display: none;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  padding: 20px 0
+}
+
+/*************************  fields *************************/
 #login-pw-icon{
   cursor: pointer;
 }
@@ -70,6 +107,12 @@ $login-header-c: #444df2;
 
 .google-icon-wrapper{
   cursor: pointer;
+}
+
+.login-w-google{
+  color: #444DF2;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .login-btns-wrapper {
@@ -108,11 +151,68 @@ $login-header-c: #444df2;
 }
 
 /************************* Responsivness *************************/
-// @media (max-height: 800px) {
-//   .login-wrapper {
-//     width: 400px;
-//     aspect-ratio: 1 / 1.3;
-//     max-height: 70%;
-//     max-height: 500px;
-//   }
-// }
+@media (width <= 768px){
+  .login-container{
+    height: fit-content;
+    width: 400px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 40px;
+
+    position: static; // oder andere Positionierung
+    transform: none;
+    top: auto;
+    left: auto;
+  }
+
+
+  .login-form{
+    gap: 28px;
+    padding-top: 0;
+    // border: solid orange; 
+  }
+
+  .login-header{
+    header{
+      font-size: 32px;
+      font-weight: 700px;
+      margin: 0;
+      width: fit-content;
+    };
+    padding-bottom: 5px;
+
+    p{
+      font-size: 17px;
+    }
+  }
+
+  .login-w-google{
+    font-size: 17;
+  }
+
+  .intro-logo-mobile{
+    display:block;
+  }
+
+  .create-account-mobile{
+    display: block;
+  }
+  
+  .new-at-dabubble-mobile{
+    display: block;
+  }
+  
+}
+
+@media (width <= 470px){
+  .login-container{
+    width: 350px;
+  }
+
+}
+
+@media (width <= 370px){
+  .login-container{
+    width: 300px;
+  }
+}

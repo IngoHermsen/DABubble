@@ -1,4 +1,4 @@
-<section class="site-wrapper">
+<!-- <section class="site-wrapper">
 
   <div class="new-at-dabubble d-none" [ngClass]="{'fade-in-visible show-login' : trueAfter2500ms}">Neu bei DABubble?
   </div>
@@ -14,4 +14,24 @@
     </div>
   </section>
 
+</section> -->
+
+
+<section class="site-wrapper main">
+
+  <section class="main max-width-wrapper">
+    <div class="new-at-dabubble d-none" [ngClass]="{'fade-in-visible show-login' : trueAfter2500ms}">Neu bei DABubble?
+    </div>
+    <div class="create-account d-none" [routerLink]="'signup'"
+      [ngClass]="{'fade-in-visible show-login' : trueAfter2500ms}">Konto erstellen</div>
+
+    <section class="intro-overlay" [ngClass]="{'bg-login' : trueAfter2500ms}">
+      <div class="intro-logo whole-animation">
+        <img class="logo-da-bubble" [ngClass]="{'width-50px' : trueAfter2500ms}" src="assets/images/auth/logo.png"
+          alt="logo">
+        <div class="background-layer hide-background"></div>
+        <span class="intro-text text-animation" [ngClass]="{'color-black font-16px': trueAfter2500ms}">DABubble</span>
+      </div>
+    </section>
+  </section>
 </section>

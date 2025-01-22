@@ -16,8 +16,9 @@ p{
 /************************* Sign up container *************************/
 .sign-up-container{
   position: relative;
-  @include loginSignupWindow($width: 606px, $padding: 30px 80px);
-  max-height: 70%;
+  @include loginSignupWindow($width: 606px, $padding: 30px 50px);
+  height: 50%;
+  border: solid green
 }
 
 .arrow-back{

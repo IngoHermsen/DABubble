@@ -1,4 +1,11 @@
+<div class="intro-logo-mobile">
+  <img src="../../../assets/images/logo.png" class="width-50px logo-mobile" alt="logo">
+  <span class="intro-text intro-text__color">DABubble</span>
+</div>
+
 <main class="login-container fade-in" [class.fade-in-visible]="makeVisible">
+
+
   <section class="login-header">
     <header>Anmeldung</header>
     <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
@@ -23,13 +30,10 @@
     <!------------------------- PASSWORD ------------------------->
     <section class="input-box">
 
-      <input class="input-styling" 
-      [type]="authService.showPassword ? 'text' : 'password'" 
-      placeholder="Password" 
-      name="password" 
-      #password 
-      ngModel required />
-      <img id="login-pw-icon" (click)="authService.togglePasswordVisibility()" class="place-input-img" src="../../../assets/icons/lock.png" alt="">
+      <input class="input-styling" [type]="authService.showPassword ? 'text' : 'password'" placeholder="Password"
+        name="password" #password ngModel required />
+      <img id="login-pw-icon" (click)="authService.togglePasswordVisibility()" class="place-input-img"
+        src="../../../assets/icons/lock.png" alt="">
 
       <div id="email-error-msg" class="user-warning-msg"
         [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
@@ -65,10 +69,19 @@
       </button>
 
       <button (click)="logCurrentUser()" type="button" class="guest-login-btn">Gast Login</button>
-      <button (click)="this.authService.logoutUser()" type="button" class="guest-login-btn">Test Logout</button>
+      <!-- <button (click)="this.authService.logoutUser()" type="button" class="guest-login-btn">Test Logout</button> -->
 
     </section>
 
   </form>
-
+  <!-- <div class="create-account-mobile">Konto erstellen</div> -->
 </main>
+
+<div class="impressum-datap-wrapper">
+  <span>Impressum</span>
+  <span>Datenschutz</span>
+</div>
+
+<div class="new-at-dabubble-mobile">Neu bei DABubble?</div>
+<button (click)="logCurrentUser()" type="button" class="create-account-mobile" [routerLink]="'/main/signup'">Konto
+  Erstellen</button>
