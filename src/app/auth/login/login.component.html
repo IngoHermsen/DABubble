@@ -1,81 +1,81 @@
+<div class="intro-logo-mobile">
+  <img src="../../../assets/images/logo.png" class="width-50px logo-mobile" alt="logo">
+  <span class="intro-text intro-text__color">DABubble</span>
+</div>
 
-  <div class="intro-logo-mobile">
-    <img src="../../../assets/images/logo.png" class="width-50px logo-mobile" alt="logo">
-    <span class="intro-text intro-text__color">DABubble</span>
-  </div>
-
-  <main class="login-container fade-in" [class.fade-in-visible]="makeVisible">
+<main class="login-container fade-in" [class.fade-in-visible]="makeVisible">
 
 
-    <section class="login-header">
-      <header>Anmeldung</header>
-      <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
+  <section class="login-header">
+    <header>Anmeldung</header>
+    <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
+  </section>
+
+  <form class="login-form" (ngSubmit)="onSubmit(emailInput, password, loginForm)" #loginForm="ngForm">
+
+    <!------------------------- EMAIL ------------------------->
+    <section class="input-box">
+
+      <input id="email-input" class="input-styling" type="email" placeholder="Email" name="email" #emailInput
+        autocomplete="off" ngModel required />
+      <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
+
+      <div id="email-error-msg" class="user-warning-msg"
+        [class.d-none]="!authService.errorCodesVisibility['auth/invalid-email']">
+        {{authService.errorCodes['auth/invalid-email']}}
+      </div>
+
     </section>
 
-    <form class="login-form" (ngSubmit)="onSubmit(emailInput, password, loginForm)" #loginForm="ngForm">
+    <!------------------------- PASSWORD ------------------------->
+    <section class="input-box">
 
-      <!------------------------- EMAIL ------------------------->
-      <section class="input-box">
+      <input class="input-styling" [type]="authService.showPassword ? 'text' : 'password'" placeholder="Password"
+        name="password" #password ngModel required />
+      <img id="login-pw-icon" (click)="authService.togglePasswordVisibility()" class="place-input-img"
+        src="../../../assets/icons/lock.png" alt="">
 
-        <input id="email-input" class="input-styling" type="email" placeholder="Email" name="email" #emailInput
-          autocomplete="off" ngModel required />
-        <img class="place-input-img" src="../../../assets/icons/mail.png" alt="">
+      <div id="email-error-msg" class="user-warning-msg"
+        [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
+      </div>
 
-        <div id="email-error-msg" class="user-warning-msg"
-          [class.d-none]="!authService.errorCodesVisibility['auth/invalid-email']">
-          {{authService.errorCodes['auth/invalid-email']}}
-        </div>
+    </section>
 
-      </section>
+    <div class="forgot-pw">Passwort vergessen?</div>
 
-      <!------------------------- PASSWORD ------------------------->
-      <section class="input-box">
+    <section class="or-wrapper">
+      <span class="stroke-lightblue"></span>
+      <span class="or">ODER</span>
+      <span class="stroke-lightblue"></span>
+    </section>
 
-        <input class="input-styling" [type]="authService.showPassword ? 'text' : 'password'" placeholder="Password"
-          name="password" #password ngModel required />
-        <img id="login-pw-icon" (click)="authService.togglePasswordVisibility()" class="place-input-img"
-          src="../../../assets/icons/lock.png" alt="">
+    <section class="input-styling dflex-google no-padding-left">
 
-        <div id="email-error-msg" class="user-warning-msg"
-          [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
-        </div>
+      <div (click)="authService.signInWithGoogle()" class="google-icon-wrapper dflex-google">
+        <img src="../../../assets/icons/google.png" alt="">
+        <div class="login-w-google">Anmelden mit Google</div>
+      </div>
+      <div id="email-error-msg" class="user-warning-msg"
+        [class.d-none]="!authService.errorCodesVisibility['auth/invalid-credential']">
+        {{authService.errorCodes['auth/invalid-credential']}}
+      </div>
 
-      </section>
+    </section>
 
-      <div class="forgot-pw">Passwort vergessen?</div>
+    <section class="login-btns-wrapper">
 
-      <section class="or-wrapper">
-        <span class="stroke-lightblue"></span>
-        <span class="or">ODER</span>
-        <span class="stroke-lightblue"></span>
-      </section>
+      <button class="login-btn" type="submit" [class.inactive-login-btn]="loginForm.invalid">
+        Log In
+      </button>
 
-      <section class="input-styling dflex-google no-padding-left">
+      <button (click)="logCurrentUser()" type="button" class="guest-login-btn">Gast Login</button>
+      <!-- <button (click)="this.authService.logoutUser()" type="button" class="guest-login-btn">Test Logout</button> -->
 
-        <div (click)="authService.signInWithGoogle()" class="google-icon-wrapper dflex-google">
-          <img src="../../../assets/icons/google.png" alt="">
-          <div class="login-w-google">Anmelden mit Google</div>
-        </div>
-        <div id="email-error-msg" class="user-warning-msg"
-          [class.d-none]="!authService.errorCodesVisibility['auth/invalid-credential']">
-          {{authService.errorCodes['auth/invalid-credential']}}
-        </div>
+    </section>
 
-      </section>
+  </form>
+  <!-- <div class="create-account-mobile">Konto erstellen</div> -->
+</main>
 
-      <section class="login-btns-wrapper">
-
-        <button class="login-btn" type="submit" [class.inactive-login-btn]="loginForm.invalid">
-          Log In
-        </button>
-
-        <button (click)="logCurrentUser()" type="button" class="guest-login-btn">Gast Login</button>
-        <!-- <button (click)="this.authService.logoutUser()" type="button" class="guest-login-btn">Test Logout</button> -->
-
-      </section>
-
-    </form>
-    <!-- <div class="create-account-mobile">Konto erstellen</div> -->
-  </main>
-  <div class="new-at-dabubble-mobile">Neu bei DABubble?</div>
-  <button (click)="logCurrentUser()" type="button" class="create-account-mobile">Konto Erstellen</button>
+<div class="new-at-dabubble-mobile">Neu bei DABubble?</div>
+<button (click)="logCurrentUser()" type="button" class="create-account-mobile"  [routerLink]="'/main/signup'">Konto Erstellen</button>

@@ -126,14 +126,16 @@ input::placeholder {
   position: relative;
   @include dflex($jC: center);
   width: 100%;
-  height: 100vh;
-  overflow-y: scroll;
+  min-height: 100vh;
+  overflow-y: auto;
+  padding-top: 20px;
+
   border: solid red;
 }
 
 
 .max-width-wrapper {
-  border: solid blue;
+  // border: solid blue;
   box-sizing: border-box;
   max-width: 1440px;
   margin: 0 auto;

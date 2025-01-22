@@ -44,7 +44,6 @@ $login-header-c: #444df2;
 
 .intro-logo-mobile{
   display:none;
-  position: relative;
   width: fit-content;
   margin: 0 auto;
   margin-bottom: 24px;
@@ -52,6 +51,8 @@ $login-header-c: #444df2;
   
   .logo-mobile{
   }
+
+  
   .intro-text__color{
     color:black;
     font-weight: 700;
@@ -63,8 +64,6 @@ $login-header-c: #444df2;
   border: solid #444DF2 1px;
   display: none;
   position: static;
-  bottom: -120px;
-  border: solid red;
   margin: 20px 0;
   margin: 0 auto;
   margin-bottom: 20px;
