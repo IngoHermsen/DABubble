@@ -8,6 +8,7 @@ import { AuthPostAnimationComponent } from './auth/auth/auth.component';
 import { NewPostComponent } from './main-content/new-post/new-post.component';
 import { DirectMessagesComponent } from './main-content/direct-messages/direct-messages.component';
 import { ChannelComponent } from './main-content/channel/channel.component';
+import { ImprintComponent } from './imprint/imprint.component';
 
 export const routes: Routes = [
     { path: '', component: AuthComponent },
@@ -16,6 +17,7 @@ export const routes: Routes = [
             [
                 { path: 'login', component: LoginComponent },
                 { path: 'signup', component: SignupComponent },
+                { path: 'imprint', component: ImprintComponent },
             ]
     },
     { path: 'auth', component: AuthComponent },
@@ -27,5 +29,6 @@ export const routes: Routes = [
             { path: 'directMessages', component: DirectMessagesComponent}
         ]      
     },
-    { path: 'avatar', component: EditAvatarComponent }
+    { path: 'avatar', component: EditAvatarComponent },
+    
 ];

@@ -1,0 +1,32 @@
+@import '../../styles/mixins.scss';
+
+
+h1, h2{
+  color: #444DF2
+}
+
+h1{
+  font-size: 30px;
+  margin-top: 0
+}
+
+h2{
+  margin-bottom: 4px;
+}
+
+// @mixin dflex($dir: row, $jC: space-between, $aI: center, $gap: 0px)
+.imprint-container{
+  position: relative;
+  @include dflex($dir: column);
+  @include loginSignupWindow($width: 606px, $padding: 30px 50px);
+  height: 50%;
+  border: solid purple
+}
+
+.infos-block{
+  @include dflex($dir: column);
+}
+
+.infos-block__details{
+  @include dflex($dir: column);
+}
