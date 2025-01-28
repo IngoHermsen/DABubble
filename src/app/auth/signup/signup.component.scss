@@ -79,5 +79,18 @@ p{
   padding: 0 20px 0 20px
 }
 
+/************************* Impressum Datapolicy *************************/
+
+.impressum-datap-wrapper{
+  @include dflex($jC: center, $gap: 48px);
+  border: solid green;
+  padding-top: 40px;
+  font-size: 18px;
+  color: #444DF2;
+  
+  span{
+    cursor: pointer;
+  }
+}
 
 
