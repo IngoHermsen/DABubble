@@ -18,7 +18,7 @@ h2{
 .imprint-container{
   position: relative;
   @include dflex($dir: column);
-  @include loginSignupWindow($width: 606px, $padding: 30px 50px);
+  @include loginSignupWindow($width: fit-content, $padding: 30px 60px);
   height: 50%;
   border: solid purple
 }
@@ -34,4 +34,13 @@ h2{
 .arrow-back{
   @include placeAbsoluteElement($top: 25px, $left: 25px);
   cursor: pointer;
+}
+
+
+/************************* Responsivness *************************/
+
+@media (width <= 380px){
+  .imprint-container{
+    padding: 30px 30px;
+  }
 }
