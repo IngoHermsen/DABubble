@@ -1,14 +1,18 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, Type } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViewService {
-  private router = inject(Router)
+  private router = inject(Router);
   showThreadSection: boolean = false;
   showDialog: boolean = false;
-  mobileView: boolean;  
+
+  // mobile options
+  mobileView: boolean;
+  mobileWorkspaceHeader: boolean = false; 
+  
 
   constructor() { 
     this.mobileView = window.innerWidth <= 880;

@@ -15,13 +15,36 @@
         }
     </span>
 
-    <section class="wide-header">
+    @if (!viewService.mobileView) {
+    <section class="header">
         <div class="logo-div">
             <img class="logo" src="assets/images/Logo-DABubble.png" alt="Logo_DABubble">
         </div>
         <input placeholder="Devspace durchsuchen" class="flex-item" type="text">
         <div class="user-info">UserInfo</div>
     </section>
+    }
+
+    @if(viewService.mobileView){
+    <section class="header mobile">
+        @switch(viewService.mobileWorkspaceHeader) {
+        @case(true) {
+        <div class="logo-div">
+            <img class="logo" src="assets/images/Logo-DABubble.png" alt="Logo_DABubble">
+        </div> <span>WORKSPACE HEADER</span>
+        <div class="user-info">UserInfo</div>
+        }
+        @default {
+        <div class="logo-div">
+            <img class="logo" src="assets/images/Logo-DABubble.png" alt="Logo_DABubble">
+        </div> <span>MAIN HEADER</span>
+        <div class="user-info">UserInfo</div>
+        }
+        }
+
+    </section>
+    }
+
     <section class="content">
         <section class="workspace-section" [@toggleWorkspace]="showWorkspaceMenu ? 'open' : 'closed'">
             <div class="ws-animation-wrapper">
