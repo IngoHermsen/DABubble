@@ -30,3 +30,8 @@ h2{
 .infos-block__details{
   @include dflex($dir: column);
 }
+
+.arrow-back{
+  @include placeAbsoluteElement($top: 25px, $left: 25px);
+  cursor: pointer;
+}

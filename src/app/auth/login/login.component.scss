@@ -147,6 +147,10 @@ $login-header-c: #444df2;
   padding-top: 40px;
   font-size: 18px;
   color: #444DF2;
+  
+  span{
+    cursor: pointer;
+  }
 }
 
 /************************* Dynamic Classes *************************/
