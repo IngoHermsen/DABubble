@@ -36,18 +36,11 @@
 
     <div class="input-box">
       <!------------------------- PASSWORD ------------------------->
-      <input class="input-styling" 
-      [type]="authService.showPassword ? 'text' : 'password'" 
-      placeholder="Password" 
-      #password name="password" 
-      ngModel 
-      required
-      autocomplete="off" />
+      <input class="input-styling" [type]="authService.showPassword ? 'text' : 'password'" placeholder="Password"
+        #password name="password" ngModel required autocomplete="off" />
 
-      <img (click)="authService.togglePasswordVisibility()" 
-      id="signup-pw-icon"
-      class="place-input-img" 
-      src="../../../assets/icons/lock.png" alt="">
+      <img (click)="authService.togglePasswordVisibility()" id="signup-pw-icon" class="place-input-img"
+        src="../../../assets/icons/lock.png" alt="">
 
       <div id="email-error-msg" class="user-warning-msg"
         [class.d-none]="!this.validation.elementVisibility.passwordErrorVisible">{{validation.passwordWarningMsg}}
@@ -80,6 +73,12 @@
 
   </form>
 
+
+</div>
+
+<div class="impressum-datap-wrapper">
+  <span [routerLink]="'/main/imprint'">Impressum</span>
+  <span [routerLink]="'/main/privacy'"> Datenschutz </span>
 </div>
 
 <div class="signup-success-msg" [class.d-none]="hideSignupSuccessMsg">Signup Successful</div>
