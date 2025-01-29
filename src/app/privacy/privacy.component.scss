@@ -1,33 +1,28 @@
 @import '../../styles/mixins.scss';
 @import '../auth/auth/auth.component.scss';
 
-
-h1, h2, h3, h4, em{
-  color: #444DF2
+h1, h2, h3, h4, em {
+  color: #444DF2;
 }
 
-.navigation-logo{
+.navigation-logo {
   display: none !important;
   margin: 0 auto;
   width: fit-content;
   @include dflex($jC: center);
   position: relative;
   cursor: pointer;
-
-  @media (width <=768px) {
-    display: block !important;
-  }
 }
 
 .privacy-container {
   position: relative;
   @include dflex($dir: column);
-  @include loginSignupWindow($width: 80%, $padding: 60px 60px);
+  @include loginSignupWindow($width: 80%, $padding: 40px 60px);
   margin: 0 auto;
   margin-top: 40px;
   height: 80vh;
   overflow-y: auto;
-  overflow-x: hidden; 
+  overflow-x: hidden;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   
@@ -36,78 +31,93 @@ h1, h2, h3, h4, em{
   }
 
   #generator_results_content {
-    max-width: 100%; 
-    word-wrap: break-word; 
-  }
-  
-  p a {
-    word-break: break-all; 
+    max-width: 100%;
+    word-wrap: break-word;
   }
 
-  .arrow-back{
-    // @mixin dflex($dir: row, $jC: space-between, $aI: center, $gap: 0px)
+  p a {
+    word-break: break-all;
+  }
+
+  .arrow-back {
     @include dflex();
     width: 100%;
     cursor: pointer;
   }
-  
-  /************************* Responsivness *************************/
-  
-  @media screen and (max-width: 1200px) {
+}
+
+/************************* Responsiveness *************************/
+
+@media (width <= 768px) {
+  .navigation-logo {
+    display: block !important;
+  }
+}
+
+@media (width <= 1200px) {
+  .privacy-container {
     width: 90%;
     padding: 40px;
   }
-  
-  @media screen and (max-width: 768px) {
+}
+
+@media (width <= 768px) {
+  .privacy-container {
     width: 95%;
     padding: 30px;
     margin-top: 20px;
   }
-  
-  @media screen and (max-width: 570px) {
+}
+
+@media (width <= 570px) {
+  .privacy-container {
     width: 100%;
     padding: 20px 15px;
     margin-top: 15px;
-    
-    ul {
-      padding-left: 15px; 
-      margin-right: 10px; 
-    }
   }
-  
-  @media screen and (max-width: 400px) {
+
+  .privacy-container ul {
+    padding-left: 15px;
+    margin-right: 10px;
+  }
+}
+
+@media (width <= 400px) {
+  .privacy-container {
     padding: 15px 10px;
-    
-    h1 {
-      font-size: 1.3rem;
-    }
-    
-    h2 {
-      font-size: 1.1rem;
-    }
-    
-    h3 {
-      font-size: 1rem;
-    }
-    
-    p, li {
-      font-size: 0.9rem;
-    }
   }
-  
-  @media screen and (max-width: 320px) {
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+  }
+
+  p, li {
+    font-size: 0.9rem;
+  }
+}
+
+@media (width <= 320px) {
+  .privacy-container {
     padding: 10px 8px;
-    
-    h1 {
-      font-size: 1.2rem;
-    }
-    
-    h2 {
-      font-size: 1rem;
-    }
-    
-    p, li {
-      font-size: 0.85rem;
-    }
+  }
+
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+
+  p, li {
+    font-size: 0.85rem;
   }
 }
