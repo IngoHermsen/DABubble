@@ -1,5 +1,5 @@
 @import '../../styles/mixins.scss';
-
+@import '../auth/auth/auth.component.scss';
 
 h1, h2{
   color: #444DF2
@@ -38,7 +38,6 @@ h2{
 
 
 /************************* Responsivness *************************/
-
 @media (width <= 380px){
   .imprint-container{
     padding: 30px 30px;

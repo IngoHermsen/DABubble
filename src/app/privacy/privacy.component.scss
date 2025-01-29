@@ -1,7 +1,22 @@
 @import '../../styles/mixins.scss';
+@import '../auth/auth/auth.component.scss';
+
 
 h1, h2, h3, h4, em{
   color: #444DF2
+}
+
+.navigation-logo{
+  display: none !important;
+  margin: 0 auto;
+  width: fit-content;
+  @include dflex($jC: center);
+  position: relative;
+  cursor: pointer;
+
+  @media (width <=768px) {
+    display: block !important;
+  }
 }
 
 .privacy-container {
@@ -12,7 +27,7 @@ h1, h2, h3, h4, em{
   margin-top: 40px;
   height: 80vh;
   overflow-y: auto;
-  overflow-x: hidden; // Verhindert horizontales Scrollen
+  overflow-x: hidden; 
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   
@@ -21,14 +36,22 @@ h1, h2, h3, h4, em{
   }
 
   #generator_results_content {
-    max-width: 100%; // Verhindert Überlauf
-    word-wrap: break-word; // Bricht lange Wörter um
+    max-width: 100%; 
+    word-wrap: break-word; 
   }
   
-  // Links in Paragraphen
   p a {
-    word-break: break-all; // Bricht lange URLs um
+    word-break: break-all; 
   }
+
+  .arrow-back{
+    // @mixin dflex($dir: row, $jC: space-between, $aI: center, $gap: 0px)
+    @include dflex();
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  /************************* Responsivness *************************/
   
   @media screen and (max-width: 1200px) {
     width: 90%;
@@ -47,8 +70,8 @@ h1, h2, h3, h4, em{
     margin-top: 15px;
     
     ul {
-      padding-left: 15px; // Reduzierte Einrückung für Listen
-      margin-right: 10px; // Verhindert Überlauf rechts
+      padding-left: 15px; 
+      margin-right: 10px; 
     }
   }
   

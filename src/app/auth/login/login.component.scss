@@ -17,7 +17,6 @@ $login-header-c: #444df2;
 .login-container {
   @include loginSignupWindow($width : 500px, $padding: 30px);
   @include dflex($dir: column, $aI: center, $jC: center);
-  border: solid red;
 }
 
 
@@ -143,7 +142,6 @@ $login-header-c: #444df2;
 
 .impressum-datap-wrapper{
   @include dflex($jC: center, $gap: 48px);
-  border: solid green;
   padding-top: 40px;
   font-size: 18px;
   color: #444DF2;
