@@ -6,10 +6,9 @@ h1, h2, h3, h4, em {
 }
 
 .navigation-logo {
-  display: none !important;
+  display: none ;
   margin: 0 auto;
   width: fit-content;
-  @include dflex($jC: center);
   position: relative;
   cursor: pointer;
 }
@@ -47,10 +46,9 @@ h1, h2, h3, h4, em {
 }
 
 /************************* Responsiveness *************************/
-
 @media (width <= 768px) {
   .navigation-logo {
-    display: block !important;
+    display: block ;
   }
 }
 

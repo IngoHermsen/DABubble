@@ -65,9 +65,6 @@ export class SignupComponent {
   }
 
 
-  logSth(){
-  }
-  
  async onSubmit(email: any, password: any, name: any, signupForm: any ) {
     if(signupForm.invalid){
       return

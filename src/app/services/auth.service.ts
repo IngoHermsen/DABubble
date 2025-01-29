@@ -32,7 +32,6 @@ export class AuthService {
    * @singleton This is instantiated once as a singleton.
    */
   constructor() {
-    console.log("I am a Singelton, that is why i log once.");
     onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
       this.currentUser.email = user?.email || null;
       console.log('onAuthStateChanged:', this.currentUser.email);
