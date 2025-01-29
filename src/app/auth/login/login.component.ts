@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { ValidationService } from '../../services/validation.service';
+import { AuthService } from '../../core/services/auth.service';
+import { ValidationService } from '../../core/services/validation.service';
 
 
 @Component({

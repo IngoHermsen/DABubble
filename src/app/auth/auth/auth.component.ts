@@ -5,8 +5,8 @@ import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 import { RouterLink, RouterOutlet, Router, NavigationEnd } from '@angular/router';
-import { ValidationService } from '../../services/validation.service';
-import { AuthService } from '../../services/auth.service';
+import { ValidationService } from '../../core/services/validation.service';
+import { AuthService } from '../../core/services/auth.service';
 
 
 @Component({

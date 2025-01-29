@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { ValidationService } from '../services/validation.service';
+import { ValidationService } from '../core/services/validation.service';
 
 
 @Component({
