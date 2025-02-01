@@ -21,7 +21,8 @@ export const routes: Routes = [
                 { path: 'login', component: LoginComponent },
                 { path: 'signup', component: SignupComponent },
                 { path: 'imprint', component: ImprintComponent },
-                { path: 'privacy', component: PrivacyComponent}
+                { path: 'privacy', component: PrivacyComponent},
+                { path: 'avatar', component: EditAvatarComponent },
             ]
     },
     { path: 'auth', component: AuthComponent },
@@ -34,6 +35,6 @@ export const routes: Routes = [
                 { path: 'direct-messages', component: DirectMessagesComponent }
             ]
     },
-    { path: 'avatar', component: EditAvatarComponent },
+    
 
 ];
