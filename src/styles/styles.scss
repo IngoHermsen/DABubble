@@ -194,7 +194,7 @@ div.message-input {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-@media only screen and (max-width: 880px) {
+@media (width <= 880px) {
   .card {
     border-radius: unset;
   }

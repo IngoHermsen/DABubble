@@ -1,4 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -11,7 +12,7 @@ import {
   updateProfile,
   User as FirebaseUser,
 } from '@angular/fire/auth';
-
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +20,13 @@ import {
 
 
 export class AuthService {
-
+  private router = inject(Router);
   private firebaseAuth = inject(Auth);
   private currentUser: { email: string | null; } = { email: null };
   showPassword = false;
 
-  
+  user: User | null = null;
+
   /**
    * Initializes the authentication state listener.
    * The onAuthStateChanged listener triggers on signup, login, and logout events,
@@ -89,6 +91,16 @@ export class AuthService {
       await updateProfile(userCredential.user, {
         displayName: username.value
       });
+      this.router.navigate(['main', 'login']);
+      
+      this.user = {
+        email: email,
+        displayName: username.value,
+        directMessages: [],
+        avatarPath: "",
+        isOnline: false,
+      };
+      
       return true;
     } catch (error: any) {
       this.showErrorMsg(error.code);
