@@ -30,8 +30,8 @@ export const routes: Routes = [
         children:
             [
                 { path: 'channel', component: ChannelComponent },
-                { path: 'newPost', component: NewPostComponent },
-                { path: 'directMessages', component: DirectMessagesComponent }
+                { path: 'new-post', component: NewPostComponent },
+                { path: 'direct-messages', component: DirectMessagesComponent }
             ]
     },
     { path: 'avatar', component: EditAvatarComponent },
