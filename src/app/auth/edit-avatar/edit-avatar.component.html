@@ -6,7 +6,7 @@
             <mat-spinner mode="indeterminate"></mat-spinner>
         </div>
         } @else {
-        <img src={{previewImg}} alt="person-placeholder">
+        <img src={{ previewImg }} alt="person-placeholder">
         }
     </div>
 
@@ -15,7 +15,6 @@
         @for (image of avatarImages; track $index) {
         <img (click)="setPresetAvatar(image)" class="preset-icon" src="assets/images/{{ image }}" alt="{{ image }}">
         }
-
     </div>
     <div class="upload-btn">
         <span>Eigenes Bild verwenden</span>
