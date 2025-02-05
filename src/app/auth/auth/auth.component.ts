@@ -39,7 +39,7 @@ export class AuthPostAnimationComponent {
  * - Subscribes to router events to track navigation changes and conditionally hide/show elements.
  */
 ngOnInit() {
-  this.navigateToLogin();
+  // this.navigateToLogin();
 
   /**
    * Subscribes to router events to detect when navigation is complete.
@@ -49,11 +49,11 @@ ngOnInit() {
    * 
    * @param {Event} event - The router event triggered on navigation.
    */
-  this.router.events.subscribe(event => {
-    if (event instanceof NavigationEnd) {
-      this.hideElement = event.url.includes('signup');
-    }
-  });
+  // this.router.events.subscribe(event => {
+  //   if (event instanceof NavigationEnd) {
+  //     this.hideElement = event.url.includes('signup');
+  //   }
+  // });
 }
 
 

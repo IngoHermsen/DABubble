@@ -13,8 +13,9 @@ import { PrivacyComponent } from './privacy/privacy.component';
 
 export const routes: Routes = [
     { path: '', component: AuthComponent },
-    
+    { path: 'main', redirectTo: 'main/login', pathMatch: 'full'},
     { path: 'workspace', redirectTo: 'workspace/channel', pathMatch: 'full'},
+    
     {
         path: 'main', component: AuthPostAnimationComponent,
         children:
@@ -25,7 +26,7 @@ export const routes: Routes = [
                 { path: 'privacy', component: PrivacyComponent},
                 { path: 'avatar', component: EditAvatarComponent },
             ]
-    },
+        },
     { path: 'auth', component: AuthComponent },
     {
         path: 'workspace', component: MainComponent,

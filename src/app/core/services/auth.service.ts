@@ -23,7 +23,7 @@ import { Firestore } from '@angular/fire/firestore';
 
 export class AuthService {
   private router = inject(Router);
-  private dbFs = inject(Firestore);
+  public dbFs = inject(Firestore);
   private firebaseAuth = inject(Auth);
   private currentUser: { email: string | null; } = { email: null };
   showPassword = false;
@@ -94,7 +94,7 @@ export class AuthService {
       await updateProfile(userCredential.user, {
         displayName: username.value
       });
-      this.router.navigate(['main', 'login']);
+      this.router.navigate(['main', 'avatar']);
       
       this.user = {
         email: email.value,
