@@ -4,6 +4,9 @@ import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
 import { getDownloadURL } from 'firebase/storage';
 import { MatProgressSpinnerModule, MatProgressSpinner} from '@angular/material/progress-spinner';
 import { finalize, from, switchMap } from 'rxjs';
+import { AuthService } from '../../core/services/auth.service';
+import { doc, setDoc, updateDoc, WithFieldValue } from "firebase/firestore"; 
+
 
 @Component({
   selector: 'app-edit-avatar',
@@ -14,6 +17,8 @@ import { finalize, from, switchMap } from 'rxjs';
 })
 export class EditAvatarComponent {
   private firebaseApp = inject(FirebaseApp)
+  private authService =  inject(AuthService)
+
 
   imgLoading: boolean = false;
   previewImg: string; // contains path string for preview Image
@@ -36,6 +41,7 @@ export class EditAvatarComponent {
 
   constructor() {
     this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath
+    console.log(this.authService.dbFs);
   }
 
   // 'Upload Image' function: This function is triggered by a change-event on the 'File Upload input' (type 'file')
@@ -76,9 +82,21 @@ export class EditAvatarComponent {
     }
   }
 
+
+
+  async saveImgPath(){
+    console.log("saveImgPath here!");
+    if(this.authService.user?.email != null ){
+      console.log("email not null!");
+      const docRef = doc(this.authService.dbFs, "users", this.authService?.user.email)
+      let data = {avatarPath: this.previewImg}
+      updateDoc(docRef, data)
+    }
+  }
+
+
   setPresetAvatar(imgFileName: string) {
       this.previewImg = 'assets/images/' + imgFileName;
-      
   }
 
 }

@@ -13,6 +13,8 @@ import {
   User as FirebaseUser,
 } from '@angular/fire/auth';
 import { User } from '../interfaces/user';
+import { doc, setDoc, WithFieldValue } from "firebase/firestore"; 
+import { Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,7 @@ import { User } from '../interfaces/user';
 
 export class AuthService {
   private router = inject(Router);
+  public dbFs = inject(Firestore);
   private firebaseAuth = inject(Auth);
   private currentUser: { email: string | null; } = { email: null };
   showPassword = false;
@@ -91,15 +94,17 @@ export class AuthService {
       await updateProfile(userCredential.user, {
         displayName: username.value
       });
-      this.router.navigate(['main', 'login']);
+      this.router.navigate(['main', 'avatar']);
       
       this.user = {
-        email: email,
+        email: email.value,
         displayName: username.value,
         directMessages: [],
         avatarPath: "",
         isOnline: false,
       };
+
+      this.setUserDoc(email.value);
       
       return true;
     } catch (error: any) {
@@ -162,7 +167,7 @@ export class AuthService {
     try {
       await signOut(this.firebaseAuth);
       this.currentUser.email = null; // Clear user data
-      console.log('User logged out, email cleared:', this.currentUser.email);
+      console.log('User logged out, email cleared:', 'this.currentUser.email');
     } catch (error: any) {
       console.error('Logout error:', error);   
     }
@@ -175,4 +180,17 @@ export class AuthService {
   getCurrentUserEmail(): string | null {
     return this.currentUser.email;
   }
+
+async setUserDoc(email: string) {
+  if(this.user) {
+    console.log('I was here');
+    console.log('email', email);
+    console.log('Type', typeof email);
+
+
+    await setDoc(doc(this.dbFs, 'users', email ), this.user)
+  }
+  
+}
+
 }
