@@ -43,7 +43,11 @@ $login-header-c: #444df2;
   width: fit-content;
   margin: 0 auto;
   margin-bottom: 24px;
-  transform: translateX(-100%);
+  margin-top: 100px;
+
+  .da-bubble-txt{
+    align-self: center;
+  }
 
   .intro-text__color{
     color:black;
@@ -193,7 +197,9 @@ $login-header-c: #444df2;
   }
 
   .intro-logo-mobile{
-    display:block;
+    display:flex;
+    gap: 16px;
+
   }
 
   .create-account-mobile{
