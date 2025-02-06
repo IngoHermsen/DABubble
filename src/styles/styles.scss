@@ -32,16 +32,17 @@ body {
   width: 100vw;
 }
 
-.full-width-bg{
-  position: fixed;  
+.full-width-bg {
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1; 
-  background: linear-gradient(180deg, rgba(119, 124, 243, 1) 30%, rgba(62, 70, 232, 1) 100%);}
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(119, 124, 243, 1) 30%, rgba(62, 70, 232, 1) 100%);
+}
 
-.site-bg{
+.site-bg {
   background: var(--bg-color)
 }
 
@@ -95,7 +96,7 @@ input::placeholder {
   font-family: "Nunito";
   font-size: 18px;
   font-weight: 500;
-  
+
 }
 
 .input-icon {
@@ -109,8 +110,8 @@ input::placeholder {
   transform: translateY(-50%);
 }
 
-.user-warning-msg{
-  @include placeAbsoluteElement($bottom: -25px, $left: 18px) ;
+.user-warning-msg {
+  @include placeAbsoluteElement($bottom: -25px, $left: 18px);
   font-size: 12px;
   color: #FF2929
 }
@@ -156,7 +157,7 @@ input::placeholder {
   overflow-y: auto;
 
   .post-wrapper {
-      width: 100%;
+    width: 100%;
   }
 }
 
@@ -172,17 +173,22 @@ div.message-input {
 // ************************ Main Content Cards **************************
 
 .fixed-header {
-  height: 90px;
+  min-height: 80px;
   width: 100%;
   border-radius: 25px 25px 0px 0px;
   background-color: white;
-  box-shadow: 2px 9px 12px -8px #cababa;
   align-content: center;
   z-index: 1;
 
   h2 {
-      padding: 0px 40px;
+    padding: 0px 40px;
   }
+
+}
+
+.box-shadow {
+  box-shadow: 2px 9px 12px -8px #cababa;
+
 }
 
 //************************** Dialog Modal *****************************
@@ -194,7 +200,7 @@ div.message-input {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-@media (width <= 880px) {
+@media (width <=880px) {
   .card {
     border-radius: unset;
   }
