@@ -21,7 +21,10 @@ import { ValidationService } from '../../core/services/validation.service';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
-
+  //! ViewChild is a Decorator that gets a <view-reference> into the typescript <class>
+  //! ('signupForm') is the <template-reference> 
+  //! signupForm! is the <instance-variable> 
+  //! the <!exlamation mark> is a <Non-Null-Assertion> operator from <typescript-syntax>
   @ViewChild('signupForm') signupForm!: NgForm;
   /** 
    * Uses setTimeout to ensure the class is applied after the initial view rendering.
@@ -66,12 +69,6 @@ export class SignupComponent {
   clearForm(form: NgForm) {
     form.reset();
 }
-
-  // clearInputValues(emailValue: string, passwordValue: string, usernameValue: string) {
-  //   emailValue = "";
-  //   passwordValue = "",
-  //   usernameValue = "";
-  // }
 
 
   async onSubmit(
