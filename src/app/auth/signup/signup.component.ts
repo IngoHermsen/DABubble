@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -22,6 +22,7 @@ import { ValidationService } from '../../core/services/validation.service';
 })
 export class SignupComponent {
 
+  @ViewChild('signupForm') signupForm!: NgForm;
   /** 
    * Uses setTimeout to ensure the class is applied after the initial view rendering.
    *
@@ -43,12 +44,15 @@ export class SignupComponent {
 
 
   clearFieldsShowMsgAfterSignUpSuccess(
-    email: any, password: any, name: any, signupSuccess: boolean) {
+    signupSuccess: boolean,
+    signupForm: NgForm
+  ) 
+  {
     if (signupSuccess) {
       this.showSignupSuccessMsg();
       setTimeout(() => {
         this.hideSignupSuccessMsg = true;
-        this.clearInputValues(email, password, name);
+        this.clearForm(signupForm)
       }, 2500);
     }
   }
@@ -59,11 +63,15 @@ export class SignupComponent {
   }
 
 
-  clearInputValues(email: any, password: any, name: any) {
-    email.value = "";
-    password.value = "",
-      name.value = "";
-  }
+  clearForm(form: NgForm) {
+    form.reset();
+}
+
+  // clearInputValues(emailValue: string, passwordValue: string, usernameValue: string) {
+  //   emailValue = "";
+  //   passwordValue = "",
+  //   usernameValue = "";
+  // }
 
 
   async onSubmit(
@@ -76,26 +84,36 @@ export class SignupComponent {
     const emailValue = email.value
     const passwordValue = password.value
     const usernameValue = username.value
+
     if (signupForm.invalid) {
       return;
     }
-    this.validation.checkEmail(emailValue);
-    this.validation.checkPassword(passwordValue);
-    this.validation.checkName(usernameValue);
-    const signUpSuccess = await this.authService.signUpBtnPressed(
+
+    this.validateMailPwName(emailValue, passwordValue, usernameValue)
+    const signupSuccess = await this.authService.signUpBtnPressed(
       emailValue,  //? --> Needs no typing because .value is always a string Typescript knows that. 
       passwordValue,
       usernameValue
     );
-    this.clearFieldsShowMsgAfterSignUpSuccess(email, password, name, signUpSuccess);
+    this.clearFieldsShowMsgAfterSignUpSuccess(signupSuccess, signupForm );
   }
 
 
-  // validateMailPwName(email, password, username) {
-  //   this.validation.checkEmail(email);
-  //   this.validation.checkPassword(password);
-  //   this.validation.checkName(name);
+  validateMailPwName(
+    emailValue: string,
+    passwordValue: string, 
+    usernameValue: string) 
+    {
+    this.validation.checkEmail(emailValue);
+    this.validation.checkPassword(passwordValue);
+    this.validation.checkName(usernameValue);
+  }
 
-  // }
+//! Delete
+testFormReset(){
+  this.clearForm(this.signupForm)
+}
+//! Delete
+
 
 }

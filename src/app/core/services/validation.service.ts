@@ -60,7 +60,7 @@ export class ValidationService {
 
   checkName(usernameValue: string) {
     if (usernameValue === "") {
-      // Put some logic here.
+      console.log("Username may not be empty");
     }
   }
 
