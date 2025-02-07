@@ -181,13 +181,12 @@ export class AuthService {
     return this.currentUser.email;
   }
 
+
 async setUserDoc(email: string) {
   if(this.user) {
     console.log('I was here');
     console.log('email', email);
     console.log('Type', typeof email);
-
-
     await setDoc(doc(this.dbFs, 'users', email ), this.user)
   }
   
