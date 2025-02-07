@@ -35,15 +35,15 @@ export class ValidationService {
     }
 
 
-  checkEmailPattern(email: any) {
+  checkEmailPattern(emailValue: string) {
     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    const matchEmailPattern = re.test(email.value.trim());
+    const matchEmailPattern = re.test(emailValue.trim());
     return matchEmailPattern ? true : false;
   }
 
 
-  checkEmail(email: any) {
-    const patternDoesNotMatch = !this.checkEmailPattern(email);
+  checkEmail(emailValue: string) {
+    const patternDoesNotMatch = !this.checkEmailPattern(emailValue);
     if(patternDoesNotMatch){
       this.elementVisibility.emailErrorVisible = true
     } else {
@@ -52,20 +52,18 @@ export class ValidationService {
   }
 
 
-  checkPassword(password: any) {
+  checkPassword(passwordValue: string) {
     this.elementVisibility.passwordErrorVisible = 
-      password.value.length < 8 ? true : false;
+      passwordValue.length < 8 ? true : false;
   }
   
 
-  checkName(name: any) {
-    if (name.value === "") {
+  checkName(usernameValue: string) {
+    if (usernameValue === "") {
       // Put some logic here.
     }
   }
 
 
-  logSth() {
-    console.log("Service is working");
-  }
+
 }

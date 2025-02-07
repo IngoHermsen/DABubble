@@ -13,7 +13,7 @@ import {
   User as FirebaseUser,
 } from '@angular/fire/auth';
 import { User } from '../interfaces/user';
-import { doc, setDoc, WithFieldValue } from "firebase/firestore"; 
+import { doc, setDoc, WithFieldValue } from "firebase/firestore";
 import { Firestore } from '@angular/fire/firestore';
 
 @Injectable({
@@ -80,6 +80,19 @@ export class AuthService {
   }
 
 
+  private createUserObject(
+    email: HTMLInputElement,
+    username: HTMLInputElement): User {
+    return {
+      email: email.value,
+      displayName: username.value,
+      directMessages: [],
+      avatarPath: "",
+      isOnline: false,
+    };
+  }
+
+
   /**
    * Executes on signuUpButton. 
    * Uses createUserWithEmailAndPassword to register a user.
@@ -87,25 +100,28 @@ export class AuthService {
    * Catches possible errors in the process.
    * Returns boolean to show SignupSuccessMsg.
    */
-  async signUpBtnPressed(email: any, password: any, username: any) {
+  async signUpBtnPressed(
+    emailValue: string,
+    passwordValue: string,
+    usernameValue: string) {
     this.resetErrors();
     try {
-      const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, emailValue, passwordValue);
       await updateProfile(userCredential.user, {
-        displayName: username.value
+        displayName: usernameValue
       });
       this.router.navigate(['main', 'avatar']);
-      
+
       this.user = {
-        email: email.value,
-        displayName: username.value,
+        email: emailValue,
+        displayName: usernameValue,
         directMessages: [],
         avatarPath: "",
         isOnline: false,
       };
 
-      this.setUserDoc(email.value);
-      
+      this.setUserDoc(emailValue);
+
       return true;
     } catch (error: any) {
       this.showErrorMsg(error.code);
@@ -148,7 +164,7 @@ export class AuthService {
       provider.setCustomParameters({
         prompt: 'select_account'
       });
-      
+
       const userCredential = await signInWithPopup(this.firebaseAuth, provider);
       this.currentUser.email = userCredential.user.email;
       console.log('User logged in with Google:', this.currentUser.email);
@@ -157,7 +173,7 @@ export class AuthService {
       this.showErrorMsg(error.code);
       return error.code;
     }
-}
+  }
 
 
   /**
@@ -169,7 +185,7 @@ export class AuthService {
       this.currentUser.email = null; // Clear user data
       console.log('User logged out, email cleared:', 'this.currentUser.email');
     } catch (error: any) {
-      console.error('Logout error:', error);   
+      console.error('Logout error:', error);
     }
   }
 
@@ -182,14 +198,14 @@ export class AuthService {
   }
 
 
-async setUserDoc(email: string) {
-  if(this.user) {
-    console.log('I was here');
-    console.log('email', email);
-    console.log('Type', typeof email);
-    await setDoc(doc(this.dbFs, 'users', email ), this.user)
+  async setUserDoc(email: string) {
+    if (this.user) {
+      console.log('I was here');
+      console.log('email', email);
+      console.log('Type', typeof email);
+      await setDoc(doc(this.dbFs, 'users', email), this.user);
+    }
+
   }
-  
-}
 
 }
