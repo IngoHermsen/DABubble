@@ -1,7 +1,6 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../../core/services/auth.service';
 import { CommonModule, NgClass } from '@angular/common';
 import { ValidationService } from '../../core/services/validation.service';
@@ -33,13 +32,35 @@ private fsService = inject(FirestoreService)
   }
 
 
-  fb = inject(FormBuilder);
-  http = inject(HttpClient);
   router = inject(Router);
   authService = inject(AuthService);
   validation = inject(ValidationService);
   hideSignupSuccessMsg = true;
   makeVisible = false;
+
+
+  async signupBtnPressed(
+    email: HTMLInputElement,
+    password: HTMLInputElement,
+    username: HTMLInputElement,
+    signupForm: any
+  ) {
+    const emailValue = email.value;
+    const passwordValue = password.value;
+    const usernameValue = username.value;
+
+    if (signupForm.invalid) {
+      return;
+    }
+
+    this.validateMailPwName(emailValue, passwordValue, usernameValue);
+    const signupSuccess = await this.authService.registerUser(
+      emailValue,  //? --> Needs no typing because .value is always a string Typescript knows that. 
+      passwordValue,
+      usernameValue
+    );
+    this.clearFieldsShowMsgAfterSignUpSuccess(signupSuccess, signupForm);
+  }
 
 
   clearFieldsShowMsgAfterSignUpSuccess(
@@ -66,29 +87,6 @@ private fsService = inject(FirestoreService)
   }
 
 
-  async onSubmit(
-    email: HTMLInputElement,
-    password: HTMLInputElement,
-    username: HTMLInputElement,
-    signupForm: any
-  ) {
-    const emailValue = email.value;
-    const passwordValue = password.value;
-    const usernameValue = username.value;
-
-    if (signupForm.invalid) {
-      return;
-    }
-
-    this.validateMailPwName(emailValue, passwordValue, usernameValue);
-    const signupSuccess = await this.authService.signUpBtnPressed(
-      emailValue,  //? --> Needs no typing because .value is always a string Typescript knows that. 
-      passwordValue,
-      usernameValue
-    );
-    this.clearFieldsShowMsgAfterSignUpSuccess(signupSuccess, signupForm);
-  }
-
   validateMailPwName(
     emailValue: string,
     passwordValue: string,
@@ -98,6 +96,5 @@ private fsService = inject(FirestoreService)
     this.validation.checkName(usernameValue);
   }
 
-
-
+  
 }

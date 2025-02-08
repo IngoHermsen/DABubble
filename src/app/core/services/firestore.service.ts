@@ -1,13 +1,19 @@
 import { inject, Injectable } from '@angular/core';
-import { Firestore } from '@angular/fire/firestore';
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
-  private dbFs = inject(Firestore); 
-
   constructor() { 
     
+  }
+
+
+  private dbFs = inject(Firestore);
+
+  async addUserToFirestore(userId: string, userData: any) {
+    const userDocRef = doc(this.dbFs, `users/${userId}`);
+    return await setDoc(userDocRef, userData);
   }
 }

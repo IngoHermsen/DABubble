@@ -58,6 +58,44 @@ export class AuthService {
   };
 
 
+  /**
+   * Executes on signuUpButton. 
+   * Uses createUserWithEmailAndPassword to register a user.
+   * Uses update Profile to add username to userCredential.
+   * Catches possible errors in the process.
+   * Returns boolean to show SignupSuccessMsg.
+   */
+  async registerUser(
+    emailValue: string,
+    passwordValue: string,
+    usernameValue: string) {
+    this.resetErrors();
+    try {
+      const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, emailValue, passwordValue);
+      await updateProfile(userCredential.user, {
+        displayName: usernameValue
+      });
+      this.router.navigate(['main', 'avatar']);
+
+      this.user = {
+        email: emailValue,
+        displayName: usernameValue,
+        directMessages: [],
+        avatarPath: "",
+        isOnline: false,
+      };
+
+      this.setUserDoc(emailValue);
+
+      return true;
+    } catch (error: any) {
+      this.showErrorMsg(error.code);
+      console.log(error.code); // error.code gives a somewhat readable format.
+      return false;
+    };
+  };
+
+
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
@@ -93,42 +131,6 @@ export class AuthService {
   }
 
 
-  /**
-   * Executes on signuUpButton. 
-   * Uses createUserWithEmailAndPassword to register a user.
-   * Uses update Profile to add username to userCredential.
-   * Catches possible errors in the process.
-   * Returns boolean to show SignupSuccessMsg.
-   */
-  async signUpBtnPressed(
-    emailValue: string,
-    passwordValue: string,
-    usernameValue: string) {
-    this.resetErrors();
-    try {
-      const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, emailValue, passwordValue);
-      await updateProfile(userCredential.user, {
-        displayName: usernameValue
-      });
-      this.router.navigate(['main', 'avatar']);
-
-      this.user = {
-        email: emailValue,
-        displayName: usernameValue,
-        directMessages: [],
-        avatarPath: "",
-        isOnline: false,
-      };
-
-      this.setUserDoc(emailValue);
-
-      return true;
-    } catch (error: any) {
-      this.showErrorMsg(error.code);
-      console.log(error.code); // error.code gives a somewhat readable format.
-      return false;
-    };
-  };
 
 
   /**

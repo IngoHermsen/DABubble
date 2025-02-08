@@ -12,7 +12,7 @@
     </div>
   </div>
 
-  <form class="login-form" (ngSubmit)="onSubmit(email, password, name, signupForm)" #signupForm="ngForm">
+  <form class="login-form" (ngSubmit)="signupBtnPressed(email, password, name, signupForm)" #signupForm="ngForm">
     <div class="input-box">
       <!------------------------- NAME ------------------------->
       <input class="input-styling" type="text" placeholder="Name" #name name="name" ngModel autocomplete="off"
