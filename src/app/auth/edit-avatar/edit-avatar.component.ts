@@ -83,13 +83,7 @@ export class EditAvatarComponent {
   }
 
 
-/**
- * Das ? steht hinter user? weil es das objekt ist das <null/undefined> sein könnte. 
- * ?. = "Sicherer ZUGRIFF"
- * if (... != null) = "Sicherstellen, dass der Wert EXISTIERT"
- * Es sind zwei verschiedene Sicherheitsebenen, die sich ergänzen.
- *
- */
+
   async saveImgPath(){
     console.log("saveImgPath here!");
     if(this.authService.user?.email != null ){

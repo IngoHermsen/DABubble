@@ -6,7 +6,24 @@ import { AuthService } from '../../core/services/auth.service';
 import { CommonModule, NgClass } from '@angular/common';
 import { ValidationService } from '../../core/services/validation.service';
 
+//!Delete
+/**
+ * -- DaBubble -- 7.1.2024
 
+Was wurde verändert?
+
+1. Bei Onsubmit werden die Input.values gleich zu einem String umgewandelt mit dem dann weitergearbeitet wird. 
+Das ist die bessere Praxis zum Trennen von Verantwortlichkeiten. 
+Es ist besser wenn ein Service mit strings arbeiten kann als mit <DOM -Elementen> 
+
+2. Typing wurde verbessert viele <any> types sind rausgeflogen und wurden mit den richtigen Types ersetzt. 
+
+3. Die Form wird jetzt mit Angulars <form.reset> zurückgesetzt. Das spart das zurücksetzten der einzelnen Felder. 
+Das Form object kann aus dem <template> in den <controller> als <parameter> übergeben werden. 
+Oder man kann <viewChild> benutzen um das <formObject> überall im <controller> zugänglich zu machen. 
+*
+*/
+//!Delete
 @Component({
   selector: 'app-signup',
   standalone: true,
