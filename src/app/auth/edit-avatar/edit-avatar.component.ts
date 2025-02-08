@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { FirebaseApp } from '@angular/fire/app';
 import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
 import { getDownloadURL } from 'firebase/storage';
 import { MatProgressSpinnerModule, MatProgressSpinner} from '@angular/material/progress-spinner';
 import { finalize, from, switchMap } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { doc, setDoc, updateDoc, WithFieldValue } from "firebase/firestore"; 
-
+import { FirestoreService } from '../../core/services/firestore.service';
 
 @Component({
   selector: 'app-edit-avatar',
@@ -16,9 +15,7 @@ import { doc, setDoc, updateDoc, WithFieldValue } from "firebase/firestore";
   styleUrl: './edit-avatar.component.scss'
 })
 export class EditAvatarComponent {
-  private firebaseApp = inject(FirebaseApp)
   private authService =  inject(AuthService)
-
 
   imgLoading: boolean = false;
   previewImg: string; // contains path string for preview Image
@@ -82,8 +79,7 @@ export class EditAvatarComponent {
     }
   }
 
-
-
+  
   async saveImgPath(){
     console.log("saveImgPath here!");
     if(this.authService.user?.email != null ){
