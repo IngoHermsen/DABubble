@@ -18,7 +18,8 @@
 
     <section class="header">
         @if (viewService.mobileView && !viewService.showLogo) {
-        <span (click)="viewService.wsNavigate('workspace')" class="material-icons-round arrow-back">arrow_back_ios</span>
+        <span (click)="viewService.wsNavigate('workspace')"
+            class="material-icons-round arrow-back">arrow_back_ios</span>
         <span>WS-LOGO</span>
         }
         @else {
@@ -32,9 +33,9 @@
         }
         <div class="user-menu">
             @if(!viewService.mobileView) {
-                <span>Vorname</span><span>Nachname</span>
+            <span>Vorname</span><span>Nachname</span>
             }
-        <span>AVATAR</span>
+            <span>AVATAR</span>
         </div>
     </section>
 
@@ -45,13 +46,15 @@
                 <app-workspace></app-workspace>
             </div>
         </section>
-        <section class="active-content flex-item">
-            <router-outlet></router-outlet>
-        </section>
-        <section class="thread-section" [@toggleThread]="this.viewService.showThreadSection ? 'open' : 'closed'">
-            <div class="thread-animation-wrapper">
-                <app-thread (closeThread)="closeThreadSection($event)"></app-thread>
-            </div>
-        </section>
+        <div class="content-wrapper">
+            <section class="active-content flex-item">
+                <router-outlet></router-outlet>
+            </section>
+            <section class="detail-section" [@toggleThread]="this.viewService.showThreadSection ? 'open' : 'closed'">
+                <div class="details-animation-wrapper">
+                    <app-thread (closeThread)="closeThreadSection($event)"></app-thread>
+                </div>
+            </section>
+        </div>
     </section>
 </div>

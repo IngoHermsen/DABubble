@@ -8,6 +8,9 @@ $header-height: 80px;
     @include dflex($dir: column);
 }
 
+.content-wrapper {
+    display: flex;
+}
 
 .toggle-btn {
     position: absolute;
@@ -106,7 +109,7 @@ $header-height: 80px;
     height: 100%;
 }
 
-.thread-animation-wrapper {
+.details-animation-wrapper {
     min-width: 360px;
     height: 100%;
 }
