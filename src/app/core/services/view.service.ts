@@ -15,7 +15,7 @@ export class ViewService {
   
 
   constructor() { 
-    this.mobileView = window.innerWidth <= 880;
+    this.mobileView = window.innerWidth <= 1000;
     console.log(`windows.innerwidth:${window.innerWidth}, mobileView = ${this.mobileView}`)
   }
 
@@ -23,6 +23,5 @@ export class ViewService {
     console.log(route);
     this.showLogo = route == 'workspace' ? true : false;
     this.router.navigate([route]);
-
   }
 }

@@ -10,6 +10,8 @@ $header-height: 80px;
 
 .content-wrapper {
     display: flex;
+    gap: 16px;
+    width: 100%;
 }
 
 .toggle-btn {
@@ -19,7 +21,6 @@ $header-height: 80px;
     user-select: none;
     cursor: pointer;
     z-index: 1;
-
     left: 12px;
     top: 50vh;
     width: 300px;
@@ -138,6 +139,19 @@ $header-height: 80px;
             left: 50px;
         } to {
             left: 12px;
+        }
+    }
+}
+
+@media (width <= 1000px) {
+    .content-wrapper {
+        display: unset;
+        position: relative;
+
+        .detail-section {
+            position: absolute; 
+            inset: 0px;
+            z-index: 1;
         }
     }
 }

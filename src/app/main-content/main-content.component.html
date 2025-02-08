@@ -15,7 +15,6 @@
         }
     </span>
 
-
     <section class="header">
         @if (viewService.mobileView && !viewService.showLogo) {
         <span (click)="viewService.wsNavigate('workspace')"
@@ -39,14 +38,13 @@
         </div>
     </section>
 
-
     <section class="content">
         <section class="workspace-section" [@toggleWorkspace]="showWorkspaceMenu ? 'open' : 'closed'">
             <div class="ws-animation-wrapper">
                 <app-workspace></app-workspace>
             </div>
         </section>
-        <div class="content-wrapper">
+        <section class="content-wrapper">
             <section class="active-content flex-item">
                 <router-outlet></router-outlet>
             </section>
@@ -55,6 +53,6 @@
                     <app-thread (closeThread)="closeThreadSection($event)"></app-thread>
                 </div>
             </section>
-        </div>
+        </section>
     </section>
 </div>
