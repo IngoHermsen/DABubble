@@ -33,17 +33,17 @@ p{
   font-family: Figtree;
   @include dflex($gap: 10px);
   position: relative;
+}
 
-  #checkbox{
-    accent-color: #797EF3;
-  }
+#checkbox-wrapper #checkbox{
+  accent-color: #797EF3;
 }
 
 #data-policy{
   color: #42526E;
   font-size: 16px;
 
-  #privacy-policy-href{
+  #nav--privacy-policy{
     color: #797EF3
   }
 }

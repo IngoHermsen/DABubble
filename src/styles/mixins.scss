@@ -55,3 +55,28 @@
     font-size: $font-size;
     font-weight: $font-weight;
 }
+
+
+/************************* Sizing *************************/
+@mixin width-height($w, $h) {
+    width: $w;
+    height: $h;
+  }
+  
+  @mixin width-height-padding($w, $h, $p) {
+    width: $w;
+    height: $h;
+    padding: $p
+  }
+  
+  @mixin width-height-margin($w, $h, $m) {
+    width: $w;
+    height: $h;
+    margin: $m;
+  }
+  
+  /************************* Fonts *************************/
+  @mixin font--size-weight($s, $w){
+    font-size: $s;
+    font-weight: $w;
+  }
