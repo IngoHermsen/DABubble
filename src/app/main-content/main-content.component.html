@@ -4,6 +4,7 @@
 </div>
 }
 <div class="wrapper">
+    @if (!viewService.mobileView) {
     <span appShowOnHover (click)="showWorkspaceMenu = !showWorkspaceMenu" class="toggle-btn">
         @switch(showWorkspaceMenu) {
         @case (false) {
@@ -14,6 +15,8 @@
         }
         }
     </span>
+
+    }
 
     <section class="header">
         @if (viewService.mobileView && !viewService.showLogo) {
