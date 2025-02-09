@@ -19,8 +19,6 @@ import { Firestore } from '@angular/fire/firestore';
 @Injectable({
   providedIn: 'root'
 })
-
-
 export class AuthService {
   private router = inject(Router);
   public dbFs = inject(Firestore);

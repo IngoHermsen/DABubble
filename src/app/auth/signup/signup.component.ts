@@ -20,6 +20,7 @@ import { FirestoreService } from '../../core/services/firestore.service';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
+  
 private fsService = inject(FirestoreService)  
 
   /** 
@@ -96,5 +97,5 @@ private fsService = inject(FirestoreService)
     this.validation.checkName(usernameValue);
   }
 
-  
+
 }
