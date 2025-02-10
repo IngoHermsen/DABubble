@@ -6,9 +6,10 @@ $header-height: 80px;
 .wrapper {
     background-color: var(--bg-color);
     @include dflex($dir: column);
+    
 }
 
-.content-wrapper {
+.details {
     display: flex;
     gap: 16px;
     width: 100%;
@@ -152,7 +153,7 @@ $header-height: 80px;
         min-width: unset;
     }
 
-    .content-wrapper {
+    .details{
         display: unset;
         position: relative;
 
@@ -165,5 +166,13 @@ $header-height: 80px;
 }
 
 @media (width <= 700px) {
+    .content {
+        position: relative;
+        padding: unset;
+    }
+
+    .details {
+        position: absolute;
+    }
 
 }
