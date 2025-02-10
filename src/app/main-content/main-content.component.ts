@@ -62,9 +62,6 @@ import { RouterOutlet, Router } from '@angular/router';
 export class MainComponent implements OnInit {
   public viewService = inject(ViewService);
   public dialogService = inject(DialogService);
-
-  showWorkspaceMenu: boolean = true;
-  showThreadSection: boolean = true;
   
   constructor() {
   }

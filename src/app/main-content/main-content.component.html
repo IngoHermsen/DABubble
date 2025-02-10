@@ -5,8 +5,8 @@
 }
 <div class="wrapper">
     @if (!viewService.mobileView) {
-    <span appShowOnHover (click)="showWorkspaceMenu = !showWorkspaceMenu" class="toggle-btn">
-        @switch(showWorkspaceMenu) {
+    <span appShowOnHover (click)="viewService.showWorkspaceMenu = !viewService.showWorkspaceMenu" class="toggle-btn">
+        @switch(viewService.showWorkspaceMenu) {
         @case (false) {
         <span>Workspace-Menü öffnen<img src="assets/icons/open_menu.png" alt="openMenuIcon"></span>
         }
@@ -42,7 +42,7 @@
     </section>
 
     <section class="content">
-        <section class="workspace-section" [@toggleWorkspace]="showWorkspaceMenu ? 'open' : 'closed'">
+        <section class="workspace-section" [@toggleWorkspace]="viewService.showWorkspaceMenu ? 'open' : 'closed'">
             <div class="ws-animation-wrapper">
                 <app-workspace></app-workspace>
             </div>
