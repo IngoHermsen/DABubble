@@ -80,3 +80,9 @@
     font-size: $s;
     font-weight: $w;
   }
+  
+  @mixin font--size-weight-color($s, $w, $c){
+    font-size: $s;
+    font-weight: $w;
+    color: $c;
+  }

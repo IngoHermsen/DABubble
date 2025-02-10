@@ -24,6 +24,7 @@ export class AuthService {
   public dbFs = inject(Firestore);
   private firebaseAuth = inject(Auth);
   private currentUser: { email: string | null; } = { email: null };
+  private userCredential: any 
   showPassword = false;
 
   user: User | null = null;
@@ -73,6 +74,7 @@ export class AuthService {
       await updateProfile(userCredential.user, {
         displayName: usernameValue
       });
+      console.log("This is userCredential: " + userCredential.user);
       this.router.navigate(['main', 'avatar']);
 
       this.user = {
@@ -194,15 +196,13 @@ export class AuthService {
    * Getter method to make currentUser available in other components.
    */
   getCurrentUserEmail(): string | null {
+    console.log(this.currentUser.email);
     return this.currentUser.email;
   }
 
 
   async setUserDoc(email: string) {
     if (this.user) {
-      console.log('I was here');
-      console.log('email', email);
-      console.log('Type', typeof email);
       await setDoc(doc(this.dbFs, 'users', email), this.user);
     }
 

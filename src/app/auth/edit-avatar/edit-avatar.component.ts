@@ -6,6 +6,7 @@ import { finalize, from, switchMap } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { doc, setDoc, updateDoc, WithFieldValue } from "firebase/firestore"; 
 import { FirestoreService } from '../../core/services/firestore.service';
+import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'app-edit-avatar',
@@ -17,12 +18,16 @@ import { FirestoreService } from '../../core/services/firestore.service';
 export class EditAvatarComponent {
   private authService =  inject(AuthService)
 
+  logUser(){
+    console.log(this.authService.user);
+  }
+
   imgLoading: boolean = false;
   previewImg: string; // contains path string for preview Image
 
   placeholderImagePath: string = 'assets/images/avatar_placeholder.png'
   userImg: string | null = null;
-
+  userName: string | undefined
   // set instance of firebase Storage and reference to image path
   fbStorage = getStorage();
   profileImgRef = ref(this.fbStorage, 'profileimages/12345/profile-img');
@@ -37,9 +42,12 @@ export class EditAvatarComponent {
   ]
 
   constructor() {
+    console.log(this.authService.user);
     this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath
-    console.log(this.authService.dbFs);
+    this.userName = this.authService.user?.displayName
   }
+
+  
 
   // 'Upload Image' function: This function is triggered by a change-event on the 'File Upload input' (type 'file')
   // Function first sets the imgLoading-boolean as "true". This boolean is binded to the view, so the user can see that the upload is running.

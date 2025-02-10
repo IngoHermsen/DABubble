@@ -2,7 +2,12 @@
 
 .card {
     @include dflex($dir: column, $jC: unset, $gap: 16px);
+    border: solid red;
+    padding: 24px;
+}
 
+header{
+    @include font--size-weight-color($s:48px, $w:700, $c:#444DF2)
 }
 
 .upload-btn {
@@ -21,15 +26,15 @@
     }
 }
 
-.preview-img, .preview-img > img {
-    height: 152px;
-    width: 152px;
+.img--preview,
+.img--preview>img {
+    @include width-height($w: 168px, $h:168px);
     border-radius: 50%;
-
 }
 
-.preview-img {
+.img--preview {
     @include dflex($jC: center);
+
     img {
         object-fit: cover;
     }
