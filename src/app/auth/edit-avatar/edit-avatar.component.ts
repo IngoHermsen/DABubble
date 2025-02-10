@@ -18,16 +18,14 @@ import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/sign
 export class EditAvatarComponent {
   private authService =  inject(AuthService)
 
-  logUser(){
-    console.log(this.authService.user);
-  }
 
   imgLoading: boolean = false;
   previewImg: string; // contains path string for preview Image
-
+  firebaseUser!: any;
   placeholderImagePath: string = 'assets/images/avatar_placeholder.png'
   userImg: string | null = null;
   userName: string | undefined
+
   // set instance of firebase Storage and reference to image path
   fbStorage = getStorage();
   profileImgRef = ref(this.fbStorage, 'profileimages/12345/profile-img');
@@ -42,9 +40,12 @@ export class EditAvatarComponent {
   ]
 
   constructor() {
-    console.log(this.authService.user);
     this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath
-    this.userName = this.authService.user?.displayName
+    this.authService.firebaseUser$.subscribe(user => {
+      this.firebaseUser = user
+      console.log("User updated in component", this.firebaseUser.displayName);
+      this.userName = this.firebaseUser?.displayName
+    })
   }
 
   

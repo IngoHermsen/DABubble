@@ -1,4 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import {
   Auth,
@@ -25,8 +26,13 @@ export class AuthService {
   private firebaseAuth = inject(Auth);
   private currentUser: { email: string | null; } = { email: null };
   private userCredential: any 
-  showPassword = false;
 
+  private firebaseUserSubject = new BehaviorSubject<User | null>(null)
+
+  firebaseUser$ = this.firebaseUserSubject.asObservable(); // Public Observable
+
+
+  showPassword = false;
   user: User | null = null;
 
   /**
@@ -36,7 +42,9 @@ export class AuthService {
    * @singleton This is instantiated once as a singleton.
    */
   constructor() {
-    onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
+    console.log(this.firebaseUser$);
+    onAuthStateChanged(this.firebaseAuth, (user: any) => {
+      this.firebaseUserSubject.next(user) // Hier wird das Subject aktualisiert. 
       this.currentUser.email = user?.email || null;
       console.log('onAuthStateChanged:', this.currentUser.email);
     });
