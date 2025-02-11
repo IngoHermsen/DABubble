@@ -98,7 +98,7 @@ $header-height: 80px;
 }
 
 .content {
-    overflow-x: hidden; 
+    overflow: hidden;
     box-sizing: border-box;
     padding: 0px 16px 16px 16px;
     width: 100%;
@@ -173,6 +173,7 @@ $header-height: 80px;
 
     .details {
         position: absolute;
+        inset: 0;
     }
 
 }

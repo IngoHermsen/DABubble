@@ -1,18 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
 import { NgIf } from '@angular/common';
 import { MessageInputComponent } from '../message-input/message-input.component';
-
+import { ViewService } from '../../core/services/view.service';
 
 @Component({
   selector: 'app-channel',
   standalone: true,
-  imports: [NgIf, PostComponent, MessageInputComponent],
+  imports: [PostComponent, MessageInputComponent],
   templateUrl: './channel.component.html',
   styleUrl: './channel.component.scss'
 })
 export class ChannelComponent {
+  public viewService = inject(ViewService);
+
   posts: Post[] = [   //examples - will later be fetched from database / backend
     {
       postId: '12345',

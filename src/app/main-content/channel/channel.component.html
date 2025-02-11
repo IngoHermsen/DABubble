@@ -1,13 +1,17 @@
 <div class="card">
     <div class="fixed-header box-shadow">
+
+        @if(viewService.mobileView) {
+        <span class="material-icons-round arrow-back" (click)="viewService.wsNavigate('workspace')">arrow_back_ios</span>
+        }
         <h2>channel name</h2>
     </div>
     <div class="posts">
-            @for (post of posts; let index = $index; track $index) {
-            <div class="post-wrapper">
-                <app-post [index]="index" [post]="post"></app-post>
-            </div>
-            } 
+        @for (post of posts; let index = $index; track $index) {
+        <div class="post-wrapper">
+            <app-post [index]="index" [post]="post"></app-post>
+        </div>
+        }
     </div>
     <div class="message-input">
         <app-message-input></app-message-input>
