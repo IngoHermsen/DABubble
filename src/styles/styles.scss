@@ -173,6 +173,8 @@ div.message-input {
 // ************************ Main Content Cards **************************
 
 .fixed-header {
+  display: flex;
+  align-items: center;
   min-height: 80px;
   width: 100%;
   border-radius: 25px 25px 0px 0px;
@@ -184,6 +186,11 @@ div.message-input {
     padding: 0px 40px;
   }
 
+}
+
+.fixed-header span:first-child {
+  cursor: pointer;
+  padding-left: 12px;
 }
 
 .box-shadow {
