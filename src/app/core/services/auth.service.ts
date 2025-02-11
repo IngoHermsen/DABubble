@@ -31,7 +31,6 @@ export class AuthService {
 
   firebaseUser$ = this.firebaseUserSubject.asObservable(); // Public Observable
 
-
   showPassword = false;
   user: User | null = null;
 

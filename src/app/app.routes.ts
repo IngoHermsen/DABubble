@@ -10,11 +10,18 @@ import { DirectMessagesComponent } from './main-content/direct-messages/direct-m
 import { ChannelComponent } from './main-content/channel/channel.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { SubjectExample } from './core/abstractions/behavior-subject-generics/subject-example';
+import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubjectExample } from './core/abstractions/behavior-subject-generics/behavior-subject-example';
 
 export const routes: Routes = [
     { path: '', component: AuthComponent },
     { path: 'main', redirectTo: 'main/login', pathMatch: 'full'},
     { path: 'workspace', redirectTo: 'workspace/channel', pathMatch: 'full'},
+    //!Delete
+    { path: 'subject', component: SubjectExample},
+    { path: 'behavior-subject', component: BehaviorSubjectExample},
+    //!Delete
     
     {
         path: 'main', component: AuthPostAnimationComponent,
