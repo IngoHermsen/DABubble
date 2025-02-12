@@ -133,8 +133,6 @@ export class AuthService {
   }
 
 
-
-
   /**
    * Executes on loginBtn.
    * Trys to sign in the user with email password. 
@@ -186,7 +184,6 @@ export class AuthService {
     } catch (error: any) {
     }
   }
-
 
 
   async setUserDoc(email: string) {
