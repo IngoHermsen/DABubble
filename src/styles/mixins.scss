@@ -46,7 +46,7 @@
     outline: none;
 }
 
-@mixin roundBtn($width, $height, $b-radius, $bg-color, $color, $font-size, $font-weight) {
+@mixin roundBtn($width, $height, $b-radius, $bg-color, $color: null, $font-size, $font-weight) {
     width: $width;
     height: $height;
     border-radius: $b-radius;
@@ -58,31 +58,31 @@
 
 
 /************************* Sizing *************************/
-@mixin width-height($w, $h) {
-    width: $w;
-    height: $h;
-  }
-  
-  @mixin width-height-padding($w, $h, $p) {
-    width: $w;
-    height: $h;
-    padding: $p
-  }
-  
-  @mixin width-height-margin($w, $h, $m) {
-    width: $w;
-    height: $h;
-    margin: $m;
-  }
-  
-  /************************* Fonts *************************/
-  @mixin font--size-weight($s, $w){
-    font-size: $s;
-    font-weight: $w;
-  }
-  
-  @mixin font--size-weight-color($s, $w, $c){
-    font-size: $s;
-    font-weight: $w;
-    color: $c;
-  }
+@mixin widthHeight($w: null, $h: null) {
+  width: $w;
+  height: $h;
+}
+
+@mixin widthHeightPadding($w: null, $h: null, $p: null) {
+  width: $w;
+  height: $h;
+  padding: $p;
+}
+
+@mixin widthHeightMargin($w: null, $h: null, $m: null) {
+  width: $w;
+  height: $h;
+  margin: $m;
+}
+
+/************************* Fonts *************************/
+@mixin fontSizeWeight($s: null, $w: null) {
+  font-size: $s;
+  font-weight: $w;
+}
+
+@mixin fontSizeWeightColor($s: null, $w: null, $c: null) {
+  font-size: $s;
+  font-weight: $w;
+  color: $c;
+}
