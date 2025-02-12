@@ -22,7 +22,6 @@
 }
 
 /************************* Login Signup *************************/
-
 @mixin loginSignupWindow($width, $padding){
     padding: $padding;
     box-sizing: border-box;
@@ -34,7 +33,6 @@
 
 
 /************************* Button Styling *************************/
-
 @mixin removeBtnStyles(){
     background: none;
     border: none;
