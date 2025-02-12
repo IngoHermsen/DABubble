@@ -8,10 +8,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class SubjectExample {
   private mySubject = new Subject<string>();
-  private myBehaviorSubject = new BehaviorSubject<string | null>("initial String")
+  private myBehaviorSubject = new BehaviorSubject<string | null>("initial String");
 
   constructor() {
-    
+
     // subscriber 1 hitting the stage
     this.mySubject.subscribe(
       value => {
@@ -26,7 +26,7 @@ export class SubjectExample {
 
 
     // Subscriber 2 Starting
-    this.subscriber2()
+    this.subscriber2();
   }
 
 
@@ -38,7 +38,7 @@ export class SubjectExample {
         value => {
           console.log("Subscriber Two__:" + value);
         }
-      )
+      );
       this.mySubject.next("4");
       this.mySubject.next("5");
       this.mySubject.next("6");

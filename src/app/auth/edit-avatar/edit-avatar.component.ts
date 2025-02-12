@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
 import { getDownloadURL } from 'firebase/storage';
 import { MatProgressSpinnerModule, MatProgressSpinner} from '@angular/material/progress-spinner';
@@ -15,13 +15,13 @@ import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/sign
   templateUrl: './edit-avatar.component.html',
   styleUrl: './edit-avatar.component.scss'
 })
-export class EditAvatarComponent {
+export class  EditAvatarComponent implements OnInit {
   private authService =  inject(AuthService)
 
 
   imgLoading: boolean = false;
   previewImg: string; // contains path string for preview Image
-  firebaseUser!: any;
+  firebaseUser: any = {}
   placeholderImagePath: string = 'assets/images/avatar_placeholder.png'
   userImg: string | null = null;
   userName: string | undefined
@@ -41,13 +41,16 @@ export class EditAvatarComponent {
 
   constructor() {
     this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath
+    
+  }
+  
+  ngOnInit(): void {
+    
     this.authService.firebaseUser$.subscribe(user => {
       this.firebaseUser = user
-      console.log("User updated in component", this.firebaseUser.displayName);
-      this.userName = this.firebaseUser?.displayName
+      this.userName = user?.displayName
     })
   }
-
   
 
   // 'Upload Image' function: This function is triggered by a change-event on the 'File Upload input' (type 'file')
@@ -90,10 +93,8 @@ export class EditAvatarComponent {
 
   
   async saveImgPath(){
-    console.log("saveImgPath here!");
-    if(this.authService.user?.email != null ){
-      console.log("email not null!");
-      const docRef = doc(this.authService.dbFs, "users", this.authService?.user.email)
+    if(this.firebaseUser.email != null ){
+      const docRef = doc(this.authService.dbFs, "users", this.firebaseUser.email)
       let data = {avatarPath: this.previewImg}
       updateDoc(docRef, data)
     }

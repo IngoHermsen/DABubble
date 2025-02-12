@@ -24,8 +24,8 @@ export class AuthService {
   private router = inject(Router);
   public dbFs = inject(Firestore);
   private firebaseAuth = inject(Auth);
-  private currentUser: { email: string | null; } = { email: null };
-  private userCredential: any 
+  firebaseUser: any = {}
+
 
   private firebaseUserSubject = new BehaviorSubject<User | null>(null)
 
@@ -41,11 +41,10 @@ export class AuthService {
    * @singleton This is instantiated once as a singleton.
    */
   constructor() {
-    console.log(this.firebaseUser$);
     onAuthStateChanged(this.firebaseAuth, (user: any) => {
+      this.firebaseUser = user
       this.firebaseUserSubject.next(user) // Hier wird das Subject aktualisiert. 
-      this.currentUser.email = user?.email || null;
-      console.log('onAuthStateChanged:', this.currentUser.email);
+      console.log('onAuthStateChanged:', user.email);
     });
   }
 
@@ -81,7 +80,6 @@ export class AuthService {
       await updateProfile(userCredential.user, {
         displayName: usernameValue
       });
-      console.log("This is userCredential: " + userCredential.user);
       this.router.navigate(['main', 'avatar']);
 
       this.user = {
@@ -96,8 +94,7 @@ export class AuthService {
 
       return true;
     } catch (error: any) {
-      this.showErrorMsg(error.code);
-      console.log(error.code); // error.code gives a somewhat readable format.
+      this.showErrorMsg(error.code); // error.code gives a somewhat readable format.
       return false;
     };
   };
@@ -109,9 +106,7 @@ export class AuthService {
 
 
   showErrorMsg(errorCode: string) {
-    console.log("I am in errorMsg");
     if (errorCode in this.errorCodesVisibility) {
-      console.log("Error msg is true");
       this.errorCodesVisibility[errorCode] = true;
     }
   }
@@ -149,11 +144,8 @@ export class AuthService {
   async loginBtnPressed(email: any, password: any): Promise<void> {
     this.resetErrors();
     try {
-      const userCredential = await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
-      this.currentUser.email = userCredential.user.email; // Save user data
-      console.log('User logged in:', this.currentUser.email);
+      await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
     } catch (error: any) {
-      console.error('Login error:', error.code);
       this.showErrorMsg(error.code);
       return error.code;
     }
@@ -175,10 +167,8 @@ export class AuthService {
       });
 
       const userCredential = await signInWithPopup(this.firebaseAuth, provider);
-      this.currentUser.email = userCredential.user.email;
-      console.log('User logged in with Google:', this.currentUser.email);
+      this.firebaseUser.email = userCredential.user.email;
     } catch (error: any) {
-      console.error('Google login error:', error.code);
       this.showErrorMsg(error.code);
       return error.code;
     }
@@ -191,21 +181,11 @@ export class AuthService {
   async logoutUser(): Promise<void> {
     try {
       await signOut(this.firebaseAuth);
-      this.currentUser.email = null; // Clear user data
-      console.log('User logged out, email cleared:', 'this.currentUser.email');
+      this.firebaseUser.email = null; // Clear user data
     } catch (error: any) {
-      console.error('Logout error:', error);
     }
   }
 
-
-  /**
-   * Getter method to make currentUser available in other components.
-   */
-  getCurrentUserEmail(): string | null {
-    console.log(this.currentUser.email);
-    return this.currentUser.email;
-  }
 
 
   async setUserDoc(email: string) {

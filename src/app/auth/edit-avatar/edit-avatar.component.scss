@@ -6,12 +6,28 @@
     padding: 24px;
 }
 
-header{
-    @include font--size-weight-color($s:48px, $w:700, $c:#444DF2)
+header {
+    @include font--size-weight-color($s: 48px, $w: 700, $c: #444DF2)
+}
+
+/************************* Upload Btn *************************/
+.btn--upload-container{
+    margin: 12px;
+}
+
+.btn--upload-container .txt{
+    padding-right: 12px;
+}
+
+.btn--upload-container .label{
+    cursor: pointer;
+    border: 1px solid grey;
+    border-radius: 50px;
+    padding: 8px 16px;
 }
 
 .upload-btn {
-
+    border: solid blue;
     margin: 12px;
 
     span {
@@ -26,26 +42,33 @@ header{
     }
 }
 
-.img--preview,
-.img--preview>img {
-    @include width-height($w: 168px, $h:168px);
-    border-radius: 50%;
+.img--preview-container {
+    @include dflex($jC: center);
+    border: solid red;
 }
 
-.img--preview {
-    @include dflex($jC: center);
-
-    img {
-        object-fit: cover;
-    }
+.img--preview-container .img--preview {
+    @include width-height($w: 168px, $h: 168px);
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .avatar-selection {
     @include dflex($gap: 12px)
 }
 
-.preset-icon {
+.avatar-selection .preset-icon {
+    @include width-height($w: 72px, $h: 72px);
     cursor: pointer;
-    max-height: 48px;
     border-radius: 50%;
+}
+
+
+.card .username {
+    @include font--size-weight($s: 32px, $w: 700)
+}
+
+.card .choose-from-list {
+    align-self: flex-start;
+    border: solid orange;
 }

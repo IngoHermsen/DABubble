@@ -1,31 +1,31 @@
 <div class="card">
     <header>Wähle deinen Avatar</header>
-    <div class="username">{{userName}}</div>
     <!-- <div class="username">Hardcode</div> -->
-
-    <div class="img--preview">
+    
+    <div class="img--preview-container">
         @if (imgLoading) {
-        <div class="loading">
-            <mat-spinner mode="indeterminate"></mat-spinner>
-        </div>
+            <div class="loading">
+                <mat-spinner mode="indeterminate"></mat-spinner>
+            </div>
         } @else {
-        <img src="{{ previewImg }}" alt="person-placeholder">
+            <img src="{{ previewImg }}" class="img--preview" alt="person-placeholder">
         }
     </div>
+    
+    <div class="username">{{userName}}</div>
 
-
-    <span>Aus der Liste wählen</span>
+    <span class="choose-from-list">Aus der Liste wählen</span>
     <div class="avatar-selection">
         @for (image of avatarImages; track $index) {
         <img (click)="setPresetAvatar(image)" class="preset-icon" src="assets/images/{{ image }}" alt="{{ image }}">
         }
     </div>
     <div class="upload-btn">
-        <span>Eigenes Bild verwenden</span>
+        <span class="txt">Eigenes Bild verwenden</span>
         <input type="file" (change)="uploadImg($event)" id="upload-input" hidden>
-        <label class="upload-label" for="upload-input">Datei hochladen</label>
+        <label class="label" for="upload-input">Datei hochladen</label>
     </div>
-    <div class="btn-confirm" (click)="saveImgPath()">
-        Bestätigen
+    <div class="btn--confirm" (click)="saveImgPath()">
+        Weiter
     </div>
 </div>
