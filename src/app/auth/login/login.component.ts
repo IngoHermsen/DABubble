@@ -42,9 +42,6 @@ export class LoginComponent {
   }
   
 
-  logCurrentUser(): void {
-    console.log('Current user email:', this.authService.getCurrentUserEmail());
-  }
     
 
   async onSubmit(email: any, password: any, loginForm: NgForm) {
@@ -66,7 +63,7 @@ export class LoginComponent {
 
 
   private updateUserEmail(): void {
-    this.userEmail = this.authService.getCurrentUserEmail();
+    this.userEmail = this.authService.firebaseUser.email;
   }
 
 }
