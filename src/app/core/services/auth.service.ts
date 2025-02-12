@@ -145,6 +145,7 @@ export class AuthService {
     this.resetErrors();
     try {
       await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      this.router.navigate(['/workspace']);
     } catch (error: any) {
       this.showErrorMsg(error.code);
       return error.code;

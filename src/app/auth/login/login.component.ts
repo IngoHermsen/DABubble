@@ -27,6 +27,7 @@ export class LoginComponent {
   authService = inject(AuthService);
   makeVisible = false;
   userEmail: string | null = null;
+  firebaseUser: any 
   
 
   /**
@@ -37,8 +38,9 @@ export class LoginComponent {
     setTimeout(() => {
       this.makeVisible = true;
     }, 0);
-    
-    this.updateUserEmail();
+    this.authService.firebaseUser$.subscribe(user => {
+      this.firebaseUser = user
+    })
   }
   
 
@@ -54,16 +56,13 @@ export class LoginComponent {
 
   logout(): void {
     this.authService.logoutUser().then(() => {
-      this.updateUserEmail()
-      console.log('After logout:', this.userEmail);
+
+      console.log('After logout:', this.firebaseUser.email);
     });
   }
 
 
 
 
-  private updateUserEmail(): void {
-    this.userEmail = this.authService.firebaseUser.email;
-  }
 
 }
