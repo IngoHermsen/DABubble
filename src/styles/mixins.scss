@@ -1,6 +1,6 @@
-@mixin dflex($dir: row, $jC: space-between, $aI: center, $gap: 0px) {
+@mixin dflex($fD: row, $jC: space-between, $aI: center, $gap: 0px) {
     display: flex; 
-    flex-direction: $dir;
+    flex-direction: $fD;
     justify-content: $jC;
     align-items: $aI;
     gap: $gap
@@ -45,6 +45,7 @@
 }
 
 @mixin roundBtn($width, $height, $b-radius, $bg-color, $color: null, $font-size, $font-weight) {
+    @include dflex($fD: row, $jC: center, $aI: center, $gap: 0px);
     width: $width;
     height: $height;
     border-radius: $b-radius;

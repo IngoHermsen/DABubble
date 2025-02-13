@@ -1,7 +1,7 @@
 @import '../../../styles/mixins.scss';
 
 .card {
-    @include dflex($dir: column, $jC: unset, $gap: 16px);
+    @include dflex($fD: column, $jC: unset, $gap: 16px);
     border: solid red;
     padding: 24px;
 }

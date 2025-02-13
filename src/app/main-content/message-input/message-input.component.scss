@@ -1,7 +1,7 @@
 @import '../../../styles/mixins.scss';
 
 .content {
-    @include dflex($dir: column);
+    @include dflex($fD: column);
     // height: 
     width: 100%;
     align-items: flex-start;

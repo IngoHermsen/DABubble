@@ -5,7 +5,7 @@ $header-height: 80px;
 
 .wrapper {
     background-color: var(--bg-color);
-    @include dflex($dir: column);
+    @include dflex($fD: column);
     
 }
 

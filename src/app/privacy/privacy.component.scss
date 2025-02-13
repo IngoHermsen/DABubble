@@ -15,7 +15,7 @@ h1, h2, h3, h4, em {
 
 .privacy-container {
   position: relative;
-  @include dflex($dir: column);
+  @include dflex($fD: column);
   @include loginSignupWindow($width: 80%, $padding: 40px 60px);
   margin: 0 auto;
   margin-top: 40px;

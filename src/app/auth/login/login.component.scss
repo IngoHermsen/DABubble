@@ -13,7 +13,7 @@ $login-header-c: #444df2;
 /************************* Login Container *************************/
 .login-container {
   @include loginSignupWindow($width : 500px, $padding: 30px);
-  @include dflex($dir: column, $aI: center, $jC: center);
+  @include dflex($fD: column, $aI: center, $jC: center);
 }
 
 .login-header {
@@ -33,7 +33,7 @@ $login-header-c: #444df2;
 
 .login-form {
   padding-top: 24px;
-  @include dflex($dir: column, $jC: space-around, $aI: flex-start, $gap: 32px);
+  @include dflex($fD: column, $jC: space-around, $aI: flex-start, $gap: 32px);
   box-sizing: border-box;
   width: 100%;
 }

@@ -153,7 +153,7 @@ input::placeholder {
 
 .posts {
   width: 100%;
-  @include dflex($dir: column, $gap: 28px);
+  @include dflex($fD: column, $gap: 28px);
   overflow-y: auto;
 
   .post-wrapper {
