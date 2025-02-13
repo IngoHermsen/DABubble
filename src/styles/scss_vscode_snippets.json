@@ -1,42 +1,42 @@
 
 {
-  "mixin-fontSizeWeight": {
-      "prefix": "mixin-fontSizeWeight",
-      "body": [
-          "@include fontSizeWeight(\\$s:$1, \\$w:$2)"
-      ],
-      "description": ""
-  },
-  
-  "mixin-fontSizeWeightColor": {
-      "prefix": "mixin-fontSizeWeightColor",
-      "body": [
-          "@include fontSizeWeightColor(\\$s:$1, \\$w:$2, \\$c:$3)"
-      ],
-      "description": ""
-  },
-  
-  "mixin-widthHeight": {
-      "prefix": "mixin-widthHeight",
-      "body": [
-          "@include widthHeight(\\$w: $1, \\$h: $2)"
-      ],
-      "description": ""
-  },
-  
-  "mixin-widthHeightPadding": {
-      "prefix": "mixin-widthHeightPadding",
-      "body": [
-          "@include widthHeightPadding(\\$w: $1, \\$h: $2, \\$p: $3)"
-      ],
-      "description": ""
-  },
-  
-  "mixin-widthHeightMargin": {
-      "prefix": "mixin-widthHeightMargin",
-      "body": [
-          "@include widthHeightMargin(\\$w: $1, \\$h: $2, \\$m: $3)"
-      ],
-      "description": ""
+    "mixin-fontSizeWeight": {
+        "prefix": "mixin-fontSizeWeight",
+        "body": [
+            "@include fontSizeWeight(\\$s:$1, \\$w:$2)"
+        ],
+        "description": ""
+    },
+    
+    "mixin-fontSizeWeightColor": {
+        "prefix": "mixin-fontSizeWeightColor",
+        "body": [
+            "@include fontSizeWeightColor(\\$s:$1, \\$w:$2, \\$c:$3)"
+        ],
+        "description": ""
+    },
+    
+    "mixin-widthHeight": {
+        "prefix": "mixin-widthHeight",
+        "body": [
+            "@include widthHeight(\\$w: $1, \\$h: $2)"
+        ],
+        "description": ""
+    },
+    
+    "mixin-widthHeightPadding": {
+        "prefix": "mixin-widthHeightPadding",
+        "body": [
+            "@include widthHeightPadding(\\$w: $1, \\$h: $2, \\$p: $3)"
+        ],
+        "description": ""
+    },
+    
+    "mixin-widthHeightMargin": {
+        "prefix": "mixin-widthHeightMargin",
+        "body": [
+            "@include widthHeightMargin(\\$w: $1, \\$h: $2, \\$m: $3)"
+        ],
+        "description": ""
+    }
   }
-}

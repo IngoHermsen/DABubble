@@ -7,7 +7,8 @@
 }
 
 header {
-    @include font--size-weight-color($s: 48px, $w: 700, $c: #444DF2)
+    @include fontSizeWeightColor($s:48px, $w:700, $c:#444DF2);
+    // @include font--size-weight-color($s: 48px, $w: 700, $c: #444DF2)
 }
 
 /************************* Upload Btn *************************/
@@ -48,7 +49,7 @@ header {
 }
 
 .img--preview-container .img--preview {
-    @include width-height($w: 168px, $h: 168px);
+    @include widthHeight($w: 168px, $h: 168px);
     border-radius: 50%;
     object-fit: cover;
 }
@@ -58,14 +59,14 @@ header {
 }
 
 .avatar-selection .preset-icon {
-    @include width-height($w: 72px, $h: 72px);
+    @include widthHeight($w: 72px, $h: 72px);
     cursor: pointer;
     border-radius: 50%;
 }
 
 
 .card .username {
-    @include font--size-weight($s: 32px, $w: 700)
+    @include fontSizeWeight($s:32px, $w:700);
 }
 
 .card .choose-from-list {
