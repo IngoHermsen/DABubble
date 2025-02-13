@@ -44,15 +44,11 @@
     outline: none;
 }
 
-@mixin roundBtn($width, $height, $b-radius, $bg-color, $color: null, $font-size, $font-weight) {
-    @include dflex($fD: row, $jC: center, $aI: center, $gap: 0px);
-    width: $width;
-    height: $height;
+@mixin roundBtn($w:null, $h:null, $b-radius:null, $bg-color:null) {
+    width: $w;
+    height: $h;
     border-radius: $b-radius;
     background-color: $bg-color;
-    color: $color;
-    font-size: $font-size;
-    font-weight: $font-weight;
 }
 
 

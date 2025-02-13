@@ -57,7 +57,8 @@ $login-header-c: #444df2;
 
 
 .create-account-mobile{
-  @include roundBtn(165px, 39px, 25px, #ECEEFE, #444DF2, 18px, 700);
+  @include roundBtn($w: 165px, $h: 39px, $b-radius: 25px, $bg-color: #ECEEFE);
+  @include fontSizeWeightColor($s:18px, $w:700, $c:#ECEEFE);
   border: solid #444DF2 1px;
   cursor: pointer;
   display: none;
@@ -123,7 +124,9 @@ $login-header-c: #444df2;
   }
 
   .login-btn {
-    @include roundBtn(137px, 50px, 25px, #444DF2, white, 18px, 700)
+    @include dflex($fD: row, $jC: center, $aI: center);
+    @include roundBtn($w: 137px, $h: 50px, $b-radius: 25px, $bg-color: #444DF2);
+    @include fontSizeWeightColor($s:18px, $w:700, $c:#FFFF);
   }
 
   .inactive-login-btn{
@@ -132,7 +135,8 @@ $login-header-c: #444df2;
   }
 
   .guest-login-btn {
-    @include roundBtn(153px, 50px, 25px, white, #444DF2, 18px, 700);
+    @include roundBtn($w: 153px, $h: 50px, $b-radius: 25px, $bg-color: #FFFF,);
+    @include fontSizeWeightColor($s:18px, $w:700, $c:#444DF2);
     border: solid #444DF2 1px;
   }
 }

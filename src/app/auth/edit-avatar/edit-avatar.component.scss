@@ -74,12 +74,12 @@ header {
     border: solid orange;
 }
 
-// @mixin roundBtn($width, $height, $b-radius, $bg-color, $color, $font-size, $font-weight) {
-
 .btn--confirm {
-    @include roundBtn($width: 107px, $height: 49px, $b-radius: 25px, $bg-color: #444DF2, $font-size: 18px, $font-weight: 700)
+    @include roundBtn($w: 107px, $h: 49px, $b-radius: 25px, $bg-color: #444DF2);
+    @include fontSizeWeight($s:18px, $w: 700);
+    @include dflex($jC: center, $aI: center);
 }
 
 .btn--confirm .txt{
-
+    color: #FFFF
 }
