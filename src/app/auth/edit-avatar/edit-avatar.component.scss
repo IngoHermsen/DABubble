@@ -19,6 +19,7 @@
 
 .header-container .txt {
     @include fontSizeWeightColor($s: 48px, $w: 700, $c: #444DF2);
+    text-align: center;
 }
 
 .header-container .arrow-left {
@@ -155,6 +156,10 @@
  
     .btn--upload-container {
         display: none;
+    }
+
+    .card--main{
+        width: 300px;
     }
     
 }
