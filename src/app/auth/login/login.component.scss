@@ -57,9 +57,10 @@ $login-header-c: #444df2;
 
 
 .create-account-mobile{
-  @include roundBtn($w: 165px, $h: 39px, $b-radius: 25px, $bg-color: #ECEEFE);
+  @include roundBtn($w: 165px, $h: 39px, $b-radius: 25px, $bg-color: #444DF2);
   @include fontSizeWeightColor($s:18px, $w:700, $c:#ECEEFE);
   border: solid #444DF2 1px;
+  // opacity: 0.95;
   cursor: pointer;
   display: none;
   position: static;

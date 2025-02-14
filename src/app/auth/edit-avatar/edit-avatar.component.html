@@ -1,6 +1,8 @@
 <div class="card">
-    <header>Wähle deinen Avatar</header>
-    
+    <div class="header-container">
+        <img class="arrow-left" [routerLink]="'/main/signup'" src="../../../assets/icons/arrow_back.png" alt="">    
+        <header class="txt">Wähle deinen Avatar</header>
+    </div>
     <div class="img--preview-container">
         @if (imgLoading) {
             <div class="loading">
@@ -19,7 +21,7 @@
         <img (click)="setPresetAvatar(image)" class="preset-icon" src="assets/images/{{ image }}" alt="{{ image }}">
         }
     </div>
-    <div class="upload-btn">
+    <div class="btn--upload-container">
         <span class="txt">Eigenes Bild verwenden</span>
         <input type="file" (change)="uploadImg($event)" id="upload-input" hidden>
         <label class="label" for="upload-input">Datei hochladen</label>

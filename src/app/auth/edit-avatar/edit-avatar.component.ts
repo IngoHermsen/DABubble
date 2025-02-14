@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { getStorage, ref, uploadBytes } from '@angular/fire/storage';
 import { getDownloadURL } from 'firebase/storage';
 import { MatProgressSpinnerModule, MatProgressSpinner} from '@angular/material/progress-spinner';
@@ -11,7 +12,11 @@ import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/sign
 @Component({
   selector: 'app-edit-avatar',
   standalone: true,
-  imports: [MatProgressSpinnerModule, MatProgressSpinner],
+  imports: [
+    MatProgressSpinnerModule,
+    MatProgressSpinner,
+    RouterLink,
+  ],
   templateUrl: './edit-avatar.component.html',
   styleUrl: './edit-avatar.component.scss'
 })

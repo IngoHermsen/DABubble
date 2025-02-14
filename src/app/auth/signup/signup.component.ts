@@ -60,7 +60,12 @@ private fsService = inject(FirestoreService)
       passwordValue,
       usernameValue
     );
-    this.clearFieldsShowMsgAfterSignUpSuccess(signupSuccess, signupForm);
+    if (signupSuccess) {
+      this.clearFieldsShowMsgAfterSignUpSuccess(signupSuccess, signupForm);
+      setTimeout(() => {
+        this.router.navigate(['main', 'avatar']);
+      }, 3000);
+    }
   }
 
 

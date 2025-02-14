@@ -2,18 +2,28 @@
 
 .card {
     @include dflex($fD: column, $jC: unset, $gap: 16px);
-    border: solid red;
-    padding: 24px;
+    // border: solid red;
+    padding: 48px;
 }
 
-header {
+/************************* header-container *************************/
+.header-container{
+    @include dflex($fD: row,$aI: center, $gap: 16px);
+    margin-bottom: 48px;
+}
+
+.header-container .txt {
     @include fontSizeWeightColor($s:48px, $w:700, $c:#444DF2);
-    // @include font--size-weight-color($s: 48px, $w: 700, $c: #444DF2)
 }
 
-/************************* Upload Btn *************************/
+.header-container .arrow-left{
+    cursor: pointer;
+}
+
+/************************* btn--upload *************************/
 .btn--upload-container {
-    margin: 12px;
+    margin: 16px 0 ;
+    align-self: flex-start;
 }
 
 .btn--upload-container .txt {
@@ -27,25 +37,11 @@ header {
     padding: 8px 16px;
 }
 
-.upload-btn {
-    border: solid blue;
-    margin: 12px;
 
-    span {
-        padding-right: 12px;
-    }
-
-    label {
-        cursor: pointer;
-        border: 1px solid grey;
-        border-radius: 50px;
-        padding: 8px 16px;
-    }
-}
-
+/************************* img--preview-container *************************/
 .img--preview-container {
     @include dflex($jC: center);
-    border: solid red;
+    // border: solid red;
 }
 
 .img--preview-container .img--preview {
@@ -54,6 +50,8 @@ header {
     object-fit: cover;
 }
 
+
+/************************* avatar-selection *************************/
 .avatar-selection {
     @include dflex($gap: 12px)
 }
@@ -64,20 +62,25 @@ header {
     border-radius: 50%;
 }
 
-
+/************************* single-elements *************************/
 .card .username {
     @include fontSizeWeight($s:32px, $w:700);
 }
 
 .card .choose-from-list {
     align-self: flex-start;
-    border: solid orange;
+    @include fontSizeWeight($s:20px, $w:400);
+    margin-bottom: 8px;
 }
 
+/************************* btn-confirm *************************/
 .btn--confirm {
     @include roundBtn($w: 107px, $h: 49px, $b-radius: 25px, $bg-color: #444DF2);
     @include fontSizeWeight($s:18px, $w: 700);
     @include dflex($jC: center, $aI: center);
+    align-self: flex-end;
+    margin-top: 24px;
+    cursor: pointer;
 }
 
 .btn--confirm .txt{

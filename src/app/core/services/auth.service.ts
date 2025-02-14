@@ -44,7 +44,8 @@ export class AuthService {
     onAuthStateChanged(this.firebaseAuth, (user: any) => {
       this.firebaseUser = user
       this.firebaseUserSubject.next(user) // Hier wird das Subject aktualisiert. 
-      console.log('onAuthStateChanged:', user.email);
+      console.log('currentUser:', user);
+      // console.log('onAuthStateChanged:', user.email);
     });
   }
 
@@ -80,7 +81,6 @@ export class AuthService {
       await updateProfile(userCredential.user, {
         displayName: usernameValue
       });
-      this.router.navigate(['main', 'avatar']);
 
       this.user = {
         email: emailValue,
