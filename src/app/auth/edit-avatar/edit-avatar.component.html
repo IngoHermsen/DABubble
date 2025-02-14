@@ -1,18 +1,24 @@
-<div class="card">
+<div class="mobile--top-icon">
+    <img src="../../../assets/images/logo.png" class="img" alt="logo">
+    <span class="txt">DABubble</span>
+</div>
+
+
+<div class="card--main">
     <div class="header-container">
-        <img class="arrow-left" [routerLink]="'/main/signup'" src="../../../assets/icons/arrow_back.png" alt="">    
+        <img class="arrow-left" [routerLink]="'/main/signup'" src="../../../assets/icons/arrow_back.png" alt="">
         <header class="txt">Wähle deinen Avatar</header>
     </div>
     <div class="img--preview-container">
         @if (imgLoading) {
-            <div class="loading">
-                <mat-spinner mode="indeterminate"></mat-spinner>
-            </div>
+        <div class="loading">
+            <mat-spinner mode="indeterminate"></mat-spinner>
+        </div>
         } @else {
-            <img src="{{ previewImg }}" class="img--preview" alt="person-placeholder">
+        <img src="{{ previewImg }}" class="img" alt="person-placeholder">
         }
     </div>
-    
+
     <div class="username">{{userName}}</div>
 
     <span class="choose-from-list">Aus der Liste wählen</span>

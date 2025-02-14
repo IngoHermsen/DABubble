@@ -1,28 +1,33 @@
 @import '../../../styles/mixins.scss';
 
-.card {
+.card--main {
     @include dflex($fD: column, $jC: unset, $gap: 16px);
-    // border: solid red;
     padding: 48px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 25px;
+    border: unset;
+    height: 100%;
 }
 
+
 /************************* header-container *************************/
-.header-container{
-    @include dflex($fD: row,$aI: center, $gap: 16px);
+.header-container {
+    @include dflex($fD: row, $aI: center, $gap: 16px);
     margin-bottom: 48px;
 }
 
 .header-container .txt {
-    @include fontSizeWeightColor($s:48px, $w:700, $c:#444DF2);
+    @include fontSizeWeightColor($s: 48px, $w: 700, $c: #444DF2);
 }
 
-.header-container .arrow-left{
+.header-container .arrow-left {
     cursor: pointer;
 }
 
 /************************* btn--upload *************************/
 .btn--upload-container {
-    margin: 16px 0 ;
+    margin: 16px 0;
     align-self: flex-start;
 }
 
@@ -41,10 +46,9 @@
 /************************* img--preview-container *************************/
 .img--preview-container {
     @include dflex($jC: center);
-    // border: solid red;
 }
 
-.img--preview-container .img--preview {
+.img--preview-container .img {
     @include widthHeight($w: 168px, $h: 168px);
     border-radius: 50%;
     object-fit: cover;
@@ -63,26 +67,94 @@
 }
 
 /************************* single-elements *************************/
-.card .username {
-    @include fontSizeWeight($s:32px, $w:700);
+.card--main .username {
+    @include fontSizeWeight($s: 32px, $w: 700);
 }
 
-.card .choose-from-list {
+.card--main .choose-from-list {
     align-self: flex-start;
-    @include fontSizeWeight($s:20px, $w:400);
+    @include fontSizeWeight($s: 20px, $w: 400);
     margin-bottom: 8px;
 }
 
 /************************* btn-confirm *************************/
 .btn--confirm {
     @include roundBtn($w: 107px, $h: 49px, $b-radius: 25px, $bg-color: #444DF2);
-    @include fontSizeWeight($s:18px, $w: 700);
+    @include fontSizeWeight($s: 18px, $w: 700);
     @include dflex($jC: center, $aI: center);
     align-self: flex-end;
     margin-top: 24px;
     cursor: pointer;
 }
 
-.btn--confirm .txt{
+.btn--confirm .txt {
     color: #FFFF
+}
+
+
+/************************* mobile elements *************************/
+
+/************************* top-icon-container *************************/
+.mobile--top-icon {
+    display: none;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 56px;
+    margin-top: 100px;
+    gap: 8px;
+}
+
+.mobile--top-icon .txt {
+    align-self: center;
+    color: black;
+    @include fontSizeWeight($s:24px, $w:700);
+}
+
+.mobile--top-icon .img{
+    width: 56px;
+}
+
+
+/************************* Responsivness *************************/
+
+/************************* width <=768px *************************/
+@media (width <=768px) {
+    .mobile--top-icon {
+        display: flex;
+    }
+
+    .header-container .txt {
+        @include fontSizeWeightColor($s: 32px, $w: 700, $c: #444DF2);
+    }
+    
+    .img--preview-container .img {
+        @include widthHeight($w: 120px, $h: 120px);
+    }
+ 
+    .avatar-selection .preset-icon {
+        @include widthHeight($w: 56px, $h: 56px);
+    }
+    
+    .card--main{
+        padding: 24px;
+    }
+}
+
+
+/************************* width <=481px *************************/
+@media (width <=481px){
+    .avatar-selection .preset-icon {
+        @include widthHeight($w: 32px, $h: 32px);
+    }
+
+    .card--main .choose-from-list {
+        align-self: flex-start;
+        @include fontSizeWeight($s: 20px, $w: 400);
+        margin-bottom: 8px;
+    }
+ 
+    .btn--upload-container {
+        display: none;
+    }
+    
 }

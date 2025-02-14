@@ -93,3 +93,10 @@ p{
 }
 
 
+/************************* Responsivness *************************/
+
+@media (width <=1000px) {
+  .card {
+    border-radius: 25px;
+  }
+}
