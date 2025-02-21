@@ -11,11 +11,13 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-  User as FirebaseUser,
+  
 } from '@angular/fire/auth';
 import { User } from '../interfaces/user';
 import { doc, setDoc, WithFieldValue } from "firebase/firestore";
 import { Firestore } from '@angular/fire/firestore';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,16 +26,29 @@ export class AuthService {
   private router = inject(Router);
   public dbFs = inject(Firestore);
   private firebaseAuth = inject(Auth);
-  firebaseUser: any = {}
-
-
   private firebaseUserSubject = new BehaviorSubject<User | null>(null)
-
-  firebaseUser$ = this.firebaseUserSubject.asObservable(); // Public Observable
-
   showPassword = false;
+
+
+  firebaseUser: any = {}
+  firebaseUser$ = this.firebaseUserSubject.asObservable(); // Public Observable
   user: User | null = null;
 
+
+  errorCodes = {
+    "auth/invalid-credential": "Falsche Email Password Kombination",
+    "auth/invalid-email": "Unzulässige Email",
+    "auth/email-already-in-use": "Diese Email wird bereits verwendet"
+  };
+
+
+  errorCodesVisibility: any = {
+    "auth/invalid-credential": false,
+    "auth/invalid-email": false,
+    "auth/email-already-in-use": false
+  };
+  
+  
   /**
    * Initializes the authentication state listener.
    * The onAuthStateChanged listener triggers on signup, login, and logout events,
@@ -50,18 +65,6 @@ export class AuthService {
   }
 
 
-  errorCodes = {
-    "auth/invalid-credential": "Falsche Email Password Kombination",
-    "auth/invalid-email": "Unzulässige Email",
-    "auth/email-already-in-use": "Diese Email wird bereits verwendet"
-  };
-
-
-  errorCodesVisibility: any = {
-    "auth/invalid-credential": false,
-    "auth/invalid-email": false,
-    "auth/email-already-in-use": false
-  };
 
 
   /**
@@ -100,6 +103,25 @@ export class AuthService {
   };
 
 
+  /**
+   * Executes on loginBtn.
+   * Trys to sign in the user with email password. 
+   * Updates the <currentUser> global.
+   * Catches possible errors and logs their <code> 
+   */
+  async loginBtnPressed(email: any, password: any): Promise<void> {
+    this.resetErrors();
+    try {
+      await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      this.router.navigate(['/workspace']);
+    } catch (error: any) {
+      this.showErrorMsg(error.code);
+      return error.code;
+    }
+  }
+
+
+
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
@@ -133,22 +155,6 @@ export class AuthService {
   }
 
 
-  /**
-   * Executes on loginBtn.
-   * Trys to sign in the user with email password. 
-   * Updates the <currentUser> global.
-   * Catches possible errors and logs their <code> 
-   */
-  async loginBtnPressed(email: any, password: any): Promise<void> {
-    this.resetErrors();
-    try {
-      await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
-      this.router.navigate(['/workspace']);
-    } catch (error: any) {
-      this.showErrorMsg(error.code);
-      return error.code;
-    }
-  }
 
 
   /**
@@ -190,6 +196,5 @@ export class AuthService {
     if (this.user) {
       await setDoc(doc(this.dbFs, 'users', email), this.user);
     }
-
   }
 }

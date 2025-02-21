@@ -44,8 +44,6 @@ export class LoginComponent {
   }
   
 
-    
-
   async onSubmit(email: any, password: any, loginForm: NgForm) {
     if (loginForm.invalid) {
       return;

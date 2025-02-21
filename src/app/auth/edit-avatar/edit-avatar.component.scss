@@ -18,7 +18,7 @@
 }
 
 .header-container .txt {
-    @include fontSizeWeightColor($s: 48px, $w: 700, $c: #444DF2);
+    @include fontSizeWeightColor($s: 48px, $w: 700, $c: black);
     text-align: center;
 }
 
