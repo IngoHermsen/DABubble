@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthComponent } from './auth/auth-animation/auth-animation.component';
 import { MainComponent } from './main-content/main-content.component';
@@ -13,16 +13,17 @@ import { PrivacyComponent } from './privacy/privacy.component';
 import { SubjectExample } from './core/abstractions/behavior-subject-generics/subject-example';
 import { BehaviorSubject } from 'rxjs';
 import { BehaviorSubjectExample } from './core/abstractions/behavior-subject-generics/behavior-subject-example';
+import { DialogComponent } from './main-content/dialog/dialog.component';
 
 export const routes: Routes = [
     { path: '', component: AuthComponent },
-    { path: 'main', redirectTo: 'main/login', pathMatch: 'full'},
-    { path: 'workspace', redirectTo: 'workspace/channel', pathMatch: 'full'},
+    { path: 'main', redirectTo: 'main/login', pathMatch: 'full' },
+    { path: 'workspace', redirectTo: 'workspace/channel', pathMatch: 'full' },
     //!Delete
-    { path: 'subject', component: SubjectExample},
-    { path: 'behavior-subject', component: BehaviorSubjectExample},
+    { path: 'subject', component: SubjectExample },
+    { path: 'behavior-subject', component: BehaviorSubjectExample },
     //!Delete
-    
+
     {
         path: 'main', component: AuthPostAnimationComponent,
         children:
@@ -30,10 +31,10 @@ export const routes: Routes = [
                 { path: 'login', component: LoginComponent },
                 { path: 'signup', component: SignupComponent },
                 { path: 'imprint', component: ImprintComponent },
-                { path: 'privacy', component: PrivacyComponent},
+                { path: 'privacy', component: PrivacyComponent },
                 { path: 'avatar', component: EditAvatarComponent },
             ]
-        },
+    },
     { path: 'auth', component: AuthComponent },
     {
         path: 'workspace', component: MainComponent,
@@ -44,6 +45,9 @@ export const routes: Routes = [
                 { path: 'direct-messages', component: DirectMessagesComponent }
             ]
     },
-    
-
+    {
+        path: 'dialog/:type',
+        component: LoginComponent,
+        outlet: 'modal'
+    }
 ];

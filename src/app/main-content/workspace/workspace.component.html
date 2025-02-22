@@ -14,7 +14,7 @@
                 <span class="material-icons-outlined">workspaces</span>
                 <span>Channels</span>
             </div>
-            <span class="material-icons-round plus">add</span>
+            <span class="material-icons-round plus" (click)="viewService.openDialog('new-channel')">add</span>
         </h3>
 
         @if(showChannelEntries) {

@@ -1,8 +1,11 @@
 @if(viewService.showDialog) {
-<div class="modal" (click)="closeDialog()">
-    <app-dialog></app-dialog>
+<div class="modal" (click)="viewService.showDialog = false">
+    <div>
+        <router-outlet name="modal"></router-outlet>
+    </div>
 </div>
 }
+
 <div class="wrapper">
     @if (!viewService.mobileView) {
     <span appShowOnHover (click)="viewService.showWorkspaceMenu = !viewService.showWorkspaceMenu" class="toggle-btn">

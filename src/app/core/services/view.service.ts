@@ -1,5 +1,6 @@
 import { inject, Injectable, Type } from '@angular/core';
 import { Router } from '@angular/router';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,29 @@ export class ViewService {
 
   constructor() { 
     this.mobileView = window.innerWidth <= 1000;
-    console.log(`windows.innerwidth:${window.innerWidth}, mobileView = ${this.mobileView}`)
   }
 
+  
+
   wsNavigate(route: string) {
-    console.log(route);
     this.showLogo = route == 'workspace' ? true : false;
     this.router.navigate([route]);
+  }
+
+  openDialog(route: string) {
+
+    this.showDialog = true;
+
+    setTimeout(() => {
+          this.router.navigate([{ outlets: { modal: ['dialog', 'new-channel'] }}])
+          .then((success) => {
+            if (success) {
+              console.log('erfolgreich');
+            } else {
+              console.log('fehlgeschlagen')
+            }
+          })
+
+    }, 2000)
   }
 }

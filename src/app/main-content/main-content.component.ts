@@ -10,6 +10,7 @@ import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from '../core/services/dialog.service';
 import { ViewService } from '../core/services/view.service';
+import { FirestoreService } from '../core/services/firestore.service';
 import { RouterOutlet, Router } from '@angular/router';
 
 @Component({
@@ -62,7 +63,8 @@ import { RouterOutlet, Router } from '@angular/router';
 export class MainComponent implements OnInit {
   public viewService = inject(ViewService);
   public dialogService = inject(DialogService);
-  
+  public firestoreService = inject(FirestoreService)
+
   constructor() {
   }
 
@@ -71,10 +73,5 @@ export class MainComponent implements OnInit {
   closeThreadSection(event: boolean) {
     this.viewService.showThreadSection = false;
   }
-
-  closeDialog() {
-    this.viewService.showDialog = false;
-  }
-
 
 }

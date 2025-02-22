@@ -9,5 +9,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './dialog.component.scss'
 })
 export class DialogComponent {
-
+  
 }
