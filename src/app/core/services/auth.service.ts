@@ -11,7 +11,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-  
+
 } from '@angular/fire/auth';
 import { User } from '../interfaces/user';
 import { FirestoreService } from './firestore.service';
@@ -26,12 +26,12 @@ export class AuthService {
   private router = inject(Router);
   public dbFs = inject(Firestore);
   private firebaseAuth = inject(Auth);
-  private firestoreService = inject(FirestoreService)
-  private firebaseUserSubject = new BehaviorSubject<User | null>(null)
+  private firestoreService = inject(FirestoreService);
+  private firebaseUserSubject = new BehaviorSubject<User | null>(null);
   showPassword = false;
 
 
-  firebaseUser: any = {}
+  firebaseUser: any = {};
   firebaseUser$ = this.firebaseUserSubject.asObservable(); // Public Observable
   user: User | null = null;
 
@@ -48,8 +48,8 @@ export class AuthService {
     "auth/invalid-email": false,
     "auth/email-already-in-use": false
   };
-  
-  
+
+
   /**
    * Initializes the authentication state listener.
    * The onAuthStateChanged listener triggers on signup, login, and logout events,
@@ -58,8 +58,8 @@ export class AuthService {
    */
   constructor() {
     onAuthStateChanged(this.firebaseAuth, (user: any) => {
-      this.firebaseUser = user
-      this.firebaseUserSubject.next(user) // Hier wird das Subject aktualisiert. 
+      this.firebaseUser = user;
+      this.firebaseUserSubject.next(user); // Hier wird das Subject aktualisiert. 
       console.log('currentUser:', user);
       // console.log('onAuthStateChanged:', user.email);
     });
@@ -80,9 +80,8 @@ export class AuthService {
     this.resetErrors();
     try {
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, emailValue, passwordValue);
-      await updateProfile(userCredential.user, {
-        displayName: usernameValue
-      });
+
+      this.updateUserCredentials(userCredential.user, "displayName", usernameValue)
 
       return true;
     } catch (error: any) {
@@ -180,5 +179,9 @@ export class AuthService {
     }
   }
 
-
+  async updateUserCredentials(user: any, key: "displayName" | "photoURL", value: string) {
+    await updateProfile(user, {
+      [key]: value // Dynamischer Key, jetzt akzeptiert!
+    });
+  }
 }
