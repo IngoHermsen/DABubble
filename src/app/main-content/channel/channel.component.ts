@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
-import { NgIf } from '@angular/common';
 import { MessageInputComponent } from '../message-input/message-input.component';
 import { ViewService } from '../../core/services/view.service';
 

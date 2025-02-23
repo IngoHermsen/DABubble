@@ -17,12 +17,11 @@
             <span class="material-icons-round plus" (click)="viewService.openDialog('new-channel')">add</span>
         </h3>
 
-        @if(showChannelEntries) {
         <div class="entries">
-            <div (click)="viewService.wsNavigate('workspace/channel')" class="entry"><span>#</span>test Eintrag 1</div>
-            <div class="entry"><span>#</span>test Eintrag 2</div>
+            @for(channel of channelNames; let index = $index; track $index) {
+                <div class="entry"><span>#</span>{{ channel }}</div>
+            }
         </div>
-        }
     </section>
     <section class="direct-msg">
         <h3 (click)="toggleEntries('direct-msg')" class="title">
