@@ -10,13 +10,13 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
-  updateProfile,
+  // updateProfile,
 
 } from '@angular/fire/auth';
 import { User } from '../interfaces/user';
 import { FirestoreService } from './firestore.service';
 import { Firestore } from '@angular/fire/firestore';
-
+import { updateProfile } from '@angular/fire/auth';
 
 
 @Injectable({
@@ -86,7 +86,7 @@ export class AuthService {
 
       return true;
     } catch (error: any) {
-      this.showErrorMsg(error.code); // error.code gives a somewhat readable format.
+      this.showErrorMsg(error.code); 
       return false;
     };
   };
