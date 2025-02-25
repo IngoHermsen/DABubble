@@ -88,6 +88,11 @@ $header-height: 80px;
         text-align: right;
     }
 
+    .user-menu .img--avatar{
+        @include widthHeight($w: 48px, $h: 48px);
+        border-radius: 50%;
+    }
+
     > div {
         min-width: 250px;
     }

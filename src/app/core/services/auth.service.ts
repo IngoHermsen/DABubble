@@ -11,12 +11,11 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-
+  
 } from '@angular/fire/auth';
 import { User } from '../interfaces/user';
-import { doc, setDoc, WithFieldValue } from "firebase/firestore";
+import { FirestoreService } from './firestore.service';
 import { Firestore } from '@angular/fire/firestore';
-
 
 
 @Injectable({
@@ -26,12 +25,12 @@ export class AuthService {
   private router = inject(Router);
   public dbFs = inject(Firestore);
   private firebaseAuth = inject(Auth);
-  private firebaseUserSubject = new BehaviorSubject<User | null>(null);
+  private firebaseUserSubject = new BehaviorSubject<User | null>(null)
   showPassword = false;
 
 
+  firebaseUser: any = {}
   firebaseUser$ = this.firebaseUserSubject.asObservable(); // Public Observable
-  firebaseUser: any = {};
   user: User | null = null;
 
 
@@ -79,23 +78,13 @@ export class AuthService {
     this.resetErrors();
     try {
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, emailValue, passwordValue);
-      await updateProfile(userCredential.user, {
-        displayName: usernameValue
-      });
-
-      this.user = {
-        email: emailValue,
-        displayName: usernameValue,
-        directMessages: [],
-        avatarPath: "",
-        isOnline: false,
-      };
-
-      this.setUserDoc(emailValue);
+      console.log(userCredential);
+      this.updateUserCredentials(userCredential.user, "displayName", usernameValue)
+      console.log(userCredential.user);
 
       return true;
     } catch (error: any) {
-      this.showErrorMsg(error.code); // error.code gives a somewhat readable format.
+      this.showErrorMsg(error.code); 
       return false;
     };
   };
@@ -187,10 +176,9 @@ export class AuthService {
     }
   }
 
-
-  async setUserDoc(email: string) {
-    if (this.user) {
-      await setDoc(doc(this.dbFs, 'users', email), this.user);
-    }
+  async updateUserCredentials(user: any, key: "displayName" | "photoURL", value: string) {
+    await updateProfile(user, {
+      [key]: value 
+    });
   }
 }

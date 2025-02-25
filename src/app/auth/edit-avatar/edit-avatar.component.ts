@@ -99,9 +99,12 @@ export class  EditAvatarComponent implements OnInit {
   
   async saveImgPath(){
     if(this.firebaseUser.email != null ){
-      const docRef = doc(this.authService.dbFs, "users", this.firebaseUser.email)
-      let data = {avatarPath: this.previewImg}
-      updateDoc(docRef, data)
+      this.authService.updateUserCredentials(this.firebaseUser, "photoURL", this.previewImg)
+
+      console.log(this.firebaseUser);
+      // const docRef = doc(this.authService.dbFs, "users", this.firebaseUser.email)
+      // let data = {avatarPath: this.previewImg}
+      // updateDoc(docRef, data)
     }
   }
 

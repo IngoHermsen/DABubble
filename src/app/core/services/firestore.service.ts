@@ -16,8 +16,15 @@ export class FirestoreService {
     this.channelIds.set(cNames)
   });
 
+
   async addUserToFirestore(userId: string, userData: any) {
     const userDocRef = doc(this.dbFs, `users/${userId}`);
     return await setDoc(userDocRef, userData);
   }
+
+
+  async setUserDoc(email: string, user: any) {
+      await setDoc(doc(this.dbFs, 'users', email), user);
+  }
+
 }
