@@ -12,6 +12,7 @@ import { DialogService } from '../core/services/dialog.service';
 import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
 import { RouterOutlet, Router } from '@angular/router';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -64,6 +65,7 @@ export class MainComponent implements OnInit {
   public viewService = inject(ViewService);
   public dialogService = inject(DialogService);
   public firestoreService = inject(FirestoreService)
+  private authService =  inject(AuthService)
 
   constructor() {
   }

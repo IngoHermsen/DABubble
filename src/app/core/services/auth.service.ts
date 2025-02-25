@@ -80,8 +80,9 @@ export class AuthService {
     this.resetErrors();
     try {
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, emailValue, passwordValue);
-
+      console.log(userCredential);
       this.updateUserCredentials(userCredential.user, "displayName", usernameValue)
+      console.log(userCredential.user);
 
       return true;
     } catch (error: any) {
@@ -181,7 +182,7 @@ export class AuthService {
 
   async updateUserCredentials(user: any, key: "displayName" | "photoURL", value: string) {
     await updateProfile(user, {
-      [key]: value // Dynamischer Key, jetzt akzeptiert!
+      [key]: value 
     });
   }
 }
