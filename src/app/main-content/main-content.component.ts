@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectorRef } from '@angular/core';
 import { ChannelComponent } from './channel/channel.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { WorkspaceComponent } from './workspace/workspace.component';
@@ -11,7 +11,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from '../core/services/dialog.service';
 import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
-import { RouterOutlet, Router } from '@angular/router';
+import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 
 @Component({
@@ -64,13 +64,24 @@ import { AuthService } from '../core/services/auth.service';
 export class MainComponent implements OnInit {
   public viewService = inject(ViewService);
   public dialogService = inject(DialogService);
-  public firestoreService = inject(FirestoreService)
-  private authService =  inject(AuthService)
+  public firestoreService = inject(FirestoreService);
+  private authService = inject(AuthService);
+  private cdr = inject(ChangeDetectorRef);
+  private router = inject(Router)
+  avatarPath: any;
 
   constructor() {
-  }
 
-  ngOnInit(): void {}
+  }
+  ngOnInit(): void {
+    this.authService.firebaseUser$.subscribe(user => {
+      setTimeout(() => {
+        this.avatarPath = user?.photoURL;
+      }, 1000);
+    });
+  
+
+  }
 
   closeThreadSection(event: boolean) {
     this.viewService.showThreadSection = false;
