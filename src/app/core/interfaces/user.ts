@@ -4,4 +4,5 @@ export interface User {
     directMessages: any[]; 
     avatarPath: string;
     isOnline: boolean;
+    photoURL: string;
 }

@@ -136,6 +136,7 @@ export class AuthService {
       directMessages: [],
       avatarPath: "",
       isOnline: false,
+      photoURL: "",
     };
   }
 
