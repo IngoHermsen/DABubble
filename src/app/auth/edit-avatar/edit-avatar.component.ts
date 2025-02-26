@@ -99,21 +99,11 @@ export class EditAvatarComponent implements OnInit {
     }
   }
 
-
-  async saveImgPath() {
-    if (this.firebaseUser.email != null) {
-      this.authService.updateUserCredentials(this.firebaseUser, "photoURL", this.previewImg);
-
-      console.log(this.firebaseUser);
-      // const docRef = doc(this.authService.dbFs, "users", this.firebaseUser.email)
-      // let data = {avatarPath: this.previewImg}
-      // updateDoc(docRef, data)
-    }
-  }
-
-
+  
+  
   setPresetAvatar(imgFileName: string) {
     this.previewImg = 'assets/images/' + imgFileName;
+    this.authService.updateUserCredentials(this.firebaseUser, "photoURL", this.previewImg);
   }
 
 }

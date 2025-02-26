@@ -75,9 +75,7 @@ export class MainComponent implements OnInit {
   }
   ngOnInit(): void {
     this.authService.firebaseUser$.subscribe(user => {
-      setTimeout(() => {
         this.avatarPath = user?.photoURL;
-      }, 1000);
     });
   
 
