@@ -57,8 +57,8 @@ export class AuthService {
   constructor() {
     onAuthStateChanged(this.firebaseAuth, (user: any) => {
       this.firebaseUser = user;
-      this.firebaseUserSubject.next(user); // Hier wird das Subject aktualisiert. 
-      console.log('currentUser:', user);
+      this.firebaseUserSubject.next(user); 
+      // console.log('currentUser:', user);
       // console.log('onAuthStateChanged:', user.email);
     });
   }
@@ -78,9 +78,7 @@ export class AuthService {
     this.resetErrors();
     try {
       const userCredential = await createUserWithEmailAndPassword(this.firebaseAuth, emailValue, passwordValue);
-      console.log(userCredential);
       this.updateUserCredentials(userCredential.user, "displayName", usernameValue)
-      console.log(userCredential.user);
 
       return true;
     } catch (error: any) {
