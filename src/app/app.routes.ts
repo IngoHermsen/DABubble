@@ -45,9 +45,4 @@ export const routes: Routes = [
                 { path: 'direct-messages', component: DirectMessagesComponent }
             ]
     },
-    {
-        path: 'dialog/:type',
-        component: LoginComponent,
-        outlet: 'modal'
-    }
 ];
