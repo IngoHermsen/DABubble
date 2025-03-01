@@ -10,6 +10,7 @@ export class ViewService {
   showWorkspaceMenu: boolean = true;
   showThreadSection: boolean = false;
   showModal: boolean = false;
+  activeDialog: string;
 
   // mobile options
   mobileView: boolean;
@@ -27,10 +28,9 @@ export class ViewService {
     this.router.navigate([route]);
   }
 
-  openDialog(route: string) {
-
+  openModal(name: string) {
     this.showModal = true;
-
+    this.activeDialog = name;
   
   }
 }

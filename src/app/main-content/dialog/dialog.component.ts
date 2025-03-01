@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ViewService } from '../../core/services/view.service';
 
 @Component({
   selector: 'app-dialog',
@@ -8,6 +9,13 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss'
 })
-export class DialogComponent {
+export class DialogComponent implements OnInit {
+  public viewService = inject(ViewService);
+  
+  content: string;
+
+  ngOnInit() {
+    this.content = this.viewService.activeDialog;
+  }
   
 }
