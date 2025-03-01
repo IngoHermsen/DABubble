@@ -51,6 +51,6 @@ export class WorkspaceComponent implements OnInit {
   // Following toogleDialog Function is for testing purposes: 
 
   toggleDialog() {
-    this.viewService.showDialog = !this.viewService.showDialog;
+    // this.viewService.showDialog = !this.viewService.showDialog;
   }
 }

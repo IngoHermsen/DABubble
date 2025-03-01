@@ -9,7 +9,7 @@ export class ViewService {
   private router = inject(Router);
   showWorkspaceMenu: boolean = true;
   showThreadSection: boolean = false;
-  showDialog: boolean = false;
+  showModal: boolean = false;
 
   // mobile options
   mobileView: boolean;
@@ -29,7 +29,7 @@ export class ViewService {
 
   openDialog(route: string) {
 
-    this.showDialog = true;
+    this.showModal = true;
 
   
   }
