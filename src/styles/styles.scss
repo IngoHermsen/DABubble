@@ -205,6 +205,7 @@ div.message-input {
   inset: 0;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.4);
+  @include dflex();
 }
 
 @media (width <=1000px) {

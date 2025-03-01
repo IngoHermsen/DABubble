@@ -1,7 +1,7 @@
 @if(viewService.showDialog) {
 <div class="modal" (click)="viewService.showDialog = false">
     <div>
-        
+        <app-dialog></app-dialog>
     </div>
 </div>
 }
@@ -40,7 +40,7 @@
             @if(!viewService.mobileView) {
             <span>Vorname</span><span>Nachname</span>
             }
-            <!-- <img class="img--avatar" [src]="'../../' + avatarPath" alt=""> -->
+            <img class="img--avatar" [src]="'../../' + avatarPath" alt="">
             <!-- <span>AVATAR</span> -->
         </div>
     </section>
