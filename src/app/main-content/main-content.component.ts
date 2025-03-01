@@ -66,8 +66,6 @@ export class MainComponent implements OnInit {
   public dialogService = inject(DialogService);
   public firestoreService = inject(FirestoreService);
   private authService = inject(AuthService);
-  private cdr = inject(ChangeDetectorRef);
-  private router = inject(Router)
   avatarPath: any;
 
   constructor() {
@@ -77,8 +75,6 @@ export class MainComponent implements OnInit {
     this.authService.firebaseUser$.subscribe(user => {
         this.avatarPath = user?.photoURL;
     });
-  
-
   }
 
   closeThreadSection(event: boolean) {

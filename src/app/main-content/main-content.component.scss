@@ -86,7 +86,8 @@ $header-height: 80px;
     }
 
     .user-menu {
-        text-align: right;
+        border: solid red;
+        @include dflex($fD: row, $jC: space-around, $aI: center, $gap: 0px);
     }
 
     .user-menu .img--avatar{
