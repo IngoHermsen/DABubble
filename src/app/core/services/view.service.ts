@@ -31,16 +31,6 @@ export class ViewService {
 
     this.showDialog = true;
 
-    setTimeout(() => {
-          this.router.navigate([{ outlets: { modal: ['dialog', 'new-channel'] }}])
-          .then((success) => {
-            if (success) {
-              console.log('erfolgreich');
-            } else {
-              console.log('fehlgeschlagen')
-            }
-          })
-
-    }, 2000)
+  
   }
 }
