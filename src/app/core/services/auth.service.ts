@@ -94,7 +94,7 @@ export class AuthService {
    * Updates the <currentUser> global.
    * Catches possible errors and logs their <code> 
    */
-  async loginBtnPressed(email: any, password: any): Promise<void> {
+  async loginBtnPressed(email: HTMLInputElement, password: HTMLInputElement): Promise<void> {
     this.resetErrors();
     try {
       await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);

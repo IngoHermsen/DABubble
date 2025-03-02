@@ -26,8 +26,7 @@ export class LoginComponent {
   router = inject(Router);
   authService = inject(AuthService);
   makeVisible = false;
-  userEmail: string | null = null;
-  firebaseUser: any 
+  firebaseUser: any; 
   
 
   /**
