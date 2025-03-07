@@ -1,11 +1,19 @@
-<!-- <div class="card">
-    <h1>Channel erstellen</h1>
-    <span>Channels dienen deinem Team zur Kommunikation. Am besten sollen sie themenbezogen sein. z.B. #marketing</span>
-</div> -->
+<!-- Dialog Form: new Channel -->
 
 @if (content == "newChannel") {
-    <div>NEW CHANNEL</div>
+    <div class="card new-channel-card">
+        <h2>Channel erstellen</h2>
+        <span>Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein (z.B. #marketing)</span>
+        <form action="submit" [formGroup]=newChannelFormGroup>
+            <label for="channelName">Name:</label>
+            <input class="input-styling" id="channelName" type="text" formControlName="channelNameInput">
+            <label for="channelDescription">Beschreibung:</label>
+            <input class="input-styling" id="channelDescription" type="text" formControlName="channelDescInput">
+        </form>
+    </div>
 }
+
+<!-- Dialog: Logout -->
 
 @if (content == "logout") {
     <span>LOGOUT</span>
