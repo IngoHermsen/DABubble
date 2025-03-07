@@ -24,7 +24,7 @@ export class DialogComponent implements OnInit {
     ]),
     channelDescInput: new FormControl('', [
       Validators.required,
-      Validators.minLength(250)
+      // Validators.minLength(250)
     ])
   })
 

@@ -120,21 +120,6 @@ $login-header-c: #444df2;
   width: 100%;
   @include dflex($jC: center, $gap: 30px);
 
-  button {
-    @include removeBtnStyles();
-  }
-
-  .login-btn {
-    @include dflex($fD: row, $jC: center, $aI: center);
-    @include roundBtn($w: 137px, $h: 50px, $b-radius: 25px, $bg-color: #444DF2);
-    @include fontSizeWeightColor($s:18px, $w:700, $c:#FFFF);
-  }
-
-  .inactive-login-btn{
-    background-color: #7A7A7A;
-    cursor: not-allowed;
-  }
-
   .guest-login-btn {
     @include roundBtn($w: 153px, $h: 50px, $b-radius: 25px, $bg-color: #FFFF,);
     @include fontSizeWeightColor($s:18px, $w:700, $c:#444DF2);

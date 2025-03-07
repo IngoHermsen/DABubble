@@ -116,6 +116,24 @@ input::placeholder {
   color: #FF2929
 }
 
+/******************************** Button Styles ********************************/
+
+button {
+  @include removeBtnStyles();
+}
+
+
+.submit-btn {
+  @include dflex($fD: row, $jC: center, $aI: center);
+  @include roundBtn($w: 137px, $h: 50px, $b-radius: 25px, $bg-color: #444DF2);
+  @include fontSizeWeightColor($s:18px, $w:700, $c:#FFFF);
+}
+
+.inactive-submit-btn{
+  background-color: #7A7A7A;
+  cursor: not-allowed;
+}
+
 /******************************** Display Styles ********************************/
 .d-none {
   display: none !important
