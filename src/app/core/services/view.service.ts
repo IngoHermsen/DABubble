@@ -10,6 +10,8 @@ export class ViewService {
   showWorkspaceMenu: boolean = true;
   showThreadSection: boolean = false;
   showModal: boolean = false;
+  
+  activeChannelId: string;
   activeDialog: string;
 
   // mobile options

@@ -1,16 +1,18 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { FormControl, ReactiveFormsModule, FormsModule, NgForm, Validators, FormGroup } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, FormsModule, Validators, FormGroup } from '@angular/forms';
 import { ViewService } from '../../core/services/view.service';
+import { FirestoreService } from '../../core/services/firestore.service';
+import { Channel } from '../../core/interfaces/channel';
 
 @Component({
   selector: 'app-dialog',
   standalone: true,
-  imports: [RouterOutlet, ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss'
 })
 export class DialogComponent implements OnInit {
+  private firestoreService = inject(FirestoreService);
   public viewService = inject(ViewService);
 
   content: string;
@@ -18,31 +20,35 @@ export class DialogComponent implements OnInit {
   // new Channel form 
 
   newChannelFormGroup = new FormGroup({
-    channelNameInput: new FormControl('', [
+    channelNameInput: new FormControl<string>('', {nonNullable: true, validators:[
       Validators.required,
-      Validators.minLength(15)
-    ]),
-    channelDescInput: new FormControl('', [
+      Validators.minLength(5)
+    ] } ),
+    channelDescInput: new FormControl<string>('', {nonNullable: true, validators:[
       Validators.required,
-      // Validators.minLength(250)
-    ])
+    ]})
   })
 
-  
 
-// channelNameInput = new FormControl('', [
-//   Validators.maxLength(20),
-//   Validators.required
-// ]);
-// channelDescriptionInput = new FormControl('Description');
+  ngOnInit() {
+    this.content = this.viewService.activeDialog;
 
+  }
 
-ngOnInit() {
-  this.content = this.viewService.activeDialog;
+  newChannelSubmit() {
+    const channelName = this.newChannelFormGroup.get('channelNameInput')!.value;
+    const channelDesc = this.newChannelFormGroup.get('channelDescInput')!.value;
+    
+    const channel: Channel = {
+      channelName: channelName,
+      description: channelDesc,
+      creatorName: 'Hans Wurst'      
+    };
 
-  setInterval(() => {
-    console.log(this.newChannelFormGroup.controls.channelNameInput.value)
-  }, 3000)
-}
-  
+    this.firestoreService.addChannelToFirestore(channel);
+
+    this.viewService.showModal = false;
+
+  }
+
 }

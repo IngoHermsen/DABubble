@@ -1,6 +1,7 @@
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { doc, Firestore, setDoc, onSnapshot } from '@angular/fire/firestore';
-import { collection } from 'firebase/firestore';
+import { collection, CollectionReference, DocumentReference } from 'firebase/firestore';
+import { Channel } from '../interfaces/channel';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,11 @@ export class FirestoreService {
   private dbFs = inject(Firestore);
   channelIds: WritableSignal<string[]> = signal([]);
 
-  channelsRef = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
+  channelsRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
+  activeChannelRef: DocumentReference;
 
   channelSnapshot = onSnapshot(this.channelsRef, snapshot => {
-    const cNames = snapshot.docs.map(doc => doc.id);
+    const cNames: Array<string> = snapshot.docs.map(doc => doc.id);
     this.channelIds.set(cNames)
   });
 
@@ -26,5 +28,11 @@ export class FirestoreService {
   async setUserDoc(email: string, user: any) {
       await setDoc(doc(this.dbFs, 'users', email), user);
   }
+
+  async addChannelToFirestore(channel: Channel) {
+      await setDoc(doc(this.channelsRef, channel.channelName), channel);
+  }
+
+  
 
 }
