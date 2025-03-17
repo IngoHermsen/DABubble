@@ -18,7 +18,6 @@ export class ViewService {
   mobileView: boolean;
   showLogo: boolean = true; 
   
-
   constructor() { 
     this.mobileView = window.innerWidth <= 1000;
   }

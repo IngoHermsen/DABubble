@@ -130,6 +130,7 @@ button {
 }
 
 .inactive-submit-btn{
+  user-select: none;
   background-color: #7A7A7A;
   cursor: not-allowed;
 }

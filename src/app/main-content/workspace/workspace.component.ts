@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class WorkspaceComponent implements OnInit {
   public dialogService = inject(DialogService);
-  public firestoreService = inject(FirestoreService);
+  public fsService = inject(FirestoreService);
   public viewService = inject(ViewService);
   public router = inject(Router);
 
@@ -27,13 +27,12 @@ export class WorkspaceComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      this.channelNames = this.firestoreService.channelIds();
+      this.channelNames = this.fsService.channelIds();
     })
   }
 
   ngOnInit(): void {
 
-    console.log('FS Channel IDs: ', this.firestoreService.channelIds)
     this.showChannelEntries = true;
   }
 
@@ -48,6 +47,8 @@ export class WorkspaceComponent implements OnInit {
     }
   }
 
-  // Following toogleDialog Function is for testing purposes: 
+  showChannel(channel: string) {
+    
+  }
 
 }

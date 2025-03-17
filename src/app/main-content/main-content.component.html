@@ -1,7 +1,6 @@
 @if(viewService.showModal) {
-<!-- <div class="modal" (click)="viewService.showModal = false"> -->
-<div class="modal">
-    <div>
+<div class="modal" (click)="viewService.showModal = false">
+    <div (click)="$event.stopPropagation()">
         <app-dialog></app-dialog>
     </div>
 </div>
