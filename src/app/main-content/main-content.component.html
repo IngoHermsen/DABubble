@@ -1,7 +1,7 @@
 @if(viewService.showModal) {
-<!-- <div class="modal" (click)="viewService.showModal = false"> -->
-<div class="modal">
-    <div>
+<div class="modal" (click)="viewService.showModal = false">
+<!-- <div class="modal" >  -->
+    <div (click)="$event.stopPropagation()">
         <app-dialog></app-dialog>
     </div>
 </div>
@@ -39,7 +39,7 @@
         }
         <div class="user-menu">
             @if(!viewService.mobileView) {
-            <span>Vorname</span><span>Nachname</span>
+            <span>{{userName}}</span>
             }
             <img (click)="viewService.openModal('logout')" class="img--avatar" [src]="'../../' + avatarPath" alt="">
             <!-- <span>AVATAR</span> -->

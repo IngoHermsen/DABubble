@@ -20,8 +20,8 @@ import { FirestoreService } from '../../core/services/firestore.service';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
-  
-private fsService = inject(FirestoreService)  
+
+  private fsService = inject(FirestoreService);
 
   /** 
   * Uses setTimeout to ensure the class is applied after the initial view rendering.
@@ -44,8 +44,7 @@ private fsService = inject(FirestoreService)
     email: HTMLInputElement,
     password: HTMLInputElement,
     username: HTMLInputElement,
-    signupForm: any
-  ) {
+    signupForm: any) {
     const emailValue = email.value;
     const passwordValue = password.value;
     const usernameValue = username.value;
