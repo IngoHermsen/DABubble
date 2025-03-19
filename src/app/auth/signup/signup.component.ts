@@ -20,8 +20,8 @@ import { FirestoreService } from '../../core/services/firestore.service';
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
-  
-private fsService = inject(FirestoreService)  
+
+  private fsService = inject(FirestoreService);
 
   /** 
   * Uses setTimeout to ensure the class is applied after the initial view rendering.
@@ -44,8 +44,7 @@ private fsService = inject(FirestoreService)
     email: HTMLInputElement,
     password: HTMLInputElement,
     username: HTMLInputElement,
-    signupForm: any
-  ) {
+    signupForm: any) {
     const emailValue = email.value;
     const passwordValue = password.value;
     const usernameValue = username.value;
@@ -53,7 +52,10 @@ private fsService = inject(FirestoreService)
     if (signupForm.invalid) {
       return;
     }
-
+    this.fsService.setUserDoc(emailValue, {username: usernameValue})
+    // async setUserDoc(email: string, user: any) {
+    //       await setDoc(doc(this.dbFs, 'users', email), user);
+    //   }
     this.validateMailPwName(emailValue, passwordValue, usernameValue);
     const signupSuccess = await this.authService.registerUser(
       emailValue,  //? --> Needs no typing because .value is always a string Typescript knows that. 

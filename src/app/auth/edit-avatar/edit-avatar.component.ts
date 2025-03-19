@@ -23,7 +23,7 @@ import { setThrowInvalidWriteToSignalError } from '@angular/core/primitives/sign
 export class EditAvatarComponent implements OnInit {
   private authService = inject(AuthService);
 
-
+  private fsService = inject(FirestoreService);
   imgLoading: boolean = false;
   previewImg: string; // contains path string for preview Image
   firebaseUser: any = {};
@@ -100,10 +100,14 @@ export class EditAvatarComponent implements OnInit {
   }
 
   
-  
   setPresetAvatar(imgFileName: string) {
     this.previewImg = 'assets/images/' + imgFileName;
     this.authService.updateUserCredentials(this.firebaseUser, "photoURL", this.previewImg);
+    this.setAvatarPathFirestore(imgFileName)
   }
 
+
+  setAvatarPathFirestore(imgFileName:string){
+    this.fsService.updateUserDoc("users", this.firebaseUser.email, {photoURL: imgFileName})
+  }
 }

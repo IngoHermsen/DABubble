@@ -67,6 +67,7 @@ export class MainComponent implements OnInit {
   public firestoreService = inject(FirestoreService);
   private authService = inject(AuthService);
   avatarPath: any;
+  userName: any; 
 
   constructor() {
 
@@ -74,6 +75,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.authService.firebaseUser$.subscribe(user => {
         this.avatarPath = user?.photoURL;
+        this.userName = user?.displayName
     });
   }
 
