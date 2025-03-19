@@ -1,6 +1,6 @@
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { doc, Firestore, setDoc, onSnapshot } from '@angular/fire/firestore';
-import { collection, CollectionReference, DocumentReference } from 'firebase/firestore';
+import { collection, CollectionReference, DocumentReference, updateDoc } from 'firebase/firestore';
 import { Channel } from '../interfaces/channel';
 
 @Injectable({
@@ -33,6 +33,10 @@ export class FirestoreService {
       await setDoc(doc(this.channelsRef, channel.channelName), channel);
   }
 
-  
+  async updateUserDoc(collection: string, id: string, data: any){
+    const docRef = doc(this.dbFs, collection, id)
+    const newData = data
+    await updateDoc(docRef, newData)
+  }
 
 }
