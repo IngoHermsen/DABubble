@@ -1,9 +1,8 @@
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
-import { doc, Firestore, setDoc, onSnapshot, updateDoc } from '@angular/fire/firestore';
+import { doc, Firestore, setDoc, onSnapshot, updateDoc, getDocs } from '@angular/fire/firestore';
 import { collection, CollectionReference, DocumentData, DocumentReference, getDoc, QueryDocumentSnapshot } from 'firebase/firestore';
 import { Channel } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +15,8 @@ export class FirestoreService {
   channelsRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelRef: DocumentReference;
   postsRef: CollectionReference;
+  users: { photoURL: string; username: string }[] = [];
+
 
   channelSnapshot = onSnapshot(this.channelsRef, snapshot => {
     const cNames: Array<string> = snapshot.docs.map(doc => doc.id);
@@ -55,6 +56,18 @@ async updateUserDoc(collection: string, id: string, data: any){
   const docRef = doc(this.dbFs, collection, id)
   const newData = data
   await updateDoc(docRef, newData)
+}
+
+
+async getAllUsers() {
+  const usersCollection = collection(this.dbFs, 'users');
+  const querySnapshot = await getDocs(usersCollection);
+
+  this.users = querySnapshot.docs.map(doc => ({
+    photoURL: doc.data()['photoURL'],
+    username: doc.data()['username'] 
+  }));
+  console.log(this.users);
 }
 
 }

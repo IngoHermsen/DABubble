@@ -2,8 +2,11 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { DialogService } from '../../core/services/dialog.service';
 import { FirestoreService } from '../../core/services/firestore.service';
+import { Firestore, collection, collectionData, getDocs } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { ViewService } from '../../core/services/view.service';
 import { Router } from '@angular/router';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-workspace',
@@ -17,7 +20,6 @@ export class WorkspaceComponent implements OnInit {
   public fsService = inject(FirestoreService);
   public viewService = inject(ViewService);
   public router = inject(Router);
-
   channelNames: string[];
 
   showChannelEntries: boolean = true;
@@ -34,6 +36,7 @@ export class WorkspaceComponent implements OnInit {
   ngOnInit(): void {
 
     this.showChannelEntries = true;
+    this.fsService.getAllUsers()
   }
 
 
@@ -50,5 +53,6 @@ export class WorkspaceComponent implements OnInit {
   showChannel(channel: string) {
     
   }
+
 
 }

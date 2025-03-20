@@ -19,7 +19,7 @@
 
         <div class="entries">
             @for(channel of channelNames; let index = $index; track $index) {
-                <div class="entry" (click)="fsService.setActiveChannel(channel)"><span>#</span>{{ channel }}</div>
+            <div class="entry" (click)="fsService.setActiveChannel(channel)"><span>#</span>{{ channel }}</div>
             }
         </div>
     </section>
@@ -30,8 +30,16 @@
                     'turnDownDropBtn': showDirectMsgEntries && directMsgToggleClicked
                 }">arrow_drop_down</span>Direct Messages
         </h3>
-        <div class="entries"></div>
-        <h1>My Avatar</h1>
-        <h1>My Avatar1</h1>
+        <div class="entries">
+
+            @for(user of this.fsService.users; let index = $index; track $index){
+            <div>
+                <img [src]="'../../../assets/images/' + user.photoURL " alt="Avatar" width="50">
+                <span>{{ user.username }}</span>
+            </div>
+    
+            }
+        </div>
+
     </section>
 </div>
