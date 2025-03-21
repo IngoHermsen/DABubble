@@ -86,13 +86,17 @@ $header-height: 80px;
     }
 
     .user-menu {
-        border: solid red;
+        width: fit-content;
         @include dflex($fD: row, $jC: space-around, $aI: center, $gap: 0px);
     }
 
     .user-menu .img--avatar{
-        @include widthHeight($w: 48px, $h: 48px);
+        @include widthHeight($w: 50px, $h: 50px);
         border-radius: 50%;
+    }
+
+    .user-menu .username{
+        @include fontSizeWeight($s:24px, $w:700);
     }
 
     > div {

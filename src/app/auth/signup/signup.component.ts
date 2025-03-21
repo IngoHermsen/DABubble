@@ -53,12 +53,9 @@ export class SignupComponent {
       return;
     }
     this.fsService.setUserDoc(emailValue, {username: usernameValue})
-    // async setUserDoc(email: string, user: any) {
-    //       await setDoc(doc(this.dbFs, 'users', email), user);
-    //   }
     this.validateMailPwName(emailValue, passwordValue, usernameValue);
     const signupSuccess = await this.authService.registerUser(
-      emailValue,  //? --> Needs no typing because .value is always a string Typescript knows that. 
+      emailValue,  
       passwordValue,
       usernameValue
     );

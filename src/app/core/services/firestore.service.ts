@@ -67,7 +67,5 @@ async getAllUsers() {
     photoURL: doc.data()['photoURL'],
     username: doc.data()['username'] 
   }));
-  console.log(this.users);
 }
-
 }

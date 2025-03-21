@@ -33,9 +33,9 @@
         <div class="entries">
 
             @for(user of this.fsService.users; let index = $index; track $index){
-            <div>
-                <img [src]="'../../../assets/images/' + user.photoURL " alt="Avatar" width="50">
-                <span>{{ user.username }}</span>
+            <div class="wrapper--username-avatar">
+                <img class="img--avatar" [src]="'../../../assets/images/' + user.photoURL " alt="Avatar" width="50">
+                <span class="username">{{ user.username }}</span>
             </div>
     
             }

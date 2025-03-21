@@ -1,90 +1,106 @@
   @import '../../../styles/mixins.scss';
 
-/***************************** Main Styles *****************************/
+  /***************************** Main Styles *****************************/
 
 
-h3 {
-  user-select: none;
-}
-
-
-.header {
-  @include dflex();
-  margin-bottom: 40px;
-  padding: 0px 16px;
-  box-sizing: border-box;
-
-  .workspace-logo {
-    max-height: 40px;
+  h3 {
+    user-select: none;
   }
 
-  .icon {
-    cursor: pointer;
-    height: 24px;
+
+  .header {
+    @include dflex();
+    margin-bottom: 40px;
+    padding: 0px 16px;
+    box-sizing: border-box;
+
+    .workspace-logo {
+      max-height: 40px;
+    }
+
+    .icon {
+      cursor: pointer;
+      height: 24px;
+    }
   }
-}
 
-.channels, .direct-msg {
-  position: relative;
-  padding-left: 32px;
-  margin: 0px 24px 40px 24px;
+  .channels,
+  .direct-msg {
+    position: relative;
+    padding-left: 32px;
+    margin: 0px 24px 40px 24px;
 
-  .title {
-    display: flex;
-    align-items: center;
-
-    .left {
+    .title {
       display: flex;
-      gap: 8px;
+      align-items: center;
+
+      .left {
+        display: flex;
+        gap: 8px;
+        cursor: pointer;
+      }
+
+      .drop-btn {
+        user-select: none;
+        position: absolute;
+        left: 0px;
+        cursor: pointer;
+      }
+    }
+
+    .entry {
+      font-size: 18px;
+      margin-bottom: 8px;
       cursor: pointer;
     }
 
-    .drop-btn {
-      user-select: none;
-      position: absolute;
-      left: 0px;
+    .wrapper--username-avatar {
+      @include dflex($fD: row, $jC: flex-start, $aI: center, $gap: 16px);
+      padding: 8px 0
+      // justify-content: ;
+    }
+
+    .wrapper--username-avatar .img--avatar {
+      border-radius: 30px;
+    }
+
+    .wrapper--username-avatar .username {
+      @include fontSizeWeight($s: 18px, $w: 400);
+    }
+
+    span {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .plus {
       cursor: pointer;
+      margin-left: auto;
     }
   }
 
-  .entry {
-    font-size: 18px;
-    margin-bottom: 8px;
-    cursor: pointer;
-  }
+  /******************************** animations ********************************/
 
-  span {
-    display: inline-block;
-    text-align: center;
-  }
+  .turnUpDropBtn {
+    animation: rotateLeft 150ms forwards;
 
-  .plus {
-    cursor: pointer;
-    margin-left: auto;
-  }
-}
-
-/******************************** animations ********************************/
-
-.turnUpDropBtn {
-  animation: rotateLeft 150ms forwards;
-
-  @keyframes rotateLeft {
-    to {
-      transform: rotate(-90deg);
+    @keyframes rotateLeft {
+      to {
+        transform: rotate(-90deg);
+      }
     }
   }
-}
 
-.turnDownDropBtn {
-  animation: rotateRight 500ms forwards;
+  .turnDownDropBtn {
+    animation: rotateRight 500ms forwards;
 
-  @keyframes rotateRight {
-    from {
-      transform: rotate(-90deg);
-    }
-    to {
-      transform: rotate(0deg);
+    @keyframes rotateRight {
+      from {
+        transform: rotate(-90deg);
+      }
+
+      to {
+        transform: rotate(0deg);
+      }
     }
   }
-}
