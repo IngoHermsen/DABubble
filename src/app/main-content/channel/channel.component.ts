@@ -4,7 +4,7 @@ import { PostComponent } from '../../post/post.component';
 import { MessageInputComponent } from '../message-input/message-input.component';
 import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
-import { Channel } from '../../core/interfaces/channel';
+import { Channel, EMPTY_CHANNEL } from '../../core/interfaces/channel';
 
 @Component({
   selector: 'app-channel',
@@ -17,14 +17,14 @@ export class ChannelComponent {
   public viewService = inject(ViewService);
   public fsService = inject(FirestoreService)
 
-  channelData: Channel;
+  channelData: Channel = EMPTY_CHANNEL;
   
   constructor() {
-    console.log('constructor')
     effect(() => {
-        console.log('was here');
-        this.fsService.channelData();
-    })
+           this.channelData = this.fsService.channelData()
+        console.log('CHANNEL:', this.channelData.channelName)
+        }
+    )
   }
 
   posts: Post[] = [   //examples - will later be fetched from database / backend

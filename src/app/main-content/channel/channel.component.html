@@ -4,7 +4,7 @@
         @if(viewService.mobileView) {
         <span class="material-icons-round arrow-back" (click)="viewService.wsNavigate('workspace')">arrow_back_ios</span>
         }
-        <h2>channel name</h2>
+        <h2>{{ channelData.channelName }}</h2>
     </div>
     <div class="posts">
         @for (post of posts; let index = $index; track $index) {

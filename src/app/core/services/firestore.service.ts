@@ -1,7 +1,7 @@
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { doc, Firestore, setDoc, onSnapshot, updateDoc, getDocs } from '@angular/fire/firestore';
 import { collection, CollectionReference, DocumentData, DocumentReference, getDoc, QueryDocumentSnapshot } from 'firebase/firestore';
-import { Channel } from '../interfaces/channel';
+import { Channel, EMPTY_CHANNEL } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,7 @@ import { Post } from '../interfaces/post';
 export class FirestoreService {
   private dbFs = inject(Firestore);
   channelIds: WritableSignal<string[]> = signal([]);
-  channelData: WritableSignal<Channel | null> = signal(null);
+  channelData: WritableSignal<Channel> = signal(EMPTY_CHANNEL);
   channelPosts: WritableSignal<Post[]> = signal([]) 
 
   channelsRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');

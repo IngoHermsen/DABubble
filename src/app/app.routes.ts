@@ -42,7 +42,7 @@ export const routes: Routes = [
         path: 'workspace', component: MainComponent,
         children:
             [
-                { path: 'channel', component: ChannelComponent },
+                { path: 'channel/:id', component: ChannelComponent },
                 { path: 'new-post', component: NewPostComponent },
                 { path: 'direct-messages', component: DirectMessagesComponent }
             ]
