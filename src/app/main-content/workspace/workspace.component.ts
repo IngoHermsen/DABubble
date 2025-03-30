@@ -3,23 +3,26 @@ import { NgClass } from '@angular/common';
 import { DialogService } from '../../core/services/dialog.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { Firestore, collection, collectionData, getDocs } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ViewService } from '../../core/services/view.service';
-import { Router } from '@angular/router';
-import { User } from '@angular/fire/auth';
+import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-workspace',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, RouterLink],
   templateUrl: './workspace.component.html',
   styleUrl: './workspace.component.scss'
 })
 export class WorkspaceComponent implements OnInit {
   public dialogService = inject(DialogService);
   public fsService = inject(FirestoreService);
-  public viewService = inject(ViewService);
   public router = inject(Router);
+  public route = inject(ActivatedRoute);
+  public viewService = inject(ViewService);
+  
+  private routeSub: Subscription;
   channelNames: string[];
 
   showChannelEntries: boolean = true;
@@ -28,13 +31,16 @@ export class WorkspaceComponent implements OnInit {
   directMsgToggleClicked: boolean = false;
 
   constructor() {
+    
+
+
+
     effect(() => {
       this.channelNames = this.fsService.channelIds();
     })
   }
 
   ngOnInit(): void {
-
     this.showChannelEntries = true;
     this.fsService.getAllUsers()
   }

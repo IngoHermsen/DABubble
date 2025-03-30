@@ -1,10 +1,11 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
 import { MessageInputComponent } from '../message-input/message-input.component';
 import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { Channel, EMPTY_CHANNEL } from '../../core/interfaces/channel';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-channel',
@@ -13,9 +14,10 @@ import { Channel, EMPTY_CHANNEL } from '../../core/interfaces/channel';
   templateUrl: './channel.component.html',
   styleUrl: './channel.component.scss'
 })
-export class ChannelComponent {
+export class ChannelComponent implements OnInit {
   public viewService = inject(ViewService);
-  public fsService = inject(FirestoreService)
+  public fsService = inject(FirestoreService);
+  public route = inject(ActivatedRoute);
 
   channelData: Channel = EMPTY_CHANNEL;
   
@@ -25,6 +27,17 @@ export class ChannelComponent {
         console.log('CHANNEL:', this.channelData.channelName)
         }
     )
+  }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      console.log('params', params)
+      const channelId = params.get('id');
+      if(channelId) {
+        this.fsService.setActiveChannel(channelId);
+      }
+    })
+
   }
 
   posts: Post[] = [   //examples - will later be fetched from database / backend

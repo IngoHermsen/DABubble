@@ -39,7 +39,7 @@ export const routes: Routes = [
     },
     { path: 'auth', component: AuthComponent },
     {
-        path: 'workspace', component: MainComponent,
+      path: 'workspace', component: MainComponent,
         children:
             [
                 { path: 'channel/:id', component: ChannelComponent },

@@ -19,8 +19,10 @@
 
         <div class="entries">
             @for(channel of channelNames; let index = $index; track $index) {
-            <div class="entry" (click)="viewService.showChannel(channel)"><span>#</span>{{ channel }}</div>
-            }
+            <!-- <div class="entry" (click)="viewService.showChannel(channel)" [routerLink]="'channel/' + channel"><span>#</span>{{ channel }}</div> -->
+            <div class="entry" [routerLink]="'channel/' + channel"><span>#</span>{{ channel }}</div>
+   
+        }
         </div>
     </section>
     <section class="direct-msg">

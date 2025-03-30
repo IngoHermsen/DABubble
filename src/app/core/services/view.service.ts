@@ -30,11 +30,6 @@ export class ViewService {
     this.router.navigate([route]);
   }
 
-  showChannel(channel: string) {
-    console.log(`workspace/${channel}`);
-    this.fsService.setActiveChannel(channel);
-  }
-
   openModal(name: string) {
     this.showModal = true;
     this.activeDialog = name;

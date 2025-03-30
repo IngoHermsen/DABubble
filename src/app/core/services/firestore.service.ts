@@ -3,6 +3,7 @@ import { doc, Firestore, setDoc, onSnapshot, updateDoc, getDocs } from '@angular
 import { collection, CollectionReference, DocumentData, DocumentReference, getDoc, QueryDocumentSnapshot } from 'firebase/firestore';
 import { Channel, EMPTY_CHANNEL } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -39,6 +40,7 @@ export class FirestoreService {
   }
 
   async setActiveChannel(channelName: string) {
+    
     this.channelRef = doc(this.channelsRef, channelName);
     const docSnap = await getDoc(this.channelRef);
     if(docSnap.exists()) {
