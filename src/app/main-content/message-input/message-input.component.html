@@ -1,10 +1,12 @@
-<div class="content" [class.focussed]="focussed">
-    <textarea (focus)="focussed = true" (blur)="focussed = false" placeholder="Nachricht an #DevSpace"></textarea>
-    <div class="btn-area">
-        <div class="icons">
-            <span class="material-icons-round btn">sentiment_satisfied_alt</span>
-            <span class="material-icons btn">alternate_email</span>
+<form action="">
+    <div class="content" [class.focussed]="focussed">
+        <textarea type="textarea" (focus)="focussed = true" (blur)="focussed = false" placeholder="Nachricht an #DevSpace" [formControl]="messageInput"></textarea>
+        <div class="btn-area">
+            <div class="icons">
+                <span class="material-icons-round btn">sentiment_satisfied_alt</span>
+                <span class="material-icons btn">alternate_email</span>
+            </div>
+            <span class="material-icons send-btn btn" [class.newPost-inactive-submit-btn]="isSendButtonDisabled()">send</span>
         </div>
-        <span class="material-icons send-btn btn">send</span>
     </div>
-</div>
+</form>

@@ -1,11 +1,11 @@
 export interface Channel {
-    channelName: string;
-    description: string;
-    creatorName: string
+    channelName: string | null;
+    description: string | null;
+    creatorName: string | null
 }
 
 export const EMPTY_CHANNEL: Channel = {
-    channelName: '',
-    description: '',
-    creatorName: ''
+    channelName: null,
+    description: null,
+    creatorName: null
 }

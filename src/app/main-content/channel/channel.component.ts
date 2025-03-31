@@ -6,6 +6,7 @@ import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { Channel, EMPTY_CHANNEL } from '../../core/interfaces/channel';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-channel',
@@ -20,6 +21,7 @@ export class ChannelComponent implements OnInit {
   public route = inject(ActivatedRoute);
 
   channelData: Channel = EMPTY_CHANNEL;
+  newPost: Post;
   
   constructor() {
     effect(() => {
@@ -39,6 +41,7 @@ export class ChannelComponent implements OnInit {
     })
 
   }
+
 
   posts: Post[] = [   //examples - will later be fetched from database / backend
     {
