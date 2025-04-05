@@ -12,6 +12,7 @@ import { AbstractControl, FormControl, FormControlName, FormGroup, FormsModule, 
 export class MessageInputComponent {
   focussed: boolean = false;
   minInputLength: number = 20;
+  messageInput = new FormControl('')
 
   isSendButtonDisabled(): boolean {  //helping method for better overview in template
     return (
@@ -19,6 +20,5 @@ export class MessageInputComponent {
     )
   };
 
-  messageInput = new FormControl('')
 
 }
