@@ -20,12 +20,6 @@ export const routes: Routes = [
     { path: '', component: AuthComponent },
     { path: 'main', redirectTo: 'main/login', pathMatch: 'full' },
     { path: 'workspace', redirectTo: 'workspace/channel', pathMatch: 'full' },
-    //!Delete
-    { path: 'signal', component: SignalsComponent },
-    { path: 'subject', component: SubjectExample },
-    { path: 'behavior-subject', component: BehaviorSubjectExample },
-    //!Delete
-
     {
         path: 'main', component: AuthPostAnimationComponent,
         children:
