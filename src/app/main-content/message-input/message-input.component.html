@@ -6,7 +6,7 @@
                 <span class="material-icons-round btn">sentiment_satisfied_alt</span>
                 <span class="material-icons btn">alternate_email</span>
             </div>
-            <span class="material-icons send-btn btn" [class.newPost-inactive-submit-btn]="isSendButtonDisabled()">send</span>
+            <span (click)="submit()" class="material-icons send-btn btn" [class.newPost-inactive-submit-btn]="isSendButtonDisabled()">send</span>
         </div>
     </div>
 </form>

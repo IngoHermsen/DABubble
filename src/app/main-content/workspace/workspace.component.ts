@@ -31,11 +31,7 @@ export class WorkspaceComponent implements OnInit {
   directMsgToggleClicked: boolean = false;
 
   constructor() {
-    
-
-
-
-    effect(() => {
+  effect(() => {
       this.channelNames = this.fsService.channelIds();
     })
   }

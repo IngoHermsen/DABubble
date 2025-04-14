@@ -6,7 +6,6 @@ import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { Channel, EMPTY_CHANNEL } from '../../core/interfaces/channel';
 import { ActivatedRoute } from '@angular/router';
-import { FormControl, ReactiveFormsModule, FormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-channel',
@@ -28,7 +27,7 @@ export class ChannelComponent implements OnInit {
            this.channelData = this.fsService.channelData()
         console.log('CHANNEL:', this.channelData.channelName)
         }
-    )
+    );
   }
 
   ngOnInit() {
@@ -39,7 +38,11 @@ export class ChannelComponent implements OnInit {
         this.fsService.setActiveChannel(channelId);
       }
     })
+  }
 
+  addPost(string: string) {
+    console.log('was here')
+    console.log(string); 
   }
 
 
