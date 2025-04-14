@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { Post } from '../../core/interfaces/post';
 
 @Component({
@@ -10,11 +10,11 @@ import { Post } from '../../core/interfaces/post';
   styleUrl: './message-input.component.scss'
 })
 export class MessageInputComponent {
-  @Output() message = new EventEmitter<string>;
+  @Output() message = new EventEmitter<Post>;
   focussed: boolean = false;
   minInputLength: number = 5;
   messageInput = new FormControl('');
-  post: Post
+  post: Post;
 
   isSendButtonDisabled(): boolean {  //helping method for better overview in template
     return (
@@ -22,7 +22,19 @@ export class MessageInputComponent {
     )
   };
 
-  submit() {
-    if(this.messageInput.value) this.message.emit(this.messageInput.value);
+  onSubmit() {
+    if(this.messageInput.value) {
+      const message = this.messageInput.value;
+      this.post = {
+        postId: '',
+        creatorId: 'Hans Wurst',
+        text: message,
+        reactions: [],
+        creationTime: 'irgendwann',
+        isAnswer: false
+      }
+      this.message.emit(this.post);
+      this.messageInput.reset('');
+    }
   }
 }

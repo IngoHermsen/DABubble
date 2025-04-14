@@ -20,62 +20,61 @@ export class ChannelComponent implements OnInit {
   public route = inject(ActivatedRoute);
 
   channelData: Channel = EMPTY_CHANNEL;
-  newPost: Post;
-  
+  posts: Post[];
+
   constructor() {
     effect(() => {
-           this.channelData = this.fsService.channelData()
-        console.log('CHANNEL:', this.channelData.channelName)
-        }
+      this.channelData = this.fsService.channelData()
+    }
     );
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      console.log('params', params)
       const channelId = params.get('id');
-      if(channelId) {
+      if (channelId) {
         this.fsService.setActiveChannel(channelId);
       }
     })
   }
 
-  addPost(string: string) {
-    console.log('was here')
-    console.log(string); 
+  addPost(post: Post) {
+    console.log('POST:', post)
+    this.fsService.addPostToFirestore(post);
+
   }
 
 
-  posts: Post[] = [   //examples - will later be fetched from database / backend
-    {
-      postId: '12345',
-      creatorId: 'Max Mustermann',
-      text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-      reactions: [
-        {reactionId: 'grin', users: ['1234', 'user2']},
-        {reactionId: 'smile', users: ['user1', 'user2']},
-      ],
-      creationTime: '12:00',
-      isAnswer: false,
-    },
-    {
-      postId: '23456',
-      creatorId: 'Yogi Bär',
-      text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do. Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-      reactions: [],
-      creationTime: '08:59',
-      isAnswer: false,
-      imgPath: 'assets/images/testImg/yogi.png'
-    },
-    {
-      postId: '56789',
-      creatorId: 'Tante Emma',
-      text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-      reactions: [],
-      creationTime: '14:29',
-      isAnswer: false,
-    },
+  // posts = [   //examples - will later be fetched from database / backend
+  //   {
+  //     postId: '12345',
+  //     creatorId: 'Max Mustermann',
+  //     text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
+  //     reactions: [
+  //       {reactionId: 'grin', users: ['1234', 'user2']},
+  //       {reactionId: 'smile', users: ['user1', 'user2']},
+  //     ],
+  //     creationTime: '12:00',
+  //     isAnswer: false,
+  //   },
+  //   {
+  //     postId: '23456',
+  //     creatorId: 'Yogi Bär',
+  //     text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do. Lorem ipsum Do velit velit aute eu mollit qui minim do.',
+  //     reactions: [],
+  //     creationTime: '08:59',
+  //     isAnswer: false,
+  //     imgPath: 'assets/images/testImg/yogi.png'
+  //   },
+  //   {
+  //     postId: '56789',
+  //     creatorId: 'Tante Emma',
+  //     text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
+  //     reactions: [],
+  //     creationTime: '14:29',
+  //     isAnswer: false,
+  //   },
 
 
-  ];
+  // ];
 }
