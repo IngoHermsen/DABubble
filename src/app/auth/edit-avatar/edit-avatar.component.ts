@@ -55,8 +55,6 @@ export class EditAvatarComponent implements OnInit {
       this.firebaseUser = user;
       this.userName = user?.displayName;
       console.log(this.firebaseUser.photoUrl);
-      
-
     });
   }
 
