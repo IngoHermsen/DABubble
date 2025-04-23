@@ -8,4 +8,4 @@ export const EMPTY_CHANNEL: Channel = {
     channelName: null,
     description: null,
     creatorName: null
-}
+} as const

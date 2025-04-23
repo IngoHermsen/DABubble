@@ -1,14 +1,16 @@
 import { inject, Injectable, signal, Type, WritableSignal } from '@angular/core';
 import { doc, Firestore, setDoc, onSnapshot, updateDoc, getDocs } from '@angular/fire/firestore';
-import { addDoc, collection, CollectionReference, DocumentData, DocumentReference, getDoc, QueryDocumentSnapshot } from 'firebase/firestore';
+import { addDoc, collection, CollectionReference, DocumentData, DocumentReference, DocumentSnapshot, getDoc, QueryDocumentSnapshot, QuerySnapshot } from 'firebase/firestore';
 import { Channel, EMPTY_CHANNEL } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
   private dbFs = inject(Firestore);
+  private dataService = inject(DataService)
 
   // signals
   channelIds: WritableSignal<string[]> = signal([]);
@@ -60,7 +62,7 @@ export class FirestoreService {
         description: data['description']
       }
       this.channelData.set(convertedData)
-      this.postsColRef = collection(this.channelDocRef, 'posts');
+      
     }
   }
 

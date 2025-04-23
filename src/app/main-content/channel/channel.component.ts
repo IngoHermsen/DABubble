@@ -22,13 +22,6 @@ export class ChannelComponent implements OnInit {
   channelData: Channel = EMPTY_CHANNEL;
   posts: Post[];
 
-  constructor() {
-    effect(() => {
-      this.channelData = this.fsService.channelData()
-    }
-    );
-  }
-
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const channelId = params.get('id');

@@ -1,5 +1,5 @@
 import { Component, effect, inject, OnInit } from '@angular/core';
-import { NgClass } from '@angular/common';
+import { NgClass, AsyncPipe } from '@angular/common';
 import { DialogService } from '../../core/services/dialog.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { Firestore, collection, collectionData, getDocs } from '@angular/fire/firestore';
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-workspace',
   standalone: true,
-  imports: [NgClass, RouterLink],
+  imports: [AsyncPipe, NgClass, RouterLink],
   templateUrl: './workspace.component.html',
   styleUrl: './workspace.component.scss'
 })
@@ -31,9 +31,7 @@ export class WorkspaceComponent implements OnInit {
   directMsgToggleClicked: boolean = false;
 
   constructor() {
-  effect(() => {
-      this.channelNames = this.fsService.channelIds();
-    })
+
   }
 
   ngOnInit(): void {
