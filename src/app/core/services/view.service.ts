@@ -33,6 +33,5 @@ export class ViewService {
   openModal(name: string) {
     this.showModal = true;
     this.activeDialog = name;
-  
   }
 }

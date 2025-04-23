@@ -224,7 +224,8 @@ div.message-input {
   inset: 0;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.4);
-  @include dflex();
+  // @mixin dflex($fD: row, $jC: space-between, $aI: center, $gap: 0px) {
+  @include dflex($jC: center);
 }
 
 @media (width <=1000px) {
