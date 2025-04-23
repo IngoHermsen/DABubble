@@ -106,6 +106,10 @@ export class AuthService {
   }
 
 
+  guestLoginBtnPressed(){
+    this.router.navigate(['/workspace']);
+  }
+
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }

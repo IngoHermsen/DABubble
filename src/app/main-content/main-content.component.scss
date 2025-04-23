@@ -1,5 +1,6 @@
 @import '../../styles/mixins.scss';
 
+
 $header-height: 80px;
 
 
@@ -86,8 +87,7 @@ $header-height: 80px;
     }
 
     .user-menu {
-        width: fit-content;
-        @include dflex($fD: row, $jC: space-around, $aI: center, $gap: 0px);
+        @include dflex($fD: row, $jC: flex-end , $aI: center, $gap: 16px);
     }
 
     .user-menu .img--avatar{

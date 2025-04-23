@@ -74,8 +74,8 @@ export class MainComponent implements OnInit {
   }
   ngOnInit(): void {
     this.authService.firebaseUser$.subscribe(user => {
-        this.avatarPath = user?.photoURL;
-        this.userName = user?.displayName
+      this.userName = user?.displayName ?? "Guest"
+      this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png"
     });
   }
 
