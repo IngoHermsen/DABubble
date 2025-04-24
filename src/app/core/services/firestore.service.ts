@@ -14,7 +14,6 @@ export class FirestoreService {
 
   // signals
   channelIds: WritableSignal<string[]> = signal([]);
-  channelData: WritableSignal<Channel> = signal(EMPTY_CHANNEL);
   channelPosts: WritableSignal<Post[]> = signal([])
 
 
@@ -28,7 +27,7 @@ export class FirestoreService {
   channelColSnapshot = onSnapshot(this.channelsColRef, snapshot => {
     console.log('CHANNEL SNAPSHOT')
     const cNames: Array<string> = snapshot.docs.map(doc => doc.id);
-    this.channelIds.set(cNames);
+    this.dataService.channelIds = cNames;
   });
 
 
@@ -61,7 +60,7 @@ export class FirestoreService {
         creatorName: data['creatorName'],
         description: data['description']
       }
-      this.channelData.set(convertedData)
+      this.dataService.channelData = convertedData
       
     }
   }

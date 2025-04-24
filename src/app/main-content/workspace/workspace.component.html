@@ -17,7 +17,7 @@
             <span class="material-icons-round plus" (click)="viewService.openModal('newChannel')">add</span>
         </h3>
         <div class="entries">
-            @for(channel of fsService.channelNames; let index = $index; track $index) {
+            @for(channel of dataService.channelIds; let index = $index; track $index) {
             <div class="entry" [routerLink]="'channel/' + channel"><span>#</span>{{ channel }}</div>
 
         }

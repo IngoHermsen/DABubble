@@ -2,20 +2,21 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { NgClass, AsyncPipe } from '@angular/common';
 import { DialogService } from '../../core/services/dialog.service';
 import { FirestoreService } from '../../core/services/firestore.service';
-import { Firestore, collection, collectionData, getDocs } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
 import { ViewService } from '../../core/services/view.service';
+import { DataService } from '../../core/services/data.service';
 import { Router, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-workspace',
   standalone: true,
-  imports: [AsyncPipe, NgClass, RouterLink],
+  imports: [NgClass, RouterLink],
   templateUrl: './workspace.component.html',
   styleUrl: './workspace.component.scss'
 })
 export class WorkspaceComponent implements OnInit {
+  public dataService = inject(DataService);
   public dialogService = inject(DialogService);
   public fsService = inject(FirestoreService);
   public router = inject(Router);
@@ -29,10 +30,6 @@ export class WorkspaceComponent implements OnInit {
   showDirectMsgEntries: boolean = false;
   channelToggleClicked: boolean = false;
   directMsgToggleClicked: boolean = false;
-
-  constructor() {
-
-  }
 
   ngOnInit(): void {
     this.showChannelEntries = true;

@@ -2,9 +2,9 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
 import { MessageInputComponent } from '../message-input/message-input.component';
+import { DataService } from '../../core/services/data.service';
 import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
-import { Channel, EMPTY_CHANNEL } from '../../core/interfaces/channel';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,11 +15,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './channel.component.scss'
 })
 export class ChannelComponent implements OnInit {
+  public dataService = inject(DataService);
   public viewService = inject(ViewService);
   public fsService = inject(FirestoreService);
   public route = inject(ActivatedRoute);
 
-  channelData: Channel = EMPTY_CHANNEL;
   posts: Post[];
 
   ngOnInit() {
