@@ -10,7 +10,7 @@ import { DataService } from './data.service';
 })
 export class FirestoreService {
   private dbFs = inject(Firestore);
-  private dataService = inject(DataService)
+  private dataService = inject(DataService);
 
   // signals
   channelIds: WritableSignal<string[]> = signal([]);
@@ -24,11 +24,13 @@ export class FirestoreService {
   users: { photoURL: string; username: string }[] = [];
 
 
-  channelColSnapshot = onSnapshot(this.channelsColRef, snapshot => {
+  unsubChannelsCol: () => void = onSnapshot(this.channelsColRef, snapshot => {
     console.log('CHANNEL SNAPSHOT')
     const cNames: Array<string> = snapshot.docs.map(doc => doc.id);
     this.dataService.channelIds = cNames;
   });
+
+  unsubPostsCol: () => void;
 
 
   async addUserToFirestore(userId: string, userData: any) {
@@ -46,11 +48,10 @@ export class FirestoreService {
   }
 
   async addPostToFirestore(post: Post) {
-      addDoc(this.postsColRef, post);
+    addDoc(this.postsColRef, post);
   }
 
   async setActiveChannel(channelName: string) {
-
     this.channelDocRef = doc(this.channelsColRef, channelName);
     const docSnap = await getDoc(this.channelDocRef);
     if (docSnap.exists()) {
@@ -60,9 +61,32 @@ export class FirestoreService {
         creatorName: data['creatorName'],
         description: data['description']
       }
-      this.dataService.channelData = convertedData
-      
+      this.dataService.channelData = convertedData;
+      if(this.unsubPostsCol) this.unsubPostsCol();
+      this.setActivePosts(channelName);
     }
+  }
+
+  async setActivePosts(channelName: string, ) {
+    this.postsColRef = collection(this.channelDocRef, 'posts');
+    this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
+      console.clear();
+      console.log('POST SNAPSHOT')
+      const posts: Post[] = snapshot.docs.map(doc => {
+          const postData = doc.data();
+          console.log('POST DATA', postData)
+          const convertedPost: Post = {
+              creationTime: postData['creationTime'],
+              creatorId: postData['creatorId'],
+              isAnswer: postData['isAnswer'],
+              postId: postData['postId'],
+              reactions: postData['reactions'],
+              text: postData['text']
+          }
+          return convertedPost;
+      })
+      
+    });
   }
 
   async updateUserDoc(collection: string, id: string, data: any) {
@@ -71,10 +95,10 @@ export class FirestoreService {
     await updateDoc(docRef, newData)
   }
 
-async updatePosts(post: Post) {
-      this.postsColRef = collection(this.channelDocRef, 'posts');
-      await addDoc(this.postsColRef, post);
-}
+  async updatePosts(post: Post) {
+    this.postsColRef = collection(this.channelDocRef, 'posts');
+    await addDoc(this.postsColRef, post);
+  }
 
   async getAllUsers() {
     const usersCollection = collection(this.dbFs, 'users');
@@ -86,5 +110,8 @@ async updatePosts(post: Post) {
     }));
   }
 
-  
+  unsubChannelSnapshot() {
+
+  }
+
 }

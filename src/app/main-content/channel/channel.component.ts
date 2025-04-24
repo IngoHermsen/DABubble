@@ -17,7 +17,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ChannelComponent implements OnInit {
   public dataService = inject(DataService);
   public viewService = inject(ViewService);
-  public fsService = inject(FirestoreService);
+  public firestoreService = inject(FirestoreService);
   public route = inject(ActivatedRoute);
 
   posts: Post[];
@@ -26,14 +26,18 @@ export class ChannelComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const channelId = params.get('id');
       if (channelId) {
-        this.fsService.setActiveChannel(channelId);
+        this.firestoreService.setActiveChannel(channelId);
       }
     })
   }
 
+  ngOnDestroy() {
+    // this.firestoreService.unsubChannelCol();
+  }
+
   addPost(post: Post) {
     console.log('POST:', post)
-    this.fsService.addPostToFirestore(post);
+    this.firestoreService.addPostToFirestore(post);
 
   }
 
