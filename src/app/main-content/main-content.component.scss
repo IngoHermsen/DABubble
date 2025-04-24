@@ -99,6 +99,10 @@ $header-height: 80px;
         @include fontSizeWeight($s:24px, $w:700);
     }
 
+    .user-menu .wrapper--icons{
+        @include dflex($fD: row, $jC: space-between, $aI: center, $gap: 16px);
+    }
+
     > div {
         min-width: 250px;
     }
