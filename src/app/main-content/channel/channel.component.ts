@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
 import { MessageInputComponent } from '../message-input/message-input.component';

@@ -74,6 +74,7 @@ export class FirestoreService {
       console.log('POST SNAPSHOT')
       const posts: Post[] = snapshot.docs.map(doc => {
           const postData = doc.data();
+          console.clear();
           console.log('POST DATA', postData)
           const convertedPost: Post = {
               creationTime: postData['creationTime'],
@@ -85,7 +86,8 @@ export class FirestoreService {
           }
           return convertedPost;
       })
-      
+      this.dataService.posts = posts;
+
     });
   }
 

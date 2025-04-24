@@ -7,7 +7,7 @@
         <h2>{{ dataService.channelData.channelName }}</h2>
     </div>
     <div class="posts">
-        @for (post of posts; let index = $index; track $index) {
+        @for (post of dataService.posts; let index = $index; track $index) {
         <div class="post-wrapper">
             <app-post [index]="index" [post]="post"></app-post>
         </div>
