@@ -1,6 +1,8 @@
 @import '../../../styles/mixins.scss';
 
 
+
+
 .new-channel-card {
     padding: 24px;
     @include dflex($fD: column, $aI: left);
@@ -9,6 +11,8 @@
 .input-styling {
     padding-left: unset;
     text-indent: 24px;
-
 }
 
+.posi-test{
+    justify-self: flex-end;
+}

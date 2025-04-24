@@ -15,6 +15,7 @@ export class ViewService {
   
   activeChannelId: string;
   activeDialog: string;
+  modalContentClass: string;
   currentRoute: string;
 
   // mobile options
@@ -23,15 +24,25 @@ export class ViewService {
   
   constructor() { 
     this.mobileView = window.innerWidth <= 1000;
+    
   }
-
+  
   wsNavigate(route: string) {
     this.showLogo = route == 'workspace' ? true : false;
     this.router.navigate([route]);
   }
 
+  modalHandler(name: string, className: string){
+    this.openModal(name)
+    this.setModalContentClass(className)    
+  }
+  
   openModal(name: string) {
     this.showModal = true;
     this.activeDialog = name;
+  }
+
+  setModalContentClass(className:string){
+    this.modalContentClass = className
   }
 }
