@@ -147,19 +147,10 @@ button {
   @include dflex($jC: center);
   width: 100%;
   height: 100vh;
-  // min-height: 100vh;
-  // overflow-y: auto;
-  // padding-top: 20px; 
-  // border: solid orange;
 }
 
-// .site-wrapper {
-//   width: 100%;
-//   height: 100vh;
-// }
 
 .max-width-wrapper {
-  // border: solid blue;
   box-sizing: border-box;
   max-width: 1440px;
   margin: 0 auto;
@@ -224,9 +215,33 @@ div.message-input {
   inset: 0;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.4);
-  // @mixin dflex($fD: row, $jC: space-between, $aI: center, $gap: 0px) {
-  @include dflex($jC: center);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.modal-inner{
+  display: flex;
+  width: 100%;
+  height: 95%;  
+  max-width: 1440px;
+}
+
+.modal-content-center{
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content-top-right{
+  justify-content: flex-end;
+}
+
+//!Delete testing purpose
+.test-class{
+  align-self: flex-end;
+  border: dashed 4px  red
+}
+//!Delete testing purpose
 
 @media (width <=1000px) {
   .card {

@@ -13,12 +13,14 @@ import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
 import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-main',
   standalone: true,
   imports: [
     ShowOnHoverDirective,
+    NgClass,
     // ChannelComponent,
     WorkspaceComponent,
     ThreadComponent,

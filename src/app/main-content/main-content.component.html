@@ -1,7 +1,9 @@
 @if(viewService.showModal) {
-<div class="modal" (click)="viewService.showModal = false">
-    <div (click)="$event.stopPropagation()">
-        <app-dialog></app-dialog>
+<div [ngClass]="'modal'" (click)="viewService.showModal = false">
+    <div class="modal-inner" [ngClass]="viewService.modalContentClass">
+        <div>
+            <app-dialog (click)="$event.stopPropagation()"></app-dialog>
+        </div>
     </div>
 </div>
 }
@@ -39,7 +41,10 @@
             @if(!viewService.mobileView) {
             <span class="username">{{userName}}</span>
             }
-            <img (click)="viewService.openModal('logout')" class="img--avatar" [src]="'../../' + avatarPath" alt="">
+            <div class="wrapper--icons" (click)="viewService.modalHandler('logout', 'modal-content-top-right')">
+                <img class="img--avatar" [src]="'../../' + avatarPath" alt="">
+                <img src="../../assets/images/keyboard_arrow_down.png" alt="">
+            </div>
         </div>
     </section>
 
