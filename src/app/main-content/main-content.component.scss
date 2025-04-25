@@ -101,6 +101,7 @@ $header-height: 80px;
 
     .user-menu .wrapper--icons{
         @include dflex($fD: row, $jC: space-between, $aI: center, $gap: 16px);
+        cursor: pointer;
     }
 
     > div {

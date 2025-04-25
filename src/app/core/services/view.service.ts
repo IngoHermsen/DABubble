@@ -40,6 +40,7 @@ export class ViewService {
   openModal(name: string) {
     this.showModal = true;
     this.activeDialog = name;
+    console.log(`This is active Dialog: ${this.activeDialog}`);
   }
 
   setModalContentClass(className:string){

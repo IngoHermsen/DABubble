@@ -21,8 +21,15 @@
 
 @if (content == "logout") {
     <div class="bubble--logout-profile">
-        <span class="txt"> Profile </span>        
-        <span class="txt"> Logout </span>        
+        <span class="txt" (click)="viewService.modalHandler('cardProfile', 'modal-content-center')"> Profile </span>        
+        <span class="txt" (click)="handleLogout()" [routerLink]="'/main/login'"> Logout </span>        
     </div>
-    
+}
+
+<!-- Dialog: Card Profile -->
+
+@if (content == "cardProfile") {
+    <div class="card--profile">
+        
+    </div>
 }

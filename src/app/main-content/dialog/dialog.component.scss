@@ -11,6 +11,7 @@
     text-indent: 24px;
 }
 
+// Bubble logout and profile option
 .bubble--logout-profile{
     @include dflex($fD: column, $jC: space-evenly);
     @include widthHeight($w: 282px, $h: 120px );
@@ -28,11 +29,17 @@
     height: 40px;
     border-radius: 100px;
 
-    // font-family: "Nunito";
-
     &:hover{
         cursor: pointer;
         background-color: #ECEEFE;
         color: #535AF1;
     }
+}
+
+// Profile Card
+
+.card--profile{
+    @include widthHeight($w: 500px, $h: 705px);
+    border-radius: 30px;
+    background-color: #FFFF;
 }
