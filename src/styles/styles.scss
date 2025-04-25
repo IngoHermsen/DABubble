@@ -215,9 +215,7 @@ div.message-input {
   inset: 0;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include dflex($fD: row, $jC: center, $aI: center);
 }
 
 .modal-inner{
@@ -233,6 +231,8 @@ div.message-input {
 }
 
 .modal-content-top-right{
+  margin-top: 88px;
+  margin-right: 40px;
   justify-content: flex-end;
 }
 
