@@ -22,9 +22,8 @@ export class DialogComponent implements OnInit {
   private firestoreService = inject(FirestoreService);
   public viewService = inject(ViewService);
   authService = inject(AuthService);
-
-
   content: string;
+
 
   // new Channel form 
 
