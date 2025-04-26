@@ -16,7 +16,7 @@ export class ViewService {
   showModal: boolean = false;
   
   activeChannelId: string;
-  activeDialog = signal< ActiveDialogType>("logout")
+  activeDialog = signal<ActiveDialogType>("logout")
   modalContentClass: string;
   currentRoute: string;
 

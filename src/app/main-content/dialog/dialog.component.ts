@@ -4,7 +4,7 @@ import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { Channel } from '../../core/interfaces/channel';
 import { AuthService } from '../../core/services/auth.service';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, Router, RouterOutlet } from '@angular/router';
 
 
 
@@ -21,6 +21,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class DialogComponent {
   private firestoreService = inject(FirestoreService);
+  private router = inject(Router)
   public viewService = inject(ViewService);
   authService = inject(AuthService);
 
@@ -62,5 +63,6 @@ export class DialogComponent {
   handleLogout(){
     this.authService.logoutUser();
     this.viewService.showModal = false;
+    this.router.navigate(['main/login'])
   }
 }

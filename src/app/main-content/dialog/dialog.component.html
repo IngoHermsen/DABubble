@@ -22,7 +22,7 @@
 @if (viewService.activeDialog() == "logout") {
     <div class="bubble--logout-profile">
         <span class="txt" (click)="viewService.modalHandler('cardProfile', 'modal-content-center')"> Profile </span>        
-        <span class="txt" (click)="handleLogout()" [routerLink]="'/main/login'"> Logout </span>        
+        <span class="txt" (click)="handleLogout()"> Logout </span>        
     </div>
 }
 
