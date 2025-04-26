@@ -19,11 +19,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss'
 })
-export class DialogComponent implements OnInit {
+export class DialogComponent {
   private firestoreService = inject(FirestoreService);
   public viewService = inject(ViewService);
   authService = inject(AuthService);
-  content: string;
 
 
   // new Channel form 
@@ -42,11 +41,6 @@ export class DialogComponent implements OnInit {
     })
   });
 
-
-  ngOnInit() {
-    // this.content = this.viewService.activeDialog;
-    console.log(`This is content from dialog.component: ${this.content}`);
-  }
 
   newChannelSubmit() {
     const channelName = this.newChannelFormGroup.get('channelNameInput')!.value;
