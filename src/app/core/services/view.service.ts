@@ -1,6 +1,8 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirestoreService } from './firestore.service';
+
+type ActiveDialogType = 'newChannel' | 'logout' | 'cardProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +16,7 @@ export class ViewService {
   showModal: boolean = false;
   
   activeChannelId: string;
-  activeDialog: string;
+  activeDialog = signal< ActiveDialogType>("logout")
   modalContentClass: string;
   currentRoute: string;
 
@@ -32,15 +34,14 @@ export class ViewService {
     this.router.navigate([route]);
   }
 
-  modalHandler(name: string, className: string){
+  modalHandler(name: ActiveDialogType, className: string){
     this.openModal(name)
     this.setModalContentClass(className)    
   }
   
-  openModal(name: string) {
+  openModal(name: ActiveDialogType) {
     this.showModal = true;
-    this.activeDialog = name;
-    console.log(`This is active Dialog: ${this.activeDialog}`);
+    this.activeDialog.set(name);
   }
 
   setModalContentClass(className:string){

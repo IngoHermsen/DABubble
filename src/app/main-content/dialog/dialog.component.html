@@ -1,6 +1,6 @@
 <!-- Dialog Form: new Channel -->
 
-@if (content == "newChannel") {
+@if (this.viewService.activeDialog() == "newChannel") {
     <div class="card new-channel-card">
         <h2>Channel erstellen</h2>
         <span>Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein (z.B. #marketing)</span>
@@ -19,7 +19,7 @@
 
 <!-- Dialog: Logout -->
 
-@if (content == "logout") {
+@if (viewService.activeDialog() == "logout") {
     <div class="bubble--logout-profile">
         <span class="txt" (click)="viewService.modalHandler('cardProfile', 'modal-content-center')"> Profile </span>        
         <span class="txt" (click)="handleLogout()" [routerLink]="'/main/login'"> Logout </span>        
@@ -28,8 +28,10 @@
 
 <!-- Dialog: Card Profile -->
 
-@if (content == "cardProfile") {
+@if (viewService.activeDialog() == "cardProfile") {
     <div class="card--profile">
         
     </div>
 }
+
+

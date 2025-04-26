@@ -7,6 +7,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 
+
 @Component({
   selector: 'app-dialog',
   standalone: true,
@@ -43,7 +44,8 @@ export class DialogComponent implements OnInit {
 
 
   ngOnInit() {
-    this.content = this.viewService.activeDialog;
+    // this.content = this.viewService.activeDialog;
+    console.log(`This is content from dialog.component: ${this.content}`);
   }
 
   newChannelSubmit() {
