@@ -35,8 +35,21 @@
         <span class="profile">Profile</span>
         <div class="close-button">
             ×
-          </div>
-        <!-- <img src="../../../assets/images/closing_x.png" alt="" class="closing-x"> -->
+        </div>
     </div>
+    <img [src]="'../../' + avatarPath" alt="" class="img">
+    <div class="username">
+        <div class="name">
+            {{userName}}
+        </div>
+        <div class="edit-pen">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+                <circle class="icon-circle" cx="15" cy="15" r="15" />
+                <path class="pen" transform="translate(15,15) scale(0.9) translate(-15,-15)"
+                    d="M8.5 22H9.9L18.525 13.375L17.125 11.975L8.5 20.6V22ZM22.8 11.925L18.55 7.725L19.95 6.325C20.3333 5.94167 20.8043 5.75 21.363 5.75C21.921 5.75 22.3917 5.94167 22.775 6.325L24.175 7.725C24.5583 8.10833 24.7583 8.571 24.775 9.113C24.7917 9.65433 24.6083 10.1167 24.225 10.5L22.8 11.925ZM7.5 24C7.21667 24 6.97933 23.904 6.788 23.712C6.596 23.5207 6.5 23.2833 6.5 23V20.175C6.5 20.0417 6.525 19.9127 6.575 19.788C6.625 19.6627 6.7 19.55 6.8 19.45L17.1 9.15L21.35 13.4L11.05 23.7C10.95 23.8 10.8377 23.875 10.713 23.925C10.5877 23.975 10.4583 24 10.325 24H7.5Z" />
+            </svg>
+        </div>
+    </div>
+
 </div>
 }
