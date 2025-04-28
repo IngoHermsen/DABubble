@@ -19,11 +19,22 @@ import { RouterLink, Router, RouterOutlet } from '@angular/router';
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.scss'
 })
-export class DialogComponent {
+export class DialogComponent implements OnInit{
   private firestoreService = inject(FirestoreService);
   private router = inject(Router)
   public viewService = inject(ViewService);
   authService = inject(AuthService);
+
+  avatarPath: any;
+  userName: any; 
+
+
+  ngOnInit(): void {
+    this.authService.firebaseUser$.subscribe(user => {
+      this.userName = user?.displayName ?? "Guest"
+      this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png"
+    });
+  }
 
 
   // new Channel form 

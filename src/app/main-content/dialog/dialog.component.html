@@ -1,37 +1,42 @@
 <!-- Dialog Form: new Channel -->
 
 @if (this.viewService.activeDialog() == "newChannel") {
-    <div class="card new-channel-card">
-        <h2>Channel erstellen</h2>
-        <span>Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein (z.B. #marketing)</span>
-        <form action="submit" [formGroup]=newChannelFormGroup #newChannelForm="ngForm" (submit)="newChannelSubmit()">
+<div class="card new-channel-card">
+    <h2>Channel erstellen</h2>
+    <span>Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein (z.B.
+        #marketing)</span>
+    <form action="submit" [formGroup]=newChannelFormGroup #newChannelForm="ngForm" (submit)="newChannelSubmit()">
 
-            <label for="channelName">Name:</label>
-            <input class="input-styling" id="channelName" type="text" formControlName="channelNameInput">
-          
-            <label for="channelDescription">Beschreibung:</label>
-            <input class="input-styling" id="channelDescription" type="text" formControlName="channelDescInput">
-       
-            <button class="submit-btn" [class.inactive-submit-btn]="newChannelForm.invalid">Erstellen</button>
-        </form>
-    </div>
+        <label for="channelName">Name:</label>
+        <input class="input-styling" id="channelName" type="text" formControlName="channelNameInput">
+
+        <label for="channelDescription">Beschreibung:</label>
+        <input class="input-styling" id="channelDescription" type="text" formControlName="channelDescInput">
+
+        <button class="submit-btn" [class.inactive-submit-btn]="newChannelForm.invalid">Erstellen</button>
+    </form>
+</div>
 }
 
 <!-- Dialog: Logout -->
 
 @if (viewService.activeDialog() == "logout") {
-    <div class="bubble--logout-profile">
-        <span class="txt" (click)="viewService.modalHandler('cardProfile', 'modal-content-center')"> Profile </span>        
-        <span class="txt" (click)="handleLogout()"> Logout </span>        
-    </div>
+<div class="bubble--logout-profile">
+    <span class="txt" (click)="viewService.modalHandler('cardProfile', 'modal-content-center')"> Profile </span>
+    <span class="txt" (click)="handleLogout()"> Logout </span>
+</div>
 }
 
 <!-- Dialog: Card Profile -->
 
 @if (viewService.activeDialog() == "cardProfile") {
-    <div class="card--profile">
-        
+<div class="card--profile">
+    <div class="top">
+        <span class="profile">Profile</span>
+        <div class="close-button">
+            ×
+          </div>
+        <!-- <img src="../../../assets/images/closing_x.png" alt="" class="closing-x"> -->
     </div>
+</div>
 }
-
-

@@ -1,10 +1,11 @@
 @import '../../../styles/mixins.scss';
 
 
+
 .new-channel-card {
     padding: 24px;
     @include dflex($fD: column, $aI: left);
-} 
+}
 
 .input-styling {
     padding-left: unset;
@@ -12,24 +13,24 @@
 }
 
 // Bubble logout and profile option
-.bubble--logout-profile{
+.bubble--logout-profile {
     @include dflex($fD: column, $jC: space-evenly);
-    @include widthHeight($w: 282px, $h: 120px );
+    @include widthHeight($w: 282px, $h: 120px);
     border-radius: 30px 0 30px 30px;
     background-color: #FFFF;
     box-shadow: 0px 6px 10px 0px #00000033;
 }
 
-.bubble--logout-profile .txt{
+.bubble--logout-profile .txt {
     box-sizing: border-box;
-    @include fontSizeWeight($s:24px, $w:600);
+    @include fontSizeWeight($s: 24px, $w: 600);
     @include dflex($fD: row, $jC: center, $aI: center);
-    width:  64%;
+    width: 64%;
     padding: 10px 45px;
     height: 40px;
     border-radius: 100px;
 
-    &:hover{
+    &:hover {
         cursor: pointer;
         background-color: #ECEEFE;
         color: #535AF1;
@@ -38,8 +39,45 @@
 
 // Profile Card
 
-.card--profile{
+.card--profile {
     @include widthHeight($w: 500px, $h: 705px);
+    @include dflex($fD: column, $gap: 45px);
+    padding: 40px;
+    box-sizing: border-box;
     border-radius: 30px;
     background-color: #FFFF;
+    box-shadow: 0px 6px 10px 0px #00000033;
 }
+
+.card--profile .top {
+    @include dflex($fD: row, $jC: space-between, $aI: center);
+    width: 100%;
+}
+
+.card--profile .top .profile {
+    @include fontSizeWeight($s: 24px, $w: 700);
+}
+
+.card--profile .top .close-button {
+    @include dflex($fD: row, $jC: center, $aI: center);
+    @include widthHeight($w: 32px, $h: 32px);
+    @include fontSizeWeightColor($s:24px, $w:bold, $c:black);
+    border-radius: 50%;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover{
+        background-color: #ECEEFE;
+        color: #535AF1;
+    }
+}
+
+//   background-color: #ECEEFE;
+//   color: #535AF1;
+
+.close-button:hover {
+}
+
+
+.card--profile .top .closing-x {}
