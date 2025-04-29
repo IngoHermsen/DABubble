@@ -1,9 +1,10 @@
-import { Component, HostListener, inject, Input, OnInit, Signal } from '@angular/core';
+import { Component, HostListener, inject, Input, OnInit } from '@angular/core';
 import { Post } from '../core/interfaces/post';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ThreadService } from '../core/services/thread.service';
 import { ViewService } from '../core/services/view.service';
+import { Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-post',
@@ -121,6 +122,14 @@ export class PostComponent implements OnInit {
   openThread() {
     this.threadService.activeThreadId.set(this.post.postId);
     this.viewService.showThreadSection = true;
+  }
+
+  get timeAsString(): string {
+    const creationTime: Date = this.post.creationTime.toDate();
+    const hours: string = creationTime.getHours().toString().padStart(2, '0');
+    const minutes: string = creationTime.getMinutes().toString().padStart(2, '0')
+
+    return `${hours}:${minutes} Uhr`;
   }
 
 }

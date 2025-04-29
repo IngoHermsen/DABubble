@@ -32,11 +32,10 @@ export class ChannelComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    // this.firestoreService.unsubChannelCol();
+    this.firestoreService.unsubPostsCol();
   }
 
   addPost(post: Post) {
-    console.log('POST:', post)
     this.firestoreService.addPostToFirestore(post);
 
   }
@@ -47,7 +46,7 @@ export class ChannelComponent implements OnInit {
   //     postId: '12345',
   //     creatorId: 'Max Mustermann',
   //     text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-  //     reactions: [
+  //     reactions: [ss
   //       {reactionId: 'grin', users: ['1234', 'user2']},
   //       {reactionId: 'smile', users: ['user1', 'user2']},
   //     ],

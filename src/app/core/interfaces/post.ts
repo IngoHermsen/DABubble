@@ -1,9 +1,11 @@
+import { Timestamp } from "firebase/firestore";
+
 export interface Post {
     postId: string;
     creatorId: string;
     text: string;
     reactions: Array<any>;
-    creationTime: string  // 'string' allowed for first test content, change later to type 'Date'
+    creationTime: Timestamp;
     isAnswer: boolean;
     imgPath?: string;
 }

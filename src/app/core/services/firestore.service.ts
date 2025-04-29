@@ -12,11 +12,6 @@ export class FirestoreService {
   private dbFs = inject(Firestore);
   private dataService = inject(DataService);
 
-  // signals
-  channelIds: WritableSignal<string[]> = signal([]);
-  channelPosts: WritableSignal<Post[]> = signal([])
-
-
   // references
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
@@ -70,7 +65,6 @@ export class FirestoreService {
   async setActivePosts(channelName: string, ) {
     this.postsColRef = collection(this.channelDocRef, 'posts');
     this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
-      console.clear();
       console.log('POST SNAPSHOT')
       const posts: Post[] = snapshot.docs.map(doc => {
           const postData = doc.data();
@@ -83,6 +77,7 @@ export class FirestoreService {
               reactions: postData['reactions'],
               text: postData['text']
           }
+          console.log(convertedPost)
           return convertedPost;
       })
       this.dataService.posts = posts;
@@ -96,10 +91,6 @@ export class FirestoreService {
     await updateDoc(docRef, newData)
   }
 
-  async updatePosts(post: Post) {
-    this.postsColRef = collection(this.channelDocRef, 'posts');
-    await addDoc(this.postsColRef, post);
-  }
 
   async getAllUsers() {
     const usersCollection = collection(this.dbFs, 'users');

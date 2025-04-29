@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { Post } from '../../core/interfaces/post';
+import { FieldValue, serverTimestamp, Timestamp } from 'firebase/firestore';
 
 @Component({
   selector: 'app-message-input',
@@ -30,7 +31,7 @@ export class MessageInputComponent {
         creatorId: 'Hans Wurst',
         text: message,
         reactions: [],
-        creationTime: 'irgendwann',
+        creationTime: Timestamp.fromDate(new Date()),
         isAnswer: false
       }
       this.message.emit(this.post);
