@@ -27,12 +27,14 @@ export class DialogComponent implements OnInit{
 
   avatarPath: any;
   userName: any; 
+  firebaseUser: any = {};
 
 
   ngOnInit(): void {
     this.authService.firebaseUser$.subscribe(user => {
       this.userName = user?.displayName ?? "Guest"
       this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png"
+      this.firebaseUser = user;
     });
   }
 

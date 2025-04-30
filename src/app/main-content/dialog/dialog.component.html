@@ -33,11 +33,12 @@
 <div class="card--profile">
     <div class="top">
         <span class="profile">Profile</span>
-        <div class="close-button">
+        <div class="close-button" (click)="viewService.showModal = false">
             ×
         </div>
     </div>
     <img [src]="'../../' + avatarPath" alt="" class="img">
+
     <div class="username">
         <div class="name">
             {{userName}}
@@ -50,9 +51,19 @@
             </svg>
         </div>
     </div>
+
     <div class="online-active">
         <div class="green-dot"></div>
         <span class="active">Aktiv</span>
+    </div>
+
+    <div class="email-wrapper">
+        <img src="../../../assets/images/mail.png" alt="" class="icon">
+        <div class="txt">E-Mail-Address</div>
+    </div>
+
+    <div class="email-address">
+        {{firebaseUser.email}}
     </div>
 
 </div>

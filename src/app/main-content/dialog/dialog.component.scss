@@ -41,18 +41,25 @@
 
 // Profile Card
 .card--profile {
-    @include widthHeight($w: 500px, $h: 705px);
+    @include widthHeight($w: 500px, $h: fit-content);
     @include dflex($fD: column, $gap: 45px, $jC: null);
     padding: 40px;
     box-sizing: border-box;
     border-radius: 30px;
     background-color: #FFFF;
     box-shadow: 0px 6px 10px 0px #00000033;
+
+    > * {
+        width: 100%;
+      }
+
+      > *:last-child {
+        margin-top: -30px;
+      }
 }
 
 .card--profile .top {
     @include dflex($fD: row, $jC: space-between, $aI: center);
-    width: 100%;
 }
 
 .card--profile .top .profile {
@@ -84,13 +91,11 @@
 //User name and edit pen
 .card--profile .username {
     @include dflex($fD: row, $jC: space-between, $aI: center, $gap: 0px);
-    width: 100%;
 }
 
 .card--profile .username .name {
     justify-self: flex-start;
     @include fontSizeWeight($s: 32px, $w: 700);
-    width: 100%;
 }
 
 .card--profile .edit-pen {
@@ -121,7 +126,6 @@
 
 //Online Active
 .online-active{
-    width: 100%;
     @include dflex($fD: row, $jC: flex-start, $aI: center, $gap: 16px);
 }
 
@@ -131,6 +135,25 @@
     border-radius: 50%;
 }   
 
+.online-active .active{
+    @include fontSizeWeightColor($s:20px, $w:400, $c:#686868);
+}
 
-// online green
-// #92C83E
+
+// Email Wrapper
+.email-wrapper{
+    @include dflex($fD: row, $jC: flex-start, $aI: center, $gap: 16px);
+}
+
+.email-wrapper .icon{
+    height: 20px;
+}
+
+.email-wrapper .txt{
+    @include fontSizeWeight($s:20px, $w:700);
+}
+
+.email-address{
+    padding-left: 86px;
+    @include fontSizeWeightColor($s:18px, $w:400, $c:#1381FF);
+}
