@@ -2,16 +2,24 @@
     <div class="fixed-header box-shadow">
 
         @if(viewService.mobileView) {
-        <span class="material-icons-round arrow-back" (click)="viewService.wsNavigate('workspace')">arrow_back_ios</span>
+        <span class="material-icons-round arrow-back"
+            (click)="viewService.wsNavigate('workspace')">arrow_back_ios</span>
         }
         <h2>{{ dataService.channelData.channelName }}</h2>
     </div>
     <div class="posts">
-        @for (post of dataService.posts; let index = $index; track $index) {
+        @for (entry of dataService.groupedPosts; track $index) {
+        <span class="divider">{{ entry.date }}</span>
+
+        @for (post of entry.posts; let index = $index; track $index) {
         <div class="post-wrapper">
             <app-post [index]="index" [post]="post"></app-post>
         </div>
         }
+        }
+
+
+
     </div>
     <div class="message-input">
         <app-message-input (message)="addPost($event)"></app-message-input>

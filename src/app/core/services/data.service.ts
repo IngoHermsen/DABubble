@@ -22,15 +22,15 @@ export class DataService {
   handlePostData(posts: Post[]) {
     const sortedPosts: Post[] = posts.sort((a, b) => {
       if (a.creationTime < b.creationTime) {
-        return 1
-      } else {
         return -1
+      } else {
+        return 1
       }
     });
     this.groupPostsByDate(sortedPosts)
   }
 
-  groupPostsByDate(posts: Post[]) {
+  private groupPostsByDate(posts: Post[]) {
     const postGroups: Map<string, Post[]> = new Map();
 
       posts.forEach(post => {
@@ -46,11 +46,9 @@ export class DataService {
        date,
        posts
       }));
-
-      console.log(this.groupedPosts)
   }
 
-  transformDate(timestamp: Timestamp) {
+  private transformDate(timestamp: Timestamp) {
     const timestampAsDate = timestamp.toDate();
         const dateAsString = timestampAsDate.toLocaleDateString('de-DE', {
             weekday: 'long',
