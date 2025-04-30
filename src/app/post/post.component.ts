@@ -126,10 +126,10 @@ export class PostComponent implements OnInit {
 
   get timeAsString(): string {
     const creationTime: Date = this.post.creationTime.toDate();
-    const hours: string = creationTime.getHours().toString().padStart(2, '0');
-    const minutes: string = creationTime.getMinutes().toString().padStart(2, '0')
-
-    return `${hours}:${minutes} Uhr`;
+    const timeAsString: String = creationTime.toLocaleTimeString('de-DE', {
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+    return timeAsString + ' Uhr';
   }
-
 }

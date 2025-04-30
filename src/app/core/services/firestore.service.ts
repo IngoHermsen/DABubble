@@ -67,20 +67,18 @@ export class FirestoreService {
     this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
       console.log('POST SNAPSHOT')
       const posts: Post[] = snapshot.docs.map(doc => {
-          const postData = doc.data();
-          console.log('POST DATA', postData)
+          const postData: Post = doc.data() as Post;
           const convertedPost: Post = {
-              creationTime: postData['creationTime'],
-              creatorId: postData['creatorId'],
-              isAnswer: postData['isAnswer'],
-              postId: postData['postId'],
-              reactions: postData['reactions'],
-              text: postData['text']
+              creationTime: postData.creationTime,
+              creatorId: postData.creatorId,
+              isAnswer: postData.isAnswer,
+              postId: postData.postId,
+              reactions: postData.reactions,
+              text: postData.text
           }
-          console.log(convertedPost)
           return convertedPost;
       })
-      this.dataService.posts = posts;
+      this.dataService.handlePostData(posts);
 
     });
   }

@@ -40,6 +40,16 @@ export class ChannelComponent implements OnInit {
 
   }
 
+  createDateDivider(date: Date): string {
+    const dateString: string = date.toLocaleDateString('de-DE', {
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long'
+    });
+  
+    return dateString
+  }
+
 
   // posts = [   //examples - will later be fetched from database / backend
   //   {
