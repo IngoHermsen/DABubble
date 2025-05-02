@@ -2,7 +2,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { FirestoreService } from './firestore.service';
 
-type ActiveDialogType = 'newChannel' | 'logout' | 'cardProfile';
+type ActiveDialogType = 'newChannel' | 'logout' | 'cardProfile' |'cardProfileEdit';
 type PlacementClassType = 'modal-content-center' | 'modal-content-top-right';
 
 @Injectable({

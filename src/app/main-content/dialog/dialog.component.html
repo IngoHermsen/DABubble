@@ -30,20 +30,22 @@
 <!-- Dialog: Card Profile -->
 
 @if (viewService.activeDialog() == "cardProfile") {
-<div class="card--profile">
+<!--activeDialog is a <signal> the <call> gives newest <str-value> -->
+<div class="card--profile cards-styling">
     <div class="top">
         <span class="profile">Profile</span>
         <div class="close-button" (click)="viewService.showModal = false">
             ×
         </div>
     </div>
-    <img [src]="'../../' + avatarPath" alt="" class="img">
+    <img [src]="'../../' + avatarPath" alt="" class="img--profile">
 
     <div class="username">
         <div class="name">
             {{userName}}
         </div>
-        <div class="edit-pen">
+
+        <div class="edit-pen" (click)="viewService.modalHandler('cardProfileEdit', 'modal-content-center')">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
                 <circle class="circle" cx="15" cy="15" r="15" />
                 <path class="pen" transform="translate(15,15) scale(0.9) translate(-15,-15)"
@@ -68,3 +70,23 @@
 
 </div>
 }
+
+<!-- cardProfileEdit -->
+
+@if (viewService.activeDialog() == "cardProfileEdit"){
+<div class="card--profile-edit cards-styling">
+    <div class="top">
+        <span class="profile">Dein Profil bearbeiten</span>
+        <div class="close-button" (click)="viewService.showModal = false">
+            ×
+        </div>
+    </div>
+    <img [src]="'../../' + avatarPath" alt="" class="img--profile">
+    <div class="full-name">
+        <img src="../../../assets/images/account_circle.png" alt="">
+        <span>Vollständiger Name</span>
+    </div>
+</div>
+}
+
+<!-- cardProfileEdit -->
