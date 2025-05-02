@@ -30,7 +30,7 @@ export class EditAvatarComponent implements OnInit {
   placeholderImagePath: string = 'assets/images/avatar_placeholder.png';
   avatarPath: string = "";
   userImg: string | null = null;
-  userName: string | undefined;
+  userName: string | null | undefined;
 
   // set instance of firebase Storage and reference to image path
   fbStorage = getStorage();

@@ -2,6 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 import {
+  User as FirebaseUser,
   Auth,
   createUserWithEmailAndPassword,
   getAuth,
@@ -25,11 +26,12 @@ export class AuthService {
   private router = inject(Router);
   public dbFs = inject(Firestore);
   private firebaseAuth = inject(Auth);
-  private firebaseUserSubject = new BehaviorSubject<User | null>(null)
+  private firebaseUserSubject = new BehaviorSubject<FirebaseUser | null>(null)
   showPassword = false;
 
 
-  firebaseUser: any = {}
+  firebaseUser: FirebaseUser| null 
+
   firebaseUser$ = this.firebaseUserSubject.asObservable(); // Public Observable
   user: User | null = null;
 
@@ -55,11 +57,9 @@ export class AuthService {
    * @singleton This is instantiated once as a singleton.
    */
   constructor() {
-    onAuthStateChanged(this.firebaseAuth, (user: any) => {
+    onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
       this.firebaseUser = user;
       this.firebaseUserSubject.next(user); 
-      // console.log('currentUser:', user);
-      // console.log('onAuthStateChanged:', user.email);
     });
   }
 
@@ -154,18 +154,15 @@ export class AuthService {
     this.resetErrors();
     try {
       const provider = new GoogleAuthProvider();
-      // Force user to select account
-      provider.setCustomParameters({
-        prompt: 'select_account'
-      });
-
-      const userCredential = await signInWithPopup(this.firebaseAuth, provider);
-      this.firebaseUser.email = userCredential.user.email;
+      provider.setCustomParameters({ prompt: 'select_account' });
+  
+      await signInWithPopup(this.firebaseAuth, provider);
     } catch (error: any) {
       this.showErrorMsg(error.code);
       return error.code;
     }
   }
+  
 
 
   /**
@@ -174,7 +171,6 @@ export class AuthService {
   async logoutUser(): Promise<void> {
     try {
       await signOut(this.firebaseAuth);
-      this.firebaseUser.email = null; // Clear user data
     } catch (error: any) {
     }
   }

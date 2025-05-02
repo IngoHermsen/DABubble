@@ -5,8 +5,7 @@ import { FirestoreService } from '../../core/services/firestore.service';
 import { Channel } from '../../core/interfaces/channel';
 import { AuthService } from '../../core/services/auth.service';
 import { RouterLink, Router, RouterOutlet } from '@angular/router';
-
-
+import { User as FirebaseUser } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-dialog',
@@ -25,9 +24,10 @@ export class DialogComponent implements OnInit{
   public viewService = inject(ViewService);
   authService = inject(AuthService);
 
-  avatarPath: any;
-  userName: any; 
-  firebaseUser: any = {};
+  avatarPath: string;
+  userName: string; 
+  firebaseUser: FirebaseUser | null ;
+  userMail: string | null | undefined
 
 
   ngOnInit(): void {
@@ -35,6 +35,7 @@ export class DialogComponent implements OnInit{
       this.userName = user?.displayName ?? "Guest"
       this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png"
       this.firebaseUser = user;
+      this.userMail = user?.email
     });
   }
 
