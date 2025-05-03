@@ -192,3 +192,17 @@
     }
 }
 
+.wrapper--btns{
+    @include dflex($fD: row, $jC: center, $aI: center, $gap: 32px);
+}
+
+.wrapper--btns .cancel{
+    @include roundBtn($w:133px , $h:49px , $b-radius:50px , $bg-color: #444DF2 ,);
+}
+
+.wrapper--btns .save{
+    @include roundBtn($w:133px , $h:49px , $b-radius:50px);
+    border: solid 1px;
+    border-color: #797EF3 ;
+}
+
