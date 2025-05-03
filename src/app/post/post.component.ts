@@ -124,6 +124,7 @@ export class PostComponent implements OnInit {
     this.viewService.showThreadSection = true;
   }
 
+  
   get timeAsString(): string {
     const creationTime: Date = this.post.creationTime.toDate();
     const timeAsString: String = creationTime.toLocaleTimeString('de-DE', {

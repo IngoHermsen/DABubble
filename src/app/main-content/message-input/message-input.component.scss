@@ -46,8 +46,8 @@ textarea {
 }
 
 .newPost-inactive-submit-btn {
+    pointer-events: none;
     user-select: none;
     color: unset;
-    cursor: not-allowed
 }
 

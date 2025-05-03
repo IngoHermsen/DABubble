@@ -17,11 +17,18 @@ export class MessageInputComponent {
   messageInput = new FormControl('');
   post: Post;
 
-  isSendButtonDisabled(): boolean {  //helping method for better overview in template
+  get formIsInvalid(): boolean {  //helping method for better overview in template
     return (
       this.messageInput.value!.length < this.minInputLength
     )
   };
+
+  onKeyDown(event: KeyboardEvent) {
+    if(event.key === 'Enter') {
+      event.preventDefault();
+      if(!this.formIsInvalid) this.onSubmit()
+    }
+  }
 
   onSubmit() {
     if(this.messageInput.value) {

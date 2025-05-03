@@ -1,4 +1,4 @@
-import { inject, Injectable, signal, Type, WritableSignal } from '@angular/core';
+import { inject, Injectable, OnInit, signal, Type, WritableSignal } from '@angular/core';
 import { doc, Firestore, setDoc, onSnapshot, updateDoc, getDocs } from '@angular/fire/firestore';
 import { addDoc, collection, CollectionReference, DocumentData, DocumentReference, DocumentSnapshot, getDoc, QueryDocumentSnapshot, QuerySnapshot } from 'firebase/firestore';
 import { Channel, EMPTY_CHANNEL } from '../interfaces/channel';
@@ -18,7 +18,7 @@ export class FirestoreService {
   postsColRef: CollectionReference;
   users: { photoURL: string; username: string }[] = [];
 
-
+  
   unsubChannelsCol: () => void = onSnapshot(this.channelsColRef, snapshot => {
     console.log('CHANNEL SNAPSHOT')
     const cNames: Array<string> = snapshot.docs.map(doc => doc.id);
@@ -58,14 +58,13 @@ export class FirestoreService {
       }
       this.dataService.channelData = convertedData;
       if(this.unsubPostsCol) this.unsubPostsCol();
-      this.setActivePosts(channelName);
+      this.setActivePosts();
     }
   }
 
-  async setActivePosts(channelName: string, ) {
+  async setActivePosts() {
     this.postsColRef = collection(this.channelDocRef, 'posts');
     this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
-      console.log('POST SNAPSHOT')
       const posts: Post[] = snapshot.docs.map(doc => {
           const postData: Post = doc.data() as Post;
           const convertedPost: Post = {
