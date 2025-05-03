@@ -81,3 +81,11 @@
   font-weight: $w;
   color: $c;
 }
+
+/************************* Border *************************/
+// @include borderStyling ($border: , $b-radius: , $b-color: );
+@mixin borderStyling($border: null, $b-radius: null, $b-color: null){
+  border: $border;
+  border-radius: $b-radius;
+  border-color: $b-color;
+}

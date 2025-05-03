@@ -1,5 +1,6 @@
 @if(viewService.showModal) {
-<div [ngClass]="'modal'" (click)="viewService.showModal = false">
+<!-- (click)="viewService.showModal = false" // insert this back  -->
+    <div [ngClass]="'modal'" > 
     <div class="modal-inner" [ngClass]="viewService.modalContentClass">
         <div>
             <app-dialog (click)="$event.stopPropagation()"></app-dialog>

@@ -96,7 +96,6 @@
     >*:last-child {
         margin-bottom: 0
     }
-
 }
 
 
@@ -172,3 +171,24 @@
 // cardProfileEdit
 
 .card--profile-edit {}
+
+.card--profile-edit .full-name{
+    @include dflex($fD: row, $jC: flex-start, $aI: center, $gap: 16px);
+}
+
+
+.full-name .name{
+    @include fontSizeWeight($s:20px, $w:700);
+}
+
+ .card--profile-edit .input-field{
+    box-sizing: border-box;
+    @include widthHeight($w: 100%, $h: 50px);
+    @include borderStyling ($border: 1px solid, $b-radius: 100px, $b-color: #ADB0D9);
+    padding-left: 40px;
+
+    &:focus{
+        outline: none;
+    }
+}
+
