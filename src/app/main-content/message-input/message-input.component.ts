@@ -24,7 +24,7 @@ export class MessageInputComponent {
   };
 
   onKeyDown(event: KeyboardEvent) {
-    if(event.key === 'Enter') {
+    if(event.key === 'Enter' && !event.ctrlKey) {
       event.preventDefault();
       if(!this.formIsInvalid) this.onSubmit()
     }
