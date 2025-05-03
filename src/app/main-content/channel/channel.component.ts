@@ -7,6 +7,7 @@ import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { ActivatedRoute } from '@angular/router';
 
+
 @Component({
   selector: 'app-channel',
   standalone: true,
@@ -46,7 +47,7 @@ export class ChannelComponent implements OnInit {
       day: 'numeric',
       weekday: 'long'
     });
-  
+
     return dateString
   }
 
