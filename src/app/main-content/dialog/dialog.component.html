@@ -2,15 +2,24 @@
 
 @if (this.viewService.activeDialog() == "newChannel") {
 <div class="card--new-channel cards-styling">
-    <h2>Channel erstellen</h2>
-    <span>Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein (z.B.
-        #marketing)</span>
-    <form action="submit" class="form-styling" [formGroup]=newChannelFormGroup #newChannelForm="ngForm" (submit)="newChannelSubmit()">
+    <div class="top">
+        <span class="profile">Channel Erstellen</span>
+        <div class="close-button" (click)="viewService.showModal = false">
+            ×
+        </div>
+    </div>
 
-        <label for="channelName">Name:</label>
+    <span class="info-txt">Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein (z.B.
+        #marketing)
+    </span>
+
+    <form action="submit" class="form-styling" [formGroup]=newChannelFormGroup #newChannelForm="ngForm"
+        (submit)="newChannelSubmit()">
+
+        <label for="channelName">Channel-Name: </label>
         <input class="input-styling" id="channelName" type="text" formControlName="channelNameInput">
 
-        <label for="channelDescription">Beschreibung:</label>
+        <label for="channelDescription">Beschreibung <span class="optional">(optional)</span></label>
         <input class="input-styling" id="channelDescription" type="text" formControlName="channelDescInput">
 
         <button class="submit-btn" [class.inactive-submit-btn]="newChannelForm.invalid">Erstellen</button>
@@ -87,7 +96,7 @@
         <span class="name">Vollständiger Name</span>
     </div>
 
-    <input class="input-field" type="text" placeholder="Dein Name hier" name="email" autocomplete="off"  #newNameInput/>
+    <input class="input-field" type="text" placeholder="Dein Name hier" name="email" autocomplete="off" #newNameInput />
 
     <div class="wrapper--btns">
         <button class="cancel">Abbrechen</button>
