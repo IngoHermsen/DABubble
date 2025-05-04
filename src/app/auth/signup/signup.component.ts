@@ -100,6 +100,4 @@ export class SignupComponent {
     this.validation.checkPassword(passwordValue);
     this.validation.checkName(usernameValue);
   }
-
-
 }

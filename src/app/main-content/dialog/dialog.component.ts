@@ -102,6 +102,8 @@ export class DialogComponent implements OnInit {
     if (userToUpdate) {
       userToUpdate.username = nameValue;
     }
+
+    this.viewService.showModal = false
   }
   
 }

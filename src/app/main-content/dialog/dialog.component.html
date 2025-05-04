@@ -1,11 +1,11 @@
 <!-- Dialog Form: new Channel -->
 
 @if (this.viewService.activeDialog() == "newChannel") {
-<div class="card new-channel-card">
+<div class="card--new-channel cards-styling">
     <h2>Channel erstellen</h2>
     <span>Channels dienen deinem Team zur Kommunikation. Am besten sollten sie themenbezogen sein (z.B.
         #marketing)</span>
-    <form action="submit" [formGroup]=newChannelFormGroup #newChannelForm="ngForm" (submit)="newChannelSubmit()">
+    <form action="submit" class="form-styling" [formGroup]=newChannelFormGroup #newChannelForm="ngForm" (submit)="newChannelSubmit()">
 
         <label for="channelName">Name:</label>
         <input class="input-styling" id="channelName" type="text" formControlName="channelNameInput">
