@@ -16,7 +16,7 @@ export class FirestoreService {
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
   postsColRef: CollectionReference;
-  users: { photoURL: string; username: string }[] = [];
+  users: { photoURL: string; username: string, email: string }[] = [];
 
   
   unsubChannelsCol: () => void = onSnapshot(this.channelsColRef, snapshot => {
@@ -94,6 +94,7 @@ export class FirestoreService {
     const querySnapshot = await getDocs(usersCollection);
 
     this.users = querySnapshot.docs.map(doc => ({
+      email: doc.id,
       photoURL: doc.data()['photoURL'],
       username: doc.data()['username']
     }));

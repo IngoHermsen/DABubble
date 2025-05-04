@@ -87,11 +87,11 @@
         <span class="name">Vollständiger Name</span>
     </div>
 
-    <input class="input-field" type="text" placeholder="Dein Name hier" name="email" autocomplete="off" />
+    <input class="input-field" type="text" placeholder="Dein Name hier" name="email" autocomplete="off"  #newNameInput/>
 
     <div class="wrapper--btns">
-        <button class="cancel">Button1</button>
-        <button class="save">Button2</button>
+        <button class="cancel">Abbrechen</button>
+        <button class="save" (click)="setNewName(newNameInput)">Speichern</button>
     </div>
 </div>
 

@@ -180,4 +180,14 @@ export class AuthService {
       [key]: value 
     });
   }
+
+
+  refreshFirebaseUser() {
+    const user = this.firebaseAuth.currentUser;
+    if (user) {
+      user.reload().then(() => {
+        this.firebaseUserSubject.next(user);
+      });
+    }
+  }
 }

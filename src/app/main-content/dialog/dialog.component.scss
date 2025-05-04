@@ -84,9 +84,8 @@
     border-radius: 500px;
 }
 
+
 // Profile Card
-
-
 .card--profile {
     // selecting before last child (Vorletzte child)
     > :nth-last-child(2) {
@@ -168,14 +167,25 @@
     @include fontSizeWeightColor($s: 18px, $w: 400, $c: #1381ff);
 }
 
-// cardProfileEdit
 
-.card--profile-edit {}
+// cardProfileEdit
+.card--profile-edit {
+        > :nth-last-child(2) {
+            margin-bottom: 32px;
+        }
+
+        > :nth-last-child(3) {
+            margin-bottom: 16px;
+        }
+    
+        >*:last-child {
+            margin-bottom: 0
+        }
+}
 
 .card--profile-edit .full-name{
     @include dflex($fD: row, $jC: flex-start, $aI: center, $gap: 16px);
 }
-
 
 .full-name .name{
     @include fontSizeWeight($s:20px, $w:700);
@@ -192,17 +202,18 @@
     }
 }
 
-.wrapper--btns{
+.card--profile-edit .wrapper--btns{
     @include dflex($fD: row, $jC: center, $aI: center, $gap: 32px);
 }
 
-.wrapper--btns .cancel{
-    @include roundBtn($w:133px , $h:49px , $b-radius:50px , $bg-color: #444DF2 ,);
+.card--profile-edit .wrapper--btns .cancel{
+    @include roundBtn($w:133px , $h:49px , $b-radius:50px);
+    @include fontSizeWeightColor($s:18px, $w:700, $c:#444DF2);
+    border: solid 1px #797EF3;
 }
 
-.wrapper--btns .save{
-    @include roundBtn($w:133px , $h:49px , $b-radius:50px);
-    border: solid 1px;
-    border-color: #797EF3 ;
+.card--profile-edit .wrapper--btns .save{
+    @include roundBtn($w:133px , $h:49px , $b-radius:50px , $bg-color: #444DF2 ,);
+    @include fontSizeWeightColor($s:18px, $w:700, $c:#FFFF);
 }
 

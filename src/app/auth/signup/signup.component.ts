@@ -38,7 +38,7 @@ export class SignupComponent {
   validation = inject(ValidationService);
   hideSignupSuccessMsg = true;
   makeVisible = false;
-
+  
 
   async signupBtnPressed(
     email: HTMLInputElement,
