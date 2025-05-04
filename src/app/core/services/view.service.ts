@@ -14,15 +14,11 @@ export class ViewService {
 
   showWorkspaceMenu: boolean = true;
   showThreadSection: boolean = false;
-  //$ Back to false after Testing
-  showModal: boolean = true;
-  //$ Back to false after Testing
+  showModal: boolean = false;
   
   activeChannelId: string;
-  //$ Back to "logout" after Testing
-  activeDialog = signal<ActiveDialogType>("cardProfileEdit");
-  //$ Back to just declaration after Testing
-  modalContentClass: PlacementClassType = "modal-content-center"
+  activeDialog = signal<ActiveDialogType>("logout");
+  modalContentClass: PlacementClassType
   currentRoute: string;
 
   // mobile options
