@@ -108,6 +108,7 @@ export class AuthService {
 
   guestLoginBtnPressed(){
     this.router.navigate(['/workspace/channel/Angular']);// hard coded until logic is implemented
+    this.logoutUser()
   }
 
   togglePasswordVisibility() {
