@@ -38,13 +38,13 @@ export class SignupComponent {
   validation = inject(ValidationService);
   hideSignupSuccessMsg = true;
   makeVisible = false;
-  
+
 
   async signupBtnPressed(
     email: HTMLInputElement,
     password: HTMLInputElement,
     username: HTMLInputElement,
-    signupForm: any) {
+    signupForm: NgForm) {
     const emailValue = email.value;
     const passwordValue = password.value;
     const usernameValue = username.value;
@@ -52,14 +52,18 @@ export class SignupComponent {
     if (signupForm.invalid) {
       return;
     }
-    this.fsService.setUserDoc(emailValue, {username: usernameValue})
-    this.validateMailPwName(emailValue, passwordValue, usernameValue);
+
     const signupSuccess = await this.authService.registerUser(
-      emailValue,  
+      emailValue,
       passwordValue,
       usernameValue
     );
+
+
     if (signupSuccess) {
+      this.fsService.setUserDoc(emailValue, { username: usernameValue });
+      this.validateMailPwName(emailValue, passwordValue, usernameValue);
+  
       this.clearFieldsShowMsgAfterSignUpSuccess(signupSuccess, signupForm);
       setTimeout(() => {
         this.router.navigate(['main', 'avatar']);
