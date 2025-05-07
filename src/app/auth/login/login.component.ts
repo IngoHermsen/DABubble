@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -41,7 +41,12 @@ export class LoginComponent {
       this.firebaseUser = user
     })
   }
-  
+
+
+  ngOnDestroy(): void {
+    this.authService.resetErrors();
+  }
+
 
   async onSubmit(email: any, password: any, loginForm: NgForm) {
     if (loginForm.invalid) {

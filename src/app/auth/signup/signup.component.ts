@@ -1,4 +1,4 @@
-import { Component, inject, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild, OnDestroy } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -21,11 +21,10 @@ import { FirestoreService } from '../../core/services/firestore.service';
 })
 export class SignupComponent {
 
-  private fsService = inject(FirestoreService);
-
+  
   /** 
-  * Uses setTimeout to ensure the class is applied after the initial view rendering.
-   */
+   * Uses setTimeout to ensure the class is applied after the initial view rendering.
+  */
   ngOnInit() {
     setTimeout(() => {
       this.makeVisible = true;
@@ -33,6 +32,12 @@ export class SignupComponent {
   }
 
 
+  ngOnDestroy(): void {
+    this.authService.resetErrors();
+  }
+
+  
+  private fsService = inject(FirestoreService);
   router = inject(Router);
   authService = inject(AuthService);
   validation = inject(ValidationService);
@@ -58,11 +63,11 @@ export class SignupComponent {
       passwordValue,
       usernameValue
     );
+    this.validateMailPwName(emailValue, passwordValue, usernameValue);
 
 
     if (signupSuccess) {
       this.fsService.setUserDoc(emailValue, { username: usernameValue });
-      this.validateMailPwName(emailValue, passwordValue, usernameValue);
   
       this.clearFieldsShowMsgAfterSignUpSuccess(signupSuccess, signupForm);
       setTimeout(() => {
