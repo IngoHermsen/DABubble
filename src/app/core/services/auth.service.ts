@@ -61,6 +61,7 @@ export class AuthService {
       this.firebaseUser = user;
       this.firebaseUserSubject.next(user); 
     });
+
   }
 
 
@@ -111,6 +112,7 @@ export class AuthService {
     this.logoutUser()
   }
 
+  
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }

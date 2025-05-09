@@ -18,6 +18,7 @@ export class FirestoreService {
   postsColRef: CollectionReference;
   users: { photoURL: string; username: string, email: string }[] = [];
 
+
   
   unsubChannelsCol: () => void = onSnapshot(this.channelsColRef, snapshot => {
     console.log('CHANNEL SNAPSHOT')
@@ -98,6 +99,8 @@ export class FirestoreService {
       photoURL: doc.data()['photoURL'],
       username: doc.data()['username']
     }));
+
+    console.log("Fetched users:", this.users)
   }
 
   unsubChannelSnapshot() {

@@ -27,7 +27,7 @@ export class LoginComponent {
   authService = inject(AuthService);
   makeVisible = false;
   firebaseUser: any; 
-  
+   
 
   /**
    * setTimeout used to ensure the class is applied after initial view rendering.

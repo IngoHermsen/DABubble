@@ -3,10 +3,12 @@ import { NgClass, AsyncPipe } from '@angular/common';
 import { DialogService } from '../../core/services/dialog.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../core/services/auth.service';
 import { ViewService } from '../../core/services/view.service';
 import { DataService } from '../../core/services/data.service';
 import { Router, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { Auth, User as FirebaseUser } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-workspace',
@@ -21,8 +23,11 @@ export class WorkspaceComponent implements OnInit {
   public fsService = inject(FirestoreService);
   public router = inject(Router);
   public route = inject(ActivatedRoute);
+  authService = inject(AuthService);
   public viewService = inject(ViewService);
-  
+  firebaseUser: FirebaseUser | null;
+
+
   private routeSub: Subscription;
   channelNames: string[];
 
@@ -31,9 +36,35 @@ export class WorkspaceComponent implements OnInit {
   channelToggleClicked: boolean = false;
   directMsgToggleClicked: boolean = false;
 
-  ngOnInit(): void {
+  //! Delete
+  usersArray: any[] = [];
+  //! Delete
+
+  constructor() {
+  }
+
+  async ngOnInit() {
     this.showChannelEntries = true;
-    this.fsService.getAllUsers()
+    this.authService.firebaseUser$.subscribe(user => {
+      this.firebaseUser = user;
+
+      this.fsService.getAllUsers().then(() => {
+        this.usersArray = [...this.fsService.users].sort((a, b) =>
+          a.username.localeCompare(b.username));
+        this.addGuestUser();
+      });
+    });
+  }
+
+
+  addGuestUser() {
+    if (!this.firebaseUser) {
+      this.usersArray.unshift({
+        photoURL: "../../../assets/images/avatar_placeholder.png",
+        username: "Gast (Du)",
+        email: "gast@gmx.de"
+      });
+    }
   }
 
 
@@ -48,7 +79,7 @@ export class WorkspaceComponent implements OnInit {
   }
 
   showChannel(channel: string) {
-    
+
   }
 
 
