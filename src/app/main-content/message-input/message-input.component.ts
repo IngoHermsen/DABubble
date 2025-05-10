@@ -17,16 +17,16 @@ export class MessageInputComponent {
   messageInput = new FormControl('');
   post: Post;
 
-  get formIsInvalid(): boolean {  //helping method for better overview in template
+  get formIsValid(): boolean {  //helping method for better overview in template
     return (
-      this.messageInput.value!.length < this.minInputLength
+      this.messageInput.value!.length >= this.minInputLength
     )
   };
 
   onKeyDown(event: KeyboardEvent) {
     if(event.key === 'Enter' && !event.ctrlKey) {
       event.preventDefault();
-      if(!this.formIsInvalid) this.onSubmit()
+      if(this.formIsValid) this.onSubmit()
     }
   }
 
