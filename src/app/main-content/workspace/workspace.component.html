@@ -31,6 +31,17 @@
                 }">arrow_drop_down</span>Direct Messages
         </h3>
         <div class="entries">
+            @if(firebaseUser){
+                <div class="wrapper--username-avatar">
+                    <img class="img--avatar" [src]="'../../../' + firebaseUser.photoURL" alt="Avatar" width="50">
+                    <span class="username">{{ firebaseUser.displayName }}</span>
+                </div>
+            }@else{
+                <div class="wrapper--username-avatar">
+                    <img class="img--avatar" [src]="'../../../assets/images/avatar_placeholder.png'" alt="Avatar" width="50">
+                    <span class="username">Gast (Du)</span>
+                </div>
+            }
             @for(user of this.usersArray; let index = $index; track $index){
             <div class="wrapper--username-avatar">
                 <img class="img--avatar" [src]="'../../../assets/images/' + user.photoURL " alt="Avatar" width="50">

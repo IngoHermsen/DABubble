@@ -46,23 +46,20 @@ export class WorkspaceComponent implements OnInit {
     this.authService.firebaseUser$.subscribe(user => {
       this.firebaseUser = user;
       this.fsService.getAllUsers().then(() => {
-        this.usersArray = this.fsService.users.
-          sort((a, b) =>
-            a.username.localeCompare(b.username));
-        this.addGuestUser();
+        this.usersArray = this.fsService.users;
+        this.sortFilterUsersArr(user)
       });
     });
   }
 
 
-  addGuestUser() {
-    if (!this.firebaseUser) {
-      this.usersArray.unshift({
-        photoURL: "../../../assets/images/avatar_placeholder.png",
-        username: "Gast (Du)",
-      });
+  sortFilterUsersArr(user: any) {
+    if (user) {
+      this.usersArray = this.usersArray.filter(userJson => userJson.username != user.displayName);
     }
+    this.usersArray.sort((a, b) => a.username.localeCompare(b.username));
   }
+
 
 
   toggleEntries(content: string) {
