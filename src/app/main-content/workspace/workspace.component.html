@@ -31,7 +31,6 @@
                 }">arrow_drop_down</span>Direct Messages
         </h3>
         <div class="entries">
-            <!-- Array back to fs.service -->
             @for(user of this.usersArray; let index = $index; track $index){
             <div class="wrapper--username-avatar">
                 <img class="img--avatar" [src]="'../../../assets/images/' + user.photoURL " alt="Avatar" width="50">

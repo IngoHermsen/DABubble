@@ -95,6 +95,13 @@ export class DialogComponent implements OnInit {
     if (!this.firebaseUser || !this.firebaseUser.email) {
       return;
     }
+    //!Delete
+    //Hier musste ich doppelt gemoppelt arbeiten. 
+    //Die Daten im FirebaseAuth verändern 
+    //Aber auch die daten im <firestore> verändern. 
+    //Weil aus verschiedenen Quellen gerendert wird. 
+    // Neu war für mich hier <refreshFirebaseUser>
+    //!Delete
     await this.authService.updateUserCredentials(this.firebaseUser, "displayName", nameValue);
     this.authService.refreshFirebaseUser()
     await this.firestoreService.updateUserDoc('users', this.firebaseUser.email!, { username: nameValue });
