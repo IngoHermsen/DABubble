@@ -36,9 +36,7 @@ export class WorkspaceComponent implements OnInit {
   channelToggleClicked: boolean = false;
   directMsgToggleClicked: boolean = false;
 
-  //! Delete
   usersArray: any[] = [];
-  //! Delete
 
   constructor() {
   }
@@ -47,10 +45,10 @@ export class WorkspaceComponent implements OnInit {
     this.showChannelEntries = true;
     this.authService.firebaseUser$.subscribe(user => {
       this.firebaseUser = user;
-
       this.fsService.getAllUsers().then(() => {
-        this.usersArray = [...this.fsService.users].sort((a, b) =>
-          a.username.localeCompare(b.username));
+        this.usersArray = this.fsService.users.
+          sort((a, b) =>
+            a.username.localeCompare(b.username));
         this.addGuestUser();
       });
     });
@@ -62,7 +60,6 @@ export class WorkspaceComponent implements OnInit {
       this.usersArray.unshift({
         photoURL: "../../../assets/images/avatar_placeholder.png",
         username: "Gast (Du)",
-        email: "gast@gmx.de"
       });
     }
   }

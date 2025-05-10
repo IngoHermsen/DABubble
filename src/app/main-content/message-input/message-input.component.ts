@@ -24,7 +24,11 @@ export class MessageInputComponent {
   };
 
   onKeyDown(event: KeyboardEvent) {
-    if(event.key === 'Enter' && !event.ctrlKey) {
+    if (event.key === 'Enter') {
+      if (event.shiftKey) {
+        return;
+      }
+  
       event.preventDefault();
       if(this.formIsValid) this.onSubmit()
     }
