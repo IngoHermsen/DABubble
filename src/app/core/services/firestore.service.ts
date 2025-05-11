@@ -4,6 +4,7 @@ import { addDoc, collection, CollectionReference, DocumentData, DocumentReferenc
 import { Channel, EMPTY_CHANNEL } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { DataService } from './data.service';
+import { fsUsers } from '../types/firestore_users';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class FirestoreService {
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
   postsColRef: CollectionReference;
-  users: { photoURL: string; username: string, email: string }[] = [];
+  allFsUsersJsonArr: fsUsers = [];
 
 
   
@@ -94,13 +95,13 @@ export class FirestoreService {
     const usersCollection = collection(this.dbFs, 'users');
     const querySnapshot = await getDocs(usersCollection);
 
-    this.users = querySnapshot.docs.map(doc => ({
+    this.allFsUsersJsonArr = querySnapshot.docs.map(doc => ({
       email: doc.id,
       photoURL: doc.data()['photoURL'],
       username: doc.data()['username']
     }));
 
-    console.log("Fetched users:", this.users)
+    console.log("Fetched users:", this.allFsUsersJsonArr)
   }
 
   unsubChannelSnapshot() {

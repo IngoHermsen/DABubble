@@ -9,6 +9,7 @@ import { DataService } from '../../core/services/data.service';
 import { Router, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Auth, User as FirebaseUser } from '@angular/fire/auth';
+import { fsUsers } from '../../core/types/firestore_users';
 
 @Component({
   selector: 'app-workspace',
@@ -36,7 +37,7 @@ export class WorkspaceComponent implements OnInit {
   channelToggleClicked: boolean = false;
   directMsgToggleClicked: boolean = false;
 
-  usersArray: any[] = [];
+  usersArray: fsUsers = [];
 
   constructor() {
   }
@@ -46,20 +47,19 @@ export class WorkspaceComponent implements OnInit {
     this.authService.firebaseUser$.subscribe(user => {
       this.firebaseUser = user;
       this.fsService.getAllUsers().then(() => {
-        this.usersArray = this.fsService.users;
+        this.usersArray = this.fsService.allFsUsersJsonArr;
         this.sortFilterUsersArr(user)
       });
     });
   }
 
 
-  sortFilterUsersArr(user: any) {
+  sortFilterUsersArr(user: FirebaseUser | null) {
     if (user) {
       this.usersArray = this.usersArray.filter(userJson => userJson.username != user.displayName);
     }
     this.usersArray.sort((a, b) => a.username.localeCompare(b.username));
   }
-
 
 
   toggleEntries(content: string) {
