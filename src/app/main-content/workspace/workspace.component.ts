@@ -9,7 +9,7 @@ import { DataService } from '../../core/services/data.service';
 import { Router, RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Auth, User as FirebaseUser } from '@angular/fire/auth';
-import { fsUsers } from '../../core/types/firestore_users';
+import { FsUsers } from '../../core/types/firestore_users';
 
 @Component({
   selector: 'app-workspace',
@@ -37,7 +37,7 @@ export class WorkspaceComponent implements OnInit {
   channelToggleClicked: boolean = false;
   directMsgToggleClicked: boolean = false;
 
-  usersArray: fsUsers = [];
+  usersArray: FsUsers = [];
 
   constructor() {
   }

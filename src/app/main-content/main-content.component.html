@@ -42,7 +42,10 @@
             <span class="username">{{userName}}</span>
             }
             <div class="wrapper--icons" (click)="viewService.modalHandler('logout', 'modal-content-top-right')">
-                <img class="img--avatar" [src]="'../../' + avatarPath" alt="">
+                <div class="wrapper--avatar">
+                    <img class="img--avatar" [src]="'../../' + avatarPath" alt="">
+                    <div class="dot online"></div>
+                </div>
                 <img src="../../assets/images/keyboard_arrow_down.png" alt="">
             </div>
         </div>

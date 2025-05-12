@@ -26,7 +26,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dialog.component.scss'
 })
 export class DialogComponent implements OnInit {
-  private firestoreService = inject(FirestoreService);
+  private fsService = inject(FirestoreService);
   private router = inject(Router);
   public viewService = inject(ViewService);
   authService = inject(AuthService);
@@ -76,7 +76,7 @@ export class DialogComponent implements OnInit {
       creatorName: 'Hans Wurst'
     };
 
-    this.firestoreService.addChannelToFirestore(channel);
+    this.fsService.addChannelToFirestore(channel);
 
     this.viewService.showModal = false;
 
@@ -95,17 +95,10 @@ export class DialogComponent implements OnInit {
     if (!this.firebaseUser || !this.firebaseUser.email) {
       return;
     }
-    //!Delete
-    //Hier musste ich doppelt gemoppelt arbeiten. 
-    //Die Daten im FirebaseAuth verändern 
-    //Aber auch die daten im <firestore> verändern. 
-    //Weil aus verschiedenen Quellen gerendert wird. 
-    // Neu war für mich hier <refreshFirebaseUser>
-    //!Delete
     await this.authService.updateUserCredentials(this.firebaseUser, "displayName", nameValue);
     this.authService.refreshFirebaseUser()
-    await this.firestoreService.updateUserDoc('users', this.firebaseUser.email!, { username: nameValue });
-    let userToUpdate = this.firestoreService.users.find(u => u.email === this.firebaseUser?.email);
+    await this.fsService.updateUserDoc('users', this.firebaseUser.email!, { username: nameValue });
+    let userToUpdate = this.fsService.allFsUsersJsonArr.find(u => u.email === this.firebaseUser?.email);
     if (userToUpdate) {
       userToUpdate.username = nameValue;
     }

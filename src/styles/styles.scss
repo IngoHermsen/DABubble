@@ -240,3 +240,27 @@ div.message-input {
     border-radius: unset;
   }
 }
+
+
+//************************** Online/Offline Dot *****************************
+
+.wrapper--avatar{
+  position: relative
+}
+
+
+.dot {
+  position: absolute;
+  bottom: 0;
+  right: -6px;
+  @include borderStyling($border: 2.5px solid, $b-radius: 50%, $b-color: #ECEEFE);
+  @include widthHeight($w: 13px, $h: 13px);
+}
+
+.dot.online {
+  background-color: #92C83E;
+}
+
+.dot.offline {
+  background-color: #686868; 
+}

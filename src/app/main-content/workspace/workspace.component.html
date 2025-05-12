@@ -14,13 +14,14 @@
                 <span class="material-icons-outlined">workspaces</span>
                 <span>Channels</span>
             </div>
-            <span class="material-icons-round plus" (click)="viewService.modalHandler('newChannel', 'modal-content-center')">add</span>
+            <span class="material-icons-round plus"
+                (click)="viewService.modalHandler('newChannel', 'modal-content-center')">add</span>
         </h3>
         <div class="entries">
             @for(channel of dataService.channelIds; let index = $index; track $index) {
             <div class="entry" [routerLink]="'channel/' + channel"><span>#</span>{{ channel }}</div>
 
-        }
+            }
         </div>
     </section>
     <section class="direct-msg">
@@ -32,22 +33,32 @@
         </h3>
         <div class="entries">
             @if(firebaseUser){
-                <div class="wrapper--username-avatar">
+            <div class="wrapper--username-avatar">
+                <div class="wrapper--avatar">
                     <img class="img--avatar" [src]="'../../../' + firebaseUser.photoURL" alt="Avatar" width="50">
-                    <span class="username">{{ firebaseUser.displayName }}</span>
+                    <div class="dot online"></div>
                 </div>
+                <span class="username">{{ firebaseUser.displayName }}</span>
+            </div>
             }@else{
-                <div class="wrapper--username-avatar">
-                    <img class="img--avatar" [src]="'../../../assets/images/avatar_placeholder.png'" alt="Avatar" width="50">
-                    <span class="username">Gast (Du)</span>
+            <div class="wrapper--username-avatar">
+                <div class="wrapper--avatar">
+                    <img class="img--avatar" [src]="'../../../assets/images/avatar_placeholder.png'" alt="Avatar"
+                        width="50">
+                    <div class="dot online"></div>
                 </div>
+                <span class="username">Gast (Du)</span>
+            </div>
             }
             @for(user of this.usersArray; let index = $index; track $index){
             <div class="wrapper--username-avatar">
-                <img class="img--avatar" [src]="'../../../assets/images/' + user.photoURL " alt="Avatar" width="50">
+                <div class="wrapper--avatar">
+                    <img class="img--avatar" [src]="'../../../assets/images/' + user.photoURL " alt="Avatar" width="50">
+                    <div class="dot offline"></div>
+                </div>
                 <span class="username">{{ user.username }}</span>
             </div>
-    
+
             }
         </div>
 

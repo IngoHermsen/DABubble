@@ -1,4 +1,4 @@
-export type fsUsers =
+export type FsUsers =
   {
     photoURL: string,
     username: string,

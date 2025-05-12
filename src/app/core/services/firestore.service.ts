@@ -4,7 +4,7 @@ import { addDoc, collection, CollectionReference, DocumentData, DocumentReferenc
 import { Channel, EMPTY_CHANNEL } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { DataService } from './data.service';
-import { fsUsers } from '../types/firestore_users';
+import { FsUsers } from '../types/firestore_users';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +17,9 @@ export class FirestoreService {
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
   postsColRef: CollectionReference;
-  allFsUsersJsonArr: fsUsers = [];
+  allFsUsersJsonArr: FsUsers = [];
 
 
-  
   unsubChannelsCol: () => void = onSnapshot(this.channelsColRef, snapshot => {
     console.log('CHANNEL SNAPSHOT')
     const cNames: Array<string> = snapshot.docs.map(doc => doc.id);
