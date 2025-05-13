@@ -1,5 +1,5 @@
 @if(viewService.showModal) {
-    <div [ngClass]="'modal'"(click)="viewService.showModal = false" > 
+<div [ngClass]="'modal'" (click)="viewService.showModal = false">
     <div class="modal-inner" [ngClass]="viewService.modalContentClass">
         <div>
             <app-dialog (click)="$event.stopPropagation()"></app-dialog>
@@ -37,6 +37,7 @@
         @if(!viewService.mobileView) {
         <input placeholder="Devspace durchsuchen" class="flex-item" type="text">
         }
+
         <div class="user-menu">
             @if(!viewService.mobileView) {
             <span class="username">{{userName}}</span>
