@@ -22,6 +22,17 @@ export class AuthComponent {
 
   constructor() { }
 
+
+
+  /**
+ * Initializes the animation sequence for the landing page.
+ * - If the animation has already been completed (tracked in sessionStorage), navigates directly to /main.
+ * - Otherwise, triggers a sequence of visual updates and navigation steps:
+ *   - Makes the component visible immediately after rendering.
+ *   - Sets a flag after 2500ms to control a second animation stage or trigger.
+ *   - Hides the logo and stores an "animationDone" flag after 2700ms to avoid replaying the animation on refresh.
+ *   - Finally, navigates to /main/login after the animation is complete (3000ms).
+ */
   ngOnInit(): void {
 
     if (sessionStorage.getItem("animationDone")) {
@@ -30,31 +41,20 @@ export class AuthComponent {
 
     setTimeout(() => {
       this.makeVisible = true;
-    }, 0); // Short delay (0ms) to ensure Angular has rendered the component
+    }, 0); 
 
 
-    /**
-     * Sets trueAfter2500ms to true after 2500ms to trigger content display.
-     */
     setTimeout(() => {
       this.trueAfter2500ms = true;
     }, 2500);
 
 
-    /**
-     * Hides the logo and marks the animation as completed by setting
-     * the "animationDone" flag in sessionStorage after 2700ms.
-     */
     setTimeout(() => {
       this.hideLogo = true;
       sessionStorage.setItem("animationDone", "true");
     }, 2700);
 
 
-    /**
-     * Navigates to main after the animation. 
-     * Preventing the start animation to start again. 
-     */
     setTimeout(() => {
       this.router.navigate(['/main/login']);
     }, 3000);
