@@ -49,12 +49,14 @@ export class EditAvatarComponent implements OnInit {
     this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath;
   }
 
+/**
+ * Getting the current firebaseUser.
+ * Ready to be used in this component
+ */
   ngOnInit(): void {
-
     this.authService.firebaseUser$.subscribe(user => {
       this.firebaseUser = user;
       this.userName = user?.displayName;
-      console.log(this.firebaseUser.photoUrl);
     });
   }
 
