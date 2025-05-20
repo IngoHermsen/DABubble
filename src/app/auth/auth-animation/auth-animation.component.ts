@@ -1,25 +1,21 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
-import { NgClass, NgStyle } from '@angular/common';
-import { LoginComponent } from '../login/login.component';
-import { SignupComponent } from '../signup/signup.component';
-import { ResetPasswordComponent } from '../reset-password/reset-password.component';
-import { RouterLink, RouterOutlet, Router } from '@angular/router';
-import { AuthPostAnimationComponent } from '../auth/auth.component';
+import { NgClass } from '@angular/common';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
   imports: [
-    AuthPostAnimationComponent, LoginComponent, NgClass, NgStyle,
-    ResetPasswordComponent, RouterLink, RouterOutlet, SignupComponent
+    NgClass,
+    RouterLink,
   ],
   templateUrl: './auth-animation.component.html',
   styleUrl: './auth-animation.component.scss'
 })
 export class AuthComponent {
 
-  makeVisible = false
+  makeVisible = false;
   private router = inject(Router);
   trueAfter2500ms = false;
   hideLogo = false;
@@ -54,7 +50,7 @@ export class AuthComponent {
       sessionStorage.setItem("animationDone", "true");
     }, 2700);
 
-    
+
     /**
      * Navigates to main after the animation. 
      * Preventing the start animation to start again. 
