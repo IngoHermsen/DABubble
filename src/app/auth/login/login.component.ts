@@ -42,12 +42,18 @@ export class LoginComponent {
     })
   }
 
-
+ /**
+  * Clearing validation errors after component is destroyed.
+  */
   ngOnDestroy(): void {
     this.authService.resetErrors();
   }
 
 
+  /**
+   * Executing loginBtnPressed from authService,
+   * only when the form is valid.
+   */
   async onSubmit(email: any, password: any, loginForm: NgForm) {
     if (loginForm.invalid) {
       return;
@@ -55,16 +61,13 @@ export class LoginComponent {
     await this.authService.loginBtnPressed(email, password);
   }
 
-
+  /**
+   * Logs out firebaseAuth user.
+   * By using logoutUser from authService.
+   */
   logout(): void {
     this.authService.logoutUser().then(() => {
-
-      console.log('After logout:', this.firebaseUser.email);
     });
   }
-
-
-
-
 
 }
