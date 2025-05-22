@@ -1,11 +1,41 @@
 @import '../../../styles/mixins.scss';
 
+$divider-color:#ADB0D9;
 
 .card {
     @include dflex($fD: column);
     position: relative;
+}; 
+
+.divider {
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
     
+    >span {
+        padding: 4px 16px;
+        border: 1px solid $divider-color;
+        border-radius: 25px;
+    }
+
+    &::before, &::after {
+        content: '';
+        height: 0.8px;
+        background-color: $divider-color;
+        flex-grow: 1;
+        display: block;
+    }
+
+    &::before {
+        margin-left: 24px;
+    }
+
+    &::after {
+        margin-right: 24px;
+    }
+
+
+
+
 }
-
-
-

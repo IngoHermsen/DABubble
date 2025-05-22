@@ -9,7 +9,9 @@
     </div>
     <div class="posts">
         @for (entry of dataService.groupedPosts; track $index) {
-        <span class="divider">{{ entry.date }}</span>
+        <div class="divider">
+          <span>{{ entry.date }}</span>  
+        </div>
 
         @for (post of entry.posts; let index = $index; track $index) {
         <div class="post-wrapper">
