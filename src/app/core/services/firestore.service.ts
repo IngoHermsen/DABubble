@@ -68,7 +68,7 @@ export class FirestoreService {
   async setActivePosts() {
     this.postsColRef = collection(this.channelDocRef, 'posts');
     this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
-      console.log('CHANNEL AUTO SCROLL', this.viewService.channelAutoScroll);
+      this.viewService.channelAutoScroll = true;
       const posts: Post[] = snapshot.docs.map(doc => {
           const postData: Post = doc.data() as Post;
           const convertedPost: Post = {

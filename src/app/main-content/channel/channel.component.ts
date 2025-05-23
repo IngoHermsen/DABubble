@@ -35,7 +35,8 @@ export class ChannelComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
-    if (this.viewService.channelAutoScroll) this.scrollToBottom()
+    console.log('AfterViewChecked');
+    this.scrollToBottom();
   }
 
   ngOnDestroy() {
@@ -58,11 +59,14 @@ export class ChannelComponent implements OnInit, AfterViewChecked {
   }
 
   private scrollToBottom() {
-    setTimeout(() => {
-      const scrollEl = this.scrollContainer.nativeElement;
-      scrollEl.scrollTop = scrollEl.scrollHeight;
-      this.viewService.channelAutoScroll = false;
-    }, 0)
+    if (this.viewService.channelAutoScroll) {
+      setTimeout(() => {
+        const scrollEl = this.scrollContainer.nativeElement;
+        scrollEl.scrollTop = scrollEl.scrollHeight;
+        this.viewService.channelAutoScroll = false;
+      }, 0)
+    }
+
 
   }
 
