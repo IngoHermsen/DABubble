@@ -6,9 +6,9 @@
 <main class="login-container fade-in" [class.fade-in-visible]="makeVisible">
 
 
-  <section class="login-header">
-    <header>Anmeldung</header>
-    <p>Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</p>
+  <section class="above-the-fold">
+    <header class="header">Anmeldung</header>
+    <span class="txt">Wir empfehlen dir, die E-Mail-Adresse zu nutzen, die du bei der Arbeit verwendest.</span>
   </section>
 
   <form class="login-form" (ngSubmit)="onSubmit(emailInput, password, loginForm)" #loginForm="ngForm">

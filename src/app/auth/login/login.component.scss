@@ -16,21 +16,20 @@ $login-header-c: #444df2;
   @include dflex($fD: column, $aI: center, $jC: center);
 }
 
-.login-header {
+.login-container .above-the-fold {
   @include dflex(column);
+}
 
-  header {
+.login-container .above-the-fold .header{
     margin: 0;
     line-height: 1;
-    color: $login-header-c;
-    font-size: 46px;
-    font-weight: 600;
-  }
-
-  p {
-    text-align: center;
-  }
+    @include fontSizeWeightColor($s:46px, $w:600, $c:$login-header-c);
 }
+
+.login-container .above-the-fold .txt{
+    text-align: center;
+}
+
 
 .login-form {
   padding-top: 24px;
