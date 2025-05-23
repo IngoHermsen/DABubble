@@ -14,6 +14,10 @@ export class ViewService {
   showWorkspaceMenu: boolean = true;
   showThreadSection: boolean = false;
   showModal: boolean = false;
+
+  // channel scroll handling
+
+  channelUserAction: boolean = false;
   channelAutoScroll: boolean = false; //set to true by 1) entering channel via route and 2) adding post. Declares if the postCollection change should trigger a scroll or not. Should prevent unintentionally bottom-scrolling if external user changed content.
   
   activeChannelId: string;

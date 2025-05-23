@@ -20,22 +20,25 @@ export class ChannelComponent implements OnInit, AfterViewChecked {
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
   public route = inject(ActivatedRoute);
+  public channelOpened: boolean = false;
 
   @ViewChild('scroll') private scrollContainer!: ElementRef<HTMLElement>;
 
   posts: Post[];
 
   ngOnInit() {
+    this.viewService.channelUserAction = true;
     this.route.paramMap.subscribe(params => {
       const channelId = params.get('id');
       if (channelId) {
+        this.viewService.channelUserAction = true;
+        this.viewService.channelAutoScroll = true;
         this.firestoreService.setActiveChannel(channelId)
       }
     })
   }
 
   ngAfterViewChecked(): void {
-    console.log('AfterViewChecked');
     this.scrollToBottom();
   }
 
@@ -44,7 +47,7 @@ export class ChannelComponent implements OnInit, AfterViewChecked {
   }
 
   addPost(post: Post) {
-    this.viewService.channelAutoScroll = true;
+    this.viewService.channelUserAction = true;
     this.firestoreService.addPostToFirestore(post);
   }
 
@@ -59,11 +62,12 @@ export class ChannelComponent implements OnInit, AfterViewChecked {
   }
 
   private scrollToBottom() {
-    if (this.viewService.channelAutoScroll) {
+    if (this.viewService.channelAutoScroll && this.viewService.channelUserAction) {
       setTimeout(() => {
         const scrollEl = this.scrollContainer.nativeElement;
         scrollEl.scrollTop = scrollEl.scrollHeight;
         this.viewService.channelAutoScroll = false;
+        this.viewService.channelUserAction = false;
       }, 0)
     }
 
