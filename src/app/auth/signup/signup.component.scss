@@ -4,90 +4,105 @@
 @import '../../../styles/font.scss';
 @import '../login/login.component.scss';
 
-p{
+p {
   margin: 0
 }
 
-.intro-logo{
+.intro-logo {
   @include placeAbsoluteElement($top: 58px, $left: 58px);
 }
 
 
 /************************* Sign up container *************************/
-.sign-up-container{
+.sign-up-container {
   position: relative;
   @include loginSignupWindow($width: 606px, $padding: 30px 50px);
   height: 50%;
 }
 
-.arrow-back{
+.sign-up-container .above-the-fold {
+  @include dflex(column);
+}
+
+.sign-up-container .above-the-fold .header {
+  margin: 0;
+  line-height: 1;
+  @include fontSizeWeightColor($s: 46px, $w: 600, $c: $login-header-c);
+}
+
+.sign-up-container .above-the-fold .txt {
+  text-align: center;
+}
+
+
+.arrow-back {
   @include placeAbsoluteElement($top: 40px, $left: 25px);
   cursor: pointer;
 }
 
-.create-acount-info{
+.create-acount-info {
   margin: 1em 0 1em 0;
 }
 
-#checkbox-wrapper{
+#checkbox-wrapper {
   font-family: Figtree;
   @include dflex($gap: 10px);
   position: relative;
 }
 
-#checkbox-wrapper #checkbox{
+#checkbox-wrapper #checkbox {
   accent-color: #797EF3;
 }
 
-#data-policy{
+#data-policy {
   color: #42526E;
   font-size: 16px;
 
-  #nav--privacy-policy{
+  #nav--privacy-policy {
     color: #797EF3
   }
 }
 
-#signup-btn-wrapper{
+#signup-btn-wrapper {
   padding-top: 10px;
   @include dflex($jC: flex-end);
   width: 100%;
 }
 
-#signup-pw-icon{
+#signup-pw-icon {
   cursor: pointer;
 }
 
-.signup-btn{
+.signup-btn {
   @include removeBtnStyles();
-  @include roundBtn($w: 107px, $h: 49px, $b-radius: 25px, $bg-color: #444DF2,);
-  @include fontSizeWeightColor($s:18px, $w:700, $c:#FFFF);
+  @include roundBtn($w: 107px, $h: 49px, $b-radius: 25px, $bg-color: #444DF2, );
+  @include fontSizeWeightColor($s: 18px, $w: 700, $c: #FFFF);
 }
 
-.inactive-signup-btn{
+.inactive-signup-btn {
   background-color: #7A7A7A;
   cursor: not-allowed;
 }
 
 
-.signup-success-msg{
+.signup-success-msg {
   @include dflex($fD: row, $jC: center);
   @include roundBtn($w: 80%, $h: 49px, $b-radius: 25px, $bg-color: #444DF2);
-  @include fontSizeWeightColor($s:24px, $w:700, $c:#FFFF);
+  @include fontSizeWeightColor($s: 24px, $w: 700, $c: #FFFF);
   @include placeAbsoluteElement($right: 50%);
   transform: translateX(50%);
   padding: 16px 40px
 }
 
 /************************* Impressum Datapolicy *************************/
-.impressum-datap-wrapper{
-  position: relative; 
+.impressum-datap-wrapper {
+  position: relative;
   @include dflex($jC: center, $gap: 48px);
   padding-top: 40px;
   font-size: 18px;
   color: #444DF2;
-  
-  span{
+
+  span {
     cursor: pointer;
   }
 }
@@ -101,8 +116,61 @@ p{
 }
 
 @media (width <=768px) {
-.sign-up-container{
- width: 400px; 
+  .sign-up-container {
+    width: 500px;
+  }
 }
+
+@media (width <=550px) {
+  .sign-up-container {
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px 30px
+  }
+
+  .input-styling {
+    padding-left: 60px;
+    height: 38px;
+  }
+
+  input::placeholder {
+    @include fontSizeWeight($s: 14px, $w: 500);
+  }
+
+  .sign-up-container .above-the-fold .header {
+    @include fontSizeWeightColor($s: 32px, $w: 600, $c: $login-header-c);
+    margin-top: 6px;
+  }
+
+  .sign-up-container .above-the-fold .txt {
+    display: none;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .arrow-back {
+    @include placeAbsoluteElement($top: 30px, $left: 25px);
+    cursor: pointer;
+  }
+
+  .signup-btn{
+   height: 41px; 
+  }
+
 }
+
+@media (width <=370px) {
+
+  .sign-up-container {
+    padding: 15px 30px
+  }
+
+    .sign-up-container .above-the-fold .header{
+      font-size: 26px;
+      margin-top: 16px;
+    }
+}
+
+
+
 
