@@ -7,7 +7,7 @@
         }
         <h2>{{ dataService.channelData.channelName }}</h2>
     </div>
-    <div class="posts">
+    <div class="posts" #scroll>
         @for (entry of dataService.groupedPosts; track $index) {
         <div class="divider">
           <span>{{ entry.date }}</span>  

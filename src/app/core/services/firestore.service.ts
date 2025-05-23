@@ -4,6 +4,7 @@ import { addDoc, collection, CollectionReference, DocumentData, DocumentReferenc
 import { Channel, EMPTY_CHANNEL } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { DataService } from './data.service';
+import { ViewService } from './view.service';
 import { FsUsers } from '../types/firestore_users';
 
 @Injectable({
@@ -12,6 +13,7 @@ import { FsUsers } from '../types/firestore_users';
 export class FirestoreService {
   private dbFs = inject(Firestore);
   private dataService = inject(DataService);
+  private viewService = inject(ViewService)
 
   // references
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
@@ -66,6 +68,7 @@ export class FirestoreService {
   async setActivePosts() {
     this.postsColRef = collection(this.channelDocRef, 'posts');
     this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
+      console.log('CHANNEL AUTO SCROLL', this.viewService.channelAutoScroll);
       const posts: Post[] = snapshot.docs.map(doc => {
           const postData: Post = doc.data() as Post;
           const convertedPost: Post = {
@@ -79,7 +82,6 @@ export class FirestoreService {
           return convertedPost;
       })
       this.dataService.handlePostData(posts);
-
     });
   }
 

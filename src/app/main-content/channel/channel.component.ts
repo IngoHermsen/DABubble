@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
 import { MessageInputComponent } from '../message-input/message-input.component';
@@ -15,11 +15,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './channel.component.html',
   styleUrl: './channel.component.scss'
 })
-export class ChannelComponent implements OnInit {
+export class ChannelComponent implements OnInit, AfterViewChecked {
   public dataService = inject(DataService);
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
   public route = inject(ActivatedRoute);
+
+  @ViewChild('scroll') private scrollContainer!: ElementRef<HTMLElement>;
 
   posts: Post[];
 
@@ -27,9 +29,13 @@ export class ChannelComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       const channelId = params.get('id');
       if (channelId) {
-        this.firestoreService.setActiveChannel(channelId);
+        this.firestoreService.setActiveChannel(channelId)
       }
     })
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.viewService.channelAutoScroll) this.scrollToBottom()
   }
 
   ngOnDestroy() {
@@ -37,8 +43,8 @@ export class ChannelComponent implements OnInit {
   }
 
   addPost(post: Post) {
+    this.viewService.channelAutoScroll = true;
     this.firestoreService.addPostToFirestore(post);
-
   }
 
   createDateDivider(date: Date): string {
@@ -49,6 +55,15 @@ export class ChannelComponent implements OnInit {
     });
 
     return dateString
+  }
+
+  private scrollToBottom() {
+    setTimeout(() => {
+      const scrollEl = this.scrollContainer.nativeElement;
+      scrollEl.scrollTop = scrollEl.scrollHeight;
+      this.viewService.channelAutoScroll = false;
+    }, 0)
+
   }
 
 

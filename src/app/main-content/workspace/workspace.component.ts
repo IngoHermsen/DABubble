@@ -72,9 +72,4 @@ export class WorkspaceComponent implements OnInit {
     }
   }
 
-  showChannel(channel: string) {
-
-  }
-
-
 }
