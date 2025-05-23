@@ -1,8 +1,8 @@
-import { Component, inject, ViewChild, OnDestroy } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators, FormsModule, NgForm } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
-import { CommonModule, NgClass } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ValidationService } from '../../core/services/validation.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 
@@ -12,7 +12,6 @@ import { FirestoreService } from '../../core/services/firestore.service';
   imports: [
     CommonModule,
     FormsModule,
-    NgClass,
     ReactiveFormsModule,
     RouterLink,
   ],
@@ -21,7 +20,14 @@ import { FirestoreService } from '../../core/services/firestore.service';
 })
 export class SignupComponent {
 
-  
+  private fsService = inject(FirestoreService);
+  router = inject(Router);
+  authService = inject(AuthService);
+  validation = inject(ValidationService);
+  hideSignupSuccessMsg = true;
+  makeVisible = false;
+
+
   /** 
    * Uses setTimeout to ensure the class is applied after the initial view rendering.
   */
@@ -30,19 +36,6 @@ export class SignupComponent {
       this.makeVisible = true;
     }, 0);
   }
-
-
-  ngOnDestroy(): void {
-    this.authService.resetErrors();
-  }
-
-  
-  private fsService = inject(FirestoreService);
-  router = inject(Router);
-  authService = inject(AuthService);
-  validation = inject(ValidationService);
-  hideSignupSuccessMsg = true;
-  makeVisible = false;
 
 
   async signupBtnPressed(
@@ -68,7 +61,7 @@ export class SignupComponent {
 
     if (signupSuccess) {
       this.fsService.setUserDoc(emailValue, { username: usernameValue });
-  
+
       this.clearFieldsShowMsgAfterSignUpSuccess(signupSuccess, signupForm);
       setTimeout(() => {
         this.router.navigate(['main', 'avatar']);
@@ -108,5 +101,9 @@ export class SignupComponent {
     this.validation.checkEmail(emailValue);
     this.validation.checkPassword(passwordValue);
     this.validation.checkName(usernameValue);
+  }
+
+  ngOnDestroy(): void {
+    this.authService.resetErrors();
   }
 }

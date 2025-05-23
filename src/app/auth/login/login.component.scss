@@ -18,6 +18,7 @@ $login-header-c: #444df2;
 
 .login-header {
   @include dflex(column);
+
   header {
     margin: 0;
     line-height: 1;
@@ -38,27 +39,13 @@ $login-header-c: #444df2;
   width: 100%;
 }
 
-.intro-logo-mobile{
-  display:none;
-  width: fit-content;
-  margin: 0 auto;
-  margin-bottom: 24px;
-  margin-top: 100px;
-
-  .da-bubble-txt{
-    align-self: center;
-  }
-
-  .intro-text__color{
-    color:black;
-    font-weight: 700;
-  }
-}
+/************************* DaBubble logo mobile *************************/
 
 
-.create-account-mobile{
+
+.create-account-mobile {
   @include roundBtn($w: 165px, $h: 39px, $b-radius: 25px, $bg-color: #444DF2);
-  @include fontSizeWeightColor($s:18px, $w:700, $c:#ECEEFE);
+  @include fontSizeWeightColor($s: 18px, $w: 700, $c: #ECEEFE);
   border: solid #444DF2 1px;
   cursor: pointer;
   display: none;
@@ -67,7 +54,7 @@ $login-header-c: #444df2;
   margin-bottom: 20px;
 }
 
-.new-at-dabubble-mobile{
+.new-at-dabubble-mobile {
   display: none;
   font-size: 18px;
   font-weight: 400;
@@ -76,7 +63,7 @@ $login-header-c: #444df2;
 }
 
 /*************************  fields *************************/
-#login-pw-icon{
+#login-pw-icon {
   cursor: pointer;
 }
 
@@ -105,11 +92,11 @@ $login-header-c: #444df2;
 }
 
 /************************* Submit Btns *************************/
-.google-icon-wrapper{
+.google-icon-wrapper {
   cursor: pointer;
 }
 
-.login-w-google{
+.login-w-google {
   color: #444DF2;
   font-size: 18px;
   font-weight: 400;
@@ -120,20 +107,20 @@ $login-header-c: #444df2;
   @include dflex($jC: center, $gap: 30px);
 
   .guest-login-btn {
-    @include roundBtn($w: 153px, $h: 50px, $b-radius: 25px, $bg-color: #FFFF,);
-    @include fontSizeWeightColor($s:18px, $w:700, $c:#444DF2);
+    @include roundBtn($w: 153px, $h: 50px, $b-radius: 25px, $bg-color: #FFFF, );
+    @include fontSizeWeightColor($s: 18px, $w: 700, $c: #444DF2);
     border: solid #444DF2 1px;
   }
 }
 
 /************************* Impressum Datapolicy *************************/
-.impressum-datap-wrapper{
+.impressum-datap-wrapper {
   @include dflex($jC: center, $gap: 48px);
   padding-top: 40px;
   font-size: 18px;
   color: #444DF2;
-  
-  span{
+
+  span {
     cursor: pointer;
   }
 }
@@ -141,7 +128,7 @@ $login-header-c: #444df2;
 /************************* Dynamic Classes *************************/
 .dflex-google {
   @include dflex($jC: center, $gap: 16px);
-  position:relative;
+  position: relative;
 }
 
 .no-padding-left {
@@ -149,8 +136,8 @@ $login-header-c: #444df2;
 }
 
 /************************* Responsivness *************************/
-@media (width <= 768px){
-  .login-container{
+@media (width <=768px) {
+  .login-container {
     height: fit-content;
     width: 400px;
     padding-left: 24px;
@@ -163,52 +150,49 @@ $login-header-c: #444df2;
     left: auto;
   }
 
-  .login-form{
+  .login-form {
     gap: 28px;
     padding-top: 0;
   }
 
-  .login-header{
-    header{
+  .login-header {
+    header {
       font-size: 32px;
       font-weight: 700px;
       margin: 0;
       width: fit-content;
-    };
+    }
+
+    ;
     padding-bottom: 5px;
 
-    p{
+    p {
       font-size: 17px;
     }
   }
 
-  .login-w-google{
+  .login-w-google {
     font-size: 17;
   }
 
-  .intro-logo-mobile{
-    display:flex;
-    gap: 16px;
+  .create-account-mobile {
+    display: block;
   }
 
-  .create-account-mobile{
+  .new-at-dabubble-mobile {
     display: block;
   }
-  
-  .new-at-dabubble-mobile{
-    display: block;
-  }
-  
+
 }
 
-@media (width <= 470px){
-  .login-container{
+@media (width <=470px) {
+  .login-container {
     width: 350px;
   }
 }
 
-@media (width <= 370px){
-  .login-container{
+@media (width <=370px) {
+  .login-container {
     width: 300px;
   }
 }

@@ -18,6 +18,9 @@ p{
   position: relative;
   @include loginSignupWindow($width: 606px, $padding: 30px 50px);
   height: 50%;
+  //!Delete
+  border: solid red;
+  //!Delete
 }
 
 .arrow-back{
@@ -94,9 +97,15 @@ p{
 
 
 /************************* Responsivness *************************/
-
 @media (width <=1000px) {
   .card {
     border-radius: 25px;
   }
 }
+
+@media (width <=768px) {
+.sign-up-container{
+ width: 400px; 
+}
+}
+

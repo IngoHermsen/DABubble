@@ -44,11 +44,6 @@ export class DialogComponent implements OnInit {
       this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png";
       this.firebaseUser = user;
       this.userMail = user?.email;
-
-      //! Delete checking if logged in user arrives in this component.
-      console.log("This is firebaseUser from dialogcomponent",this.firebaseUser);
-      //! Delete checking if logged in user arrives in this component.
-
     });
 
   }
