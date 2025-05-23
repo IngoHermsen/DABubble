@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Channel } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { Timestamp } from 'firebase/firestore';
+import { ViewService } from './view.service';
 
 @Injectable({
   providedIn: 'root'

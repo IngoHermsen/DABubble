@@ -180,7 +180,7 @@ button {
 
 .posts {
   width: 100%;
-  @include dflex($fD: column, $gap: 28px);
+  @include dflex($fD: column, $jC: flex-start, $gap: 28px);
   overflow-y: auto;
 
   .post-wrapper {
