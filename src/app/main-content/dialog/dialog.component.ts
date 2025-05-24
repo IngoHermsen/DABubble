@@ -105,13 +105,13 @@ export class DialogComponent implements OnInit {
   }
 
 
-/**
- * Logs the user out and navigates back to the login view.
- * 
- * - Calls the `logoutUser()` method from the auth service.
- * - Closes any open modal via the view service.
- * - Redirects the user to the login page.
- */
+  /**
+   * Logs the user out and navigates back to the login view.
+   * 
+   * - Calls the `logoutUser()` method from the auth service.
+   * - Closes any open modal via the view service.
+   * - Redirects the user to the login page.
+   */
   handleLogout() {
     this.authService.logoutUser();
     this.viewService.showModal = false;
@@ -119,59 +119,84 @@ export class DialogComponent implements OnInit {
   }
 
 
-async setNewName(newNameInput: HTMLInputElement): Promise<void> {
-  const nameValue = newNameInput.value;
+  /**
+ * Handles updating the user's display name across the application.
+ * 
+ * - Retrieves the new name from the input element.
+ * - Validates that a Firebase user with an email is available.
+ * - Updates the user's display name in Firebase Authentication.
+ * - Refreshes the local Firebase user observable.
+ * - Updates the user document in Firestore.
+ * - Updates the local in-memory user cache.
+ * - Closes the modal after the update is complete.
+ * 
+ * @param newNameInput - The HTML input element containing the new display name.
+ * @returns A Promise that resolves when all updates are completed.
+ */
+  async setNewName(newNameInput: HTMLInputElement): Promise<void> {
+    const nameValue = newNameInput.value;
 
-  if (!this.isUserValid()) {
-    return;
+    if (!this.isUserValid()) {
+      return;
+    }
+
+    await this.updateAuthDisplayName(nameValue);
+    this.authService.refreshFirebaseUser();
+    await this.updateFirestoreUsername(nameValue);
+    this.updateLocalUserCache(nameValue);
+
+    this.viewService.showModal = false;
   }
 
-  await this.updateAuthDisplayName(nameValue);
-  this.authService.refreshFirebaseUser();
-  await this.updateFirestoreUsername(nameValue);
-  this.updateLocalUserCache(nameValue);
 
-  this.viewService.showModal = false;
-}
-  
+// -----------------------------------------------------------------------------
+// Internal helper functions used by `setNewName`
+// -----------------------------------------------------------------------------
 
+
+/**
+ * Checks whether a valid Firebase user with an email is available.
+ * 
+ * @returns `true` if the user and their email exist, otherwise `false`.
+ */
 private isUserValid(): boolean {
   return !!this.firebaseUser?.email;
 }
 
+
+/**
+ * Updates the Firebase Authentication display name for the current user.
+ * 
+ * @param name - The new display name to set in Firebase Auth.
+ * @returns A Promise that resolves once the update is complete.
+ */
 private async updateAuthDisplayName(name: string): Promise<void> {
   await this.authService.updateUserCredentials(this.firebaseUser!, "displayName", name);
 }
 
+
+/**
+ * Updates the corresponding Firestore user document with the new username.
+ * 
+ * @param name - The new username to store in Firestore.
+ * @returns A Promise that resolves once the Firestore document is updated.
+ */
 private async updateFirestoreUsername(name: string): Promise<void> {
   await this.fsService.updateUserDoc('users', this.firebaseUser!.email!, { username: name });
 }
 
+
+/**
+ * Updates the local in-memory cache of users with the new username.
+ * 
+ * @param name - The new username to apply to the local user object.
+ */
 private updateLocalUserCache(name: string): void {
   const user = this.fsService.allFsUsersJsonArr.find(u => u.email === this.firebaseUser?.email);
   if (user) {
     user.username = name;
   }
 }
-
-  
-
-
-  // async setNewName(newName: HTMLInputElement) {
-  //   const nameValue = newName.value;
-  //   if (!this.firebaseUser || !this.firebaseUser.email) {
-  //     return;
-  //   }
-  //   await this.authService.updateUserCredentials(this.firebaseUser, "displayName", nameValue);
-  //   this.authService.refreshFirebaseUser();
-  //   await this.fsService.updateUserDoc('users', this.firebaseUser.email!, { username: nameValue });
-  //   let userToUpdate = this.fsService.allFsUsersJsonArr.find(u => u.email === this.firebaseUser?.email);
-  //   if (userToUpdate) {
-  //     userToUpdate.username = nameValue;
-  //   }
-
-  //   this.viewService.showModal = false;
-  // }
 
 }
 
