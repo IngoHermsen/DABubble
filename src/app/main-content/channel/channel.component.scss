@@ -35,6 +35,11 @@ $divider-color: #ADB0D9;
     &::after {
         margin-right: 24px;
     }
+}
 
-    
+
+.divider .date {
+    padding: 4px 16px;
+    border: 1px solid $divider-color;
+    border-radius: 25px;
 }
