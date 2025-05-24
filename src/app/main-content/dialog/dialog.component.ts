@@ -105,6 +105,13 @@ export class DialogComponent implements OnInit {
   }
 
 
+/**
+ * Logs the user out and navigates back to the login view.
+ * 
+ * - Calls the `logoutUser()` method from the auth service.
+ * - Closes any open modal via the view service.
+ * - Redirects the user to the login page.
+ */
   handleLogout() {
     this.authService.logoutUser();
     this.viewService.showModal = false;
@@ -112,21 +119,59 @@ export class DialogComponent implements OnInit {
   }
 
 
-  async setNewName(newName: HTMLInputElement) {
-    const nameValue = newName.value;
-    if (!this.firebaseUser || !this.firebaseUser.email) {
-      return;
-    }
-    await this.authService.updateUserCredentials(this.firebaseUser, "displayName", nameValue);
-    this.authService.refreshFirebaseUser();
-    await this.fsService.updateUserDoc('users', this.firebaseUser.email!, { username: nameValue });
-    let userToUpdate = this.fsService.allFsUsersJsonArr.find(u => u.email === this.firebaseUser?.email);
-    if (userToUpdate) {
-      userToUpdate.username = nameValue;
-    }
+async setNewName(newNameInput: HTMLInputElement): Promise<void> {
+  const nameValue = newNameInput.value;
 
-    this.viewService.showModal = false;
+  if (!this.isUserValid()) {
+    return;
   }
+
+  await this.updateAuthDisplayName(nameValue);
+  this.authService.refreshFirebaseUser();
+  await this.updateFirestoreUsername(nameValue);
+  this.updateLocalUserCache(nameValue);
+
+  this.viewService.showModal = false;
+}
+  
+
+private isUserValid(): boolean {
+  return !!this.firebaseUser?.email;
+}
+
+private async updateAuthDisplayName(name: string): Promise<void> {
+  await this.authService.updateUserCredentials(this.firebaseUser!, "displayName", name);
+}
+
+private async updateFirestoreUsername(name: string): Promise<void> {
+  await this.fsService.updateUserDoc('users', this.firebaseUser!.email!, { username: name });
+}
+
+private updateLocalUserCache(name: string): void {
+  const user = this.fsService.allFsUsersJsonArr.find(u => u.email === this.firebaseUser?.email);
+  if (user) {
+    user.username = name;
+  }
+}
+
+  
+
+
+  // async setNewName(newName: HTMLInputElement) {
+  //   const nameValue = newName.value;
+  //   if (!this.firebaseUser || !this.firebaseUser.email) {
+  //     return;
+  //   }
+  //   await this.authService.updateUserCredentials(this.firebaseUser, "displayName", nameValue);
+  //   this.authService.refreshFirebaseUser();
+  //   await this.fsService.updateUserDoc('users', this.firebaseUser.email!, { username: nameValue });
+  //   let userToUpdate = this.fsService.allFsUsersJsonArr.find(u => u.email === this.firebaseUser?.email);
+  //   if (userToUpdate) {
+  //     userToUpdate.username = nameValue;
+  //   }
+
+  //   this.viewService.showModal = false;
+  // }
 
 }
 
