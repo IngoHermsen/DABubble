@@ -53,13 +53,15 @@ export class DialogComponent implements OnInit {
 
   newChannelFormGroup = new FormGroup({
     channelNameInput: new FormControl<string>('', {
-      nonNullable: true, validators: [
+      nonNullable: true,
+      validators: [
         Validators.required,
         Validators.minLength(5)
       ]
     }),
     channelDescInput: new FormControl<string>('', {
-      nonNullable: true, validators: [
+      nonNullable: true,
+      validators: [
         Validators.required,
       ]
     })
@@ -96,15 +98,15 @@ export class DialogComponent implements OnInit {
       return;
     }
     await this.authService.updateUserCredentials(this.firebaseUser, "displayName", nameValue);
-    this.authService.refreshFirebaseUser()
+    this.authService.refreshFirebaseUser();
     await this.fsService.updateUserDoc('users', this.firebaseUser.email!, { username: nameValue });
     let userToUpdate = this.fsService.allFsUsersJsonArr.find(u => u.email === this.firebaseUser?.email);
     if (userToUpdate) {
       userToUpdate.username = nameValue;
     }
 
-    this.viewService.showModal = false
+    this.viewService.showModal = false;
   }
-  
+
 }
 
