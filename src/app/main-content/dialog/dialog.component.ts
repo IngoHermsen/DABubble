@@ -38,6 +38,15 @@ export class DialogComponent implements OnInit {
 
 
 
+  /**
+ * Angular lifecycle hook that runs after component initialization.
+ * 
+ * @returns {void} This method does not return anything.
+ * 
+ * Subscribes to the `firebaseUser$` observable from `authService` and sets
+ * user-related component properties including display name, avatar path, email,
+ * and the full Firebase user object.
+ */
   ngOnInit(): void {
     this.authService.firebaseUser$.subscribe(user => {
       this.userName = user?.displayName ?? "Guest";
@@ -49,9 +58,14 @@ export class DialogComponent implements OnInit {
   }
 
 
-  // new Channel form 
-
-  newChannelFormGroup = new FormGroup({
+  /**
+ * Reactive form group used for creating a new channel.
+ * 
+ * Contains two form controls:
+ * - `channelNameInput`: A required text input with a minimum length of 5 characters.
+ * - `channelDescInput`: A required text input for the channel description.
+ */
+  newChannelFormGroup: FormGroup = new FormGroup({
     channelNameInput: new FormControl<string>('', {
       nonNullable: true,
       validators: [
@@ -68,7 +82,14 @@ export class DialogComponent implements OnInit {
   });
 
 
-  newChannelSubmit() {
+  /**
+ * Handles form submission to create a new channel.
+ * 
+ * - Retrieves values from the reactive form controls.
+ * - Constructs a `Channel` object including the name, description, and a static creator name.
+ * - Passes the object to the Firestore service for persistence.
+ */
+  newChannelSubmit(): void {
     const channelName = this.newChannelFormGroup.get('channelNameInput')!.value;
     const channelDesc = this.newChannelFormGroup.get('channelDescInput')!.value;
 
@@ -81,7 +102,6 @@ export class DialogComponent implements OnInit {
     this.fsService.addChannelToFirestore(channel);
 
     this.viewService.showModal = false;
-
   }
 
 
