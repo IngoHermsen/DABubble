@@ -61,7 +61,6 @@ export class WorkspaceComponent implements OnInit {
     this.usersArray.sort((a, b) => a.username.localeCompare(b.username));
   }
 
-
   toggleEntries(content: string) {
     if (content == 'channels') {
       this.channelToggleClicked = true;
@@ -71,5 +70,4 @@ export class WorkspaceComponent implements OnInit {
       this.showDirectMsgEntries = !this.showDirectMsgEntries;
     }
   }
-
 }

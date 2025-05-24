@@ -18,6 +18,7 @@
             <span class="material-icons-round plus"
                 (click)="viewService.modalHandler('newChannel', 'modal-content-center')">add</span>
         </h3>
+        @if(showChannelEntries) {
         <div class="entries">
             @for(channel of dataService.channelIds; let index = $index; track $index) {
             <div class="entry" [routerLink]="'channel/' + channel">
@@ -26,8 +27,9 @@
             </div>
             }
         </div>
-    </section>
+        }
 
+    </section>
     <section class="direct-msg">
         <h3 (click)="toggleEntries('direct-msg')" class="title">
             <span class="material-icons drop-btn" [ngClass]="{
@@ -35,6 +37,7 @@
                     'turnDownDropBtn': showDirectMsgEntries && directMsgToggleClicked
                 }">arrow_drop_down</span>Direct Messages
         </h3>
+        @if(showDirectMsgEntries) {
         <div class="entries">
             @if(firebaseUser){
             <div class="wrapper--username-avatar">
@@ -65,6 +68,8 @@
 
             }
         </div>
+        }
+
 
     </section>
 </div>
