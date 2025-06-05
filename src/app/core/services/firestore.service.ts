@@ -23,7 +23,6 @@ export class FirestoreService {
 
 
   unsubChannelsCol: () => void = onSnapshot(this.channelsColRef, snapshot => {
-    console.log('CHANNEL SNAPSHOT')
     const cNames: Array<string> = snapshot.docs.map(doc => doc.id);
     this.dataService.channelIds = cNames;
   });

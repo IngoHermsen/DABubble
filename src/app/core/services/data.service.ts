@@ -10,7 +10,7 @@ export class DataService {
   // channel data
 
   channelIds: string[];
-  channelData: Channel;
+  channelData: Channel | undefined;
 
   // posts data
 
