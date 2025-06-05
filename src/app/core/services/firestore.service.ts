@@ -101,10 +101,14 @@ export class FirestoreService {
       photoURL: doc.data()['photoURL'],
       username: doc.data()['username']
     }));
- }
 
+  }
+ 
   unsubChannelSnapshot() {
-
+    
   }
 
 }
+
+
+
