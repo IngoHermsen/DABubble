@@ -15,39 +15,43 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './channel.component.html',
   styleUrl: './channel.component.scss'
 })
-export class ChannelComponent implements OnInit, AfterViewChecked {
+export class ChannelComponent implements OnInit {
+  @ViewChild('scrollAnchor') scrollAnchor!: ElementRef;
+
   public dataService = inject(DataService);
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
   public route = inject(ActivatedRoute);
   public channelOpened: boolean = false;
-
-  @ViewChild('scroll') private scrollContainer!: ElementRef<HTMLElement>;
-
   posts: Post[];
 
   ngOnInit() {
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 1000);
     this.viewService.channelUserAction = true;
     this.route.paramMap.subscribe(params => {
       const channelId = params.get('id');
       if (channelId) {
         this.viewService.channelUserAction = true;
         this.viewService.channelAutoScroll = true;
-        this.firestoreService.setActiveChannel(channelId)
+        this.firestoreService.setActiveChannel(channelId);
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 1000);
+
       }
-    })
+    });
 
-    //!Delete
-    setTimeout(() => {
-      console.log(this.dataService.groupedPosts);
-      
-    }, 3000);
-    //!Delete
   }
 
-  ngAfterViewChecked(): void {
-    this.scrollToBottom();
+
+  scrollToBottom() {
+    if (this.scrollAnchor) {
+      this.scrollAnchor.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    }
   }
+
 
   ngOnDestroy() {
     this.firestoreService.unsubPostsCol();
@@ -56,6 +60,10 @@ export class ChannelComponent implements OnInit, AfterViewChecked {
   addPost(post: Post) {
     this.viewService.channelUserAction = true;
     this.firestoreService.addPostToFirestore(post);
+    setTimeout(() => {
+      this.scrollToBottom();
+    }, 1);
+
   }
 
   createDateDivider(date: Date): string {
@@ -65,21 +73,9 @@ export class ChannelComponent implements OnInit, AfterViewChecked {
       weekday: 'long'
     });
 
-    return dateString
+    return dateString;
   }
 
-  private scrollToBottom() {
-    if (this.viewService.channelAutoScroll && this.viewService.channelUserAction) {
-      setTimeout(() => {
-        const scrollEl = this.scrollContainer.nativeElement;
-        scrollEl.scrollTop = scrollEl.scrollHeight;
-        this.viewService.channelAutoScroll = false;
-        this.viewService.channelUserAction = false;
-      }, 0)
-    }
-
-
-  }
 
 
   // posts = [   //examples - will later be fetched from database / backend
