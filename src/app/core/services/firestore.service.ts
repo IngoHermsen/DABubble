@@ -102,7 +102,6 @@ export class FirestoreService {
       username: doc.data()['username']
     }));
 
-    console.log("Fetched users:", this.allFsUsersJsonArr)
   }
 
   unsubChannelSnapshot() {

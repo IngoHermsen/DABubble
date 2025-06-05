@@ -36,6 +36,13 @@ export class ChannelComponent implements OnInit, AfterViewChecked {
         this.firestoreService.setActiveChannel(channelId)
       }
     })
+
+    //!Delete
+    setTimeout(() => {
+      console.log(this.dataService.groupedPosts);
+      
+    }, 3000);
+    //!Delete
   }
 
   ngAfterViewChecked(): void {
