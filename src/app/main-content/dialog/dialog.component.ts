@@ -41,8 +41,6 @@ export class DialogComponent implements OnInit {
   /**
  * Angular lifecycle hook that runs after component initialization.
  * 
- * @returns {void} This method does not return anything.
- * 
  * Subscribes to the `firebaseUser$` observable from `authService` and sets
  * user-related component properties including display name, avatar path, email,
  * and the full Firebase user object.
