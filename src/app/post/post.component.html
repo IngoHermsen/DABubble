@@ -1,4 +1,4 @@
-<div class="post" [class.odd]="isOdd">
+<div class="post" (click)="openThread()" [class.odd]="isOdd">
     @if (!post.imgPath) {
     <div class="profile-image"></div>
     } @else {
