@@ -6,9 +6,8 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { ViewService } from '../../core/services/view.service';
 import { DataService } from '../../core/services/data.service';
-import { Router, RouterLink } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { Auth, User as FirebaseUser } from '@angular/fire/auth';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { User as FirebaseUser } from '@angular/fire/auth';
 import { FsUsers } from '../../core/types/firestore_users';
 
 @Component({

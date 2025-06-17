@@ -1,6 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Router } from '@angular/router';
-import { FirestoreService } from './firestore.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 type ActiveDialogType = 'newChannel' | 'logout' | 'cardProfile' |'cardProfileEdit';
 type PlacementClassType = 'modal-content-center' | 'modal-content-top-right';
@@ -12,6 +11,7 @@ export class ViewService {
   private router = inject(Router);
 
   showWorkspaceMenu: boolean = true;
+  showDetailSection: boolean = true;
   showThreadSection: boolean = false;
   showModal: boolean = false;
 
@@ -23,7 +23,6 @@ export class ViewService {
   activeChannelId: string;
   activeDialog = signal<ActiveDialogType>("logout");
   modalContentClass: PlacementClassType
-  currentRoute: string;
 
   // mobile options
   mobileView: boolean;
@@ -31,13 +30,23 @@ export class ViewService {
 
   constructor() {
     this.mobileView = window.innerWidth <= 1000;
-
   }
 
-  wsNavigate(route: string) {
-    this.showLogo = route == 'workspace' ? true : false;
-    this.router.navigate([route]);
-  }
+  // wsNavigate(route: string) {
+  //   console.log('entered "wsNavigate"')
+  //   const routeIsWorkspaceOnly = route == 'workspace';
+  //   if(routeIsWorkspaceOnly) {
+  //   console.log('TRUE')
+  //   this.showLogo = true;
+  //   this.showDetailSection = false;
+  //   } else {
+  //     console.log('FALSE')
+  //     this.showLogo = false;
+  //     this.showDetailSection = true;
+  //   }
+
+  //   this.router.navigate([route]);
+  // }
 
   modalHandler(name: ActiveDialogType, className: PlacementClassType) {
     this.openModal(name);

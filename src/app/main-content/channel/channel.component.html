@@ -3,7 +3,7 @@
 
         @if(viewService.mobileView) {
         <span class="material-icons-round arrow-back"
-            (click)="viewService.wsNavigate('workspace')">arrow_back_ios</span>
+            [routerLink]="['/workspace']">arrow_back_ios</span>
         }
 
         <h2>{{ dataService.channelData?.channelName }}</h2>

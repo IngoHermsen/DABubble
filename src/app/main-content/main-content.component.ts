@@ -1,9 +1,6 @@
-import { Component, inject, ChangeDetectorRef } from '@angular/core';
-import { ChannelComponent } from './channel/channel.component';
-import { NewPostComponent } from './new-post/new-post.component';
+import { Component, inject } from '@angular/core';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
-import { DirectMessagesComponent } from './direct-messages/direct-messages.component';
 import { OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive';
@@ -11,7 +8,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from '../core/services/dialog.service';
 import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
-import { RouterOutlet, Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, RouterOutlet, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { NgClass } from '@angular/common';
 
@@ -21,12 +18,10 @@ import { NgClass } from '@angular/common';
   imports: [
     ShowOnHoverDirective,
     NgClass,
-    // ChannelComponent,
     WorkspaceComponent,
     ThreadComponent,
     DialogComponent,
-    // DirectMessagesComponent,
-    // NewPostComponent,
+    RouterLink,
     RouterOutlet,
   ],
   templateUrl: './main-content.component.html',
@@ -68,16 +63,16 @@ export class MainComponent implements OnInit {
   public dialogService = inject(DialogService);
   public firestoreService = inject(FirestoreService);
   private authService = inject(AuthService);
+  public router = inject(Router);
+
   avatarPath: any;
   userName: any; 
 
-  constructor() {
-
-  }
   ngOnInit(): void {
     this.authService.firebaseUser$.subscribe(user => {
       this.userName = user?.displayName ?? "Guest"
-      this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png"
+      this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png";
+      // this.router.navigate(['channel/Bootstrap']);
     });
   }
 

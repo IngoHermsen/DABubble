@@ -24,7 +24,7 @@
 
     <section class="header">
         @if (viewService.mobileView && !viewService.showLogo) {
-        <span (click)="viewService.wsNavigate('workspace')"
+        <span [routerLink]="'workspace'"
             class="material-icons-round arrow-back">arrow_back_ios</span>
         <span>WS-LOGO</span>
         }
@@ -58,6 +58,7 @@
                 <app-workspace></app-workspace>
             </div>
         </section>
+        @if(viewService.showDetailSection) {
         <section class="details">
             <section class="active-content flex-item">
                 <router-outlet></router-outlet>
@@ -68,5 +69,6 @@
                 </div>
             </section>
         </section>
+        }
     </section>
 </div>

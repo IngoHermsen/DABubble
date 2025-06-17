@@ -5,13 +5,12 @@ import { MessageInputComponent } from '../message-input/message-input.component'
 import { DataService } from '../../core/services/data.service';
 import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-channel',
   standalone: true,
-  imports: [PostComponent, MessageInputComponent],
+  imports: [PostComponent, MessageInputComponent, RouterLink],
   templateUrl: './channel.component.html',
   styleUrl: './channel.component.scss'
 })
