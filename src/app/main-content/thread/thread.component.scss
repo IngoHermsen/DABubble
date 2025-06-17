@@ -1,5 +1,9 @@
+@import '../../../styles/mixins.scss';
+
+
 .card {
     position: relative;
+    @include dflex($fD: column);
 
 
     .close-btn {
@@ -7,5 +11,12 @@
         top: 12px;
         right: 12px;
         cursor: pointer;
+        z-index: 2;
     }
 }
+
+.posts{
+    height: 100%;
+}
+
+

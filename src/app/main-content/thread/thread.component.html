@@ -1,7 +1,16 @@
 <div class="card">
     <span (click)="emitCloseEvent()" class='material-icons close-btn'>close</span>
+
     <div class="fixed-header box-shadow">
         <h2>Thread</h2>
     </div>
-    <div>{{ threadId }}</div>
+
+    <div class="posts" #scroll>
+        <div #scrollAnchor></div>
+    </div>
+
+    <div class="message-input">
+        <app-message-input (onclick)="logSth()"></app-message-input>
+    </div>
+
 </div>

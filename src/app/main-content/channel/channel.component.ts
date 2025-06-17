@@ -63,7 +63,6 @@ export class ChannelComponent implements OnInit {
     setTimeout(() => {
       this.scrollToBottom();
     }, 1);
-
   }
 
   createDateDivider(date: Date): string {
