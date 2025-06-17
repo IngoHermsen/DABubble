@@ -8,9 +8,10 @@ import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from '../core/services/dialog.service';
 import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
-import { ActivatedRoute, RouterOutlet, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterOutlet, Router, RouterLink, NavigationEnd } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { NgClass } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-main',
@@ -66,13 +67,13 @@ export class MainComponent implements OnInit {
   public router = inject(Router);
 
   avatarPath: any;
-  userName: any; 
+  userName: any;
 
   ngOnInit(): void {
     this.authService.firebaseUser$.subscribe(user => {
       this.userName = user?.displayName ?? "Guest"
       this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png";
-      // this.router.navigate(['channel/Bootstrap']);
+      this.subscribeToWorkspaceNavigation();
     });
   }
 
@@ -80,4 +81,15 @@ export class MainComponent implements OnInit {
     this.viewService.showThreadSection = false;
   }
 
+  subscribeToWorkspaceNavigation() {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        if (event.urlAfterRedirects != '/workspace') {
+          this.viewService.showDetailSection = true;
+        } else {
+          this.viewService.showDetailSection = false
+        }
+      })
+  }
 }

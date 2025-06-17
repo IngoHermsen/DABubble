@@ -11,7 +11,7 @@ export class ViewService {
   private router = inject(Router);
 
   showWorkspaceMenu: boolean = true;
-  showDetailSection: boolean = true;
+  showDetailSection: boolean = false;
   showThreadSection: boolean = false;
   showModal: boolean = false;
 
@@ -32,22 +32,6 @@ export class ViewService {
     this.mobileView = window.innerWidth <= 1000;
   }
 
-  // wsNavigate(route: string) {
-  //   console.log('entered "wsNavigate"')
-  //   const routeIsWorkspaceOnly = route == 'workspace';
-  //   if(routeIsWorkspaceOnly) {
-  //   console.log('TRUE')
-  //   this.showLogo = true;
-  //   this.showDetailSection = false;
-  //   } else {
-  //     console.log('FALSE')
-  //     this.showLogo = false;
-  //     this.showDetailSection = true;
-  //   }
-
-  //   this.router.navigate([route]);
-  // }
-
   modalHandler(name: ActiveDialogType, className: PlacementClassType) {
     this.openModal(name);
     this.setModalContentClass(className);
@@ -61,4 +45,5 @@ export class ViewService {
   setModalContentClass(className: PlacementClassType) {
     this.modalContentClass = className;
   }
+
 }
