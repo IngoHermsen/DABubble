@@ -5,7 +5,7 @@
         <img [routerLink]="'new-post'" type="icon" class="icon"
             src="assets/icons/edit_square.png" alt="editSquareIcon">
     </section>
-    <section class="channels">
+    <section class="list-section channels">
         <h3 class="title">
             <div class="left" (click)="toggleEntries('channels')">
                 <span class="material-icons drop-btn" [ngClass]="{
@@ -30,7 +30,7 @@
         }
 
     </section>
-    <section class="direct-msg">
+    <section class="list-section direct-msg">
         <h3 (click)="toggleEntries('direct-msg')" class="title">
             <span class="material-icons drop-btn" [ngClass]="{
                     'turnUpDropBtn': !showDirectMsgEntries && directMsgToggleClicked,
