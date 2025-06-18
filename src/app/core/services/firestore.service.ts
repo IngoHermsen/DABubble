@@ -41,6 +41,7 @@ export class FirestoreService {
 
 
   async addChannelToFirestore(channel: Channel) {
+    console.log("channel", channel)
     if (channel.channelName) await setDoc(doc(this.channelsColRef, channel.channelName), channel);
   }
 

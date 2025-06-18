@@ -22,7 +22,7 @@
         <label for="channelDescription">Beschreibung <span class="optional">(optional)</span></label>
         <input class="input-styling" id="channelDescription" type="text" formControlName="channelDescInput">
 
-        <button class="submit-btn" [class.inactive-submit-btn]="newChannelForm.invalid">Erstellen</button>
+        <button [disabled]="newChannelFormGroup.invalid" class="submit-btn" [class.inactive-submit-btn]="newChannelForm.invalid">Erstellen</button>
     </form>
 </div>
 }

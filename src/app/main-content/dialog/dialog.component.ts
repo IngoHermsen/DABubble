@@ -98,7 +98,6 @@ export class DialogComponent implements OnInit {
     };
 
     this.fsService.addChannelToFirestore(channel);
-
     this.viewService.showModal = false;
   }
 
