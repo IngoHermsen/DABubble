@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject } from '@angular/core';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
 import { OnInit } from '@angular/core';
@@ -8,7 +8,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { DialogService } from '../core/services/dialog.service';
 import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
-import { ActivatedRoute, RouterOutlet, Router, RouterLink, NavigationEnd } from '@angular/router';
+import { RouterOutlet, Router, RouterLink, NavigationEnd } from '@angular/router';
 import { AuthService } from '../core/services/auth.service';
 import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
@@ -59,7 +59,7 @@ import { filter } from 'rxjs';
   ]
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewInit {
   public viewService = inject(ViewService);
   public dialogService = inject(DialogService);
   public firestoreService = inject(FirestoreService);
@@ -77,10 +77,17 @@ export class MainComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    console.log('main component after view init')
+    // this.router.navigate(['/workspace'])
+  }
+
   closeThreadSection(event: boolean) {
     this.viewService.showThreadSection = false;
   }
 
+// Show detail section for all /workspace subroutes, but hide it on the base /workspace route
+  
   subscribeToWorkspaceNavigation() {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))

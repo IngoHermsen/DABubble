@@ -7,7 +7,7 @@ $header-height: 80px;
 .wrapper {
     background-color: var(--bg-color);
     @include dflex($fD: column);
-    
+
 }
 
 
@@ -38,19 +38,18 @@ $header-height: 80px;
     transform: rotate(90deg) translateX(-50%);
     background-color: white;
     box-shadow: 4px 3px 14px -5px rgb(0 0 0 / 75%);
+}
 
-    >span {
-        transform: rotate(180deg);
-        height: 32px;
-        margin-top: 8px;
-        @include dflex($gap: 8px);
+.toogle-btn>span {
+    transform: rotate(180deg);
+    height: 32px;
+    margin-top: 8px;
+    @include dflex($gap: 8px);
+}
 
-        img {
-            transform: rotate(90deg);
-            height: 32px;
-        }
-    }
-
+.toggle-btn>span img {
+    transform: rotate(90deg);
+    height: 32px;
 }
 
 
@@ -86,25 +85,25 @@ $header-height: 80px;
     }
 
     .user-menu {
-        @include dflex($fD: row, $jC: flex-end , $aI: center, $gap: 16px);
+        @include dflex($fD: row, $jC: flex-end, $aI: center, $gap: 16px);
     }
 
-    
-    .user-menu .img--avatar{
+
+    .user-menu .img--avatar {
         @include widthHeight($w: 50px, $h: 50px);
         border-radius: 50%;
     }
 
-    .user-menu .username{
-        @include fontSizeWeight($s:24px, $w:700);
+    .user-menu .username {
+        @include fontSizeWeight($s: 24px, $w: 700);
     }
 
-    .user-menu .wrapper--icons{
+    .user-menu .wrapper--icons {
         @include dflex($fD: row, $jC: space-between, $aI: center, $gap: 16px);
         cursor: pointer;
     }
 
-    > div {
+    >div {
         min-width: 250px;
     }
 
@@ -126,7 +125,7 @@ $header-height: 80px;
     flex-grow: 1;
 }
 
-.ws-animation-wrapper{
+.ws-animation-wrapper {
     min-width: 320px;
     height: 100%;
 }
@@ -145,7 +144,7 @@ $header-height: 80px;
         40% {
             left: 12px;
         }
-        
+
         100% {
             left: 50px;
         }
@@ -158,30 +157,52 @@ $header-height: 80px;
     @keyframes hideBtn {
         from {
             left: 50px;
-        } to {
+        }
+
+        to {
             left: 12px;
         }
     }
 }
 
-@media (width <= 1000px) {
+/************************* Responsiveness *************************/
+
+@media (width <=768px) {
+    .navigation-logo {
+        display: block;
+    }
+}
+
+@media (width <=1000px) {
     .ws-animation-wrapper {
         min-width: unset;
     }
 
-    .details{
+    .details {
         display: unset;
         position: relative;
 
         .detail-section {
-            position: absolute; 
+            position: absolute;
             inset: 0px;
             z-index: 1;
         }
     }
+
+    .header {
+        gap: unset;
+    }
+
+    .header .logo {
+        padding-left: unset;
+    }
+
+    .header .arrow-down {
+        display: none;
+    }
 }
 
-@media (width <= 700px) {
+@media (width <=700px) {
     .content {
         position: relative;
         padding: unset;
@@ -192,4 +213,10 @@ $header-height: 80px;
         inset: 0;
     }
 
+}
+
+@media (width <=550px) {
+    .header>div {
+        min-width: unset;
+    }
 }

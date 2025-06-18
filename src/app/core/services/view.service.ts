@@ -11,7 +11,7 @@ export class ViewService {
   private router = inject(Router);
 
   showWorkspaceMenu: boolean = true;
-  showDetailSection: boolean = false;
+  showDetailSection: boolean = true;
   showThreadSection: boolean = false;
   showModal: boolean = false;
 
