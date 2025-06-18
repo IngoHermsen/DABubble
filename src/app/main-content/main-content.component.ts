@@ -59,7 +59,7 @@ import { filter } from 'rxjs';
   ]
 })
 
-export class MainComponent implements OnInit, AfterViewInit {
+export class MainComponent implements OnInit {
   public viewService = inject(ViewService);
   public dialogService = inject(DialogService);
   public firestoreService = inject(FirestoreService);
@@ -74,28 +74,26 @@ export class MainComponent implements OnInit, AfterViewInit {
       this.userName = user?.displayName ?? "Guest"
       this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png";
       this.subscribeToWorkspaceNavigation();
+      if (this.router.url == "/workspace" && this.viewService.mobileView) {
+        this.viewService.showDetailSection = false;
+      } 
     });
-  }
-
-  ngAfterViewInit() {
-    console.log('main component after view init')
-    // this.router.navigate(['/workspace'])
   }
 
   closeThreadSection(event: boolean) {
     this.viewService.showThreadSection = false;
   }
 
-// Show detail section for all /workspace subroutes, but hide it on the base /workspace route
-  
+  // Show detail section for all /workspace subroutes, but hide it on the base /workspace route
+
   subscribeToWorkspaceNavigation() {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        if (event.urlAfterRedirects != '/workspace') {
-          this.viewService.showDetailSection = true;
+        if (event.urlAfterRedirects == '/workspace') {
+          this.viewService.showDetailSection = false;
         } else {
-          this.viewService.showDetailSection = false
+          this.viewService.showDetailSection = true
         }
       })
   }

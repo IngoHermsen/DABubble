@@ -25,12 +25,6 @@ export class ChannelComponent implements OnInit {
   posts: Post[];
 
   ngOnInit() {
-
-    //!Delete
-    setTimeout(() => {
-      console.log("This is dataService.groupedPosts",this.dataService.groupedPosts);
-    }, 3000);
-    //!Delete
     setTimeout(() => {
       this.scrollToBottom();
     }, 1000);
