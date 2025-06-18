@@ -213,6 +213,10 @@ $header-height: 80px;
         inset: 0;
     }
 
+    .details-animation-wrapper {
+        min-width: unset;
+    }
+
 }
 
 @media (width <=550px) {
