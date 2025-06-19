@@ -2,8 +2,7 @@
     <section class="fixed-header header">
         <img class="workspace-logo" src="assets/icons/Devspace_logo.png" alt="devSpaceLogo">
         <h2>DevSpace</h2>
-        <img [routerLink]="'new-post'" type="icon" class="icon"
-            src="assets/icons/edit_square.png" alt="editSquareIcon">
+        <img [routerLink]="'new-post'" type="icon" class="icon" src="assets/icons/edit_square.png" alt="editSquareIcon">
     </section>
     <section class="list-section channels">
         <h3 class="title">
@@ -31,11 +30,16 @@
 
     </section>
     <section class="list-section direct-msg">
-        <h3 (click)="toggleEntries('direct-msg')" class="title">
+        <h3 class="title">
+            <div class="left" (click)="toggleEntries('direct-msg')">
             <span class="material-icons drop-btn" [ngClass]="{
                     'turnUpDropBtn': !showDirectMsgEntries && directMsgToggleClicked,
                     'turnDownDropBtn': showDirectMsgEntries && directMsgToggleClicked
-                }">arrow_drop_down</span>Direct Messages
+                }">
+                arrow_drop_down</span>
+            <span class="material-icons-outlined">account_circle</span>
+            <span>Direktnachrichten</span>
+            </div>
         </h3>
         @if(showDirectMsgEntries) {
         <div class="entries">
