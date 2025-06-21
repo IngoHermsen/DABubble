@@ -1,0 +1,39 @@
+ Abstrakte Struktur – Oberkategorien
+
+// === Imports ===
+// === Component Decorator ===
+// === Class Definition ===
+
+// === Constructor / Injection ===
+// === Properties ===
+// === Lifecycle Hooks ===
+// === Event Handlers ===
+// === Business Logic ===
+// === Helper / Utility Methods ===
+// === Cleanup ===
+
+
+Detaillierte Struktur – Konkrete Divider
+
+// === Injected Services ===
+// === Input / Output ===
+// === ViewChild / DOM Access ===
+// === Template References ===
+// === Firestore References ===
+// === API Endpoints ===
+// === Local Data ===
+// === ViewModel ===
+// === Unsubscribe Functions ===
+
+// === Lifecycle ===
+// === Event Handlers ===
+// === Form Handling ===
+// === Animation Control ===
+// === Navigation ===
+// === State Management ===
+// === Computed Properties ===
+
+// === Helper Methods ===
+// === Private Utilities ===
+// === Debug ===
+// === Cleanup ===
