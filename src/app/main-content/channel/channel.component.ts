@@ -25,6 +25,17 @@ export class ChannelComponent implements OnInit {
   posts: Post[];
 
 
+  
+  /**
+ * Initializes the component when it is loaded.
+ * 
+ * - Scrolls to the bottom of the message view.
+ * - Activates the `channelUserAction` flag to indicate user-driven channel view.
+ * - Subscribes to the route parameter map to detect channel ID changes.
+ * - If a channel ID is present:
+ *   - Loads channel-specific data.
+ *   - Scrolls to the bottom again after data load.
+ */
   ngOnInit() {
     this.scrollToBottom();
     this.viewService.channelUserAction = true;
@@ -38,12 +49,41 @@ export class ChannelComponent implements OnInit {
   }
 
 
+  /**
+ * Lifecycle hook that is called when the component is destroyed.
+ * 
+ * - Unsubscribes from the Firestore posts collection to prevent memory leaks.
+ */
+  ngOnDestroy() {
+    this.firestoreService.unsubPostsCol();
+  }
+
+
+// -----------------------------------------------------------------------------
+// Internal helper functions used by `ngOnInit`
+// -----------------------------------------------------------------------------
+
+/**
+ * Handles the logic for activating a specific channel based on its ID.
+ * 
+ * - Enables user action and auto-scroll behavior in the view service.
+ * - Sets the active channel in the Firestore service.
+ * 
+ * @param channelId - The ID of the channel to be activated.
+ */
   handleChannelData(channelId: string) {
     this.viewService.channelUserAction = true;
     this.viewService.channelAutoScroll = true;
     this.firestoreService.setActiveChannel(channelId);
   }
 
+
+  /**
+ * Scrolls the view smoothly to the bottom of the message list.
+ * 
+ * - Waits for 1 second to ensure that all dynamic content (e.g. messages) is rendered.
+ * - If the scroll anchor element is available, scrolls to it with a smooth animation.
+ */
   scrollToBottom() {
     setTimeout(() => {
       if (this.scrollAnchor) {
@@ -53,10 +93,15 @@ export class ChannelComponent implements OnInit {
   }
 
 
-  ngOnDestroy() {
-    this.firestoreService.unsubPostsCol();
-  }
-
+  /**
+ * Adds a new post to the Firestore collection.
+ * 
+ * - Marks the action as user-initiated via `viewService.channelUserAction`.
+ * - Sends the new post to Firestore.
+ * - Scrolls the view to the bottom shortly after adding the post.
+ * 
+ * @param post - The post object to be added.
+ */
   addPost(post: Post) {
     this.viewService.channelUserAction = true;
     this.firestoreService.addPostToFirestore(post);
@@ -65,6 +110,16 @@ export class ChannelComponent implements OnInit {
     }, 1);
   }
 
+  
+  /**
+ * Formats a given date into a localized string used as a visual divider.
+ * 
+ * - Converts the date into a human-readable German format with weekday, day, and month.
+ * - Example output: "Montag, 17. Juni"
+ * 
+ * @param date - The date to be formatted.
+ * @returns A formatted date string.
+ */
   createDateDivider(date: Date): string {
     const dateString: string = date.toLocaleDateString('de-DE', {
       month: 'long',
