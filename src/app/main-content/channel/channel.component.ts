@@ -24,31 +24,32 @@ export class ChannelComponent implements OnInit {
   public channelOpened: boolean = false;
   posts: Post[];
 
+
   ngOnInit() {
-    setTimeout(() => {
-      this.scrollToBottom();
-    }, 1000);
+    this.scrollToBottom();
     this.viewService.channelUserAction = true;
     this.route.paramMap.subscribe(params => {
       const channelId = params.get('id');
       if (channelId) {
-        this.viewService.channelUserAction = true;
-        this.viewService.channelAutoScroll = true;
-        this.firestoreService.setActiveChannel(channelId);
-        setTimeout(() => {
-          this.scrollToBottom();
-        }, 1000);
-
+        this.handleChannelData(channelId);
+        this.scrollToBottom();
       }
     });
-
   }
 
 
+  handleChannelData(channelId: string) {
+    this.viewService.channelUserAction = true;
+    this.viewService.channelAutoScroll = true;
+    this.firestoreService.setActiveChannel(channelId);
+  }
+
   scrollToBottom() {
-    if (this.scrollAnchor) {
-      this.scrollAnchor.nativeElement.scrollIntoView({ behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      if (this.scrollAnchor) {
+        this.scrollAnchor.nativeElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 1000);
   }
 
 
