@@ -98,7 +98,8 @@ export class AuthService {
   async loginBtnPressed(email: HTMLInputElement, password: HTMLInputElement): Promise<void> {
     this.resetErrors();
     try {
-      await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      const userCredentials = await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
+      this.firebaseUser = userCredentials.user;
       this.router.navigate(['/workspace/channel/Angular']); // hard coded until logic is implemented
     } catch (error: any) {
       this.showErrorMsg(error.code);
