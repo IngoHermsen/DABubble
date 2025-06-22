@@ -38,7 +38,6 @@ export class ChannelComponent implements OnInit {
  */
   ngOnInit() {
     this.scrollToBottom();
-    this.viewService.channelUserAction = true;
     this.route.paramMap.subscribe(params => {
       const channelId = params.get('id');
       if (channelId) {
@@ -72,8 +71,6 @@ export class ChannelComponent implements OnInit {
  * @param channelId - The ID of the channel to be activated.
  */
   handleChannelData(channelId: string) {
-    this.viewService.channelUserAction = true;
-    this.viewService.channelAutoScroll = true;
     this.firestoreService.setActiveChannel(channelId);
   }
 
@@ -103,7 +100,6 @@ export class ChannelComponent implements OnInit {
  * @param post - The post object to be added.
  */
   addPost(post: Post) {
-    this.viewService.channelUserAction = true;
     this.firestoreService.addPostToFirestore(post);
     setTimeout(() => {
       this.scrollToBottom();

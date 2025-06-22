@@ -1,6 +1,5 @@
 import { Component, effect, inject, OnInit } from '@angular/core';
 import { NgClass, AsyncPipe } from '@angular/common';
-import { DialogService } from '../../core/services/dialog.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
@@ -19,7 +18,6 @@ import { FsUsers } from '../../core/types/firestore_users';
 })
 export class WorkspaceComponent implements OnInit {
   public dataService = inject(DataService);
-  public dialogService = inject(DialogService);
   public fsService = inject(FirestoreService);
   public router = inject(Router);
   public route = inject(ActivatedRoute);

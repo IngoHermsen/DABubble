@@ -5,7 +5,6 @@ import { OnInit } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ShowOnHoverDirective } from '../core/directives/show-on-hover.directive';
 import { DialogComponent } from './dialog/dialog.component';
-import { DialogService } from '../core/services/dialog.service';
 import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
 import { RouterOutlet, Router, RouterLink, NavigationEnd } from '@angular/router';
@@ -61,7 +60,6 @@ import { filter } from 'rxjs';
 
 export class MainComponent implements OnInit {
   public viewService = inject(ViewService);
-  public dialogService = inject(DialogService);
   public firestoreService = inject(FirestoreService);
   private authService = inject(AuthService);
   public router = inject(Router);

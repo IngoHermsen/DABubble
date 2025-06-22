@@ -36,6 +36,7 @@ export class DataService {
     this.groupPostsByDate(sortedPosts);
   }
 
+  
   // === Helper Methods ===
   /**
    * Groups posts by their transformed date string.
@@ -63,7 +64,7 @@ export class DataService {
     }));
   }
 
-  
+
   /**
    * Transforms a Firestore Timestamp into a human-readable date string.
    * 
