@@ -29,8 +29,7 @@ export class AuthService {
   private firebaseUserSubject = new BehaviorSubject<FirebaseUser | null>(null)
   showPassword = false;
 
-
-  firebaseUser: FirebaseUser| null 
+  public firebaseUser: FirebaseUser| null;
 
   firebaseUser$ = this.firebaseUserSubject.asObservable(); // Public Observable
   user: User | null = null;
