@@ -29,14 +29,14 @@ export class ViewService {
   mobileView: boolean;
   showLogo: boolean = true;
 
-  // === Constructor / Injection ===
 
+  // === Constructor / Injection ===
   constructor() {
     this.mobileView = window.innerWidth <= 1000;
   }
 
-  // === Methods ===
 
+  // === Methods ===
   /**
    * Handles modal logic by opening a modal and setting its placement class.
    * 
