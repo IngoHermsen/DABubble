@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Post } from '../../core/interfaces/post';
-import { FieldValue, serverTimestamp, Timestamp } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-message-input',
@@ -11,6 +12,7 @@ import { FieldValue, serverTimestamp, Timestamp } from 'firebase/firestore';
   styleUrl: './message-input.component.scss'
 })
 export class MessageInputComponent {
+  private authService = inject(AuthService);
   @Output() message = new EventEmitter<Post>;
   focussed: boolean = false;
   minInputLength: number = 5;
@@ -39,7 +41,7 @@ export class MessageInputComponent {
       const message = this.messageInput.value;
       this.post = {
         postId: '',
-        creatorId: 'Hans Wurst',
+        creatorId: this.authService.firebaseUser?.displayName || 'Walter Falter (Gast)',
         text: message,
         reactions: [],
         creationTime: Timestamp.fromDate(new Date()),
