@@ -68,14 +68,11 @@ export class DialogComponent implements OnInit {
       nonNullable: true,
       validators: [
         Validators.required,
-        Validators.minLength(5)
+        Validators.minLength(3)
       ]
     }),
     channelDescInput: new FormControl<string>('', {
       nonNullable: true,
-      validators: [
-        Validators.required,
-      ]
     })
   });
 
