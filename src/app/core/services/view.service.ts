@@ -32,7 +32,7 @@ export class ViewService {
 
   // === Constructor / Injection ===
   constructor() {
-    this.mobileView = window.innerWidth <= 1000;
+    this.mobileView = window.innerWidth <= 700;
   }
 
 
