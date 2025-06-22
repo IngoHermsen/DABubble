@@ -19,6 +19,7 @@ export class ViewService {
   showDetailSection: boolean = true;
   showThreadSection: boolean = false;
   showModal: boolean = false;
+  mobileViewMaxWidth: number = 700;
 
 
   activeChannelId: string;
@@ -32,7 +33,7 @@ export class ViewService {
 
   // === Constructor / Injection ===
   constructor() {
-    this.mobileView = window.innerWidth <= 700;
+    this.mobileView = window.innerWidth <= this.mobileViewMaxWidth;
   }
 
 

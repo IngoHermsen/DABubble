@@ -177,11 +177,16 @@ $header-height: 80px;
         display: unset;
         position: relative;
 
-        .detail-section {
-            position: absolute;
-            inset: 0px;
-            z-index: 1;
-        }
+    }
+
+    .detail-section {
+        position: absolute;
+        inset: 0px;
+        z-index: 1;
+    }
+
+    .workspace-mobile {
+        width: 100%;
     }
 
     .header {
