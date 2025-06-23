@@ -16,33 +16,32 @@ import { Timestamp } from 'firebase/firestore';
 export class PostComponent implements OnInit {
 
   // === Injected Services ===
-
   public threadService = inject(ThreadService);
   public viewService = inject(ViewService);
 
-  // === Local Data ===
 
+  // === Local Data ===
   uid: string = '1234'; // For testing purpose. Will later come from the logged-in user via user.service
 
   showPostMenu: boolean;
   showEmojiMart: boolean;
 
-  // === Input / Output ===
 
+  // === Input / Output ===
   @Input() index: number;
   @Input() post: Post;
 
-  // === ViewModel ===
 
+  // === ViewModel ===
   isOdd: boolean;
 
-  // === State Management ===
 
+  // === State Management ===
   userIdx: number | null = null;
   reactionIdx: number | null = null;
 
-  // === Event Handlers ===
 
+  // === Event Handlers ===
   @HostListener('mouseenter') onMouseEnter() {
     this.showPostMenu = true;
   }
@@ -52,15 +51,13 @@ export class PostComponent implements OnInit {
   }
 
   // === Lifecycle ===
-
   ngOnInit(): void {
     this.isOdd = this.index % 2 !== 0;
     this.showPostMenu = false;
     this.showEmojiMart = false;
   }
 
-  // === Form Handling ===
-
+  // === Methods ===
   /**
    * Handles the click on an emoji.
    * 
@@ -86,6 +83,7 @@ export class PostComponent implements OnInit {
     this.showEmojiMart = false;
   }
 
+  
   /**
    * Handles a click on an existing reaction.
    * 
@@ -104,7 +102,6 @@ export class PostComponent implements OnInit {
     }
   }
 
-  // === Business Logic ===
 
   /**
    * Adds the user to a reaction if not already present.
@@ -129,6 +126,7 @@ export class PostComponent implements OnInit {
     return this.reactionIdx > -1;
   }
 
+
   /**
    * Checks if the current user has already reacted.
    * 
@@ -139,6 +137,7 @@ export class PostComponent implements OnInit {
     this.userIdx = reactingUsers.indexOf(this.uid);
     return this.userIdx > -1;
   }
+
 
   /**
    * Removes the current user from the given reaction.
@@ -157,6 +156,7 @@ export class PostComponent implements OnInit {
     this.handleReactionState(idx);
   }
 
+
   /**
    * Adds the current user to a given list of reacting users.
    * 
@@ -166,6 +166,7 @@ export class PostComponent implements OnInit {
     // Will be replaced by observable/signal once post data comes from Firebase
     reactingUsers.push(this.uid);
   }
+
 
   /**
    * Adds a new emoji reaction with the current user.
@@ -182,6 +183,7 @@ export class PostComponent implements OnInit {
     reactions.push(reactionObj);
   }
 
+
   /**
    * Removes the entire reaction if it no longer contains any users.
    * 
@@ -193,8 +195,8 @@ export class PostComponent implements OnInit {
     }
   }
 
-  // === Navigation ===
 
+  // === Navigation ===
   /**
    * Opens the thread view for this post.
    * 
@@ -206,8 +208,8 @@ export class PostComponent implements OnInit {
     this.viewService.showThreadSection = true;
   }
 
-  // === Computed Properties ===
 
+  // === Computed Properties ===
   /**
    * Returns the post creation time as a localized string.
    * 
