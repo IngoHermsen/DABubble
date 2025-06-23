@@ -83,7 +83,7 @@ export class PostComponent implements OnInit {
     this.showEmojiMart = false;
   }
 
-  
+
   /**
    * Handles a click on an existing reaction.
    * 
@@ -223,7 +223,5 @@ export class PostComponent implements OnInit {
     });
     return timeAsString + ' Uhr';
   }
-
-  // === Cleanup ===
 
 }
