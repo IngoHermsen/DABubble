@@ -31,6 +31,15 @@ export class PostComponent implements OnInit {
   @Input() index: number;
   @Input() post: Post;
 
+  //!Delete
+  ngOninit(){
+    setTimeout(() => {
+      
+    }, 1000);
+    console.log("I am in post");
+  }
+  //!Delete
+
 
   // === ViewModel ===
   isOdd: boolean;
