@@ -113,65 +113,82 @@ export class FirestoreService {
 
 
 /**
- * Loads the specified channel from Firestore and updates `dataService.channelData`
- * so the view can render based on the latest channel information.
+ * Loads and sets the active channel including its metadata for rendering.
  * 
  * - Fetches the Firestore document for the given channel name.
- * - Returns `false` if the channel does not exist.
- * - Extracts relevant fields from the document.
- * - Stores the channel data in `dataService.channelData` for rendering purposes.
- * - Cleans up any previous posts collection listener if it exists.
+ * - Converts the raw document data into a typed `Channel` object using the helper `mapDocToChannel()`.
+ * - Passes the typed data to the `dataService` to be used in the view layer (e.g. for rendering).
+ * - Cleans up any existing post listener to avoid duplicate subscriptions.
  * 
- * @param channelName - The name of the channel to activate.
- * @returns A promise resolving to `true` if the channel exists and was loaded successfully, otherwise `false`.
+ * @param channelName The ID of the channel to activate.
+ * @returns `true` if the channel exists and was set, otherwise `false`.
  */
-  async setActiveChannel(channelName: string): Promise<boolean> {
-    this.channelDocRef = doc(this.channelsColRef, channelName);
-    const docSnap = await getDoc(this.channelDocRef);
+async setActiveChannel(channelName: string) {
+  this.channelDocRef = doc(this.channelsColRef, channelName);
+  const docSnap = await getDoc(this.channelDocRef);
 
-    if (!docSnap.exists()) return false;
-    const channelDataFromServer: DocumentData = docSnap.data();
-    const localChannelData: Channel = {
-      channelName: channelDataFromServer['channelName'],
-      creatorName: channelDataFromServer['creatorName'],
-      description: channelDataFromServer['description']
-    };
-    this.dataService.channelData = localChannelData;
-    if (this.unsubPostsCol) this.unsubPostsCol();
-    return true;
-  }
+  if (!docSnap.exists()) return false;
+
+  const channelDataRemote: DocumentData = docSnap.data();
+  const channelDataLocal: Channel = this.mapDocToChannel(channelDataRemote);
+  this.dataService.channelData = channelDataLocal;
+
+  if (this.unsubPostsCol) this.unsubPostsCol();
+  return true;
+}
 
 
-  /**
- * Subscribes to real-time updates of the `posts` subcollection for the active channel.
+// === Helper Method ===
+/**
+ * Maps raw Firestore document data to a typed `Channel` object.
  * 
- * - Sets the `postsColRef` to the `posts` subcollection under the current `channelDocRef`.
- * - Uses Firestore’s `onSnapshot` to listen for changes in the `posts` collection.
- * - On each update, maps the documents to `Post` objects with the relevant fields.
- * - Sets the `channelAutoScroll` flag in the `viewService` to enable auto-scrolling.
- * - Passes the processed post data to the `dataService` via `handlePostData`.
- * - Stores the unsubscribe function to `unsubPostsCol` for cleanup when needed.
+ * - Helper function used in `setActiveChannel()` to ensure type safety.
+ * @param doc The raw Firestore document data.
+ * @returns A typed `Channel` object.
+*/
+mapDocToChannel(doc: DocumentData): Channel {
+  return {
+    channelName: doc['channelName'],
+    creatorName: doc['creatorName'],
+    description: doc['description']
+  };
+}
+
+
+/**
+ * Subscribes to real-time updates of the `posts` collection for the active channel.
  * 
- * @returns void
+ * - Uses Firestore’s `onSnapshot()` to listen for changes.
+ * - Converts each raw Firestore document into a typed `Post` object using `mapDocToPost()`.
+ * - Passes the post array to the `dataService`, where it will be used for rendering in the UI.
  */
-  async setActivePosts() {
-    this.postsColRef = collection(this.channelDocRef, 'posts');
-    this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
-      const posts: Post[] = snapshot.docs.map(doc => {
-        const postData: Post = doc.data() as Post;
-        const convertedPost: Post = {
-          creationTime: postData.creationTime,
-          creatorId: postData.creatorId,
-          isAnswer: postData.isAnswer,
-          postId: postData.postId,
-          reactions: postData.reactions,
-          text: postData.text
-        };
-        return convertedPost;
-      });
-      this.dataService.handlePostData(posts);
-    });
-  }
+async setActivePosts() {
+  this.postsColRef = collection(this.channelDocRef, 'posts');
+  this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
+    const posts: Post[] = snapshot.docs.map(doc => this.mapDocToPost(doc.data()));
+    this.dataService.handlePostData(posts);
+  });
+}
+
+
+// === Helper Method ===
+/**
+ * Maps raw Firestore document data to a typed `Post` object.
+ * 
+ * - Helper function used in `setActivePosts()` to ensure type safety.
+ * @param doc The raw Firestore document data.
+ * @returns A typed `Post` object.
+ */
+mapDocToPost(doc: DocumentData): Post {
+  return {
+    creationTime: doc["creationTime"],
+    creatorId: doc["creatorId"],
+    isAnswer: doc["isAnswer"],
+    postId: doc["postId"],
+    reactions: doc["reactions"],
+    text: doc["text"]
+  };
+}
 
 
   /**
