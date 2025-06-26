@@ -70,8 +70,11 @@ export class ChannelComponent implements OnInit {
  * 
  * @param channelId - The ID of the channel to be activated.
  */
-  handleChannelData(channelId: string) {
-    this.firestoreService.setActiveChannel(channelId);
+  async handleChannelData(channelId: string) {
+    const channelExists = await this.firestoreService.setActiveChannel(channelId);
+    if(channelExists){
+      this.firestoreService.setActivePosts()
+    }
   }
 
 

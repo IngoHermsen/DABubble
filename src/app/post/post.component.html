@@ -1,4 +1,5 @@
 <div class="post" (click)="openThread()" [class.odd]="isOdd">
+
     @if (!post.imgPath) {
     <div class="profile-image"></div>
     } @else {
@@ -6,18 +7,23 @@
         <img src="{{ post.imgPath }}" alt="yogi">
     </div>
     }
+
     <div class="post-content">
         @if (showPostMenu) {
         <span class="post-menu">
             <span class="material-icons-outlined" (click)="openThread()">insert_comment</span>
         </span>
         }
+
         <span class="post-header">
             <span class="post-username">{{ post.creatorId }}</span>
             <span class="post-creationTime">{{ timeAsString }}</span>
         </span>
+
         <span class="post-text">{{ post.text }}</span>
+
         <span class="reactions">
+
             <div class="add-reaction">
                 <span (click)="showEmojiMart = !showEmojiMart"
                     class="material-icons-outlined add-reaction">add_reaction</span>
@@ -27,6 +33,7 @@
                 </div>
                 }
             </div>
+
             <div class="reaction-content">
                 @for (reaction of post.reactions; track idx; let idx = $index) {
                 <span (click)="handleReactionClick(idx)" class="reaction">
@@ -35,6 +42,7 @@
                 </span>
                 }
             </div>
+
         </span>
     </div>
 
