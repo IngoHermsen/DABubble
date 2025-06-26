@@ -11,6 +11,7 @@ import { RouterOutlet, Router, RouterLink, NavigationEnd } from '@angular/router
 import { AuthService } from '../core/services/auth.service';
 import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
+import { SearchComponent } from './search/search.component';
 
 @Component({
   selector: 'app-main',
@@ -21,6 +22,7 @@ import { filter } from 'rxjs';
     WorkspaceComponent,
     ThreadComponent,
     DialogComponent,
+    SearchComponent,
     RouterLink,
     RouterOutlet,
   ],
