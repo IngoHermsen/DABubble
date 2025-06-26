@@ -138,11 +138,12 @@ async setActiveChannel(channelName: string) {
 }
 
 
-// === Helper Method ===
+// -----------------------------------------------------------------------------
+// Helper function used by `setActiveChannel()`
+// -----------------------------------------------------------------------------
 /**
- * Maps raw Firestore document data to a typed `Channel` object.
+ * Maps raw Firestore document data to a typed `Channel` object to ensure type safety.
  * 
- * - Helper function used in `setActiveChannel()` to ensure type safety.
  * @param doc The raw Firestore document data.
  * @returns A typed `Channel` object.
 */
@@ -171,11 +172,12 @@ async setActivePosts() {
 }
 
 
-// === Helper Method ===
+// -----------------------------------------------------------------------------
+// Helper function used by `setActivePosts()`
+// -----------------------------------------------------------------------------
 /**
- * Maps raw Firestore document data to a typed `Post` object.
+ * Maps raw Firestore document data to a typed `Post` object to ensure type safety.
  * 
- * - Helper function used in `setActivePosts()` to ensure type safety.
  * @param doc The raw Firestore document data.
  * @returns A typed `Post` object.
  */
