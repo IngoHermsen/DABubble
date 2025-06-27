@@ -17,7 +17,7 @@ export class MessageInputComponent {
   private authService = inject(AuthService);
 
   // === Input / Output ===
-  @Output() message = new EventEmitter<Post>();
+  @Output() newPost = new EventEmitter<Post>();
 
   // === Local Data ===
   focussed: boolean = false;
@@ -76,8 +76,10 @@ export class MessageInputComponent {
         creationTime: Timestamp.fromDate(new Date()),
         isAnswer: false
       };
-      this.message.emit(this.post);
+      this.newPost.emit(this.post);
       this.messageInput.reset('');
     }
   }
 }
+
+
