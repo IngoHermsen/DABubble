@@ -1,11 +1,12 @@
 import { inject, Injectable, OnInit, signal, Type, WritableSignal } from '@angular/core';
 import { doc, Firestore, setDoc, onSnapshot, updateDoc, getDocs } from '@angular/fire/firestore';
-import { addDoc, collection, CollectionReference, DocumentData, DocumentReference, DocumentSnapshot, getDoc, QueryDocumentSnapshot, QuerySnapshot } from 'firebase/firestore';
+import { addDoc, collection, CollectionReference, DocumentData, DocumentReference, DocumentSnapshot, getDoc, query, QueryDocumentSnapshot, QuerySnapshot, where } from 'firebase/firestore';
 import { Channel, EMPTY_CHANNEL } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { DataService } from './data.service';
 import { ViewService } from './view.service';
 import { FsUsers } from '../types/firestore_users';
+import { from, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,12 @@ export class FirestoreService {
 
   // === Local Data ===
   allFsUsersJsonArr: FsUsers = [];
+
+
+  // === Observables ===
+
+  channelNamesSearchQuery$: Observable<any>; 
+  userNamesSearchQuery$: Observable<any>; 
 
 
   // === Unsubscribe Functions ===
@@ -234,8 +241,17 @@ mapDocToPost(doc: DocumentData): Post {
     }));
   }
 
-  // === search Query Observables ===
-  channelQuery
+  // === search Query ===
+
+    getChannelQueryResult(searchTerm: string): Observable<QuerySnapshot> {
+        const q = query(
+          this.channelsColRef,
+          where('name', '>=', searchTerm)
+        
+        )
+        return from(getDocs(q))
+      }
+    
 
 }
 
