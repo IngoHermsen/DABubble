@@ -70,7 +70,7 @@ export class MessageInputComponent {
       const message = this.messageInput.value;
       this.post = {
         postId: '',
-        creatorId: this.authService.firebaseUser?.displayName || 'Walter Falter (Gast)',
+        creatorId: this.authService.firebaseUser?.displayName || '(Gast)',
         text: message,
         reactions: [],
         creationTime: Timestamp.fromDate(new Date()),
