@@ -234,9 +234,8 @@ mapDocToPost(doc: DocumentData): Post {
     }));
   }
 
-  unsubChannelSnapshot() {
-
-  }
+  // === search Query Observables ===
+  channelQuery
 
 }
 

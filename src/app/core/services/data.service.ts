@@ -8,6 +8,10 @@ import { Timestamp } from 'firebase/firestore';
 })
 export class DataService {
 
+  // === Search Data ===
+  channelNames: string[];
+  userNames: string[];
+
   // === Local Data ===
   channelIds: string[];
   channelData: Channel | undefined;
@@ -36,7 +40,7 @@ export class DataService {
     this.groupPostsByDate(sortedPosts);
   }
 
-  
+
   // === Helper Methods ===
   /**
    * Groups posts by their transformed date string.
