@@ -40,7 +40,7 @@ export class ChannelComponent implements OnInit {
 
     //!Delete
     setTimeout(() => {
-      console.log("This is grouped posts", this.dataService.channelPostsByDate);
+      console.log("This channelPostByDate", this.dataService.channelPostsByDate);
     }, 4000);
     //!Delete
 
@@ -135,7 +135,6 @@ export class ChannelComponent implements OnInit {
 
     return dateString;
   }
-
 
 
   // posts = [   //examples - will later be fetched from database / backend
