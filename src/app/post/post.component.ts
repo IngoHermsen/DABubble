@@ -31,15 +31,7 @@ export class PostComponent implements OnInit {
   @Input() index: number;
   @Input() post: Post;
 
-  //!Delete
-  ngOninit(){
-    setTimeout(() => {
-      
-    }, 1000);
-    console.log("I am in post");
-  }
-  //!Delete
-
+  
 
   // === ViewModel ===
   isOdd: boolean;
@@ -213,7 +205,7 @@ export class PostComponent implements OnInit {
    * - Enables the thread section in the view service.
    */
   openThread() {
-    this.threadService.activeThreadId.set(this.post.postId);
+    console.log("This is postId in post",this.post.text);
     this.viewService.showThreadSection = true;
   }
 
