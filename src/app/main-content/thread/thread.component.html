@@ -3,6 +3,7 @@
 
     <div class="fixed-header box-shadow">
         <h2>Thread</h2>
+        <span>{{this.dataService.channelData?.channelName}}</span>
     </div>
 
     <div class="posts" #scroll>
@@ -10,7 +11,7 @@
     </div>
 
     <div class="message-input">
-        <app-message-input (onclick)="logSth()"></app-message-input>
+        <app-message-input></app-message-input>
     </div>
 
 </div>

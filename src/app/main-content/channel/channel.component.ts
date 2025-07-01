@@ -17,10 +17,14 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 export class ChannelComponent implements OnInit {
   @ViewChild('scrollAnchor') scrollAnchor!: ElementRef;
 
+  // === Injected Services ===
   public dataService = inject(DataService);
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
   public route = inject(ActivatedRoute);
+
+
+  // === Local Data ===
   public channelOpened: boolean = false;
   posts: Post[];
 
@@ -37,13 +41,6 @@ export class ChannelComponent implements OnInit {
  *   - Scrolls to the bottom again after data load.
  */
   ngOnInit() {
-
-    //!Delete
-    setTimeout(() => {
-      console.log("This channelPostByDate", this.dataService.channelPostsByDate);
-    }, 4000);
-    //!Delete
-
     this.scrollToBottom();
     this.route.paramMap.subscribe(params => {
       const channelId = params.get('id');
