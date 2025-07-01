@@ -25,8 +25,6 @@ export class WorkspaceComponent implements OnInit {
   public viewService = inject(ViewService);
   firebaseUser: FirebaseUser | null;
 
-
-  private routeSub: Subscription;
   channelNames: string[];
 
   showChannelEntries: boolean = true;

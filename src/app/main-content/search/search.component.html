@@ -1,1 +1,1 @@
-<input placeholder="Devspace durchsuchen" class="flex-item" type="text" [(ngModel)]="searchTerm" #searchBar (blur)="InputOnBlur()">
+<input placeholder="Devspace durchsuchen" class="flex-item" type="text" [(ngModel)]="searchTerm" #searchBar (input)="searchTerms$.next(searchTerm)">

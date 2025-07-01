@@ -66,6 +66,10 @@ export class PostComponent implements OnInit {
     this.showEmojiMart = false;
   }
 
+  ngAfterViewInit() {
+    
+  }
+
   // === Methods ===
   /**
    * Handles the click on an emoji.

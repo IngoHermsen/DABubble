@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
-import { debounceTime, distinctUntilChanged, of, Subject, switchMap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { FirestoreService } from '../../core/services/firestore.service';
+import { DataService } from '../../core/services/data.service';
 
 @Component({
   selector: 'app-search',
@@ -13,32 +14,29 @@ import { FirestoreService } from '../../core/services/firestore.service';
 export class SearchComponent implements AfterViewInit {
   // === Dependency Injections ===
   public firestoreService = inject(FirestoreService);
-
+  public dataService = inject(DataService)
 
   searchTerm: string = "";
+  searchResult: string[];
 
-  // === Observables ===
+  // === Observable ===
 
   searchTerms$ = new Subject<string>();
-
 
   // === Lifecycle Hooks ===
 
   ngAfterViewInit(): void {
     this.searchTerms$
     .pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      switchMap(term => this.firestoreService.getChannelQueryResult(term))
-    ).subscribe(result => {
-      console.log('Snapshot result', result)
-    })
-
+      debounceTime(1000),
+      distinctUntilChanged()
+    ).subscribe(term => this.getSearchResults(term))
   }
 
   // === Functions ===
-  
-  InputOnBlur() {
-    this.searchTerms$.next(this.searchTerm);
+
+  getSearchResults(term: string) {
+    // const channelResults: [] = 
+    // const channelResults = this.dataService.channelIds.filter()
   }
 }
