@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, inject, Input, OnInit } from '@angular/core';
 import { Post } from '../core/interfaces/post';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
@@ -13,7 +13,7 @@ import { Timestamp } from 'firebase/firestore';
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, AfterViewInit {
 
   // === Injected Services ===
   public threadService = inject(ThreadService);
@@ -32,7 +32,6 @@ export class PostComponent implements OnInit {
   @Input() post: Post;
 
   
-
   // === ViewModel ===
   isOdd: boolean;
 
@@ -56,6 +55,10 @@ export class PostComponent implements OnInit {
     this.isOdd = this.index % 2 !== 0;
     this.showPostMenu = false;
     this.showEmojiMart = false;
+  }
+
+  ngAfterViewInit() {
+    
   }
 
   // === Methods ===
