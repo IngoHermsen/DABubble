@@ -28,12 +28,6 @@ export class ThreadComponent {
   // === Local Data ===
   threadId: string | null = '';
 
-  // === Constructor ===
-  constructor() {
-    effect(() => {
-      this.threadId = this.threadService.activeThreadId();
-    });
-  }
   @Output() closeThread = new EventEmitter<boolean>();
 
   emitCloseEvent() {

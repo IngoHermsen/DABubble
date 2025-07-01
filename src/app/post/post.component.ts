@@ -32,7 +32,6 @@ export class PostComponent implements OnInit {
   @Input() post: Post;
 
   
-
   // === ViewModel ===
   isOdd: boolean;
 
@@ -114,6 +113,7 @@ export class PostComponent implements OnInit {
       this.addUserToReaction(reactingUsers);
     }
   }
+
 
   /**
    * Checks whether the given emoji already exists in the post reactions.
@@ -206,6 +206,7 @@ export class PostComponent implements OnInit {
    */
   openThread() {
     console.log("This is postId in post",this.post.text);
+    this.threadService.setPostText(this.post.text)
     this.viewService.showThreadSection = true;
   }
 
