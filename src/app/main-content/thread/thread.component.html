@@ -2,8 +2,8 @@
     <span (click)="emitCloseEvent()" class='material-icons close-btn'>close</span>
 
     <div class="fixed-header box-shadow">
-        <h2>Thread</h2>
-        <span>{{this.dataService.channelData?.channelName}}</span>
+            <div class="thread"> Thread</div>
+            <span class="channel-name"># {{this.dataService.channelData?.channelName}}</span>
     </div>
 
     <div class="posts" #scroll>
@@ -13,5 +13,4 @@
     <div class="message-input">
         <app-message-input></app-message-input>
     </div>
-
 </div>
