@@ -21,7 +21,7 @@ export class FirestoreService {
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
   postsColRef: CollectionReference;
-  usersCollectionRef: CollectionReference = collection(this.dbFs, 'users');
+  usersColRef: CollectionReference = collection(this.dbFs, 'users');
 
 
   // === Local Data ===
@@ -233,7 +233,7 @@ export class FirestoreService {
    * @returns A promise that resolves once all user data has been fetched and processed.
    */
   async getAllUsers() {
-    const querySnapshot = await getDocs(this.usersCollectionRef);
+    const querySnapshot = await getDocs(this.usersColRef);
 
     this.allFsUsersJsonArr = querySnapshot.docs.map(doc => ({
       email: doc.id,
