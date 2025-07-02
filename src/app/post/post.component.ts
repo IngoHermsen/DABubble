@@ -78,6 +78,12 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   // === Methods ===
 
+  /**
+ * Asynchronously fetches the creator's data from Firestore using the post's creatorId.
+ * If the document exists, it extracts the photoURL and username,
+ * assigns them to creatorData, and sets the dataLoaded flag to true.
+ */
+
   async getCreatorData() {
    this.creatorDocRef = doc(this.firestoreService.usersColRef, this.post.creatorId);
     await getDoc(this.creatorDocRef).then(docSnap => {
@@ -88,7 +94,6 @@ export class PostComponent implements OnInit, AfterViewInit {
         }
         this.creatorData = creatorObj;
         this.dataLoaded = true;
-        console.log(this.creatorData)
       } 
     });
 
