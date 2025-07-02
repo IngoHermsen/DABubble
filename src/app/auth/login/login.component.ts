@@ -3,6 +3,7 @@ import { NgClass, NgStyle, CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { DataService } from '../../core/services/data.service';
 import { ValidationService } from '../../core/services/validation.service';
 
 
@@ -27,6 +28,7 @@ export class LoginComponent {
   authService = inject(AuthService);
   makeVisible = false;
   firebaseUser: any; 
+  dataService = inject(DataService)
    
 
   /**
@@ -60,6 +62,8 @@ export class LoginComponent {
     }
     await this.authService.loginBtnPressed(email, password);
   }
+
+  
 
   /**
    * Logs out firebaseAuth user.

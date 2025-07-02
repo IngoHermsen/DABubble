@@ -7,6 +7,8 @@ export class ThreadService {
   // === Signal ===
   postText = signal<string | null>(null);
   postId = signal<string | null>(null);
+  postCreatorImg = signal<string | null> (null)
+  postCreatorName = signal<string | null> (null)
   
 
   // === Signal Setter Method ===
@@ -17,6 +19,15 @@ export class ThreadService {
   
   setPostId(id: string){
     this.postId.set(id)
+  }
+
+
+  setCreatorImg(path: string){
+    this.postCreatorImg.set(path)
+  }
+
+  setCreatorName(name: string){
+    this.postCreatorName.set(name)
   }
 }
 

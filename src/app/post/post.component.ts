@@ -244,9 +244,10 @@ export class PostComponent implements OnInit, AfterViewInit {
    * - Enables the thread section in the view service.
    */
   openThread() {
-    console.log("This is postId in post",this.post.text);
     this.threadService.setPostText(this.post.text)
     this.threadService.setPostId(this.post.postId)
+    this.threadService.setCreatorImg(this.creator.photoURL)
+    this.threadService.setCreatorName(this.creator.username)
 
     this.viewService.showThreadSection = true;
   }

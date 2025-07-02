@@ -1,3 +1,4 @@
+import { AuthService } from '../../core/services/auth.service';
 import { Component, effect, inject, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
@@ -24,6 +25,7 @@ export class ThreadComponent {
   threadService = inject(ThreadService);
   public dataService = inject(DataService);
   public route = inject(ActivatedRoute);
+  authService = inject(AuthService)
 
 
   // === Local Data ===
@@ -38,11 +40,10 @@ export class ThreadComponent {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.threadId = params.get('id');
-      setTimeout(() => {
-        console.log("Hello I am from thread the Id", this.threadId);
-        
-      }, 2000);
     });
+
+    console.log("Hello I am from userdata in thread...",this.dataService.cachedUserData);
+
   }
 
 

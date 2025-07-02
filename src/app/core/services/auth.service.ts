@@ -1,6 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { DataService } from './data.service';
 import {
   User as FirebaseUser,
   Auth,
@@ -23,6 +24,7 @@ import { Firestore } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class AuthService {
+  dataService = inject(DataService)
   private router = inject(Router);
   public dbFs = inject(Firestore);
   private firebaseAuth = inject(Auth);
@@ -59,6 +61,15 @@ export class AuthService {
     onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
       this.firebaseUser = user;
       this.firebaseUserSubject.next(user); 
+    
+          if (user) {
+      this.dataService.cacheUserData({
+        username: user.displayName || '',
+        photoUrl: user.photoURL || ''
+      });
+    } else {
+      this.dataService.clearUserData();
+    }
     });
 
   }
