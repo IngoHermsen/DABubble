@@ -76,10 +76,6 @@ export class PostComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
   }
 
-  ngAfterViewInit() {
-    
-  }
-
   // === Methods ===
 
   async getCreatorData() {
