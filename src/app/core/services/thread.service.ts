@@ -9,6 +9,7 @@ export class ThreadService {
   postId = signal<string | null>(null);
   postCreatorImg = signal<string | null> (null)
   postCreatorName = signal<string | null> (null)
+  timeAsString = signal<string | null> (null)
   
 
   // === Signal Setter Method ===
@@ -28,6 +29,10 @@ export class ThreadService {
 
   setCreatorName(name: string){
     this.postCreatorName.set(name)
+  }
+
+  setTimeString(time:string){
+    this.timeAsString.set(time)
   }
 }
 

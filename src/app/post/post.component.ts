@@ -236,21 +236,38 @@ export class PostComponent implements OnInit, AfterViewInit {
   }
 
 
-  // === Navigation ===
-  /**
-   * Opens the thread view for this post.
-   * 
-   * - Sets the active thread ID.
-   * - Enables the thread section in the view service.
-   */
-  openThread() {
-    this.threadService.setPostText(this.post.text)
-    this.threadService.setPostId(this.post.postId)
-    this.threadService.setCreatorImg(this.creator.photoURL)
-    this.threadService.setCreatorName(this.creator.username)
+// === Navigation ===
+/**
+ * Opens the thread:
+ * - caches thread data
+ * - shows the thread section
+ */
+openThread() {
+  this.setThreadData();
+  this.showThreadSection();
+}
 
-    this.viewService.showThreadSection = true;
-  }
+
+// === Helper Methods ===
+/**
+ * Caches current post data in ThreadService.
+ */
+private setThreadData() {
+  const tS = this.threadService;
+  tS.setPostText(this.post.text);
+  tS.setPostId(this.post.postId);
+  tS.setCreatorImg(this.creator.photoURL);
+  tS.setCreatorName(this.creator.username);
+  tS.setTimeString(this.timeAsString);
+}
+
+
+/**
+ * Sets the flag to display the thread section.
+ */
+private showThreadSection() {
+  this.viewService.showThreadSection = true;
+}
 
 
   // === Computed Properties ===
