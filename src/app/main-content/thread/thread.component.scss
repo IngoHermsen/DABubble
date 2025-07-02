@@ -1,11 +1,12 @@
 @import '../../../styles/mixins.scss';
 
 
+// Changing the standard card 
 .card {
     position: relative;
     @include dflex($fD: column);
-
-
+    
+    
     .close-btn {
         position: absolute;
         top: 12px;
@@ -15,8 +16,20 @@
     }
 }
 
+
+.thread{
+    @include fontSizeWeight($s:24px, $w:700);
+    padding-left: 24px;
+    padding-right: 8px;
+}
+
+.channel-name{
+    color: #797ef3
+}
+
 .posts{
     height: 100%;
 }
+
 
 

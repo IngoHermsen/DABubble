@@ -150,6 +150,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     }
   }
 
+
   /**
    * Checks whether the given emoji already exists in the post reactions.
    * 
@@ -240,7 +241,8 @@ export class PostComponent implements OnInit, AfterViewInit {
    * - Enables the thread section in the view service.
    */
   openThread() {
-    console.log("This is postId in post", this.post.text);
+    console.log("This is postId in post",this.post.text);
+    this.threadService.setPostText(this.post.text)
     this.viewService.showThreadSection = true;
   }
 

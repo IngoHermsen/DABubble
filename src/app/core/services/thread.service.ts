@@ -4,7 +4,8 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class ThreadService {
-  activeThreadId = signal<string>('');
-  
-  constructor() { }
-}
+  postText = signal<string | null>(null);
+
+  setPostText(text: string) {
+    this.postText.set(text);
+  }}

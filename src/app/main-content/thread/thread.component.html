@@ -2,15 +2,16 @@
     <span (click)="emitCloseEvent()" class='material-icons close-btn'>close</span>
 
     <div class="fixed-header box-shadow">
-        <h2>Thread</h2>
+            <div class="thread"> Thread</div>
+            <span class="channel-name"># {{this.dataService.channelData?.channelName}}</span>
     </div>
 
     <div class="posts" #scroll>
+        <div>{{this.threadService.postText()}}</div>
         <div #scrollAnchor></div>
     </div>
 
     <div class="message-input">
-        <app-message-input (onclick)="logSth()"></app-message-input>
+        <app-message-input></app-message-input>
     </div>
-
 </div>
