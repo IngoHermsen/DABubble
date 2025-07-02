@@ -1,84 +1,86 @@
 <div class="card">
     <section class="fixed-header header">
         <img class="workspace-logo" src="assets/icons/Devspace_logo.png" alt="devSpaceLogo">
-        <h2>DevSpace</h2>
+        <h2 class="workspace-name">DevSpace</h2>
         <img [routerLink]="'new-post'" type="icon" class="icon" src="assets/icons/edit_square.png" alt="editSquareIcon">
     </section>
-    <section class="list-section channels">
-        <h3 class="title">
-            <div class="left" (click)="toggleEntries('channels')">
-                <span class="material-icons drop-btn" [ngClass]="{
+    <div class="list-section-wrapper">
+        <section class="list-section channels">
+            <h3 class="title">
+                <div class="left" (click)="toggleEntries('channels')">
+                    <span class="material-icons drop-btn" [ngClass]="{
                     'turnUpDropBtn': !showChannelEntries && channelToggleClicked,
                     'turnDownDropBtn': showChannelEntries && channelToggleClicked
                 }">arrow_drop_down</span>
-                <span class="material-icons-outlined">workspaces</span>
-                <span>Channels</span>
-            </div>
-            <span class="material-icons-round plus"
-                (click)="viewService.modalHandler('newChannel', 'modal-content-center')">add</span>
-        </h3>
-        @if(showChannelEntries) {
-        <div class="entries">
-            @for(channel of dataService.channelIds; let index = $index; track $index) {
-            <div class="entry" [routerLink]="'channel/' + channel">
-                <span>#</span>
-                {{ channel }}
+                    <span class="material-icons-outlined">workspaces</span>
+                    <span>Channels</span>
+                </div>
+                <span class="material-icons-round plus"
+                    (click)="viewService.modalHandler('newChannel', 'modal-content-center')">add</span>
+            </h3>
+            @if(showChannelEntries) {
+            <div class="entries">
+                @for(channel of dataService.channelIds; let index = $index; track $index) {
+                <div class="entry" [routerLink]="'channel/' + channel">
+                    # {{ channel }}
+                </div>
+                }
             </div>
             }
-        </div>
-        }
 
-        <a class="button--add-channel" (click)="viewService.modalHandler('newChannel', 'modal-content-center')">
-            <span class="material-icons-outlined">add_circle_outline</span>
-            <span>Channel hinzufügen</span>
-        </a>
+            <a class="button--add-channel" (click)="viewService.modalHandler('newChannel', 'modal-content-center')">
+                <span class="material-icons-outlined">add_circle_outline</span>
+                <span>Channel hinzufügen</span>
+            </a>
 
-    </section>
-    <section class="list-section direct-msg">
-        <h3 class="title">
-            <div class="left" (click)="toggleEntries('direct-msg')">
-            <span class="material-icons drop-btn" [ngClass]="{
+        </section>
+        <section class="list-section direct-msg">
+            <h3 class="title">
+                <div class="left" (click)="toggleEntries('direct-msg')">
+                    <span class="material-icons drop-btn" [ngClass]="{
                     'turnUpDropBtn': !showDirectMsgEntries && directMsgToggleClicked,
                     'turnDownDropBtn': showDirectMsgEntries && directMsgToggleClicked
                 }">
-                arrow_drop_down</span>
-            <span class="material-icons-outlined">account_circle</span>
-            <span>Direktnachrichten</span>
-            </div>
-        </h3>
-        @if(showDirectMsgEntries) {
-        <div class="entries">
-            @if(firebaseUser){
-            <div class="wrapper--username-avatar">
-                <div class="wrapper--avatar">
-                    <img class="img--avatar" [src]="'../../../' + firebaseUser.photoURL" alt="Avatar" width="50">
-                    <div class="dot online"></div>
+                        arrow_drop_down</span>
+                    <span class="material-icons-outlined">account_circle</span>
+                    <span>Direktnachrichten</span>
                 </div>
-                <span class="username">{{ firebaseUser.displayName }}</span>
-            </div>
-            }@else{
-            <div class="wrapper--username-avatar">
-                <div class="wrapper--avatar">
-                    <img class="img--avatar" [src]="'../../../assets/images/avatar_placeholder.png'" alt="Avatar"
-                        width="50">
-                    <div class="dot online"></div>
+            </h3>
+            @if(showDirectMsgEntries) {
+            <div class="entries">
+                @if(firebaseUser){
+                <div class="wrapper--username-avatar">
+                    <div class="wrapper--avatar">
+                        <img class="img--avatar" [src]="'../../../' + firebaseUser.photoURL" alt="Avatar" width="50">
+                        <div class="dot online"></div>
+                    </div>
+                    <span class="username">{{ firebaseUser.displayName }}</span>
                 </div>
-                <span class="username">Gast (Du)</span>
+                }@else{
+                <div class="wrapper--username-avatar">
+                    <div class="wrapper--avatar">
+                        <img class="img--avatar" [src]="'../../../assets/images/avatar_placeholder.png'" alt="Avatar"
+                            width="50">
+                        <div class="dot online"></div>
+                    </div>
+                    <span class="username">Gast (Du)</span>
+                </div>
+                }
+                @for(user of this.usersArray; let index = $index; track $index){
+                <div class="wrapper--username-avatar">
+                    <div class="wrapper--avatar">
+                        <img class="img--avatar" [src]="'../../../assets/images/' + user.photoURL " alt="Avatar"
+                            width="50">
+                        <div class="dot offline"></div>
+                    </div>
+                    <span class="username">{{ user.username }}</span>
+                </div>
+
+                }
             </div>
             }
-            @for(user of this.usersArray; let index = $index; track $index){
-            <div class="wrapper--username-avatar">
-                <div class="wrapper--avatar">
-                    <img class="img--avatar" [src]="'../../../assets/images/' + user.photoURL " alt="Avatar" width="50">
-                    <div class="dot offline"></div>
-                </div>
-                <span class="username">{{ user.username }}</span>
-            </div>
+        </section>
 
-            }
-        </div>
-        }
+    </div>
 
-
-    </section>
 </div>

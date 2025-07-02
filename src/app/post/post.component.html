@@ -1,12 +1,8 @@
+@if(dataLoaded) {
 <div class="post" (click)="openThread()" [class.odd]="isOdd">
-
-    @if (!post.imgPath) {
-    <div class="profile-image"></div>
-    } @else {
     <div class="profile-image img">
-        <img src="{{ post.imgPath }}" alt="yogi">
+        <img class="img--avatar" [src]="'../../assets/images/' + creatorData.photoURL" alt="">
     </div>
-    }
 
     <div class="post-content">
         @if (showPostMenu) {
@@ -16,7 +12,7 @@
         }
 
         <span class="post-header">
-            <span class="post-username">{{ post.creatorId }}</span>
+            <span class="post-username">{{ creatorData.username }}</span>
             <span class="post-creationTime">{{ timeAsString }}</span>
         </span>
 
@@ -45,5 +41,5 @@
 
         </span>
     </div>
-
 </div>
+}

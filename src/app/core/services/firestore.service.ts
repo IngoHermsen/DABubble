@@ -21,6 +21,8 @@ export class FirestoreService {
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
   postsColRef: CollectionReference;
+  usersColRef: CollectionReference = collection(this.dbFs, 'users');
+
 
   // === Local Data ===
   allFsUsersJsonArr: FsUsers = [];
@@ -109,6 +111,7 @@ export class FirestoreService {
    * @returns The post object with the `postId` set.
    */
   async addPostToFirestore(post: Post) {
+    console.log('Neuer POst', post)
     const docRef = await addDoc(this.postsColRef, post);
     const postId = docRef.id;
 
@@ -231,8 +234,7 @@ export class FirestoreService {
    * @returns A promise that resolves once all user data has been fetched and processed.
    */
   async getAllUsers() {
-    const usersCollection = collection(this.dbFs, 'users');
-    const querySnapshot = await getDocs(usersCollection);
+    const querySnapshot = await getDocs(this.usersColRef);
 
     this.allFsUsersJsonArr = querySnapshot.docs.map(doc => ({
       email: doc.id,

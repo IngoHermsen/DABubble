@@ -1,10 +1,19 @@
-import { Component, HostListener, inject, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, HostListener, inject, Input, OnInit } from '@angular/core';
 import { Post } from '../core/interfaces/post';
 import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ThreadService } from '../core/services/thread.service';
 import { ViewService } from '../core/services/view.service';
-import { Timestamp } from 'firebase/firestore';
+import { FirestoreService } from '../core/services/firestore.service';
+import { doc, DocumentReference, getDoc } from 'firebase/firestore';
+
+// === Type Definitions ===
+
+type Creator = {
+  photoURL: string;
+  username: string;
+};
+
 
 @Component({
   selector: 'app-post',
@@ -13,25 +22,29 @@ import { Timestamp } from 'firebase/firestore';
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss'
 })
-export class PostComponent implements OnInit {
+export class PostComponent implements OnInit, AfterViewInit {
+  dataLoaded: boolean = false;
 
   // === Injected Services ===
   public threadService = inject(ThreadService);
   public viewService = inject(ViewService);
-
-
-  // === Local Data ===
-  uid: string = '1234'; // For testing purpose. Will later come from the logged-in user via user.service
-
-  showPostMenu: boolean;
-  showEmojiMart: boolean;
-
+  public firestoreService = inject(FirestoreService);
 
   // === Input / Output ===
   @Input() index: number;
   @Input() post: Post;
 
-  
+  creatorDocRef: DocumentReference;
+
+  // === Local Data ===
+  creator: Creator;
+  creatorAvatarImgPath: string;
+
+
+  showPostMenu: boolean;
+  showEmojiMart: boolean;
+
+
   // === ViewModel ===
   isOdd: boolean;
 
@@ -55,9 +68,35 @@ export class PostComponent implements OnInit {
     this.isOdd = this.index % 2 !== 0;
     this.showPostMenu = false;
     this.showEmojiMart = false;
+    this.getcreator()
+  }
+
+  ngAfterViewInit() {
   }
 
   // === Methods ===
+
+  /**
+ * Asynchronously fetches the creator's data from Firestore using the post's creatorId.
+ * If the document exists, it extracts the photoURL and username,
+ * assigns them to creator, and sets the dataLoaded flag to true.
+ */
+
+  async getcreator() {
+   this.creatorDocRef = doc(this.firestoreService.usersColRef, this.post.creatorId);
+    await getDoc(this.creatorDocRef).then(docSnap => {
+      if (docSnap.exists()) {
+        const creatorObj: Creator = {
+          photoURL: docSnap.data()['photoURL'],
+          username: docSnap.data()['username']
+        }
+        this.creator = creatorObj;
+        this.dataLoaded = true;
+      } 
+    });
+
+  }
+
   /**
    * Handles the click on an emoji.
    * 
@@ -135,7 +174,7 @@ export class PostComponent implements OnInit {
    * @returns True if the current user exists in the list.
    */
   userExists(reactingUsers: string[]): boolean | number {
-    this.userIdx = reactingUsers.indexOf(this.uid);
+    this.userIdx = reactingUsers.indexOf(this.creator.username);
     return this.userIdx > -1;
   }
 
@@ -165,7 +204,7 @@ export class PostComponent implements OnInit {
    */
   addUserToReaction(reactingUsers: string[]) {
     // Will be replaced by observable/signal once post data comes from Firebase
-    reactingUsers.push(this.uid);
+    reactingUsers.push(this.creator.username);
   }
 
 
@@ -178,7 +217,7 @@ export class PostComponent implements OnInit {
     const reactions = this.post.reactions;
     const reactionObj = {
       reactionId: emojiId,
-      users: [this.uid]
+      users: [this.creator.username]
     };
 
     reactions.push(reactionObj);
