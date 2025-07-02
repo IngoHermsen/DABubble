@@ -5,6 +5,7 @@ import { ThreadService } from '../../core/services/thread.service';
 import { MessageInputComponent } from '../message-input/message-input.component';
 import { PostComponent } from '../../post/post.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Post } from '../../core/interfaces/post';
 
 
 @Component({
@@ -28,12 +29,11 @@ export class ThreadComponent {
   // === Local Data ===
   threadId: string | null = '';
 
+  
   @Output() closeThread = new EventEmitter<boolean>();
+  // @Output() message = new EventEmitter<Post>();
 
-  emitCloseEvent() {
-    this.closeThread.emit(true);
-  }
-
+  
   // === Lifecycle Hook ===
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -45,5 +45,15 @@ export class ThreadComponent {
     });
   }
 
+
+// === Methods ===
+  emitCloseEvent() {
+    this.closeThread.emit(true);
+  }
+
+
+  logPost(post: Post){
+    console.log(post);
+  }
 }
 

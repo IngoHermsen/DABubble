@@ -207,6 +207,8 @@ export class PostComponent implements OnInit {
   openThread() {
     console.log("This is postId in post",this.post.text);
     this.threadService.setPostText(this.post.text)
+    this.threadService.setPostId(this.post.postId)
+
     this.viewService.showThreadSection = true;
   }
 
