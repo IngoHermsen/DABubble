@@ -17,7 +17,7 @@ export class DataService {
   channelData: Channel | undefined;
 
   posts: Post[];
-  groupedPosts: Array<any>;
+  channelPostsByDate: Array<any>;
 
   // === Methods ===
   /**
@@ -62,7 +62,7 @@ export class DataService {
       postGroups.get(transformedDate)?.push(post);
     });
 
-    this.groupedPosts = Array.from(postGroups.entries()).map(([date, posts]) => ({
+    this.channelPostsByDate = Array.from(postGroups.entries()).map(([date, posts]) => ({
       date,
       posts
     }));

@@ -17,10 +17,14 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 export class ChannelComponent implements OnInit {
   @ViewChild('scrollAnchor') scrollAnchor!: ElementRef;
 
+  // === Injected Services ===
   public dataService = inject(DataService);
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
   public route = inject(ActivatedRoute);
+
+
+  // === Local Data ===
   public channelOpened: boolean = false;
   posts: Post[];
 
@@ -128,7 +132,6 @@ export class ChannelComponent implements OnInit {
 
     return dateString;
   }
-
 
 
   // posts = [   //examples - will later be fetched from database / backend
