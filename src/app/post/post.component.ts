@@ -5,8 +5,6 @@ import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ThreadService } from '../core/services/thread.service';
 import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
-import { User } from '../core/interfaces/user';
-import { first } from 'rxjs';
 import { doc, DocumentReference, getDoc } from 'firebase/firestore';
 
 // === Type Definitions ===
@@ -39,7 +37,7 @@ export class PostComponent implements OnInit, AfterViewInit {
   creatorDocRef: DocumentReference;
 
   // === Local Data ===
-  creatorData: Creator;
+  creator: Creator;
   creatorAvatarImgPath: string;
 
 
@@ -70,7 +68,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     this.isOdd = this.index % 2 !== 0;
     this.showPostMenu = false;
     this.showEmojiMart = false;
-    this.getCreatorData()
+    this.getcreator()
   }
 
   ngAfterViewInit() {
@@ -81,10 +79,10 @@ export class PostComponent implements OnInit, AfterViewInit {
   /**
  * Asynchronously fetches the creator's data from Firestore using the post's creatorId.
  * If the document exists, it extracts the photoURL and username,
- * assigns them to creatorData, and sets the dataLoaded flag to true.
+ * assigns them to creator, and sets the dataLoaded flag to true.
  */
 
-  async getCreatorData() {
+  async getcreator() {
    this.creatorDocRef = doc(this.firestoreService.usersColRef, this.post.creatorId);
     await getDoc(this.creatorDocRef).then(docSnap => {
       if (docSnap.exists()) {
@@ -92,7 +90,7 @@ export class PostComponent implements OnInit, AfterViewInit {
           photoURL: docSnap.data()['photoURL'],
           username: docSnap.data()['username']
         }
-        this.creatorData = creatorObj;
+        this.creator = creatorObj;
         this.dataLoaded = true;
       } 
     });
@@ -176,7 +174,7 @@ export class PostComponent implements OnInit, AfterViewInit {
    * @returns True if the current user exists in the list.
    */
   userExists(reactingUsers: string[]): boolean | number {
-    this.userIdx = reactingUsers.indexOf(this.creatorData.username);
+    this.userIdx = reactingUsers.indexOf(this.creator.username);
     return this.userIdx > -1;
   }
 
@@ -206,7 +204,7 @@ export class PostComponent implements OnInit, AfterViewInit {
    */
   addUserToReaction(reactingUsers: string[]) {
     // Will be replaced by observable/signal once post data comes from Firebase
-    reactingUsers.push(this.creatorData.username);
+    reactingUsers.push(this.creator.username);
   }
 
 
@@ -219,7 +217,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     const reactions = this.post.reactions;
     const reactionObj = {
       reactionId: emojiId,
-      users: [this.creatorData.username]
+      users: [this.creator.username]
     };
 
     reactions.push(reactionObj);
