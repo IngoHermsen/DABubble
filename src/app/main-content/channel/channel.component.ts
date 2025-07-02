@@ -37,13 +37,6 @@ export class ChannelComponent implements OnInit {
  *   - Scrolls to the bottom again after data load.
  */
   ngOnInit() {
-
-    //!Delete
-    setTimeout(() => {
-      console.log("This channelPostByDate", this.dataService.channelPostsByDate);
-    }, 4000);
-    //!Delete
-
     this.scrollToBottom();
     this.route.paramMap.subscribe(params => {
       const channelId = params.get('id');

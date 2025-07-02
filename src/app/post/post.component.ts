@@ -4,7 +4,18 @@ import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ThreadService } from '../core/services/thread.service';
 import { ViewService } from '../core/services/view.service';
-import { Timestamp } from 'firebase/firestore';
+import { FirestoreService } from '../core/services/firestore.service';
+import { User } from '../core/interfaces/user';
+import { first } from 'rxjs';
+import { doc, DocumentReference, getDoc } from 'firebase/firestore';
+
+// === Type Definitions ===
+
+type Creator = {
+  photoURL: string;
+  username: string;
+};
+
 
 @Component({
   selector: 'app-post',
@@ -14,24 +25,28 @@ import { Timestamp } from 'firebase/firestore';
   styleUrl: './post.component.scss'
 })
 export class PostComponent implements OnInit, AfterViewInit {
+  dataLoaded: boolean = false;
 
   // === Injected Services ===
   public threadService = inject(ThreadService);
   public viewService = inject(ViewService);
-
-
-  // === Local Data ===
-  uid: string = '1234'; // For testing purpose. Will later come from the logged-in user via user.service
-
-  showPostMenu: boolean;
-  showEmojiMart: boolean;
-
+  public firestoreService = inject(FirestoreService);
 
   // === Input / Output ===
   @Input() index: number;
   @Input() post: Post;
 
-  
+  creatorDocRef: DocumentReference;
+
+  // === Local Data ===
+  creatorData: Creator;
+  creatorAvatarImgPath: string;
+
+
+  showPostMenu: boolean;
+  showEmojiMart: boolean;
+
+
   // === ViewModel ===
   isOdd: boolean;
 
@@ -55,13 +70,30 @@ export class PostComponent implements OnInit, AfterViewInit {
     this.isOdd = this.index % 2 !== 0;
     this.showPostMenu = false;
     this.showEmojiMart = false;
+    this.getCreatorData()
   }
 
   ngAfterViewInit() {
-    
   }
 
   // === Methods ===
+
+  async getCreatorData() {
+   this.creatorDocRef = doc(this.firestoreService.usersColRef, this.post.creatorId);
+    await getDoc(this.creatorDocRef).then(docSnap => {
+      if (docSnap.exists()) {
+        const creatorObj: Creator = {
+          photoURL: docSnap.data()['photoURL'],
+          username: docSnap.data()['username']
+        }
+        this.creatorData = creatorObj;
+        this.dataLoaded = true;
+        console.log(this.creatorData)
+      } 
+    });
+
+  }
+
   /**
    * Handles the click on an emoji.
    * 
@@ -138,7 +170,7 @@ export class PostComponent implements OnInit, AfterViewInit {
    * @returns True if the current user exists in the list.
    */
   userExists(reactingUsers: string[]): boolean | number {
-    this.userIdx = reactingUsers.indexOf(this.uid);
+    this.userIdx = reactingUsers.indexOf(this.creatorData.username);
     return this.userIdx > -1;
   }
 
@@ -168,7 +200,7 @@ export class PostComponent implements OnInit, AfterViewInit {
    */
   addUserToReaction(reactingUsers: string[]) {
     // Will be replaced by observable/signal once post data comes from Firebase
-    reactingUsers.push(this.uid);
+    reactingUsers.push(this.creatorData.username);
   }
 
 
@@ -181,7 +213,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     const reactions = this.post.reactions;
     const reactionObj = {
       reactionId: emojiId,
-      users: [this.uid]
+      users: [this.creatorData.username]
     };
 
     reactions.push(reactionObj);
@@ -208,7 +240,7 @@ export class PostComponent implements OnInit, AfterViewInit {
    * - Enables the thread section in the view service.
    */
   openThread() {
-    console.log("This is postId in post",this.post.text);
+    console.log("This is postId in post", this.post.text);
     this.viewService.showThreadSection = true;
   }
 
