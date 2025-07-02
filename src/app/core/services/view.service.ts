@@ -78,4 +78,8 @@ export class ViewService {
     this.modalContentClass = className;
   }
 
+
+  closeThread(){
+    this.showThreadSection = false
+  }
 }
