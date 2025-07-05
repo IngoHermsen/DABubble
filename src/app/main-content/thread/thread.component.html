@@ -2,15 +2,30 @@
     <span (click)="emitCloseEvent()" class='material-icons close-btn'>close</span>
 
     <div class="fixed-header box-shadow">
-            <div class="thread"> Thread</div>
-            <span class="channel-name"># {{this.dataService.channelData?.channelName}}</span>
+        <div class="thread"> Thread</div>
+        <span class="channel-name"># {{this.dataService.channelData?.channelName}}</span>
     </div>
 
-    <div class="posts" #scroll>
-        <div>{{this.threadService.postText()}}</div>
-        <div>{{this.threadService.postCreatorName()}}</div>
-
+    <div class="post">
+        <div class="profile-image img">
+            <img class="img--avatar" [src]="'../../assets/images/' + this.threadService.postCreatorImg()" alt="">
+        </div>
         
+        <div class="post-content">
+            <div class="post-header">
+                <div class="">{{this.threadService.postCreatorName()}}</div>
+                <div>{{this.threadService.timeAsString()}}</div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="post-text">
+        {{this.threadService.postText()}}
+    </div>
+    
+    
+    <div class="posts" #scroll>
         <div #scrollAnchor></div>
     </div>
 

@@ -34,5 +34,9 @@ export class ThreadService {
   setTimeString(time:string){
     this.timeAsString.set(time)
   }
+
+  setPostCreatorImg(img:string){
+    this.postCreatorImg.set(img)
+  }
 }
 

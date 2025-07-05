@@ -1,12 +1,13 @@
 @import '../../../styles/mixins.scss';
-
+// Importing the css from post.component for reusability.
+@import '../../post/post.component.scss';
 
 // Changing the standard card 
 .card {
     position: relative;
     @include dflex($fD: column);
-    
-    
+
+
     .close-btn {
         position: absolute;
         top: 12px;
@@ -17,19 +18,23 @@
 }
 
 
-.thread{
-    @include fontSizeWeight($s:24px, $w:700);
+.fixed-header .thread {
+    @include fontSizeWeight($s: 24px, $w: 700);
     padding-left: 24px;
     padding-right: 8px;
 }
 
-.channel-name{
+.fixed-header.channel-name {
     color: #797ef3
 }
 
-.posts{
+.posts {
     height: 100%;
 }
 
-
-
+.card .post-text {
+    padding: 12px;
+    background-color: #eceefe;
+    width: 80%;
+    border-radius: 0px 24px 24px 24px;
+}
