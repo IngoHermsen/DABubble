@@ -7,17 +7,16 @@
     </div>
 
     <div class="post">
-        <div class="profile-image img">
-            <img class="img--avatar" [src]="'../../assets/images/' + this.threadService.postCreatorImg()" alt="">
+        <div class="wrapper-profile-img">
+            <img class="img" [src]="'../../assets/images/' + this.threadService.postCreatorImg()" alt="">
         </div>
         
         <div class="post-content">
             <div class="post-header">
-                <div class="">{{this.threadService.postCreatorName()}}</div>
-                <div>{{this.threadService.timeAsString()}}</div>
+                <div class="post-username">{{this.threadService.postCreatorName()}}</div>
+                <div class="post-creation-time">{{this.threadService.timeAsString()}}</div>
             </div>
         </div>
-        
     </div>
 
     <div class="post-text">

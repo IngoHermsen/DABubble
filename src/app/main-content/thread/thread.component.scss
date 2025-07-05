@@ -1,23 +1,24 @@
 @import '../../../styles/mixins.scss';
-// Importing the css from post.component for reusability.
-@import '../../post/post.component.scss';
+@import '../../../styles/post-shared';
 
+
+/************************* Card *************************/
 // Changing the standard card 
 .card {
     position: relative;
     @include dflex($fD: column);
+}
 
-
-    .close-btn {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        cursor: pointer;
-        z-index: 2;
-    }
+.card .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    z-index: 2;
 }
 
 
+/************************* Header *************************/
 .fixed-header .thread {
     @include fontSizeWeight($s: 24px, $w: 700);
     padding-left: 24px;
@@ -28,13 +29,14 @@
     color: #797ef3
 }
 
-.posts {
-    height: 100%;
-}
-
 .card .post-text {
     padding: 12px;
     background-color: #eceefe;
     width: 80%;
     border-radius: 0px 24px 24px 24px;
+}
+
+
+.posts {
+    height: 100%;
 }

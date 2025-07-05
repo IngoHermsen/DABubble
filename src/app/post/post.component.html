@@ -1,7 +1,7 @@
 @if(dataLoaded) {
 <div class="post" (click)="openThread()" [class.odd]="isOdd">
-    <div class="profile-image img">
-        <img class="img--avatar" [src]="'../../assets/images/' + creator.photoURL" alt="">
+    <div class="wrapper-profile-img">
+        <img class="img" [src]="'../../assets/images/' + creator.photoURL" alt="">
     </div>
 
     <div class="post-content">
