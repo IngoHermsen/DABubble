@@ -32,7 +32,7 @@
 
 
 /************************* Post Text *************************/
-.wrapper-post-text{
+.wrapper-post-text {
     width: 100%;
 }
 
@@ -45,6 +45,26 @@
 }
 
 
+/************************* Seperator *************************/
+.seperator {
+    @include dflex($fD: row, $jC: null, $aI: center, $gap: 8px);
+    flex-wrap: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 24px;
+}
+
+.seperator .txt{
+    color:  #ADB0D9; 
+    width: fit-content;
+    white-space: nowrap;
+}
+
+.seperator .line{
+    background-color: #ADB0D9;
+    height: 1px;
+    width: 100%;
+}
 
 .posts {
     height: 100%;
