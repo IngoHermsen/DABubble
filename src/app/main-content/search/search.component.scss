@@ -2,12 +2,12 @@ $input-height: 50px;
 
 .search-content {
     position: relative;
+    max-width: 600px;
 }
 
 input {
     height: $input-height;
     width: 100%;
-    max-width: 600px;
     border: unset;
     border-radius: 50px;
     text-indent: 24px;
@@ -20,7 +20,9 @@ input {
     &:focus-visible {
         outline: unset;
     }
-};
+}
+
+;
 
 .result-lists {
     position: absolute;
