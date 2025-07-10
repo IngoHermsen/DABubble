@@ -24,8 +24,7 @@
 
     <section class="header">
         @if (viewService.mobileView && !viewService.showLogo) {
-        <span [routerLink]="'workspace'"
-            class="material-icons-round arrow-back">arrow_back_ios</span>
+        <span [routerLink]="'workspace'" class="material-icons-round arrow-back">arrow_back_ios</span>
         <span>WS-LOGO</span>
         }
         @else {
@@ -35,7 +34,10 @@
         }
 
         @if(!viewService.mobileView) {
-        <input placeholder="Devspace durchsuchen" class="flex-item" type="text">
+        <div class="flex-item">
+             <app-search></app-search>
+        </div>
+        <!-- <input placeholder="Devspace durchsuchen" class="flex-item" type="text"> -->
         }
 
         <div class="user-menu">
@@ -53,7 +55,8 @@
     </section>
 
     <section class="content">
-        <section class="workspace-section" [class.workspace-mobile]="this.viewService.mobileView" [@toggleWorkspace]="viewService.showWorkspaceMenu ? 'open' : 'closed'">
+        <section class="workspace-section" [class.workspace-mobile]="this.viewService.mobileView"
+            [@toggleWorkspace]="viewService.showWorkspaceMenu ? 'open' : 'closed'">
             <div class="ws-animation-wrapper">
                 <app-workspace></app-workspace>
             </div>
