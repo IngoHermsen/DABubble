@@ -13,6 +13,9 @@ export class ThreadService {
   
 
   // === Signal Setter Method ===
+  
+  
+  
   setPostText(text: string) {
     this.postText.set(text);
   }
@@ -38,5 +41,14 @@ export class ThreadService {
   setPostCreatorImg(img:string){
     this.postCreatorImg.set(img)
   }
+
+
+ // === Methods ===
+
+  logCurrentId(){
+    console.log(this.postId());
+  }
+
+
 }
 

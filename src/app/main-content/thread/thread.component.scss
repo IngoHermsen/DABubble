@@ -17,7 +17,6 @@
     z-index: 2;
 }
 
-
 /************************* Header *************************/
 .fixed-header .thread {
     @include fontSizeWeight($s: 24px, $w: 700);
@@ -28,7 +27,6 @@
 .fixed-header.channel-name {
     color: #797ef3
 }
-
 
 
 /************************* Post Text *************************/

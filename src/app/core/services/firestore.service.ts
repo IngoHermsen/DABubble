@@ -111,7 +111,7 @@ export class FirestoreService {
    * @returns The post object with the `postId` set.
    */
   async addPostToFirestore(post: Post) {
-    console.log('Neuer POst', post)
+    console.log('Neuer POst', post);
     const docRef = await addDoc(this.postsColRef, post);
     const postId = docRef.id;
 
@@ -242,6 +242,22 @@ export class FirestoreService {
       username: doc.data()['username']
     }));
   }
+
+
+  getThreadCollectionRef(channel: any, postId: any): CollectionReference {
+    const postDoc = doc(this.dbFs, 'workspaces', 'DevSpace', 'channels', channel, 'posts', postId);
+    return collection(postDoc, 'thread');
+  }
+
+
+  addThreadToPost(threadRef: any, post: Post) {
+
+    addDoc(threadRef, post)
+      .then(() => console.log('Thread created successfully'))
+      .catch(error => console.error('Thread creation failed:', error));
+  }
+
+
 
   unsubChannelSnapshot() {
 
