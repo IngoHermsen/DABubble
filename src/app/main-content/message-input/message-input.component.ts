@@ -70,7 +70,7 @@ export class MessageInputComponent {
       const message = this.messageInput.value;
       this.post = {
         postId: '',
-        creatorId: this.authService.firebaseUser?.email || '(Gast)',
+        creatorId: this.authService.firebaseUser?.email || 'walter.falter@dabubble.com',
         text: message,
         reactions: [],
         creationTime: Timestamp.fromDate(new Date()),

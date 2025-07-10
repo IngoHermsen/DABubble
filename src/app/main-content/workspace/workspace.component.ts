@@ -1,11 +1,10 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
-import { NgClass, AsyncPipe } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 import { FirestoreService } from '../../core/services/firestore.service';
-import { Subscription } from 'rxjs';
 import { AuthService } from '../../core/services/auth.service';
 import { ViewService } from '../../core/services/view.service';
 import { DataService } from '../../core/services/data.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { User as FirebaseUser } from '@angular/fire/auth';
 import { FsUsers } from '../../core/types/firestore_users';
 
@@ -20,13 +19,10 @@ export class WorkspaceComponent implements OnInit {
   public dataService = inject(DataService);
   public fsService = inject(FirestoreService);
   public router = inject(Router);
-  public route = inject(ActivatedRoute);
   authService = inject(AuthService);
   public viewService = inject(ViewService);
   firebaseUser: FirebaseUser | null;
 
-
-  private routeSub: Subscription;
   channelNames: string[];
 
   showChannelEntries: boolean = true;
