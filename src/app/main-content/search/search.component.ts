@@ -14,6 +14,8 @@ type Scope = 'all' | 'channels' | 'users'
   styleUrl: './search.component.scss'
 })
 export class SearchComponent implements AfterViewInit {
+  showResultLists: boolean = false;
+
   // === Search Results ===
   searchScope: Scope;
   matchingChannels: string[];
@@ -33,6 +35,7 @@ export class SearchComponent implements AfterViewInit {
   // === Lifecycle Hooks ===
 
   ngAfterViewInit(): void {
+    this.showResultLists = false;
     this.searchTerms$
       .pipe(
         debounceTime(1000),

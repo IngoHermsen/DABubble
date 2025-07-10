@@ -1,8 +1,10 @@
 <div class="search-content">
     <input placeholder="Devspace durchsuchen" class="flex-item" type="text" [(ngModel)]="searchTerm" #searchBar
-        (input)="searchTerms$.next(searchTerm)">
+        (input)="searchTerms$.next(searchTerm)" (focus)="showResultLists = true" (blur)="showResultLists = false">
+
+    @if (showResultLists) {
     <div class="result-lists">
-            <span>Suche mit '&#64;' nach Leuten und mit '#' nach einem Channel.</span>
+        <span>Suche mit '&#64;' nach Leuten und mit '#' nach einem Channel.</span>
         <div class="channel-results">
             <h4>Channels</h4>
             <span>keine Ergebnisse</span>
@@ -14,4 +16,5 @@
             <div class="list"></div>
         </div>
     </div>
+    }
 </div>
