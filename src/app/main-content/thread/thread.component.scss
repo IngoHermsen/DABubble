@@ -1,35 +1,71 @@
 @import '../../../styles/mixins.scss';
+@import '../../../styles/post-shared';
 
 
+/************************* Card *************************/
 // Changing the standard card 
 .card {
     position: relative;
     @include dflex($fD: column);
-    
-    
-    .close-btn {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        cursor: pointer;
-        z-index: 2;
-    }
+}
+
+.card .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+    z-index: 2;
 }
 
 
-.thread{
-    @include fontSizeWeight($s:24px, $w:700);
+/************************* Header *************************/
+.fixed-header .thread {
+    @include fontSizeWeight($s: 24px, $w: 700);
     padding-left: 24px;
     padding-right: 8px;
 }
 
-.channel-name{
+.fixed-header.channel-name {
     color: #797ef3
 }
 
-.posts{
-    height: 100%;
+
+
+/************************* Post Text *************************/
+.wrapper-post-text {
+    width: 100%;
+}
+
+.card .post-text {
+    padding: 12px;
+    margin: 0 24px;
+    background-color: #eceefe;
+    width: fit-content;
+    border-radius: 0px 24px 24px 24px;
 }
 
 
+/************************* Seperator *************************/
+.seperator {
+    @include dflex($fD: row, $jC: null, $aI: center, $gap: 8px);
+    flex-wrap: nowrap;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 24px;
+}
 
+.seperator .txt{
+    color:  #ADB0D9; 
+    width: fit-content;
+    white-space: nowrap;
+}
+
+.seperator .line{
+    background-color: #ADB0D9;
+    height: 1px;
+    width: 100%;
+}
+
+.posts {
+    height: 100%;
+}

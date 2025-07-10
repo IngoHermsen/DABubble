@@ -1,7 +1,7 @@
 @if(dataLoaded) {
 <div class="post" (click)="openThread()" [class.odd]="isOdd">
-    <div class="profile-image img">
-        <img class="img--avatar" [src]="'../../assets/images/' + creator.photoURL" alt="">
+    <div class="wrapper-profile-img">
+        <img class="img" [src]="'../../assets/images/' + creator.photoURL" alt="">
     </div>
 
     <div class="post-content">
@@ -13,7 +13,7 @@
 
         <span class="post-header">
             <span class="post-username">{{ creator.username }}</span>
-            <span class="post-creationTime">{{ timeAsString }}</span>
+            <span class="post-creation-time">{{ timeAsString }}</span>
         </span>
 
         <span class="post-text">{{ post.text }}</span>

@@ -41,9 +41,6 @@ export class ThreadComponent {
     this.route.paramMap.subscribe(params => {
       this.threadId = params.get('id');
     });
-
-    console.log("Hello I am from userdata in thread...",this.dataService.cachedUserData);
-
   }
 
 
