@@ -7,11 +7,6 @@ import { Timestamp } from 'firebase/firestore';
   providedIn: 'root'
 })
 export class DataService {
-
-  // === Search Data ===
-  channelNames: string[];
-  userNames: string[];
-
   // === Local Data ===
   channelIds: string[];
   channelData: Channel | undefined;
