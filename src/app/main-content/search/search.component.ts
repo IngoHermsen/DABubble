@@ -3,13 +3,17 @@ import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap,
 import { FormsModule } from '@angular/forms';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { DataService } from '../../core/services/data.service';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 
 type Scope = 'all' | 'channels' | 'users'
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [FormsModule],
+  imports: [
+    FormsModule,
+    RouterLink
+  ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
@@ -23,7 +27,9 @@ export class SearchComponent implements AfterViewInit {
 
   // === Dependency Injections ===
   public firestoreService = inject(FirestoreService);
-  public dataService = inject(DataService)
+  public dataService = inject(DataService);
+  public router = inject(Router);
+  public activatedRoute = inject(ActivatedRoute)
 
   searchTerm: string = "";
   searchResult: string[];
@@ -35,28 +41,38 @@ export class SearchComponent implements AfterViewInit {
   // === Lifecycle Hooks ===
 
   ngAfterViewInit(): void {
-    this.showResultLists = false;
+    this.matchingChannels = [];
+    this.matchingUsers = []; 
+
     this.searchTerms$
       .pipe(
-        debounceTime(1000),
+        debounceTime(150),
         distinctUntilChanged(),
-      ).subscribe(term => this.getSearchResults(term))
+      ).subscribe(term => this.getSearchResults(term.toLowerCase()));
+    
   }
 
   // === Functions ===
 
   getSearchResults(term: string) {
+
     this.setSearchScope(term);
     if (term.length > 0) {
       this.matchingChannels = [];
       this.matchingChannels = this.dataService.channelIds.filter(id => {
         return id.toLocaleLowerCase().startsWith(term);
       })
-      console.log(this.matchingChannels)
+
     }
   }
 
   setSearchScope(term: string) {
     this.searchScope = 'channels'
+  }
+
+  hideResultsWithDelay() {
+    setTimeout(() => {
+      this.showResultLists = false;
+    }, 300)
   }
 }

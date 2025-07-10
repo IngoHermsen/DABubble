@@ -40,5 +40,15 @@ input {
 }
 
 .list {
-    height: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.placeholder {
+    color: grey;
+}
+
+.result-entry {
+    cursor: pointer;
 }
