@@ -1,7 +1,10 @@
 <div class="search-content">
-    <input placeholder="Devspace durchsuchen" class="flex-item" type="text" [(ngModel)]="searchTerm" #searchBar
-        (input)="searchTerms$.next(searchTerm)" (focus)="showResultLists = true" (blur)="hideResultsWithDelay()">
-
+    <div class="input-wrapper">
+        <span class="prefix"></span>
+        <input placeholder="Devspace durchsuchen" class="flex-item" type="text" [(ngModel)]="searchTerm" #searchBar
+            (input)="searchTerms$.next(searchTerm)" (focus)="showResultLists = true" (blur)="hideResultsWithDelay()">
+        <span class="search-icon material-icons-outlined">search</span>
+    </div>
     @if (showResultLists) {
     <div class="result-lists">
         <span class="placeholder">Suche mit '&#64;' nach Leuten und mit '#' nach einem Channel.</span>
@@ -11,7 +14,7 @@
             <span class="placeholder" [hidden]="matchingChannels.length > 0">keine Ergebnisse</span>
             <div class="list">
                 @for (channel of matchingChannels; track $index) {
-                <span class="result-entry" [routerLink]="'clhannel/' + channel">{{ channel }}</span>
+                <span class="result-entry" [routerLink]="'channel/' + channel">{{ channel }}</span>
                 }
             </div>
         </div>
