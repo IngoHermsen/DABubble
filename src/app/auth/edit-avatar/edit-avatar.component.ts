@@ -49,49 +49,74 @@ export class EditAvatarComponent implements OnInit {
     this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath;
   }
 
+// === Lifecycle ===
+
 /**
- * Getting the current firebaseUser.
- * Ready to be used in this component
+ * Subscribes to the AuthService to retrieve the currently authenticated Firebase user.
+ * 
+ * - Updates the `firebaseUser` property with the user object.
+ * - Extracts the user's display name and stores it in `userName`.
  */
-  ngOnInit(): void {
-    this.authService.firebaseUser$.subscribe(user => {
-      this.firebaseUser = user;
-      this.userName = user?.displayName;
-    });
+ngOnInit(): void {
+  this.authService.firebaseUser$.subscribe(user => {
+    this.firebaseUser = user;
+    this.userName = user?.displayName;
+  });
+}
+
+// === Event Handlers ===
+
+/**
+ * Handles the image upload event triggered by file input.
+ * 
+ * - Activates loading indicator.
+ * - Uploads the selected file to a predefined Firebase Storage reference.
+ * - Retrieves the download URL after upload and updates the `previewImg`.
+ * - Deactivates loading indicator after successful upload.
+ */
+uploadImg(event: Event) {
+  this.imgLoading = true;
+  let inputEl = event.target as HTMLInputElement;
+
+  if (inputEl?.files?.length) {
+    const file = inputEl.files[0];
+
+    from(uploadBytes(this.profileImgRef, file))
+      .pipe(
+        switchMap(() => from(getDownloadURL(this.profileImgRef))),
+      )
+      .subscribe({
+        next: (url) => {
+          this.previewImg = url;
+          this.imgLoading = false;
+        },
+      });
   }
+}
 
+// === Methods ===
 
+/**
+ * Sets a selected avatar image from the predefined list as the profile picture.
+ * 
+ * - Updates the `previewImg` with the selected image.
+ * - Calls AuthService to update the Firebase user's `photoURL`.
+ * - Persists the avatar choice to Firestore.
+ */
+setPresetAvatar(imgFileName: string) {
+  this.previewImg = 'assets/images/' + imgFileName;
+  this.authService.updateUserCredentials(this.firebaseUser, "photoURL", this.previewImg);
+  this.setAvatarPathFirestore(imgFileName);
+}
 
-  uploadImg(event: Event) {
-    this.imgLoading = true;
-    let inputEl = event.target as HTMLInputElement;
+/**
+ * Updates the user's Firestore document with the selected avatar image path.
+ * 
+ * - Targets the `photoURL` field within the user document.
+ * - Uses the FirestoreService for document update.
+ */
+setAvatarPathFirestore(imgFileName: string) {
+  this.fsService.updateUserDoc("users", this.firebaseUser.email, { photoURL: imgFileName });
+}
 
-    if (inputEl?.files?.length) {
-      const file = inputEl.files[0];
-
-      from(uploadBytes(this.profileImgRef, inputEl.files[0]))
-        .pipe(
-          switchMap(() => from(getDownloadURL(this.profileImgRef))),
-        )
-        .subscribe({
-          next: (url) => {
-            this.previewImg = url;
-            this.imgLoading = false;
-          },
-
-        });
-    }
-  }
-
-  
-  setPresetAvatar(imgFileName: string) {
-    this.previewImg = 'assets/images/' + imgFileName;
-    this.authService.updateUserCredentials(this.firebaseUser, "photoURL", this.previewImg);
-    this.setAvatarPathFirestore(imgFileName)
-  }
-
-
-  setAvatarPathFirestore(imgFileName:string){
-    this.fsService.updateUserDoc("users", this.firebaseUser.email, {photoURL: imgFileName})
-  }
 }
