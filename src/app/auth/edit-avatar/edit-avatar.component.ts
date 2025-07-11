@@ -49,65 +49,74 @@ export class EditAvatarComponent implements OnInit {
     this.previewImg = this.userImg ? this.userImg : this.placeholderImagePath;
   }
 
+// === Lifecycle ===
+
 /**
- * Getting the current firebaseUser.
- * Ready to be used in this component
+ * Subscribes to the AuthService to retrieve the currently authenticated Firebase user.
+ * 
+ * - Updates the `firebaseUser` property with the user object.
+ * - Extracts the user's display name and stores it in `userName`.
  */
-  ngOnInit(): void {
-    this.authService.firebaseUser$.subscribe(user => {
-      this.firebaseUser = user;
-      this.userName = user?.displayName;
-    });
+ngOnInit(): void {
+  this.authService.firebaseUser$.subscribe(user => {
+    this.firebaseUser = user;
+    this.userName = user?.displayName;
+  });
+}
+
+// === Event Handlers ===
+
+/**
+ * Handles the image upload event triggered by file input.
+ * 
+ * - Activates loading indicator.
+ * - Uploads the selected file to a predefined Firebase Storage reference.
+ * - Retrieves the download URL after upload and updates the `previewImg`.
+ * - Deactivates loading indicator after successful upload.
+ */
+uploadImg(event: Event) {
+  this.imgLoading = true;
+  let inputEl = event.target as HTMLInputElement;
+
+  if (inputEl?.files?.length) {
+    const file = inputEl.files[0];
+
+    from(uploadBytes(this.profileImgRef, file))
+      .pipe(
+        switchMap(() => from(getDownloadURL(this.profileImgRef))),
+      )
+      .subscribe({
+        next: (url) => {
+          this.previewImg = url;
+          this.imgLoading = false;
+        },
+      });
   }
+}
 
+// === Methods ===
 
-  // 'Upload Image' function: This function is triggered by a change-event on the 'File Upload input' (type 'file')
-  // Function first sets the imgLoading-boolean as "true". This boolean is binded to the view, so the user can see that the upload is running.
-  // In the function the Input Element variable 'inputEl' is initialized with the html-Element from the passed event.
-  // It is used to check if the user selected an actual file. In that case the Observable takes place (from(uploadBytes...))
+/**
+ * Sets a selected avatar image from the predefined list as the profile picture.
+ * 
+ * - Updates the `previewImg` with the selected image.
+ * - Calls AuthService to update the Firebase user's `photoURL`.
+ * - Persists the avatar choice to Firestore.
+ */
+setPresetAvatar(imgFileName: string) {
+  this.previewImg = 'assets/images/' + imgFileName;
+  this.authService.updateUserCredentials(this.firebaseUser, "photoURL", this.previewImg);
+  this.setAvatarPathFirestore(imgFileName);
+}
 
-  // Explanation in order of appearance in the code: 
-  // The goal of the  observable 'from(uploadBytes)' is to get the selected User File and "write it" to the reference path in the Firebase Storage and then returns the final url that points to the uploaded image.
-  // To reach that it passes the values of the ImageRef and the file and after upload process finished, it starts a second observable.
-  // That second observable 'from(getDownloadURL...)' takes the result of the upload, and receives the storage reference from the first observable.
-  // The second observable returns the final url of the uploaded file.
+/**
+ * Updates the user's Firestore document with the selected avatar image path.
+ * 
+ * - Targets the `photoURL` field within the user document.
+ * - Uses the FirestoreService for document update.
+ */
+setAvatarPathFirestore(imgFileName: string) {
+  this.fsService.updateUserDoc("users", this.firebaseUser.email, { photoURL: imgFileName });
+}
 
-  // Important: The first observable code will not be passed until it is subscribed.
-  // For that reason at the end of the second observable there is a ".subscribe" to initialize the code above that part. 
-  // The subscribe is an "Observer" that handles the data that comes from its observed observable.
-  // the next-method specifies what to do with this data. In our case it sets the previewImg variable to the received url.
-  // finally it sets the 'imgLoading'-boolean to 'false' in order the user can see that the upload ist finished and can see the image in the preview.
-
-  uploadImg(event: Event) {
-    this.imgLoading = true;
-    let inputEl = event.target as HTMLInputElement;
-
-    if (inputEl?.files?.length) {
-      const file = inputEl.files[0];
-
-      from(uploadBytes(this.profileImgRef, inputEl.files[0]))
-        .pipe(
-          switchMap(() => from(getDownloadURL(this.profileImgRef))),
-        )
-        .subscribe({
-          next: (url) => {
-            this.previewImg = url;
-            this.imgLoading = false;
-          },
-
-        });
-    }
-  }
-
-  
-  setPresetAvatar(imgFileName: string) {
-    this.previewImg = 'assets/images/' + imgFileName;
-    this.authService.updateUserCredentials(this.firebaseUser, "photoURL", this.previewImg);
-    this.setAvatarPathFirestore(imgFileName)
-  }
-
-
-  setAvatarPathFirestore(imgFileName:string){
-    this.fsService.updateUserDoc("users", this.firebaseUser.email, {photoURL: imgFileName})
-  }
 }
