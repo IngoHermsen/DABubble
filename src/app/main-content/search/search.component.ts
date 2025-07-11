@@ -67,7 +67,15 @@ export class SearchComponent implements AfterViewInit {
   }
 
   setSearchScope(term: string) {
-    this.searchScope = 'channels'
+    switch(term.charAt(0)) {
+      case '@': this.searchScope = 'users';
+      break;
+      case '#': this.searchScope = 'channels';
+      break;
+      default: this.searchScope = 'all';
+    }
+
+    console.log('search Scope', this.searchScope)
   }
 
   hideResultsWithDelay() {
