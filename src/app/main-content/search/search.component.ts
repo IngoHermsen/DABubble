@@ -5,7 +5,7 @@ import { FirestoreService } from '../../core/services/firestore.service';
 import { DataService } from '../../core/services/data.service';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 
-type Scope = 'all' | 'channels' | 'users'
+type Scope = Array<'channels' | 'users'>
 
 @Component({
   selector: 'app-search',
@@ -43,6 +43,7 @@ export class SearchComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.matchingChannels = [];
     this.matchingUsers = []; 
+    this.searchScope = ['channels', 'users']
 
     this.searchTerms$
       .pipe(
@@ -68,14 +69,12 @@ export class SearchComponent implements AfterViewInit {
 
   setSearchScope(term: string) {
     switch(term.charAt(0)) {
-      case '@': this.searchScope = 'users';
+      case '@': this.searchScope = ['users'];
       break;
-      case '#': this.searchScope = 'channels';
+      case '#': this.searchScope = ['channels'];
       break;
-      default: this.searchScope = 'all';
+      default: this.searchScope = ['channels', 'users'];
     }
-
-    console.log('search Scope', this.searchScope)
   }
 
   hideResultsWithDelay() {
