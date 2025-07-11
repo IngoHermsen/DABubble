@@ -66,7 +66,6 @@ export class MessageInputComponent {
    * - Resets the form input field.
    */
   onSubmit() {
-    console.log('Firebase User', this.authService.firebaseUser)
     if (this.messageInput.value) {
       const message = this.messageInput.value;
       this.post = {

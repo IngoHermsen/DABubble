@@ -3,6 +3,7 @@ import { Component, effect, inject, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { DataService } from '../../core/services/data.service';
 import { ThreadService } from '../../core/services/thread.service';
+import { FirestoreService } from '../../core/services/firestore.service';
 import { MessageInputComponent } from '../message-input/message-input.component';
 import { PostComponent } from '../../post/post.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -22,10 +23,12 @@ import { Post } from '../../core/interfaces/post';
 export class ThreadComponent {
 
   // === Injected Services ===
-  threadService = inject(ThreadService);
+  authService = inject(AuthService)
+  firestoreService = inject(FirestoreService)
   public dataService = inject(DataService);
   public route = inject(ActivatedRoute);
-  authService = inject(AuthService)
+  threadService = inject(ThreadService);
+
 
 
   // === Local Data ===
@@ -52,6 +55,16 @@ export class ThreadComponent {
 
   logPost(post: Post){
     console.log(post);
+    this.threadService.logCurrentId();  
+    const channelName = this.dataService.channelData?.channelName
+    const postId = this.threadService.postId()
+    const threadRef = this.firestoreService.getThreadCollectionRef(channelName, postId )
+    
+    this.firestoreService.addThreadToPost(threadRef, post)
   }
+
+//   const threadRef = this.firestoreService.getThreadCollectionRef(channelName, postId);
+// addDoc(threadRef, { text: 'Neuer Thread-Kommentar', createdAt: serverTimestamp() });
+
 }
 
