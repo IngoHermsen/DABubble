@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, inject } from '@angular/core';
-import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap, tap } from 'rxjs';
+import { debounceTime, distinctUntilChanged, first, Observable, of, Subject, switchMap, tap } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { DataService } from '../../core/services/data.service';
@@ -22,6 +22,8 @@ export class SearchComponent implements AfterViewInit {
 
   // === Search Results ===
   searchScope: Scope;
+  hasPrefix: boolean = false;
+
   matchingChannels: string[];
   matchingUsers: string[];
 
@@ -42,44 +44,56 @@ export class SearchComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.matchingChannels = [];
-    this.matchingUsers = []; 
-    this.searchScope = ['channels', 'users']
+    this.matchingUsers = [];
+    this.searchScope = ['channels', 'users'];
 
     this.searchTerms$
       .pipe(
         debounceTime(150),
         distinctUntilChanged(),
-      ).subscribe(term => this.getSearchResults(term.toLowerCase()));
-    
+      ).subscribe(term => this.handleSearchTerm(term.toLowerCase()));
   }
 
   // === Functions ===
 
-  getSearchResults(term: string) {
-
-    this.setSearchScope(term);
-    if (term.length > 0) {
-      this.matchingChannels = [];
-      this.matchingChannels = this.dataService.channelIds.filter(id => {
-        return id.toLocaleLowerCase().startsWith(term);
-      })
-
+  handleSearchTerm(term: string) {
+    this.setPrefix(term);
+    if (this.hasPrefix) {
+      this.getSearchResults(term.substring(1))
+      console.log(term.substring(1))
+    } else {
+      this.getSearchResults(term);
     }
+
   }
 
-  setSearchScope(term: string) {
-    switch(term.charAt(0)) {
-      case '@': this.searchScope = ['users'];
-      break;
-      case '#': this.searchScope = ['channels'];
-      break;
-      default: this.searchScope = ['channels', 'users'];
-    }
+  setPrefix(term: string) {
+    const firstChar = term.charAt(0);
+    switch (firstChar) {
+      case '@': this.searchScope = ['users'], this.hasPrefix = true;
+        break;
+      case '#': this.searchScope = ['channels'], this.hasPrefix = true;
+        break;
+      default: this.searchScope = ['channels', 'users'], this.hasPrefix = false;
+    };
   }
+
 
   hideResultsWithDelay() {
     setTimeout(() => {
       this.showResultLists = false;
     }, 300)
+  };
+
+  getSearchResults(term: string) {
+    this.matchingChannels = [];
+    if (term.length > 0) {
+      this.matchingChannels = this.dataService.channelIds.filter(id => {
+        return id.toLocaleLowerCase().startsWith(term);
+      })
+    }
+
+
+
   }
 }
