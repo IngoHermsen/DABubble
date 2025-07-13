@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { MessageInputComponent } from '../message-input/message-input.component';
 import { DataService } from '../../core/services/data.service';
 
@@ -9,7 +9,11 @@ import { DataService } from '../../core/services/data.service';
   templateUrl: './direct-messages.component.html',
   styleUrl: './direct-messages.component.scss'
 })
-export class DirectMessagesComponent {  
+export class DirectMessagesComponent implements OnInit {
+// === Dependendy Injections ===
 
-  
+  public dataService = inject(DataService); 
+
+  ngOnInit() {
+  }
 }

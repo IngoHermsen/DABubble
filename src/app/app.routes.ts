@@ -33,7 +33,7 @@ export const routes: Routes = [
             [
                 { path: 'channel/:id', component: ChannelComponent },
                 { path: 'new-post', component: NewPostComponent },
-                { path: 'direct-messages/:id', component: DirectMessagesComponent }
+                { path: 'direct-messages', component: DirectMessagesComponent }
             ]
     },
 ];

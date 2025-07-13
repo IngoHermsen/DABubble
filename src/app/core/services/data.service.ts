@@ -13,6 +13,7 @@ export class DataService {
 
   posts: Post[];
   channelPostsByDate: Array<any>;
+  chatParticipants: string[];
   
   cachedUserData: {photoUrl: string, username: string} = {
     photoUrl: "",

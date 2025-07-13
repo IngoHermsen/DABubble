@@ -32,9 +32,6 @@ export class WorkspaceComponent implements OnInit {
 
   usersArray: FsUsers = [];
 
-  constructor() {
-  }
-
   async ngOnInit() {
     this.showChannelEntries = true;
     this.authService.firebaseUser$.subscribe(user => {
@@ -62,5 +59,11 @@ export class WorkspaceComponent implements OnInit {
       this.directMsgToggleClicked = true;
       this.showDirectMsgEntries = !this.showDirectMsgEntries;
     }
+  }
+
+  startChatWithUser(userMail: any) {
+    this.dataService.chatParticipants = [];
+    this.dataService.chatParticipants.push(userMail);
+    this.router.navigate(['workspace/direct-messages'])
   }
 }
