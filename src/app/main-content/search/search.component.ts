@@ -60,11 +60,9 @@ export class SearchComponent implements AfterViewInit {
     this.setPrefix(term);
     if (this.hasPrefix) {
       this.getSearchResults(term.substring(1))
-      console.log(term.substring(1))
     } else {
       this.getSearchResults(term);
     }
-
   }
 
   setPrefix(term: string) {
@@ -77,7 +75,6 @@ export class SearchComponent implements AfterViewInit {
       default: this.searchScope = ['channels', 'users'], this.hasPrefix = false;
     };
   }
-
 
   hideResultsWithDelay() {
     setTimeout(() => {
@@ -92,8 +89,5 @@ export class SearchComponent implements AfterViewInit {
         return id.toLocaleLowerCase().startsWith(term);
       })
     }
-
-
-
   }
 }

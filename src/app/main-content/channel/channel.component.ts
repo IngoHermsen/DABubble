@@ -17,7 +17,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 export class ChannelComponent implements OnInit {
   @ViewChild('scrollAnchor') scrollAnchor!: ElementRef;
 
-  // === Injected Services ===
+  // === Dependency Injections ===
   public dataService = inject(DataService);
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);

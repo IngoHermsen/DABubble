@@ -73,7 +73,7 @@
                             width="50">
                         <div class="dot offline"></div>
                     </div>
-                    <span class="username">{{ user.username }}</span>
+                    <span class="username" [routerLink]="'direct-messages/' + user.email">{{ user.username }}</span>
                 </div>
 
                 }

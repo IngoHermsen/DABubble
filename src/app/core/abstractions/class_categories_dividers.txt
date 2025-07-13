@@ -15,7 +15,7 @@
 
 Detaillierte Struktur – Konkrete Divider
 
-// === Injected Services ===
+// === Dependency Injections ===
 // === Input / Output ===
 // === ViewChild / DOM Access ===
 // === Template References ===

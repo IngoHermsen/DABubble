@@ -13,7 +13,7 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class MessageInputComponent {
 
-  // === Injected Services ===
+  // === Dependency Injections ===
   private authService = inject(AuthService);
 
   // === Input / Output ===

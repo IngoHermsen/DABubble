@@ -22,7 +22,7 @@ import { Post } from '../../core/interfaces/post';
 })
 export class ThreadComponent {
 
-  // === Injected Services ===
+  // === Dependency Injections ===
   authService = inject(AuthService)
   firestoreService = inject(FirestoreService)
   public dataService = inject(DataService);

@@ -13,7 +13,7 @@ import { from, Observable, of } from 'rxjs';
 })
 export class FirestoreService {
 
-  // === Injected Services ===
+  // === Dependency Injections ===
   private dbFs = inject(Firestore);
   private dataService = inject(DataService);
   private viewService = inject(ViewService);
@@ -21,9 +21,10 @@ export class FirestoreService {
   // === Firestore References ===
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
+  chatDocRef: DocumentReference
   postsColRef: CollectionReference;
   usersColRef: CollectionReference = collection(this.dbFs, 'users');
-
+  directMessagesColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'direct-messages');
 
   // === Local Data ===
   allFsUsersJsonArr: FsUsers = [];
@@ -154,7 +155,11 @@ export class FirestoreService {
     return true;
   }
 
+  async setActiveDirectMessages(chatId: string) {
+    this.chatDocRef = doc(this.directMessagesColRef, chatId);
+  }
 
+  
   // -----------------------------------------------------------------------------
   // Helper function used by `setActiveChannel()`
   // -----------------------------------------------------------------------------

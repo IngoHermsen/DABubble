@@ -11,7 +11,7 @@ type PlacementClassType = 'modal-content-center' | 'modal-content-top-right';
 })
 export class ViewService {
 
-  // === Injected Services ===
+  // === Dependency Injections ===
   private router = inject(Router);
 
   // === State Management ===

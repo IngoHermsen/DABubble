@@ -25,7 +25,7 @@ type Creator = {
 export class PostComponent implements OnInit, AfterViewInit {
   dataLoaded: boolean = false;
 
-  // === Injected Services ===
+  // === Dependency Injections ===
   public threadService = inject(ThreadService);
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
