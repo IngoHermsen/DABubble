@@ -90,4 +90,10 @@ export class SearchComponent implements AfterViewInit {
       })
     }
   }
+
+  handleResultClick(channel: string) {
+    this.searchTerm = ''
+    this.searchTerms$.next(this.searchTerm);
+    this.router.navigate([`workspace/channel/${channel}`])
+  }
 }

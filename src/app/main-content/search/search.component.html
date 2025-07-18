@@ -13,7 +13,7 @@
             <span class="placeholder" [hidden]="matchingChannels.length > 0">keine Ergebnisse</span>
             <div class="list">
                 @for (channel of matchingChannels; track $index) {
-                <span class="result-entry" (click)="this.searchTerm = ''" [routerLink]="'channel/' + channel">{{ channel }}</span>
+                <span class="result-entry" (click)="handleResultClick(channel)" [routerLink]="'channel/' + channel">{{ channel }}</span>
                 }
             </div>
         </div>
