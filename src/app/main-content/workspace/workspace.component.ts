@@ -63,6 +63,5 @@ export class WorkspaceComponent implements OnInit {
 
   startChatWithUser(userMail: any) {
     this.fsService.setActiveChat(userMail);
-    this.router.navigate(['workspace/direct-messages'])
   }
 }

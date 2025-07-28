@@ -7,6 +7,7 @@ import { DataService } from './data.service';
 import { FsUsers } from '../types/firestore_users';
 import { from, map, Observable, switchMap, take } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class FirestoreService {
   private dbFs = inject(Firestore);
   private dataService = inject(DataService);
   private authService = inject(AuthService);
+  private router = inject(Router)
 
   // === Firestore References ===
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
@@ -277,12 +279,11 @@ export class FirestoreService {
         if (queryDoc.empty) {
           return this.addNewChatDoc$(chatKey);
         } else {
-          console.log('queryDoc', [queryDoc.docs[0]])
-          return from([queryDoc.docs[0]])
+          return from([queryDoc.docs[0].id])
         }
       })
-    ).subscribe(queryDoc => {
-      console.log('Subscription Result:', queryDoc)
+    ).subscribe(queryDocId => {
+      this.router.navigate([`workspace/direct-messages/${queryDocId}`])
     })
   };
 

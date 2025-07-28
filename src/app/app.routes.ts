@@ -31,9 +31,8 @@ export const routes: Routes = [
       path: 'workspace', component: MainComponent,
         children:
             [
-                { path: 'channel/:id', component: ConversationComponent },
+                { path: ':type/:id', component: ConversationComponent },
                 { path: 'new-post', component: NewPostComponent },
-                { path: 'direct-messages', component: DirectMessagesComponent }
             ]
     },
 ];
