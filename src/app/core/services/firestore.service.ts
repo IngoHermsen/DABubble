@@ -102,7 +102,6 @@ export class FirestoreService {
    * @returns A promise that resolves once the document is written, or undefined if no `channelName` is provided.
    */
   async addChannelToFirestore(channel: Channel) {
-    console.log("channel", channel);
     if (channel.channelName) await setDoc(doc(this.channelsColRef, channel.channelName), channel);
   }
 

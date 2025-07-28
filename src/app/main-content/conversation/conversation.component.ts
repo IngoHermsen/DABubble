@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
 import { MessageInputComponent } from '../message-input/message-input.component';
@@ -8,13 +8,13 @@ import { FirestoreService } from '../../core/services/firestore.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-channel',
+  selector: 'app-conversation',
   standalone: true,
   imports: [PostComponent, MessageInputComponent, RouterLink],
-  templateUrl: './channel.component.html',
-  styleUrl: './channel.component.scss'
+  templateUrl: './conversation.component.html',
+  styleUrl: './conversation.component.scss'
 })
-export class ChannelComponent implements OnInit {
+export class ConversationComponent implements OnInit {
   @ViewChild('scrollAnchor') scrollAnchor!: ElementRef;
 
   // === Dependency Injections ===
@@ -25,10 +25,8 @@ export class ChannelComponent implements OnInit {
 
 
   // === Local Data ===
-  public channelOpened: boolean = false;
+  public conversationOpened: boolean = false;
   posts: Post[];
-
-
   
   /**
  * Initializes the component when it is loaded.
