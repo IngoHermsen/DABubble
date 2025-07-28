@@ -13,9 +13,11 @@ export class DataService {
 
   posts: Post[];
   channelPostsByDate: Array<any>;
-  chatParticipants: string[];
-  
-  cachedUserData: {photoUrl: string, username: string} = {
+
+  chatData: any;
+  chatParticipant: string;
+
+  cachedUserData: { photoUrl: string, username: string } = {
     photoUrl: "",
     username: ""
   }
@@ -91,14 +93,16 @@ export class DataService {
 
 
   cacheUserData(userData: { username: string; photoUrl: string }) {
-  this.cachedUserData = userData;
-}
+    this.cachedUserData = userData;
+  }
 
 
   clearUserData() {
-  this.cachedUserData = {
-    username: '',
-    photoUrl: ''
+    this.cachedUserData = {
+      username: '',
+      photoUrl: ''
+    };
   };
-}
+
+  
 }

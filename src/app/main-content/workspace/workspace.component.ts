@@ -62,8 +62,7 @@ export class WorkspaceComponent implements OnInit {
   }
 
   startChatWithUser(userMail: any) {
-    this.dataService.chatParticipants = [];
-    this.dataService.chatParticipants.push(userMail);
+    this.fsService.setActiveChat(userMail);
     this.router.navigate(['workspace/direct-messages'])
   }
 }
