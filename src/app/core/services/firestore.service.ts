@@ -130,7 +130,6 @@ export class FirestoreService {
     return post;
   }
 
-
   /**
    * Loads and sets the active channel including its metadata for rendering.
    * 
@@ -151,11 +150,29 @@ export class FirestoreService {
     const channelDataRemote: DocumentData = docSnap.data();
     const channelDataLocal: Channel = this.mapDocToChannel(channelDataRemote);
     this.dataService.channelData = channelDataLocal;
-
+  
     if (this.unsubPostsCol) this.unsubPostsCol();
+    this.setActivePosts(this.channelDocRef)
     return true;
   }
 
+  /**
+   * COMMENT !!   setActiveChat
+     */
+  async setActiveChat(chatId: string) {
+    this.chatDocRef = doc(this.directMessagesColRef, chatId);
+    const docSnap = await getDoc(this.chatDocRef);
+
+    if (!docSnap.exists()) return false;
+    
+    // this.router.navigate([`workspace/direct-messages/${chatId}`])
+    if (this.unsubPostsCol) this.unsubPostsCol();
+    this.setActivePosts(this.chatDocRef);
+    return true;
+  }
+
+
+  // -----------------------------------------------------------------------------
 
   // -----------------------------------------------------------------------------
   // Helper function used by `setActiveChannel()`
@@ -182,8 +199,8 @@ export class FirestoreService {
    * - Converts each raw Firestore document into a typed `Post` object using `mapDocToPost()`.
    * - Passes the post array to the `dataService`, where it will be used for rendering in the UI.
    */
-  async setActivePosts() {
-    this.postsColRef = collection(this.channelDocRef, 'posts');
+  async setActivePosts(contextDocRef: DocumentReference) {
+    this.postsColRef = collection(contextDocRef, 'posts');
     this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
       const posts: Post[] = snapshot.docs.map(doc => this.mapDocToPost(doc.data()));
       this.dataService.handlePostData(posts);
@@ -260,7 +277,6 @@ export class FirestoreService {
 
 
   addThreadToPost(threadRef: any, post: Post) {
-
     addDoc(threadRef, post)
       .then(() => console.log('Thread created successfully'))
       .catch(error => console.error('Thread creation failed:', error));
@@ -292,7 +308,7 @@ export class FirestoreService {
         }
       })
     ).subscribe(queryDocId => {
-      this.router.navigate([`workspace/direct-messages/${queryDocId}`])
+      this.setActiveChat(queryDocId)
     })
   };
 
@@ -307,7 +323,7 @@ export class FirestoreService {
     })).pipe(
       map(docRef => {
         return docRef.id
-  })
+      })
     )
   }
 }

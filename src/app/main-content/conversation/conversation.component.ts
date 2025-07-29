@@ -119,8 +119,8 @@ export class ConversationComponent implements OnInit {
 
   loadContent(contentType: ConversationType, contentId: string) {
       switch(contentType) {
-        // case 'direct-messages': this.firestoreService.setActiveChat()
-        // break;
+        case 'direct-messages': this.firestoreService.setActiveChat(contentId)
+        break;
         case 'channel': this.firestoreService.setActiveChannel(contentId);
         break;
         default: console.warn(`unbekannter Content Type: ${contentType}`)
