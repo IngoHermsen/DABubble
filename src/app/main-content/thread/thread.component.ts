@@ -54,17 +54,11 @@ export class ThreadComponent {
 
 
   logPost(post: Post){
-    console.log(post);
-    this.threadService.logCurrentId();  
     const channelName = this.dataService.channelData?.channelName
     const postId = this.threadService.postId()
-    const threadRef = this.firestoreService.getThreadCollectionRef(channelName, postId )
-    
-    this.firestoreService.addThreadToPost(threadRef, post)
+    this.firestoreService.addThreadToPost(channelName, postId, post)
   }
 
-//   const threadRef = this.firestoreService.getThreadCollectionRef(channelName, postId);
-// addDoc(threadRef, { text: 'Neuer Thread-Kommentar', createdAt: serverTimestamp() });
 
 }
 

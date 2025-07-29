@@ -262,8 +262,8 @@ export class FirestoreService {
   }
 
 
-  addThreadToPost(threadRef: any, post: Post) {
-
+  addThreadToPost(channel: any, postId: any, post: any) {
+    let threadRef = this.getThreadCollectionRef(channel, postId)
     addDoc(threadRef, post)
       .then(() => console.log('Thread created successfully'))
       .catch(error => console.error('Thread creation failed:', error));
