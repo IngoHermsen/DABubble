@@ -149,6 +149,7 @@ export class FirestoreService {
 
     const channelDataRemote: DocumentData = docSnap.data();
     const channelDataLocal: Channel = this.mapDocToChannel(channelDataRemote);
+    this.dataService.conversationTitle = channelDataLocal.channelName!;
     this.dataService.channelData = channelDataLocal;
   
     if (this.unsubPostsCol) this.unsubPostsCol();
