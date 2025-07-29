@@ -269,7 +269,16 @@ export class FirestoreService {
 
   // === Direct Messages ===
 
-  setActiveChat(userMail: string) {
+  /**
+ * Initializes a direct message chat by checking if a chat document exists for the given users.
+ * Creates a new chat if none exists, then navigates to the chat route with the chat ID.
+ * 
+ * This ensures the chat is ready before routing and abstracts the get-or-create logic.
+ * 
+ * @param userMail Email of the user to chat with.
+ */
+
+  initializeChat(userMail: string) {
     const chatKey = this.createChatKey(userMail, this.authService.firebaseUser?.email!);
     const chatQuery = query(this.directMessagesColRef, where('chatKey', '==', chatKey))
 

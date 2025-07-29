@@ -62,6 +62,6 @@ export class WorkspaceComponent implements OnInit {
   }
 
   startChatWithUser(userMail: any) {
-    this.fsService.setActiveChat(userMail);
+    this.fsService.initializeChat(userMail);
   }
 }
