@@ -1,12 +1,12 @@
-import { inject, Injectable, OnInit, signal, Type, WritableSignal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { doc, Firestore, setDoc, onSnapshot, updateDoc, getDocs } from '@angular/fire/firestore';
-import { addDoc, collection, CollectionReference, DocumentData, DocumentReference, DocumentSnapshot, getDoc, query, QueryDocumentSnapshot, QuerySnapshot, where } from 'firebase/firestore';
-import { Channel, EMPTY_CHANNEL } from '../interfaces/channel';
+import { addDoc, collection, CollectionReference, DocumentData, DocumentReference, getDoc, query, where } from 'firebase/firestore';
+import { Channel } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { DataService } from './data.service';
-import { ViewService } from './view.service';
 import { FsUsers } from '../types/firestore_users';
-import { from, Observable, of } from 'rxjs';
+import { from, map, Observable, switchMap, take } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +16,15 @@ export class FirestoreService {
   // === Dependency Injections ===
   private dbFs = inject(Firestore);
   private dataService = inject(DataService);
-  private viewService = inject(ViewService);
+  private authService = inject(AuthService);
 
   // === Firestore References ===
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
-  chatDocRef: DocumentReference
   postsColRef: CollectionReference;
   usersColRef: CollectionReference = collection(this.dbFs, 'users');
   directMessagesColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'direct-messages');
+  chatDocRef: DocumentReference;
 
   // === Local Data ===
   allFsUsersJsonArr: FsUsers = [];
@@ -32,8 +32,8 @@ export class FirestoreService {
 
   // === Observables ===
 
-  channelNamesSearchQuery$: Observable<any>; 
-  userNamesSearchQuery$: Observable<any>; 
+  channelNamesSearchQuery$: Observable<any>;
+  userNamesSearchQuery$: Observable<any>;
 
 
   // === Unsubscribe Functions ===
@@ -155,11 +155,7 @@ export class FirestoreService {
     return true;
   }
 
-  async setActiveDirectMessages(chatId: string) {
-    this.chatDocRef = doc(this.directMessagesColRef, chatId);
-  }
 
-  
   // -----------------------------------------------------------------------------
   // Helper function used by `setActiveChannel()`
   // -----------------------------------------------------------------------------
@@ -270,22 +266,41 @@ export class FirestoreService {
   }
 
 
+  // === Direct Messages ===
 
-  unsubChannelSnapshot() {
+  setActiveChat(userMail: string) {
+    const chatKey = this.createChatKey(userMail, this.authService.firebaseUser?.email!);
+    const chatQuery = query(this.directMessagesColRef, where('chatKey', '==', chatKey))
 
+    from(getDocs(chatQuery)).pipe(
+      take(1),
+      switchMap(queryDoc => {
+        if (queryDoc.empty) {
+          return this.addNewChatDoc$(chatKey);
+        } else {
+          console.log('queryDoc', [queryDoc.docs[0]])
+          return from([queryDoc.docs[0]])
+        }
+      })
+    ).subscribe(queryDoc => {
+      console.log('Subscription Result:', queryDoc)
+    })
+  };
+
+  createChatKey(userMailA: string, userMailB: string) {
+    const userMails: string[] = [userMailA, userMailB].sort();
+    return `${userMails[0]}_${userMails[1]}`;
   }
-  // === search Query ===
 
-
-    getChannelQueryResult(searchTerm: string): Observable<QuerySnapshot> {
-        const q = query(
-          this.channelsColRef,
-          where('name', '>=', searchTerm)
-        
-        )
-        return from(getDocs(q))
-      }
-  
+  addNewChatDoc$(chatKey: string) {
+    return from(addDoc(this.directMessagesColRef, {
+      chatKey: chatKey
+    })).pipe(
+      map(docRef => {
+        return docRef.id
+  })
+    )
+  }
 }
 
 
