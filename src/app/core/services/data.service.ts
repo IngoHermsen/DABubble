@@ -11,7 +11,7 @@ export class DataService {
   channelIds: string[];
   channelData: Channel | undefined;
 
-  conversationName: string;
+  conversationTitle: string;
   conversationPosts: Post[];
   conversationPostsByDate: Array<any>;
 

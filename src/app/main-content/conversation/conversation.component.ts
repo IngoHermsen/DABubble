@@ -7,6 +7,8 @@ import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
+type ConversationType = 'direct-messages' | 'channel'
+
 @Component({
   selector: 'app-conversation',
   standalone: true,
@@ -27,7 +29,7 @@ export class ConversationComponent implements OnInit {
   // === Local Data ===
   public conversationOpened: boolean = false;
   posts: Post[];
-  
+
   /**
  * Initializes the component when it is loaded.
  * 
@@ -41,11 +43,10 @@ export class ConversationComponent implements OnInit {
   ngOnInit() {
     this.scrollToBottom();
     this.route.paramMap.subscribe(params => {
-      const channelId = params.get('id');
-      if (channelId) {
-        this.handleChannelData(channelId);
-        this.scrollToBottom();
-      }
+      const paramType = params.get('type') as ConversationType;
+      const paramId = params.get('id')!;
+      this.loadContent(paramType, paramId)
+      this.scrollToBottom();
     });
   }
 
@@ -60,24 +61,9 @@ export class ConversationComponent implements OnInit {
   }
 
 
-// -----------------------------------------------------------------------------
-// Internal helper functions used by `ngOnInit`
-// -----------------------------------------------------------------------------
-
-/**
- * Handles the logic for activating a specific channel based on its ID.
- * 
- * - Enables user action and auto-scroll behavior in the view service.
- * - Sets the active channel in the Firestore service.
- * 
- * @param channelId - The ID of the channel to be activated.
- */
-  async handleChannelData(channelId: string) {
-    const channelExists = await this.firestoreService.setActiveChannel(channelId);
-    if(channelExists){
-      this.firestoreService.setActivePosts()
-    }
-  }
+  // -----------------------------------------------------------------------------
+  // Internal helper functions used by `ngOnInit`
+  // -----------------------------------------------------------------------------
 
 
   /**
@@ -111,7 +97,7 @@ export class ConversationComponent implements OnInit {
     }, 1);
   }
 
-  
+
   /**
  * Formats a given date into a localized string used as a visual divider.
  * 
@@ -129,6 +115,16 @@ export class ConversationComponent implements OnInit {
     });
 
     return dateString;
+  };
+
+  loadContent(contentType: ConversationType, contentId: string) {
+      switch(contentType) {
+        // case 'direct-messages': this.firestoreService.setActiveChat()
+        // break;
+        case 'channel': this.firestoreService.setActiveChannel(contentId);
+        break;
+        default: console.warn(`unbekannter Content Type: ${contentType}`)
+      }
   }
 
 }
