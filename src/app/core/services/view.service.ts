@@ -20,7 +20,7 @@ export class ViewService {
   showThreadSection: boolean = false;
   showModal: boolean = false;
   mobileViewMaxWidth: number = 700;
-
+  threadsAllowed: boolean;
 
   activeChannelId: string;
   activeDialog = signal<ActiveDialogType>('logout');

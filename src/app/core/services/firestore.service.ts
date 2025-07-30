@@ -120,7 +120,7 @@ export class FirestoreService {
    * @returns The post object with the `postId` set.
    */
   async addPostToFirestore(post: Post) {
-    console.log('Neuer POst', post);
+    console.log('Neuer Post', post);
     const docRef = await addDoc(this.postsColRef, post);
     const postId = docRef.id;
 
@@ -166,8 +166,8 @@ export class FirestoreService {
 
     if (!docSnap.exists()) return false;
     
-    // this.router.navigate([`workspace/direct-messages/${chatId}`])
     if (this.unsubPostsCol) this.unsubPostsCol();
+    this.router.navigate([`workspace/direct-messages/${chatId}`])
     this.setActivePosts(this.chatDocRef);
     return true;
   }

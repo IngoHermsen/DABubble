@@ -65,4 +65,9 @@ export class WorkspaceComponent implements OnInit {
     this.dataService.conversationTitle = userMail;
     this.fsService.initializeChat(userMail);
   }
+
+  openChannel(channelName: string) {
+    this.viewService.closeThread();
+    this.router.navigate([`/workspace/channel/${channelName}`])
+  }
 }
