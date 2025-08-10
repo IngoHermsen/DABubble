@@ -7,7 +7,7 @@ import { EditAvatarComponent } from './auth/edit-avatar/edit-avatar.component';
 import { AuthPostAnimationComponent } from './auth/auth/auth.component';
 import { NewPostComponent } from './main-content/new-post/new-post.component';
 import { DirectMessagesComponent } from './main-content/direct-messages/direct-messages.component';
-import { ChannelComponent } from './main-content/channel/channel.component';
+import { ConversationComponent } from './main-content/conversation/conversation.component';
 import { ImprintComponent } from './imprint/imprint.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 
@@ -31,9 +31,8 @@ export const routes: Routes = [
       path: 'workspace', component: MainComponent,
         children:
             [
-                { path: 'channel/:id', component: ChannelComponent },
+                { path: ':type/:id', component: ConversationComponent },
                 { path: 'new-post', component: NewPostComponent },
-                { path: 'direct-messages', component: DirectMessagesComponent }
             ]
     },
 ];

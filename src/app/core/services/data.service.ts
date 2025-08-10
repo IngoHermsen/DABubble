@@ -11,8 +11,9 @@ export class DataService {
   channelIds: string[];
   channelData: Channel | undefined;
 
-  posts: Post[];
-  channelPostsByDate: Array<any>;
+  conversationTitle: string;
+  conversationPosts: Post[];
+  conversationPostsByDate: Array<any>;
 
   chatData: any;
   chatParticipant: string;
@@ -65,7 +66,7 @@ export class DataService {
       postGroups.get(transformedDate)?.push(post);
     });
 
-    this.channelPostsByDate = Array.from(postGroups.entries()).map(([date, posts]) => ({
+    this.conversationPostsByDate = Array.from(postGroups.entries()).map(([date, posts]) => ({
       date,
       posts
     }));

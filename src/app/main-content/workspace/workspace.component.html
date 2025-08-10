@@ -21,7 +21,7 @@
             @if(showChannelEntries) {
             <div class="entries">
                 @for(channel of dataService.channelIds; let index = $index; track $index) {
-                <div class="entry" (click)="this.viewService.closeThread()" [routerLink]="'channel/' + channel">
+                <div class="entry" (click)=this.openChannel(channel)>
                     # {{ channel }}
                 </div>
                 }

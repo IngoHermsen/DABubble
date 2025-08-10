@@ -56,7 +56,7 @@ export class ThreadComponent {
   logPost(post: Post){
     const channelName = this.dataService.channelData?.channelName
     const postId = this.threadService.postId()
-    this.firestoreService.addThreadToPost(channelName, postId, post)
+    this.firestoreService.addThreadToPost(channelName, post)
   }
 
 
