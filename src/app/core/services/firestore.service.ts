@@ -7,6 +7,7 @@ import { DataService } from './data.service';
 import { FsUsers } from '../types/firestore_users';
 import { from, map, Observable, switchMap, take } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class FirestoreService {
   private dbFs = inject(Firestore);
   private dataService = inject(DataService);
   private authService = inject(AuthService);
+  private router = inject(Router)
 
   // === Firestore References ===
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
@@ -102,7 +104,6 @@ export class FirestoreService {
    * @returns A promise that resolves once the document is written, or undefined if no `channelName` is provided.
    */
   async addChannelToFirestore(channel: Channel) {
-    console.log("channel", channel);
     if (channel.channelName) await setDoc(doc(this.channelsColRef, channel.channelName), channel);
   }
 
@@ -119,7 +120,7 @@ export class FirestoreService {
    * @returns The post object with the `postId` set.
    */
   async addPostToFirestore(post: Post) {
-    console.log('Neuer POst', post);
+    console.log('Neuer Post', post);
     const docRef = await addDoc(this.postsColRef, post);
     const postId = docRef.id;
 
@@ -128,7 +129,6 @@ export class FirestoreService {
     await updateDoc(docRef, { postId: docRef.id });
     return post;
   }
-
 
   /**
    * Loads and sets the active channel including its metadata for rendering.
@@ -149,12 +149,31 @@ export class FirestoreService {
 
     const channelDataRemote: DocumentData = docSnap.data();
     const channelDataLocal: Channel = this.mapDocToChannel(channelDataRemote);
+    this.dataService.conversationTitle = channelDataLocal.channelName!;
     this.dataService.channelData = channelDataLocal;
-
+  
     if (this.unsubPostsCol) this.unsubPostsCol();
+    this.setActivePosts(this.channelDocRef)
     return true;
   }
 
+  /**
+   * COMMENT !!   setActiveChat
+     */
+  async setActiveChat(chatId: string) {
+    this.chatDocRef = doc(this.directMessagesColRef, chatId);
+    const docSnap = await getDoc(this.chatDocRef);
+
+    if (!docSnap.exists()) return false;
+    
+    if (this.unsubPostsCol) this.unsubPostsCol();
+    this.router.navigate([`workspace/direct-messages/${chatId}`])
+    this.setActivePosts(this.chatDocRef);
+    return true;
+  }
+
+
+  // -----------------------------------------------------------------------------
 
   // -----------------------------------------------------------------------------
   // Helper function used by `setActiveChannel()`
@@ -181,8 +200,8 @@ export class FirestoreService {
    * - Converts each raw Firestore document into a typed `Post` object using `mapDocToPost()`.
    * - Passes the post array to the `dataService`, where it will be used for rendering in the UI.
    */
-  async setActivePosts() {
-    this.postsColRef = collection(this.channelDocRef, 'posts');
+  async setActivePosts(contextDocRef: DocumentReference) {
+    this.postsColRef = collection(contextDocRef, 'posts');
     this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
       const posts: Post[] = snapshot.docs.map(doc => this.mapDocToPost(doc.data()));
       this.dataService.handlePostData(posts);
@@ -258,8 +277,7 @@ export class FirestoreService {
   }
 
 
-  addThreadToPost(channel: any, postId: any, post: any) {
-    let threadRef = this.getThreadCollectionRef(channel, postId)
+  addThreadToPost(threadRef: any, post: Post) {
     addDoc(threadRef, post)
       .then(() => console.log('Thread created successfully'))
       .catch(error => console.error('Thread creation failed:', error));
@@ -268,7 +286,16 @@ export class FirestoreService {
 
   // === Direct Messages ===
 
-  setActiveChat(userMail: string) {
+  /**
+ * Initializes a direct message chat by checking if a chat document exists for the given users.
+ * Creates a new chat if none exists, then navigates to the chat route with the chat ID.
+ * 
+ * This ensures the chat is ready before routing and abstracts the get-or-create logic.
+ * 
+ * @param userMail Email of the user to chat with.
+ */
+
+  initializeChat(userMail: string) {
     const chatKey = this.createChatKey(userMail, this.authService.firebaseUser?.email!);
     const chatQuery = query(this.directMessagesColRef, where('chatKey', '==', chatKey))
 
@@ -278,12 +305,11 @@ export class FirestoreService {
         if (queryDoc.empty) {
           return this.addNewChatDoc$(chatKey);
         } else {
-          console.log('queryDoc', [queryDoc.docs[0]])
-          return from([queryDoc.docs[0]])
+          return from([queryDoc.docs[0].id])
         }
       })
-    ).subscribe(queryDoc => {
-      console.log('Subscription Result:', queryDoc)
+    ).subscribe(queryDocId => {
+      this.setActiveChat(queryDocId)
     })
   };
 
@@ -298,7 +324,7 @@ export class FirestoreService {
     })).pipe(
       map(docRef => {
         return docRef.id
-  })
+      })
     )
   }
 }

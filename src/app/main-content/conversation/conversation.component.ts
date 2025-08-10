@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
 import { MessageInputComponent } from '../message-input/message-input.component';
@@ -7,14 +7,16 @@ import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
+type ConversationType = 'direct-messages' | 'channel'
+
 @Component({
-  selector: 'app-channel',
+  selector: 'app-conversation',
   standalone: true,
   imports: [PostComponent, MessageInputComponent, RouterLink],
-  templateUrl: './channel.component.html',
-  styleUrl: './channel.component.scss'
+  templateUrl: './conversation.component.html',
+  styleUrl: './conversation.component.scss'
 })
-export class ChannelComponent implements OnInit {
+export class ConversationComponent implements OnInit {
   @ViewChild('scrollAnchor') scrollAnchor!: ElementRef;
 
   // === Dependency Injections ===
@@ -25,11 +27,9 @@ export class ChannelComponent implements OnInit {
 
 
   // === Local Data ===
-  public channelOpened: boolean = false;
+  public conversationOpened: boolean = false;
   posts: Post[];
 
-
-  
   /**
  * Initializes the component when it is loaded.
  * 
@@ -43,11 +43,10 @@ export class ChannelComponent implements OnInit {
   ngOnInit() {
     this.scrollToBottom();
     this.route.paramMap.subscribe(params => {
-      const channelId = params.get('id');
-      if (channelId) {
-        this.handleChannelData(channelId);
-        this.scrollToBottom();
-      }
+      const paramType = params.get('type') as ConversationType;
+      const paramId = params.get('id')!;
+      this.loadContent(paramType, paramId)
+      this.scrollToBottom();
     });
   }
 
@@ -62,24 +61,9 @@ export class ChannelComponent implements OnInit {
   }
 
 
-// -----------------------------------------------------------------------------
-// Internal helper functions used by `ngOnInit`
-// -----------------------------------------------------------------------------
-
-/**
- * Handles the logic for activating a specific channel based on its ID.
- * 
- * - Enables user action and auto-scroll behavior in the view service.
- * - Sets the active channel in the Firestore service.
- * 
- * @param channelId - The ID of the channel to be activated.
- */
-  async handleChannelData(channelId: string) {
-    const channelExists = await this.firestoreService.setActiveChannel(channelId);
-    if(channelExists){
-      this.firestoreService.setActivePosts()
-    }
-  }
+  // -----------------------------------------------------------------------------
+  // Internal helper functions used by `ngOnInit`
+  // -----------------------------------------------------------------------------
 
 
   /**
@@ -113,7 +97,7 @@ export class ChannelComponent implements OnInit {
     }, 1);
   }
 
-  
+
   /**
  * Formats a given date into a localized string used as a visual divider.
  * 
@@ -131,39 +115,16 @@ export class ChannelComponent implements OnInit {
     });
 
     return dateString;
+  };
+
+  loadContent(contentType: ConversationType, contentId: string) {
+      switch(contentType) {
+        case 'direct-messages': this.firestoreService.setActiveChat(contentId)
+        break;
+        case 'channel': this.firestoreService.setActiveChannel(contentId);
+        break;
+        default: console.warn(`unbekannter Content Type: ${contentType}`)
+      }
   }
 
-
-  // posts = [   //examples - will later be fetched from database / backend
-  //   {
-  //     postId: '12345',
-  //     creatorId: 'Max Mustermann',
-  //     text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-  //     reactions: [ss
-  //       {reactionId: 'grin', users: ['1234', 'user2']},
-  //       {reactionId: 'smile', users: ['user1', 'user2']},
-  //     ],
-  //     creationTime: '12:00',
-  //     isAnswer: false,
-  //   },
-  //   {
-  //     postId: '23456',
-  //     creatorId: 'Yogi Bär',
-  //     text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do. Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-  //     reactions: [],
-  //     creationTime: '08:59',
-  //     isAnswer: false,
-  //     imgPath: 'assets/images/testImg/yogi.png'
-  //   },
-  //   {
-  //     postId: '56789',
-  //     creatorId: 'Tante Emma',
-  //     text: 'Lorem ipsum Do velit velit aute eu mollit qui minim do.',
-  //     reactions: [],
-  //     creationTime: '14:29',
-  //     isAnswer: false,
-  //   },
-
-
-  // ];
 }
