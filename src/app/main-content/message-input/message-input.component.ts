@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Post } from '../../core/interfaces/post';
-import { Timestamp } from 'firebase/firestore';
+import { serverTimestamp, Timestamp } from 'firebase/firestore';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -73,7 +73,7 @@ export class MessageInputComponent {
         creatorId: this.authService.firebaseUser?.email || 'walter.falter@dabubble.com',
         text: message,
         reactions: [],
-        creationTime: Timestamp.fromDate(new Date()),
+        creationTime: serverTimestamp(),
         isAnswer: false
       };
       this.newPost.emit(this.post);

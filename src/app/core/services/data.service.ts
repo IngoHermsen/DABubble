@@ -56,14 +56,18 @@ export class DataService {
    * @param posts Array of sorted Post objects.
    */
   private groupPostsByDate(posts: Post[]) {
+    console.log('POSTS', posts)
     const postGroups: Map<string, Post[]> = new Map();
 
     posts.forEach(post => {
-      const transformedDate = this.transformDate(post.creationTime);
+      if(post.creationTime instanceof Timestamp) {
+              const transformedDate = this.transformDate(post.creationTime);
       if (!postGroups.has(transformedDate)) {
         postGroups.set(transformedDate, []);
       }
       postGroups.get(transformedDate)?.push(post);
+      }
+
     });
 
     this.conversationPostsByDate = Array.from(postGroups.entries()).map(([date, posts]) => ({

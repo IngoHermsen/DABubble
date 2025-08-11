@@ -5,7 +5,7 @@ import { EmojiComponent, EmojiEvent } from '@ctrl/ngx-emoji-mart/ngx-emoji';
 import { ThreadService } from '../core/services/thread.service';
 import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
-import { doc, DocumentReference, getDoc } from 'firebase/firestore';
+import { doc, DocumentReference, getDoc, Timestamp } from 'firebase/firestore';
 
 // === Type Definitions ===
 
@@ -83,7 +83,7 @@ export class PostComponent implements OnInit, AfterViewInit {
  */
 
   async getcreator() {
-   this.creatorDocRef = doc(this.firestoreService.usersColRef, this.post.creatorId);
+    this.creatorDocRef = doc(this.firestoreService.usersColRef, this.post.creatorId);
     await getDoc(this.creatorDocRef).then(docSnap => {
       if (docSnap.exists()) {
         const creatorObj: Creator = {
@@ -92,7 +92,7 @@ export class PostComponent implements OnInit, AfterViewInit {
         }
         this.creator = creatorObj;
         this.dataLoaded = true;
-      } 
+      }
     });
 
   }
@@ -236,38 +236,38 @@ export class PostComponent implements OnInit, AfterViewInit {
   }
 
 
-// === Navigation ===
-/**
- * Opens the thread:
- * - caches thread data
- * - shows the thread section
- */
-openThread() {
-  this.setThreadData();
-  this.showThreadSection();
-}
+  // === Navigation ===
+  /**
+   * Opens the thread:
+   * - caches thread data
+   * - shows the thread section
+   */
+  openThread() {
+    this.setThreadData();
+    this.showThreadSection();
+  }
 
 
-// === Helper Methods ===
-/**
- * Caches current post data in ThreadService.
- */
-private setThreadData() {
-  const tS = this.threadService;
-  tS.setPostText(this.post.text);
-  tS.setPostId(this.post.postId);
-  tS.setCreatorImg(this.creator.photoURL);
-  tS.setCreatorName(this.creator.username);
-  tS.setTimeString(this.timeAsString);
-}
+  // === Helper Methods ===
+  /**
+   * Caches current post data in ThreadService.
+   */
+  private setThreadData() {
+    const tS = this.threadService;
+    tS.setPostText(this.post.text);
+    tS.setPostId(this.post.postId);
+    tS.setCreatorImg(this.creator.photoURL);
+    tS.setCreatorName(this.creator.username);
+    tS.setTimeString(this.timeAsString);
+  }
 
 
-/**
- * Sets the flag to display the thread section.
- */
-private showThreadSection() {
-  this.viewService.showThreadSection = true;
-}
+  /**
+   * Sets the flag to display the thread section.
+   */
+  private showThreadSection() {
+    this.viewService.showThreadSection = true;
+  }
 
 
   // === Computed Properties ===
@@ -277,12 +277,15 @@ private showThreadSection() {
    * - Format: "HH:MM Uhr" in German locale.
    */
   get timeAsString(): string {
-    const creationTime: Date = this.post.creationTime.toDate();
-    const timeAsString: String = creationTime.toLocaleTimeString('de-DE', {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-    return timeAsString + ' Uhr';
+    if (this.post.creationTime instanceof Timestamp) {
+      const creationTime: Date = this.post.creationTime.toDate();
+      const timeAsString: String = creationTime.toLocaleTimeString('de-DE', {
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+      return timeAsString + ' Uhr';
+    }
+      return '**:**'
   }
 
 }
