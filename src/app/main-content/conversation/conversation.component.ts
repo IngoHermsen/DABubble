@@ -51,11 +51,6 @@ export class ConversationComponent implements OnInit {
   }
 
 
-  /**
- * Lifecycle hook that is called when the component is destroyed.
- * 
- * - Unsubscribes from the Firestore posts collection to prevent memory leaks.
- */
   ngOnDestroy() {
     this.firestoreService.unsubPostsCol();
   }
@@ -80,16 +75,6 @@ export class ConversationComponent implements OnInit {
     }, 1000);
   }
 
-
-  /**
- * Adds a new post to the Firestore collection.
- * 
- * - Marks the action as user-initiated via `viewService.channelUserAction`.
- * - Sends the new post to Firestore.
- * - Scrolls the view to the bottom shortly after adding the post.
- * 
- * @param post - The post object to be added.
- */
   addPost(post: Post) {
     this.firestoreService.addPostToFirestore(post);
     setTimeout(() => {
@@ -101,7 +86,7 @@ export class ConversationComponent implements OnInit {
   /**
  * Formats a given date into a localized string used as a visual divider.
  * 
- * - Converts the date into a human-readable German format with weekday, day, and month.
+ * - Converts the date into a human-readable format with weekday, day, and month.
  * - Example output: "Montag, 17. Juni"
  * 
  * @param date - The date to be formatted.

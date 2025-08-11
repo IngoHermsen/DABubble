@@ -27,7 +27,6 @@ export class SignupComponent {
   hideSignupSuccessMsg = true;
   makeVisible = false;
 
-
   /** 
    * Uses setTimeout to ensure the class is applied after the initial view rendering.
   */

@@ -120,7 +120,6 @@ export class FirestoreService {
    * @returns The post object with the `postId` set.
    */
   async addPostToFirestore(post: Post) {
-    console.log('Neuer Post', post);
     const docRef = await addDoc(this.postsColRef, post);
     const postId = docRef.id;
 

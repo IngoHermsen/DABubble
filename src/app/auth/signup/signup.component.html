@@ -44,7 +44,7 @@
     <div class="input-box">
       <!------------------------- PASSWORD ------------------------->
       <input class="input-styling" [type]="authService.showPassword ? 'text' : 'password'" placeholder="Password"
-        #password name="password" ngModel required autocomplete="off" />
+        #password name="password" minlength="{{this.validation.passwordMinLength}}" ngModel required autocomplete="off" />
 
       <img (click)="authService.togglePasswordVisibility()" id="signup-pw-icon" class="place-input-img"
         src="../../../assets/icons/lock.png" alt="">

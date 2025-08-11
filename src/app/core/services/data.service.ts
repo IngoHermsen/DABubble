@@ -56,7 +56,6 @@ export class DataService {
    * @param posts Array of sorted Post objects.
    */
   private groupPostsByDate(posts: Post[]) {
-    console.log('POSTS', posts)
     const postGroups: Map<string, Post[]> = new Map();
 
     posts.forEach(post => {

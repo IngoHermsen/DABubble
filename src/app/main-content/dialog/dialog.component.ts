@@ -94,8 +94,6 @@ export class DialogComponent implements OnInit {
       creatorName: this.authService.firebaseUser?.displayName || 'Walter Falter (Gast)'
     };
 
-    console.log('firebaseUser', );
-
     this.fsService.addChannelToFirestore(channel);
     this.viewService.showModal = false;
   }

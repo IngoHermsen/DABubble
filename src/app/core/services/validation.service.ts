@@ -3,20 +3,16 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class ValidationService {
-
-
-  constructor() { }
-  
+export class ValidationService {  
   emailWarningMsg = "*Unzulässige Email";
   passwordWarningMsg = "* Passwort zu kurz"
+  passwordMinLength: number = 5;
 
   elementVisibility: any = {
     emailErrorVisible: false,
-    userNameErrorVisislbe: false,
+    userNameErrorVisible: false,
     passwordErrorVisible: false,
   };
-
 
   hideAllErrorMsgs(){
     for(let key in this.elementVisibility){
@@ -54,7 +50,7 @@ export class ValidationService {
 
   checkPassword(passwordValue: string) {
     this.elementVisibility.passwordErrorVisible = 
-      passwordValue.length < 8 ? true : false;
+      passwordValue.length < this.passwordMinLength ? true : false;
   }
   
 
