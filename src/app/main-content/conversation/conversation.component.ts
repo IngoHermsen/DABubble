@@ -52,7 +52,9 @@ export class ConversationComponent implements OnInit {
     });
 
     this.loadingSpinner.show();
-
+    setTimeout(() => {
+      this.loadingSpinner.hide()
+    }, 1500);
   }
 
 
