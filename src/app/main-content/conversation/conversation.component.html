@@ -1,14 +1,15 @@
 <div class="card">
-    <div class="fixed-header box-shadow">
 
+    <div class="fixed-header box-shadow">
         @if(viewService.mobileView) {
         <span class="material-icons-round arrow-back" [routerLink]="['/workspace']">arrow_back_ios</span>
         }
 
         <h2 class="conversation-name">{{ dataService.conversationTitle }}</h2>
     </div>
-
     <div class="posts" #scroll>
+        <ngx-spinner color=rgba(0,0,0,0.8) bdColor="white" [fullScreen]="false" type="ball-clip-rotate-pulse"></ngx-spinner>
+
         @for (dateBlock of dataService.conversationPostsByDate; track $index) {
         <div class="divider">
             <span class="date">{{ dateBlock.date }}</span>
@@ -22,7 +23,6 @@
         }
         <div #scrollAnchor></div>
     </div>
-
     <div class="message-input">
         <app-message-input (newPost)="addPost($event)"></app-message-input>
     </div>

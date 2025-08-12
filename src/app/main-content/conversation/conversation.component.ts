@@ -6,13 +6,14 @@ import { DataService } from '../../core/services/data.service';
 import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 
 type ConversationType = 'direct-messages' | 'channel'
 
 @Component({
   selector: 'app-conversation',
   standalone: true,
-  imports: [PostComponent, MessageInputComponent, RouterLink],
+  imports: [PostComponent, MessageInputComponent, RouterLink, NgxSpinnerModule],
   templateUrl: './conversation.component.html',
   styleUrl: './conversation.component.scss'
 })
@@ -24,11 +25,12 @@ export class ConversationComponent implements OnInit {
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
   public route = inject(ActivatedRoute);
+  public loadingSpinner = inject(NgxSpinnerService);
 
 
   // === Local Data ===
   public conversationOpened: boolean = false;
-  posts: Post[];
+  public posts: Post[];
 
   /**
  * Initializes the component when it is loaded.
@@ -48,6 +50,9 @@ export class ConversationComponent implements OnInit {
       this.loadContent(paramType, paramId)
       this.scrollToBottom();
     });
+
+    this.loadingSpinner.show();
+
   }
 
 
@@ -103,13 +108,13 @@ export class ConversationComponent implements OnInit {
   };
 
   loadContent(contentType: ConversationType, contentId: string) {
-      switch(contentType) {
-        case 'direct-messages': this.firestoreService.setActiveChat(contentId)
+    switch (contentType) {
+      case 'direct-messages': this.firestoreService.setActiveChat(contentId)
         break;
-        case 'channel': this.firestoreService.setActiveChannel(contentId);
+      case 'channel': this.firestoreService.setActiveChannel(contentId);
         break;
-        default: console.warn(`unbekannter Content Type: ${contentType}`)
-      }
+      default: console.warn(`unbekannter Content Type: ${contentType}`)
+    }
   }
 
 }

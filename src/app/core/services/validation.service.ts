@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ValidationService {  
-  emailWarningMsg = "*Unzulässige Email";
+  emailWarningMsg = "* Unzulässige Email";
   passwordWarningMsg = "* Passwort zu kurz"
   passwordMinLength: number = 5;
 

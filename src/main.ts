@@ -5,7 +5,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 
-bootstrapApplication(AppComponent,  {
+bootstrapApplication(AppComponent, {
   providers: [
     provideHttpClient(),
     provideAnimations(),
