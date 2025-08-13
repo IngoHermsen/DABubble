@@ -202,7 +202,6 @@ export class FirestoreService {
   async setActivePosts(contextDocRef: DocumentReference) {
     this.postsColRef = collection(contextDocRef, 'posts');
     this.unsubPostsCol = onSnapshot(this.postsColRef, snapshot => {
-      if (snapshot.metadata.hasPendingWrites) return;
       const posts: Post[] = snapshot.docs.map(doc => this.mapDocToPost(doc.data()));
       this.dataService.handlePostData(posts);
     });

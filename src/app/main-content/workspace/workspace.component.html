@@ -21,7 +21,7 @@
             @if(showChannelEntries) {
             <div class="entries">
                 @for(channel of dataService.channelIds; let index = $index; track $index) {
-                <div class="entry" (click)=this.openChannel(channel)>
+                <div class="entry no-wrap" (click)=this.openChannel(channel)>
                     # {{ channel }}
                 </div>
                 }
@@ -73,7 +73,7 @@
                             width="50">
                         <div class="dot offline"></div>
                     </div>
-                    <span class="username" (click)="startChatWithUser(user.email)">{{ user.username }}</span>
+                    <span class="username no-wrap" (click)="startChatWithUser(user.email)">{{ user.username }}</span>
                 </div>
 
                 }
