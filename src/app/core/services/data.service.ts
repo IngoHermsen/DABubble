@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Channel } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { Timestamp } from 'firebase/firestore';
@@ -14,6 +14,7 @@ export class DataService {
   conversationTitle: string;
   conversationPosts: Post[];
   conversationPostsByDate: Array<any>;
+  conversationContentReady = signal(false);
 
   chatData: any;
   chatParticipant: string;
@@ -59,20 +60,24 @@ export class DataService {
     const postGroups: Map<string, Post[]> = new Map();
 
     posts.forEach(post => {
-      if(post.creationTime instanceof Timestamp) {
-              const transformedDate = this.transformDate(post.creationTime);
-      if (!postGroups.has(transformedDate)) {
-        postGroups.set(transformedDate, []);
+      if (post.creationTime instanceof Timestamp) {
+        const transformedDate = this.transformDate(post.creationTime);
+        if (!postGroups.has(transformedDate)) {
+          postGroups.set(transformedDate, []);
+        }
+        postGroups.get(transformedDate)?.push(post);
       }
-      postGroups.get(transformedDate)?.push(post);
-      }
-
     });
 
-    this.conversationPostsByDate = Array.from(postGroups.entries()).map(([date, posts]) => ({
+    const postGroupsAsArray = Array.from(postGroups.entries()).map(([date, posts]) => ({
       date,
       posts
     }));
+
+    this.conversationPostsByDate = postGroupsAsArray;
+    setTimeout(() => {
+      this.conversationContentReady.set(true)
+    }, 800)
   }
 
 
@@ -108,5 +113,5 @@ export class DataService {
     };
   };
 
-  
+
 }

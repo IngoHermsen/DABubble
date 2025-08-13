@@ -82,4 +82,5 @@ export class ViewService {
   closeThread(){
     this.showThreadSection = false
   }
+
 }

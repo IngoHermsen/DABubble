@@ -7,9 +7,9 @@
 
         <h2 class="conversation-name">{{ dataService.conversationTitle }}</h2>
     </div>
-    <div class="posts" #scroll>
-        <ngx-spinner color=rgba(0,0,0,0.5) bdColor="white" [fullScreen]="false" type="ball-clip-rotate-pulse"></ngx-spinner>
+        <ngx-spinner [disableAnimation]="true" color=rgba(0,0,0,0.5) bdColor="white" [fullScreen]="false" type="ball-scale-pulse"></ngx-spinner>
 
+    <div class="posts" #scroll>
         @for (dateBlock of dataService.conversationPostsByDate; track $index) {
         <div class="divider">
             <span class="date">{{ dateBlock.date }}</span>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, effect, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { Post } from '../../core/interfaces/post';
 import { PostComponent } from '../../post/post.component';
 import { MessageInputComponent } from '../message-input/message-input.component';
@@ -32,6 +32,15 @@ export class ConversationComponent implements OnInit {
   public conversationOpened: boolean = false;
   public posts: Post[];
 
+  constructor() {
+    effect(() => {
+      console.log('entered effect in conversation component')
+      const contentReady = this.dataService.conversationContentReady();
+      console.log('Yes, content is ready', contentReady)
+      this.handleLoadingState(contentReady)
+    })
+  }
+
   /**
  * Initializes the component when it is loaded.
  * 
@@ -45,16 +54,13 @@ export class ConversationComponent implements OnInit {
   ngOnInit() {
     this.scrollToBottom();
     this.route.paramMap.subscribe(params => {
+    this.dataService.conversationContentReady.set(false);
       const paramType = params.get('type') as ConversationType;
       const paramId = params.get('id')!;
       this.loadContent(paramType, paramId)
       this.scrollToBottom();
     });
-
-    this.loadingSpinner.show();
-    setTimeout(() => {
-      this.loadingSpinner.hide()
-    }, 1500);
+    
   }
 
 
@@ -116,6 +122,14 @@ export class ConversationComponent implements OnInit {
       case 'channel': this.firestoreService.setActiveChannel(contentId);
         break;
       default: console.warn(`unbekannter Content Type: ${contentType}`)
+    }
+  }
+
+  handleLoadingState(ready: boolean) {
+    if(ready) {
+      this.loadingSpinner.hide();
+    } else {
+      this.loadingSpinner.show()
     }
   }
 
