@@ -77,7 +77,7 @@ export class DataService {
     this.conversationPostsByDate = postGroupsAsArray;
     setTimeout(() => {
       this.conversationContentReady.set(true)
-    }, 800)
+    }, 700)
   }
 
 

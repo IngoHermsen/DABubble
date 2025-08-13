@@ -1,5 +1,4 @@
 <div class="card">
-
     <div class="fixed-header box-shadow">
         @if(viewService.mobileView) {
         <span class="material-icons-round arrow-back" [routerLink]="['/workspace']">arrow_back_ios</span>
@@ -7,23 +6,26 @@
 
         <h2 class="conversation-name">{{ dataService.conversationTitle }}</h2>
     </div>
-        <ngx-spinner [disableAnimation]="true" color=rgba(0,0,0,0.5) bdColor="white" [fullScreen]="false" type="ball-scale-pulse"></ngx-spinner>
+    <div class="conversation-content">
+        <ngx-spinner [disableAnimation]="true" color=rgba(0,0,0,0.5) bdColor="white" [fullScreen]="false"
+            type="ball-scale-pulse"></ngx-spinner>
+        <div class="posts" #scroll>
+            @for (dateBlock of dataService.conversationPostsByDate; track $index) {
+            <div class="divider">
+                <span class="date">{{ dateBlock.date }}</span>
+            </div>
 
-    <div class="posts" #scroll>
-        @for (dateBlock of dataService.conversationPostsByDate; track $index) {
-        <div class="divider">
-            <span class="date">{{ dateBlock.date }}</span>
+            @for (post of dateBlock.posts; let index = $index; track $index) {
+            <div class="post-wrapper">
+                <app-post [index]="index" [post]="post"></app-post>
+            </div>
+            }
+            }
+            <div #scrollAnchor></div>
         </div>
+        <div class="message-input">
+            <app-message-input (newPost)="addPost($event)"></app-message-input>
+        </div>
+    </div>
 
-        @for (post of dateBlock.posts; let index = $index; track $index) {
-        <div class="post-wrapper">
-            <app-post [index]="index" [post]="post"></app-post>
-        </div>
-        }
-        }
-        <div #scrollAnchor></div>
-    </div>
-    <div class="message-input">
-        <app-message-input (newPost)="addPost($event)"></app-message-input>
-    </div>
 </div>

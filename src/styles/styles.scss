@@ -178,7 +178,7 @@ button {
 
 // ************************ Posts **************************
 
-.posts {
+.conversation-content {
   width: 100%;
   @include dflex($fD: column, $jC: flex-start, $gap: 28px);
   overflow-y: auto;
