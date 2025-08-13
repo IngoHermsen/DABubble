@@ -7,9 +7,10 @@
         <h2 class="conversation-name">{{ dataService.conversationTitle }}</h2>
     </div>
     <div class="conversation-content">
-        <ngx-spinner [disableAnimation]="true" color=rgba(0,0,0,0.5) bdColor="white" [fullScreen]="false"
+        <ngx-spinner [disableAnimation]="true" color=#b1b6de bdColor="white" [fullScreen]="false"
             type="ball-scale-pulse"></ngx-spinner>
         <div class="posts" #scroll>
+            @if(this.dataService.conversationPostsByDate.length > 0) {
             @for (dateBlock of dataService.conversationPostsByDate; track $index) {
             <div class="divider">
                 <span class="date">{{ dateBlock.date }}</span>
@@ -22,6 +23,12 @@
             }
             }
             <div #scrollAnchor></div>
+            } @else {
+            <div class="empty-placeholder">
+                <img src="/assets/images/undraw_typewriter_d4km.png" alt="empty_conversation_placeholder">
+            </div>
+            }
+
         </div>
         <div class="message-input">
             <app-message-input (newPost)="addPost($event)"></app-message-input>

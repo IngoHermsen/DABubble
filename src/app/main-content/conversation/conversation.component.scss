@@ -18,6 +18,15 @@ $divider-color: #ADB0D9;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+};
+
+.empty-placeholder {
+    height: 100%;
+    @include dflex($fD: column, $jC: center, $aI: center)
+}
+
+.empty-placeholder img {
+  max-width: 280px;
 }
 
 .posts {
