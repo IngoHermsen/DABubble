@@ -91,9 +91,11 @@ export class SearchComponent implements AfterViewInit {
     }
   }
 
-  handleResultClick(channel: string) {
+  handleResultClick(isChannel: boolean, channel: string) {
     this.searchTerm = ''
     this.searchTerms$.next(this.searchTerm);
-    this.router.navigate([`workspace/channel/${channel}`])
+
+    if(isChannel)
+    this.router.navigate([`workspace/channel`])
   }
 }
