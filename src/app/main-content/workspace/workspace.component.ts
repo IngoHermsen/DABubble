@@ -62,8 +62,9 @@ export class WorkspaceComponent implements OnInit {
   }
 
   startChatWithUser(userMail: any) {
+    const userObj = this.usersArray.find(user => user.email == userMail);
     this.dataService.conversationTitle = userMail;
-    this.fsService.initializeChat(userMail);
+    this.fsService.initializeChat(userObj);
   }
 
   openChannel(channelName: string) {

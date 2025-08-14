@@ -34,9 +34,7 @@ export class ConversationComponent implements OnInit {
 
   constructor() {
     effect(() => {
-      console.log('entered effect in conversation component')
       const contentReady = this.dataService.conversationContentReady();
-      console.log('Yes, content is ready', contentReady)
       this.handleLoadingState(contentReady)
     })
   }

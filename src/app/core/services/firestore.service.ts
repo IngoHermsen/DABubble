@@ -150,7 +150,7 @@ export class FirestoreService {
     const channelDataLocal: Channel = this.mapDocToChannel(channelDataRemote);
     this.dataService.conversationTitle = channelDataLocal.channelName!;
     this.dataService.channelData = channelDataLocal;
-  
+
     if (this.unsubPostsCol) this.unsubPostsCol();
     this.setActivePosts(this.channelDocRef)
     return true;
@@ -164,7 +164,7 @@ export class FirestoreService {
     const docSnap = await getDoc(this.chatDocRef);
 
     if (!docSnap.exists()) return false;
-    
+
     if (this.unsubPostsCol) this.unsubPostsCol();
     this.router.navigate([`workspace/direct-messages/${chatId}`])
     this.setActivePosts(this.chatDocRef);
@@ -294,9 +294,10 @@ export class FirestoreService {
  * @param userMail Email of the user to chat with.
  */
 
-  initializeChat(userMail: string) {
-    const chatKey = this.createChatKey(userMail, this.authService.firebaseUser?.email!);
+  initializeChat(participantObj: any) {
+    const chatKey = this.createChatKey(participantObj.email, this.authService.firebaseUser?.email!);
     const chatQuery = query(this.directMessagesColRef, where('chatKey', '==', chatKey))
+    this.dataService.conversationTitle = participantObj.username
 
     from(getDocs(chatQuery)).pipe(
       take(1),

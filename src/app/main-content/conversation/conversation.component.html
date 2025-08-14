@@ -10,7 +10,7 @@
         <ngx-spinner [disableAnimation]="true" color=#b1b6de bdColor="white" [fullScreen]="false"
             type="ball-scale-pulse"></ngx-spinner>
         <div class="posts" #scroll>
-            @if(this.dataService.conversationPostsByDate.length > 0) {
+            @if(this.dataService.conversationPostsByDate && this.dataService.conversationPostsByDate.length > 0) {
             @for (dateBlock of dataService.conversationPostsByDate; track $index) {
             <div class="divider">
                 <span class="date">{{ dateBlock.date }}</span>
