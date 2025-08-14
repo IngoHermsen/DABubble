@@ -297,8 +297,6 @@ export class FirestoreService {
   initializeChat(participantObj: any) {
     const chatKey = this.createChatKey(participantObj.email, this.authService.firebaseUser?.email!);
     const chatQuery = query(this.directMessagesColRef, where('chatKey', '==', chatKey))
-    this.dataService.conversationTitle = participantObj.username
-
     from(getDocs(chatQuery)).pipe(
       take(1),
       switchMap(queryDoc => {
