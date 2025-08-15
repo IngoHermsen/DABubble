@@ -6,3 +6,12 @@ export interface User {
     isOnline: boolean;
     photoURL: string;
 }
+
+export const EMPTY_USER: User = {
+    email: '',
+    displayName: '',
+    directMessages: [], 
+    avatarPath: '',
+    isOnline: false,
+    photoURL: ''
+} as const

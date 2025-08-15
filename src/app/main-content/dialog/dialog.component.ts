@@ -4,14 +4,16 @@ import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { Channel } from '../../core/interfaces/channel';
 import { AuthService } from '../../core/services/auth.service';
-import { RouterLink, Router, RouterOutlet } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 import {
   User as FirebaseUser,
   getAuth,
-  updateProfile
+  updateProfile,
+  user
 } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
+import { EMPTY_USER, User } from '../../core/interfaces/user';
 
 @Component({
   selector: 'app-dialog',
@@ -29,31 +31,14 @@ export class DialogComponent implements OnInit {
   private fsService = inject(FirestoreService);
   private router = inject(Router);
   public viewService = inject(ViewService);
-  authService = inject(AuthService);
+  public authService = inject(AuthService)
+
+  profileCardData: User = EMPTY_USER;
 
   avatarPath: string;
   userName: string;
   firebaseUser: FirebaseUser | null;
   userMail: string | null | undefined;
-
-
-
-  /**
- * Angular lifecycle hook that runs after component initialization.
- * 
- * Subscribes to the `firebaseUser$` observable from `authService` and sets
- * user-related component properties including display name, avatar path, email,
- * and the full Firebase user object.
- */
-  ngOnInit(): void {
-    this.authService.firebaseUser$.subscribe(user => {
-      this.userName = user?.displayName ?? "Guest";
-      this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png";
-      this.firebaseUser = user;
-      this.userMail = user?.email;
-    });
-
-  }
 
 
   /**
@@ -75,6 +60,23 @@ export class DialogComponent implements OnInit {
       nonNullable: true,
     })
   });
+
+  /**
+ * Angular lifecycle hook that runs after component initialization.
+ * 
+ * Subscribes to the `firebaseUser$` observable from `authService` and sets
+ * user-related component properties including display name, avatar path, email,
+ * and the full Firebase user object.
+ */
+  ngOnInit(): void {
+    this.authService.firebaseUser$.subscribe(user => {
+      this.userName = user?.displayName ?? "Guest";
+      this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png";
+      this.firebaseUser = user;
+      this.userMail = user?.email;
+    });
+
+  }
 
 
   /**
@@ -143,54 +145,66 @@ export class DialogComponent implements OnInit {
   }
 
 
-// -----------------------------------------------------------------------------
-// Internal helper functions used by `setNewName`
-// -----------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------
+  // Internal helper functions used by `setNewName`
+  // -----------------------------------------------------------------------------
 
 
-/**
- * Checks whether a valid Firebase user with an email is available.
- * 
- * @returns `true` if the user and their email exist, otherwise `false`.
- */
-private isUserValid(): boolean {
-  return !!this.firebaseUser?.email;
-}
-
-
-/**
- * Updates the Firebase Authentication display name for the current user.
- * 
- * @param name - The new display name to set in Firebase Auth.
- * @returns A Promise that resolves once the update is complete.
- */
-private async updateAuthDisplayName(name: string): Promise<void> {
-  await this.authService.updateUserCredentials(this.firebaseUser!, "displayName", name);
-}
-
-
-/**
- * Updates the corresponding Firestore user document with the new username.
- * 
- * @param name - The new username to store in Firestore.
- * @returns A Promise that resolves once the Firestore document is updated.
- */
-private async updateFirestoreUsername(name: string): Promise<void> {
-  await this.fsService.updateUserDoc('users', this.firebaseUser!.email!, { username: name });
-}
-
-
-/**
- * Updates the local in-memory cache of users with the new username.
- * 
- * @param name - The new username to apply to the local user object.
- */
-private updateLocalUserCache(name: string): void {
-  const user = this.fsService.allFsUsersJsonArr.find(u => u.email === this.firebaseUser?.email);
-  if (user) {
-    user.username = name;
+  /**
+   * Checks whether a valid Firebase user with an email is available.
+   * 
+   * @returns `true` if the user and their email exist, otherwise `false`.
+   */
+  private isUserValid(): boolean {
+    return !!this.firebaseUser?.email;
   }
-}
 
+
+  /**
+   * Updates the Firebase Authentication display name for the current user.
+   * 
+   * @param name - The new display name to set in Firebase Auth.
+   * @returns A Promise that resolves once the update is complete.
+   */
+  private async updateAuthDisplayName(name: string): Promise<void> {
+    await this.authService.updateUserCredentials(this.firebaseUser!, "displayName", name);
+  }
+
+
+  /**
+   * Updates the corresponding Firestore user document with the new username.
+   * 
+   * @param name - The new username to store in Firestore.
+   * @returns A Promise that resolves once the Firestore document is updated.
+   */
+  private async updateFirestoreUsername(name: string): Promise<void> {
+    await this.fsService.updateUserDoc('users', this.firebaseUser!.email!, { username: name });
+  }
+
+
+  /**
+   * Updates the local in-memory cache of users with the new username.
+   * 
+   * @param name - The new username to apply to the local user object.
+   */
+  private updateLocalUserCache(name: string): void {
+    const user = this.fsService.allFsUsersJsonArr.find(u => u.email === this.firebaseUser?.email);
+    if (user) {
+      user.username = name;
+    }
+  };
+
+  showProfileCard(userMail: string) {
+    const usersArr = this.fsService.allFsUsersJsonArr;
+    const userObj = usersArr.find(user => user.email === userMail)!;
+
+    this.profileCardData.displayName = userObj.username;
+    this.profileCardData.avatarPath = userObj.photoURL;
+    this.profileCardData.email = userObj.email
+
+    console.log(this.profileCardData)
+    
+    this.viewService.modalHandler('cardProfile', 'modal-content-center')
+  }
 }
 

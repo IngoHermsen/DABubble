@@ -31,7 +31,8 @@
 
 @if (viewService.activeDialog() == "logout") {
 <div class="bubble--logout-profile">
-    <span class="txt" (click)="viewService.modalHandler('cardProfile', 'modal-content-center')"> Profile </span>
+    <span class="txt" (click)="showProfileCard(firebaseUser?.email!)"> Profile </span>
+    <!-- <span class="txt" (click)="viewService.modalHandler('cardProfile', 'modal-content-center')"> Profile </span> -->
     <span class="txt" (click)="handleLogout()"> Logout </span>
 </div>
 }
@@ -47,11 +48,11 @@
             ×
         </div>
     </div>
-    <img [src]="'../../' + avatarPath" alt="" class="img--profile">
+    <img src="/assets/images/{{ profileCardData.avatarPath }}" alt="" class="img--profile">
 
     <div class="username">
         <div class="name">
-            {{userName}}
+            {{profileCardData.displayName}}
         </div>
         @if(this.firebaseUser){
         <div class="edit-pen" (click)="viewService.modalHandler('cardProfileEdit', 'modal-content-center')">
@@ -75,7 +76,7 @@
         <div class="txt">E-Mail-Address</div>
     </div>
     <div class="email-address">
-        {{userMail}}
+        {{profileCardData.email}}
     </div>
     }
 
