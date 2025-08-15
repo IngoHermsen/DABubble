@@ -3,7 +3,7 @@ import { debounceTime, distinctUntilChanged, first, Observable, of, Subject, swi
 import { FormsModule } from '@angular/forms';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { DataService } from '../../core/services/data.service';
-import { Router, RouterLink, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 type Scope = Array<'channels' | 'users'>
 
@@ -12,7 +12,6 @@ type Scope = Array<'channels' | 'users'>
   standalone: true,
   imports: [
     FormsModule,
-    RouterLink
   ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
@@ -25,7 +24,7 @@ export class SearchComponent implements AfterViewInit {
   hasPrefix: boolean = false;
 
   matchingChannels: string[];
-  matchingUsers: string[];
+  matchingUsers: any[];
 
   // === Dependency Injections ===
   public firestoreService = inject(FirestoreService);
@@ -57,6 +56,8 @@ export class SearchComponent implements AfterViewInit {
   // === Functions ===
 
   handleSearchTerm(term: string) {
+    this.matchingChannels = [];
+    this.matchingUsers = [];
     this.setPrefix(term);
     if (this.hasPrefix) {
       this.getSearchResults(term.substring(1))
@@ -83,19 +84,33 @@ export class SearchComponent implements AfterViewInit {
   };
 
   getSearchResults(term: string) {
-    this.matchingChannels = [];
-    if (term.length > 0) {
+    if (term.length > 0 && this.searchScope.includes('channels')) {
       this.matchingChannels = this.dataService.channelIds.filter(id => {
         return id.toLocaleLowerCase().startsWith(term);
       })
+    };
+
+    if (term.length > 0 && this.searchScope.includes('users')) {
+      this.matchingUsers = this.firestoreService.allFsUsersJsonArr.filter(user => {
+        return user.username.toLocaleLowerCase().startsWith(term);
+      });
+      console.log('matchingUsers:', this.matchingUsers)
     }
+
+
+
+
   }
 
-  handleResultClick(isChannel: boolean, channel: string) {
-    this.searchTerm = ''
-    this.searchTerms$.next(this.searchTerm);
+  handleChannelClick(channel: string) {
+    this.searchTerm = '';
+    this.searchTerms$.next('');
+    this.router.navigate([`workspace/channel/${channel}`])
+  }
 
-    if(isChannel)
-    this.router.navigate([`workspace/channel`])
+  handleUserClick(user: any) {
+    this.searchTerm = '';
+    this.searchTerms$.next('');
+    console.log(user)
   }
 }
