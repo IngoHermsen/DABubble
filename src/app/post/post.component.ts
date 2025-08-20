@@ -6,6 +6,7 @@ import { ThreadService } from '../core/services/thread.service';
 import { ViewService } from '../core/services/view.service';
 import { FirestoreService } from '../core/services/firestore.service';
 import { doc, DocumentReference, getDoc, Timestamp } from 'firebase/firestore';
+import { windowWhen } from 'rxjs';
 
 // === Type Definitions ===
 
@@ -242,9 +243,14 @@ export class PostComponent implements OnInit, AfterViewInit {
    * - caches thread data
    * - shows the thread section
    */
-  openThread() {
-    this.setThreadData();
-    this.showThreadSection();
+  handlePostClick(event: MouseEvent) {
+    const clickTarget = event.target as HTMLElement;
+    const targetIsEmojiPicker = clickTarget.closest('.add-reaction');
+    if (!targetIsEmojiPicker) {
+      console.log('HELLO');
+      this.setThreadData();
+      this.showThreadSection();
+    }
   }
 
 
@@ -253,6 +259,7 @@ export class PostComponent implements OnInit, AfterViewInit {
    * Caches current post data in ThreadService.
    */
   private setThreadData() {
+    
     const tS = this.threadService;
     tS.setPostText(this.post.text);
     tS.setPostId(this.post.postId);
@@ -285,7 +292,7 @@ export class PostComponent implements OnInit, AfterViewInit {
       });
       return timeAsString + ' Uhr';
     }
-      return '**:**'
+    return '**:**'
   }
 
 }

@@ -1,5 +1,5 @@
 @if(dataLoaded) {
-<div class="post" (click)="openThread()" [class.odd]="isOdd">
+<div class="post" (click)="handlePostClick($event)" [class.odd]="isOdd">
     <div class="wrapper-profile-img">
         <img class="img" [src]="'../../assets/images/' + creator.photoURL" alt="">
     </div>
@@ -7,7 +7,7 @@
     <div class="post-content">
         @if (showPostMenu) {
         <span class="post-menu">
-            <span class="material-icons-outlined" (click)="openThread()">insert_comment</span>
+            <span class="material-icons-outlined" (click)="handlePostClick($event)">insert_comment</span>
         </span>
         }
 
