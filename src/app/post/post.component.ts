@@ -244,8 +244,7 @@ export class PostComponent implements OnInit, AfterViewInit {
     const clickTarget = event.target as HTMLElement;
     const targetIsEmojiPicker = clickTarget.closest('.add-reaction');
     if (!targetIsEmojiPicker) {
-      console.log('HELLO');
-      this.showThreadSection();
+      this.openThread();
     }
   }
 
@@ -275,4 +274,8 @@ export class PostComponent implements OnInit, AfterViewInit {
     return '**:**'
   }
 
+  openThread() {
+    this.firestoreService.initializeThread(this.post);
+    this.showThreadSection()
+  }
 }

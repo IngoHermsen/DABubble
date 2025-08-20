@@ -35,7 +35,7 @@
 
         @if(!viewService.mobileView) {
         <div class="flex-item">
-             <app-search></app-search>
+            <app-search></app-search>
         </div>
         <!-- <input placeholder="Devspace durchsuchen" class="flex-item" type="text"> -->
         }
@@ -61,17 +61,19 @@
                 <app-workspace></app-workspace>
             </div>
         </section>
-        @if(viewService.showDetailSection) {
+
         <section class="details">
             <section class="active-content flex-item">
                 <router-outlet></router-outlet>
             </section>
+            @if(viewService.showThreadSection) {
             <section class="detail-section" [@toggleThread]="this.viewService.showThreadSection ? 'open' : 'closed'">
                 <div class="details-animation-wrapper">
                     <app-thread (closeThread)="closeThreadSection($event)"></app-thread>
                 </div>
             </section>
+            }
         </section>
-        }
+
     </section>
 </div>

@@ -87,7 +87,7 @@ export class ConversationComponent implements OnInit {
   }
 
   addPost(post: Post) {
-    this.firestoreService.addPostToFirestore(post);
+    this.firestoreService.addPostToConversation(post);
     setTimeout(() => {
       this.scrollToBottom();
     }, 1);
