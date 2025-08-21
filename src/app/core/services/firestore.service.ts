@@ -5,7 +5,7 @@ import { Channel } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { DataService } from './data.service';
 import { FsUsers } from '../types/firestore_users';
-import { from, map, Observable, switchMap, take } from 'rxjs';
+import { concatMap, from, map, Observable, switchMap, take } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
@@ -24,6 +24,7 @@ export class FirestoreService {
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
   postsColRef: CollectionReference;
+  threadColRef: CollectionReference;
   usersColRef: CollectionReference = collection(this.dbFs, 'users');
   directMessagesColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'direct-messages');
   chatDocRef: DocumentReference;
@@ -119,7 +120,7 @@ export class FirestoreService {
    * @param post The post object to be saved.
    * @returns The post object with the `postId` set.
    */
-  async addPostToFirestore(post: Post) {
+  async addPostToConversation(post: Post) {
     const docRef = await addDoc(this.postsColRef, post);
     const postId = docRef.id;
 
@@ -205,6 +206,27 @@ export class FirestoreService {
       const posts: Post[] = snapshot.docs.map(doc => this.mapDocToPost(doc.data()));
       this.dataService.handlePostData(posts);
     });
+  }
+
+  /**
+   * Adds a new post to Firestore and writes the generated document ID into the post object.
+   * 
+   * - Creates the document using `addDoc` in the collection.
+   * - Retrieves the auto-generated document ID from the DocumentReference.
+   * - Updates the `post` object with the generated ID (`postId`).
+   * - Updates the Firestore document to store the ID inside the document data.
+   * 
+   * @param post The post object to be saved.
+   * @returns The post object with the `postId` set.
+   */
+  async addPostToThread(post: Post) {
+    const docRef = await addDoc(this.threadColRef, post);
+    const postId = docRef.id;
+
+    post.postId = postId;
+
+    await updateDoc(docRef, { postId: docRef.id });
+    return post;
   }
 
 
@@ -325,6 +347,23 @@ export class FirestoreService {
       })
     )
   }
+
+  initializeThread(post: Post) {
+    this.threadColRef = collection(this.dbFs, 'threads', post.postId, 'posts');
+    this.dataService.threadMainPost = post;
+    console.log('DATA SERVICE POST:', post);
+    from(getDocs(this.threadColRef)).pipe(
+      map(querySnapshot => {
+        if (querySnapshot.empty) {
+          this.dataService.threadData = [];
+        } else {
+          querySnapshot.docs.map(doc => this.mapDocToPost(doc))
+        }
+      })).subscribe(() => {
+      })
+  };
+
+
 }
 
 

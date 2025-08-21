@@ -19,6 +19,10 @@ export class DataService {
   chatData: any;
   chatParticipant: string;
 
+  threadMainPost: Post;
+  threadData: Post[];
+  threadContentReady = signal(false);
+
   cachedUserData: { photoUrl: string, username: string } = {
     photoUrl: "",
     username: ""
