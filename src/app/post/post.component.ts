@@ -31,13 +31,13 @@ export class PostComponent implements OnInit, AfterViewInit {
   // === Input / Output ===
   @Input() index: number;
   @Input() post: Post;
+  @Input() isCommonPost: boolean;
 
   creatorDocRef: DocumentReference;
 
   // === Local Data ===
   creator: Creator;
   creatorAvatarImgPath: string;
-
 
   showPostMenu: boolean;
   showEmojiMart: boolean;
@@ -54,7 +54,8 @@ export class PostComponent implements OnInit, AfterViewInit {
 
   // === Event Handlers ===
   @HostListener('mouseenter') onMouseEnter() {
-    this.showPostMenu = true;
+    if(this.isCommonPost) this.showPostMenu = true;
+    
   }
 
   @HostListener('mouseleave') onMouseLeave() {

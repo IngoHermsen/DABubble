@@ -18,7 +18,7 @@
 
             @for (post of dateBlock.posts; let index = $index; track $index) {
             <div class="post-wrapper">
-                <app-post [index]="index" [post]="post"></app-post>
+                <app-post [index]="index" [post]="post" [isCommonPost]="true"></app-post>
             </div>
             }
             }
