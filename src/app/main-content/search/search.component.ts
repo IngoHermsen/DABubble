@@ -67,7 +67,8 @@ export class SearchComponent implements AfterViewInit {
   }
 
   setPrefix(term: string) {
-    const firstChar = term.charAt(0);
+    const [ firstChar ] = term;
+    console.log('firstChar:', firstChar)
     switch (firstChar) {
       case '@': this.searchScope = ['users'], this.hasPrefix = true;
         break;
