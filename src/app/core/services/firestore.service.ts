@@ -5,7 +5,7 @@ import { Channel } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { DataService } from './data.service';
 import { FsUsers } from '../types/firestore_users';
-import { concatMap, from, map, Observable, switchMap, take } from 'rxjs';
+import { concatMap, from, map, Observable, switchMap, take, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 
@@ -24,7 +24,7 @@ export class FirestoreService {
   channelsColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'channels');
   channelDocRef: DocumentReference;
   postsColRef: CollectionReference;
-  threadColRef: CollectionReference;
+  threadDocRef: DocumentReference;
   usersColRef: CollectionReference = collection(this.dbFs, 'users');
   directMessagesColRef: CollectionReference = collection(this.dbFs, 'workspaces', 'DevSpace', 'direct-messages');
   chatDocRef: DocumentReference;
@@ -41,7 +41,7 @@ export class FirestoreService {
 
   // === Unsubscribe Functions ===
   unsubPostsCol: () => void;
-
+  unsubThreadPostsCol: () => void;
 
   // === Methods ===
 
@@ -172,6 +172,15 @@ export class FirestoreService {
     return true;
   }
 
+  async setActiveThreadPosts() {
+    const threadPostsColRef = collection(this.threadDocRef, 'posts')
+    this.unsubThreadPostsCol = onSnapshot(threadPostsColRef, snapshot => {
+      const posts :Post[] = snapshot.docs.map(doc => this.mapDocToPost(doc.data()));
+      this.dataService.threadSubPosts = posts;
+      console.log('dataService.threadSubPosts:', this.dataService.threadSubPosts)
+    })
+  }
+
 
   // -----------------------------------------------------------------------------
 
@@ -220,12 +229,13 @@ export class FirestoreService {
    * @returns The post object with the `postId` set.
    */
   async addPostToThread(post: Post) {
-    const docRef = await addDoc(this.threadColRef, post);
+    const docRef = await addDoc(collection(this.threadDocRef, 'posts'), post);
     const postId = docRef.id;
 
     post.postId = postId;
 
     await updateDoc(docRef, { postId: docRef.id });
+
     return post;
   }
 
@@ -240,6 +250,8 @@ export class FirestoreService {
    * @returns A typed `Post` object.
    */
   mapDocToPost(doc: DocumentData): Post {
+    // console.log('doc in "mapDocToPost()"', doc)
+    // console.log('doc As Post', doc as Post)
     return {
       creationTime: doc["creationTime"],
       creatorId: doc["creatorId"],
@@ -291,20 +303,6 @@ export class FirestoreService {
     }));
   }
 
-
-  getThreadCollectionRef(channel: any, postId: any): CollectionReference {
-    const postDoc = doc(this.dbFs, 'workspaces', 'DevSpace', 'channels', channel, 'posts', postId);
-    return collection(postDoc, 'thread');
-  }
-
-
-  addThreadToPost(threadRef: any, post: Post) {
-    addDoc(threadRef, post)
-      .then(() => console.log('Thread created successfully'))
-      .catch(error => console.error('Thread creation failed:', error));
-  }
-
-
   // === Direct Messages ===
 
   /**
@@ -349,21 +347,10 @@ export class FirestoreService {
   }
 
   initializeThread(post: Post) {
-    this.threadColRef = collection(this.dbFs, 'threads', post.postId, 'posts');
+    this.threadDocRef = doc(this.dbFs, 'threads', post.postId);
     this.dataService.threadMainPost = post;
-    console.log('DATA SERVICE POST:', post);
-    from(getDocs(this.threadColRef)).pipe(
-      map(querySnapshot => {
-        if (querySnapshot.empty) {
-          this.dataService.threadData = [];
-        } else {
-          querySnapshot.docs.map(doc => this.mapDocToPost(doc))
-        }
-      })).subscribe(() => {
-      })
+    this.setActiveThreadPosts()
   };
-
-
 }
 
 

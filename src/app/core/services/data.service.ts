@@ -20,7 +20,7 @@ export class DataService {
   chatParticipant: string;
 
   threadMainPost: Post;
-  threadData: Post[];
+  threadSubPosts: Post[];
   threadContentReady = signal(false);
 
   cachedUserData: { photoUrl: string, username: string } = {
