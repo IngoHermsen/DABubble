@@ -6,18 +6,18 @@
         <span class="channel-name"># {{this.dataService.channelData?.channelName}}</span>
     </div>
 
-    <app-post [post]="dataService.threadMainPost" [isCommonPost]="false"></app-post>  
-    
+    <app-post [post]="dataService.threadMainPost" [isCommonPost]="false"></app-post>
+
     <div class="seperator">
-        <div class="txt">2 Antworten</div>
+        <div class="txt">{{ dataService.threadSubPosts.length }} Antworten</div>
         <div class="line"></div>
     </div>
 
     <div class="posts" #scroll>
         <div #scrollAnchor></div>
-        @for (dateBlock of dataService.threadData; track $index) {
-        <div class="divider">
-            <span class="date">{{ dateBlock.creationTime }}</span>
+        @for (dateBlock of dataService.threadSubPosts; let index = $index; track $index) {
+        <div class="post-wrapper">
+            <app-post [index]="$index" [post]="dateBlock" [isCommonPost]="false"></app-post>
         </div>
         }
         <div #scrollAnchor></div>
