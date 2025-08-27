@@ -23,14 +23,19 @@ import { ValidationService } from '../../core/services/validation.service';
 
 export class LoginComponent {
 
+  // === Injected Services ===
   validation = inject(ValidationService);
   router = inject(Router);
   authService = inject(AuthService);
+  dataService = inject(DataService);
+
+  
+  // === Local Data ===
   makeVisible = false;
   firebaseUser: any; 
-  dataService = inject(DataService)
-   
 
+
+  // === Lifecycle ===
   /**
    * setTimeout used to ensure the class is applied after initial view rendering.
    * Updates the userEmail onInit. 
@@ -40,18 +45,20 @@ export class LoginComponent {
       this.makeVisible = true;
     }, 0);
     this.authService.firebaseUser$.subscribe(user => {
-      this.firebaseUser = user
-    })
+      this.firebaseUser = user;
+    });
   }
 
- /**
-  * Clearing validation errors after component is destroyed.
-  */
+
+  /**
+   * Clearing validation errors after component is destroyed.
+   */
   ngOnDestroy(): void {
     this.authService.resetErrors();
   }
 
 
+  // === Event Handlers ===
   /**
    * Executing loginBtnPressed from authService,
    * only when the form is valid.
@@ -63,7 +70,6 @@ export class LoginComponent {
     await this.authService.loginBtnPressed(email, password);
   }
 
-  
 
   /**
    * Logs out firebaseAuth user.
