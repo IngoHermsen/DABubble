@@ -20,13 +20,17 @@ import { FirestoreService } from '../../core/services/firestore.service';
 })
 export class SignupComponent {
 
+  // === Injected Services ===
   private fsService = inject(FirestoreService);
   router = inject(Router);
   authService = inject(AuthService);
   validation = inject(ValidationService);
+
+  // === Local Data ===
   hideSignupSuccessMsg = true;
   makeVisible = false;
 
+  // === Lifecycle ===
   /** 
    * Uses setTimeout to ensure the class is applied after the initial view rendering.
   */
@@ -37,11 +41,30 @@ export class SignupComponent {
   }
 
 
+  // === Event Handlers ===
+  /**
+   * Handles the signup button press event and manages the registration flow.
+   * 
+   * - Extracts values for email, password, and username from the input elements.
+   * - Validates the `signupForm` and exits early if invalid.
+   * - Calls the `authService.registerUser` method to register the new user.
+   * - Runs validation checks on email, password, and username.
+   * - If registration is successful:
+   *   - Creates a user document in Firestore with the chosen username.
+   *   - Clears the form fields and displays a success message.
+   *   - After a short delay, navigates the user to the avatar setup page.
+   * 
+   * @param email - Input element containing the user’s email.
+   * @param password - Input element containing the user’s password.
+   * @param username - Input element containing the user’s chosen username.
+   * @param signupForm - Reference to the Angular form used for validation and state management.
+   */
   async signupBtnPressed(
     email: HTMLInputElement,
     password: HTMLInputElement,
     username: HTMLInputElement,
-    signupForm: NgForm) {
+    signupForm: NgForm
+  ) {
     const emailValue = email.value;
     const passwordValue = password.value;
     const usernameValue = username.value;
@@ -57,7 +80,6 @@ export class SignupComponent {
     );
     this.validateMailPwName(emailValue, passwordValue);
 
-
     if (signupSuccess) {
       this.fsService.setUserDoc(emailValue, { username: usernameValue });
 
@@ -69,6 +91,7 @@ export class SignupComponent {
   }
 
 
+  // === State Management ===
   clearFieldsShowMsgAfterSignUpSuccess(
     signupSuccess: boolean,
     signupForm: NgForm
@@ -87,20 +110,23 @@ export class SignupComponent {
     this.hideSignupSuccessMsg = false;
   }
 
-
+  
   clearForm(form: NgForm) {
     form.reset();
   }
 
 
+  // === Helper Methods ===
   validateMailPwName(
     emailValue: string,
-    passwordValue: string) {
+    passwordValue: string
+  ) {
     this.validation.checkEmail(emailValue);
     this.validation.checkPassword(passwordValue);
   }
 
   
+  // === Cleanup ===
   ngOnDestroy(): void {
     this.authService.resetErrors();
   }
