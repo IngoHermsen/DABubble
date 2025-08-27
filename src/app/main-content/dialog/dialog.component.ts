@@ -202,7 +202,6 @@ export class DialogComponent implements OnInit {
     this.profileCardData.avatarPath = userObj.photoURL;
     this.profileCardData.email = userObj.email
 
-    console.log(this.profileCardData)
     
     this.viewService.modalHandler('cardProfile', 'modal-content-center')
   }

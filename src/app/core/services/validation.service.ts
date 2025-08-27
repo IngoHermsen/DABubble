@@ -25,9 +25,6 @@ export class ValidationService {
  */
     toggleVisibility(key: string): void {
       this.elementVisibility[key] = !this.elementVisibility[key];
-      //! Delete
-      console.log("Toggle action");
-      //! Delete
     }
 
 
@@ -53,13 +50,6 @@ export class ValidationService {
       passwordValue.length < this.passwordMinLength ? true : false;
   }
   
-
-  checkName(usernameValue: string) {
-    if (usernameValue === "") {
-      console.log("Username may not be empty");
-    }
-  }
-
 
 
 }

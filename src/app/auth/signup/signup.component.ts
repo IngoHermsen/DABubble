@@ -55,7 +55,7 @@ export class SignupComponent {
       passwordValue,
       usernameValue
     );
-    this.validateMailPwName(emailValue, passwordValue, usernameValue);
+    this.validateMailPwName(emailValue, passwordValue);
 
 
     if (signupSuccess) {
@@ -95,13 +95,12 @@ export class SignupComponent {
 
   validateMailPwName(
     emailValue: string,
-    passwordValue: string,
-    usernameValue: string) {
+    passwordValue: string) {
     this.validation.checkEmail(emailValue);
     this.validation.checkPassword(passwordValue);
-    this.validation.checkName(usernameValue);
   }
 
+  
   ngOnDestroy(): void {
     this.authService.resetErrors();
   }

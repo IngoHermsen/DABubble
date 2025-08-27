@@ -94,7 +94,6 @@ export class SearchComponent implements AfterViewInit {
       this.matchingUsers = this.firestoreService.allFsUsersJsonArr.filter(user => {
         return user.username.toLocaleLowerCase().startsWith(term);
       });
-      console.log('matchingUsers:', this.matchingUsers)
     }
   }
 
@@ -107,6 +106,5 @@ export class SearchComponent implements AfterViewInit {
   handleUserClick(user: any) {
     this.searchTerm = '';
     this.searchTerms$.next('');
-    console.log(user)
   }
 }

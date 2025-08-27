@@ -30,7 +30,6 @@ export class ThreadComponent implements OnInit {
   // === Local Data ===
     
   @Output() closeThread = new EventEmitter<boolean>();
-  // @Output() message = new EventEmitter<Post>();
 
   
   // === Lifecycle Hook ===

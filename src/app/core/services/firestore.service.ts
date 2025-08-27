@@ -177,7 +177,6 @@ export class FirestoreService {
     this.unsubThreadPostsCol = onSnapshot(threadPostsColRef, snapshot => {
       const posts :Post[] = snapshot.docs.map(doc => this.mapDocToPost(doc.data()));
       this.dataService.threadSubPosts = posts;
-      console.log('dataService.threadSubPosts:', this.dataService.threadSubPosts)
     })
   }
 
@@ -250,8 +249,6 @@ export class FirestoreService {
    * @returns A typed `Post` object.
    */
   mapDocToPost(doc: DocumentData): Post {
-    // console.log('doc in "mapDocToPost()"', doc)
-    // console.log('doc As Post', doc as Post)
     return {
       creationTime: doc["creationTime"],
       creatorId: doc["creatorId"],

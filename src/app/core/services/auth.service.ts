@@ -110,7 +110,6 @@ export class AuthService {
     try {
       const userCredentials = await signInWithEmailAndPassword(this.firebaseAuth, email.value, password.value);
       this.firebaseUser = userCredentials.user;
-      console.log(this.firebaseUser)
       this.router.navigate(['/workspace/channel/Angular']); // hard coded until logic is implemented
     } catch (error: any) {
       this.showErrorMsg(error.code);
