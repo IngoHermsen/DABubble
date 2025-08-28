@@ -48,11 +48,11 @@
             ×
         </div>
     </div>
-    <img src="/assets/images/{{ profileCardData.avatarPath }}" alt="" class="img--profile">
+    <img src="/assets/images/{{ dataService.profileCardData.avatarPath }}" alt="" class="img--profile">
 
     <div class="username">
         <div class="name">
-            {{profileCardData.displayName}}
+            {{dataService.profileCardData.displayName}}
         </div>
         @if(this.firebaseUser){
         <div class="edit-pen" (click)="viewService.modalHandler('cardProfileEdit', 'modal-content-center')">
@@ -76,7 +76,7 @@
         <div class="txt">E-Mail-Address</div>
     </div>
     <div class="email-address">
-        {{profileCardData.email}}
+        {{dataService.profileCardData.email}}
     </div>
     }
 

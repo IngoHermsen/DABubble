@@ -2,12 +2,15 @@ import { Injectable, signal } from '@angular/core';
 import { Channel } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { Timestamp } from 'firebase/firestore';
+import { User, EMPTY_USER } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   // === Local Data ===
+  AuthUserData: User = EMPTY_USER;
+
   channelIds: string[];
   channelData: Channel | undefined;
 
@@ -23,10 +26,8 @@ export class DataService {
   threadSubPosts: Post[];
   threadContentReady = signal(false);
 
-  cachedUserData: { photoUrl: string, username: string } = {
-    photoUrl: "",
-    username: ""
-  }
+  profileCardData: User;
+
 
   // === Methods ===
   /**
@@ -103,19 +104,4 @@ export class DataService {
     });
     return dateAsString;
   }
-
-
-  cacheUserData(userData: { username: string; photoUrl: string }) {
-    this.cachedUserData = userData;
-  }
-
-
-  clearUserData() {
-    this.cachedUserData = {
-      username: '',
-      photoUrl: ''
-    };
-  };
-
-
 }

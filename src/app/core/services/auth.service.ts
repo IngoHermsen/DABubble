@@ -13,11 +13,12 @@ import {
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
-  
+
 } from '@angular/fire/auth';
-import { User } from '../interfaces/user';
+import { EMPTY_USER, User } from '../interfaces/user';
 import { FirestoreService } from './firestore.service';
 import { Firestore } from '@angular/fire/firestore';
+import { FsUsers } from '../types/firestore_users';
 
 
 @Injectable({
@@ -31,10 +32,10 @@ export class AuthService {
   private firebaseUserSubject = new BehaviorSubject<FirebaseUser | null>(null)
   showPassword = false;
 
-  public firebaseUser: FirebaseUser| null;
+  public firebaseUser: FirebaseUser | null;
 
   firebaseUser$ = this.firebaseUserSubject.asObservable(); // Public Observable
-  user: User | null = null;
+  user: User = EMPTY_USER;
 
 
   errorCodes = {
@@ -60,19 +61,28 @@ export class AuthService {
   constructor() {
     onAuthStateChanged(this.firebaseAuth, (user: FirebaseUser | null) => {
       this.firebaseUser = user;
-      this.firebaseUserSubject.next(user); 
-    
-          if (user) {
-      this.dataService.cacheUserData({
-        username: user.displayName || '',
-        photoUrl: user.photoURL || ''
-      });
-    } else {
-      this.dataService.clearUserData();
-    }
-    });
+      this.firebaseUserSubject.next(user);
 
+      if (user) {
+        console.log('AUTH USER');
+        this.mapFirebaseUserToUser(user);
+
+      } else {
+
+      }
+    })
+  };
+
+
+  mapFirebaseUserToUser(fsUser: FirebaseUser) {
+    this.user.avatarPath = fsUser.photoURL!;
+    this.user.displayName = fsUser.displayName!;
+    this.user.email = fsUser.email!;
+
+    this.dataService.AuthUserData = this.user;
   }
+
+
 
 
   /**
@@ -93,7 +103,7 @@ export class AuthService {
 
       return true;
     } catch (error: any) {
-      this.showErrorMsg(error.code); 
+      this.showErrorMsg(error.code);
       return false;
     };
   };
@@ -118,12 +128,12 @@ export class AuthService {
   }
 
 
-  guestLoginBtnPressed(){
+  guestLoginBtnPressed() {
     this.router.navigate(['/workspace/channel/Angular']);// hard coded until logic is implemented
     this.logoutUser()
   }
 
-  
+
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
   }
@@ -146,8 +156,7 @@ export class AuthService {
 
   private createUserObject(
     email: HTMLInputElement,
-    username: HTMLInputElement): User 
-  {
+    username: HTMLInputElement): User {
     return {
       email: email.value,
       displayName: username.value,
@@ -169,14 +178,14 @@ export class AuthService {
     try {
       const provider = new GoogleAuthProvider();
       provider.setCustomParameters({ prompt: 'select_account' });
-  
+
       await signInWithPopup(this.firebaseAuth, provider);
     } catch (error: any) {
       this.showErrorMsg(error.code);
       return error.code;
     }
   }
-  
+
 
 
   /**
@@ -191,7 +200,7 @@ export class AuthService {
 
   async updateUserCredentials(user: any, key: "displayName" | "photoURL", value: string) {
     await updateProfile(user, {
-      [key]: value 
+      [key]: value
     });
   }
 

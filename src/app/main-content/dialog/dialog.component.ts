@@ -14,6 +14,7 @@ import {
 } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
 import { EMPTY_USER, User } from '../../core/interfaces/user';
+import { DataService } from '../../core/services/data.service';
 
 @Component({
   selector: 'app-dialog',
@@ -31,15 +32,14 @@ export class DialogComponent implements OnInit {
   private fsService = inject(FirestoreService);
   private router = inject(Router);
   public viewService = inject(ViewService);
-  public authService = inject(AuthService)
-
-  profileCardData: User = EMPTY_USER;
+  public authService = inject(AuthService);
+  public dataService = inject(DataService)
 
   avatarPath: string;
   userName: string;
   firebaseUser: FirebaseUser | null;
   userMail: string | null | undefined;
-
+  profileData = this.dataService.profileCardData;
 
   /**
  * Reactive form group used for creating a new channel.
@@ -197,10 +197,8 @@ export class DialogComponent implements OnInit {
   showProfileCard(userMail: string) {
     const usersArr = this.fsService.allFsUsersJsonArr;
     const userObj = usersArr.find(user => user.email === userMail)!;
-
-    this.profileCardData.displayName = userObj.username;
-    this.profileCardData.avatarPath = userObj.photoURL;
-    this.profileCardData.email = userObj.email
+    console.log(userObj)
+    // this.dataService.profileCardData = this.;
 
     
     this.viewService.modalHandler('cardProfile', 'modal-content-center')
