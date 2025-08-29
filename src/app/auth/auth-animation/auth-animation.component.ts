@@ -15,26 +15,30 @@ import { RouterLink, Router } from '@angular/router';
 })
 export class AuthComponent {
 
+  // === Local Data ===
+  /** Controls initial visibility of the component after rendering. */
   makeVisible = false;
-  private router = inject(Router);
+
+  /** Flag that becomes true after 2500ms, used for second animation stage. */
   trueAfter2500ms = false;
+
+  /** Hides the logo after 2700ms and prevents replay of animation on refresh. */
   hideLogo = false;
 
-  constructor() { }
+  // === Injected Services ===
+  private router = inject(Router);
 
-
-
+  // === Lifecycle ===
   /**
- * Initializes the animation sequence for the landing page.
- * - If the animation has already been completed (tracked in sessionStorage), navigates directly to /main.
- * - Otherwise, triggers a sequence of visual updates and navigation steps:
- *   - Makes the component visible immediately after rendering.
- *   - Sets a flag after 2500ms to control a second animation stage or trigger.
- *   - Hides the logo and stores an "animationDone" flag after 2700ms to avoid replaying the animation on refresh.
- *   - Finally, navigates to /main/login after the animation is complete (3000ms).
- */
+   * Initializes the animation sequence for the landing page.
+   * - If the animation has already been completed (tracked in sessionStorage), navigates directly to /main.
+   * - Otherwise, triggers a sequence of visual updates and navigation steps:
+   *   - Makes the component visible immediately after rendering.
+   *   - Sets a flag after 2500ms to control a second animation stage or trigger.
+   *   - Hides the logo and stores an "animationDone" flag after 2700ms to avoid replaying the animation on refresh.
+   *   - Finally, navigates to /main/login after the animation is complete (3000ms).
+   */
   ngOnInit(): void {
-
     if (sessionStorage.getItem("animationDone")) {
       this.router.navigate(['/main']);
     }
@@ -43,25 +47,17 @@ export class AuthComponent {
       this.makeVisible = true;
     }, 0); 
 
-
     setTimeout(() => {
       this.trueAfter2500ms = true;
     }, 2500);
-
 
     setTimeout(() => {
       this.hideLogo = true;
       sessionStorage.setItem("animationDone", "true");
     }, 2700);
 
-
     setTimeout(() => {
       this.router.navigate(['/main/login']);
     }, 3000);
   }
 }
-
-
-
-
-
