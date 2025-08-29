@@ -30,48 +30,44 @@ import { SearchComponent } from './search/search.component';
   styleUrl: './main-content.component.scss',
   animations: [
     trigger('toggleWorkspace', [
-      state(
-        'open',
-        style({})
-      ),
-      state(
-        'closed',
-        style({
-          width: '0px',
-          display: 'none'
-        })
-      ),
+      state('open', style({})),
+      state('closed', style({
+        width: '0px',
+        display: 'none'
+      })),
       transition('open <=> closed', [animate('180ms')]),
     ]),
     trigger('toggleThread', [
-      state(
-        'open',
-        style({})
-      ),
-      state(
-        'closed',
-        style({
-          width: '0px',
-          display: 'none'
-        })
-      ),
+      state('open', style({})),
+      state('closed', style({
+        width: '0px',
+        display: 'none'
+      })),
       transition('open <=> closed', [animate('180ms')]),
     ])
   ]
 })
-
 export class MainComponent implements OnInit {
+
+  // === Injected Services ===
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
   private authService = inject(AuthService);
   public router = inject(Router);
 
+  // === Local Data ===
   avatarPath: any;
   userName: any;
 
+
+  // === Lifecycle ===
+  /**
+   * Subscribes to Firebase user and initializes
+   * avatar, username, and workspace navigation handling.
+   */
   ngOnInit(): void {
     this.authService.firebaseUser$.subscribe(user => {
-      this.userName = user?.displayName ?? "Guest"
+      this.userName = user?.displayName ?? "Guest";
       this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png";
       this.subscribeToWorkspaceNavigation();
       if (this.router.url == "/workspace" && this.viewService.mobileView) {
@@ -80,12 +76,21 @@ export class MainComponent implements OnInit {
     });
   }
 
+
+  // === Event Handlers ===
+  /**
+   * Closes the thread section in the view service.
+   */
   closeThreadSection(event: boolean) {
     this.viewService.showThreadSection = false;
   }
 
-  // Show detail section for all /workspace subroutes, but hide it on the base /workspace route
 
+  // === Navigation ===
+  /**
+   * Subscribes to router events to control visibility
+   * of the detail section in workspace routes.
+   */
   subscribeToWorkspaceNavigation() {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
@@ -93,8 +98,8 @@ export class MainComponent implements OnInit {
         if (event.urlAfterRedirects == '/workspace') {
           this.viewService.showDetailSection = false;
         } else {
-          this.viewService.showDetailSection = true
+          this.viewService.showDetailSection = true;
         }
-      })
+      });
   }
 }

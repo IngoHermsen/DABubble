@@ -94,6 +94,7 @@ uploadImg(event: Event) {
   }
 }
 
+
 // === Methods ===
 
 /**
@@ -108,6 +109,7 @@ setPresetAvatar(imgFileName: string) {
   this.authService.updateUserCredentials(this.firebaseUser, "photoURL", this.previewImg);
   this.setAvatarPathFirestore(imgFileName);
 }
+
 
 /**
  * Updates the user's Firestore document with the selected avatar image path.

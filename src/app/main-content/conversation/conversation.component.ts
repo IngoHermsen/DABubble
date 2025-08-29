@@ -8,7 +8,7 @@ import { FirestoreService } from '../../core/services/firestore.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { NgxSpinnerService, NgxSpinnerModule } from 'ngx-spinner';
 
-type ConversationType = 'direct-messages' | 'channel'
+type ConversationType = 'direct-messages' | 'channel';
 
 @Component({
   selector: 'app-conversation',
@@ -20,72 +20,55 @@ type ConversationType = 'direct-messages' | 'channel'
 export class ConversationComponent implements OnInit {
   @ViewChild('scrollAnchor') scrollAnchor!: ElementRef;
 
-  // === Dependency Injections ===
+  // === Injected Services ===
   public dataService = inject(DataService);
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
   public route = inject(ActivatedRoute);
   public loadingSpinner = inject(NgxSpinnerService);
-
-
   // === Local Data ===
   public conversationOpened: boolean = false;
   public posts: Post[];
 
+  // === Constructor / Injection ===
   constructor() {
     effect(() => {
       const contentReady = this.dataService.conversationContentReady();
-      this.handleLoadingState(contentReady)
-    })
+      this.handleLoadingState(contentReady);
+    });
   }
 
+  // === Lifecycle ===
   /**
- * Initializes the component when it is loaded.
- * 
- * - Scrolls to the bottom of the message view.
- * - Activates the `channelUserAction` flag to indicate user-driven channel view.
- * - Subscribes to the route parameter map to detect channel ID changes.
- * - If a channel ID is present:
- *   - Loads channel-specific data.
- *   - Scrolls to the bottom again after data load.
- */
+   * Initializes the component when it is loaded.
+   * - Scrolls to the bottom of the message view.
+   * - Subscribes to the route parameter map to detect channel ID changes.
+   * - If a channel ID is present: loads data and scrolls to the bottom.
+   */
   ngOnInit() {
     this.scrollToBottom();
     this.route.paramMap.subscribe(params => {
-    this.dataService.conversationContentReady.set(false);
+      this.dataService.conversationContentReady.set(false);
       const paramType = params.get('type') as ConversationType;
       const paramId = params.get('id')!;
-      this.loadContent(paramType, paramId)
+      this.loadContent(paramType, paramId);
       this.scrollToBottom();
     });
-    
   }
 
 
+  /**
+   * Cleans up Firestore listeners when component is destroyed.
+   */
   ngOnDestroy() {
     this.firestoreService.unsubPostsCol();
   }
 
 
-  // -----------------------------------------------------------------------------
-  // Internal helper functions used by `ngOnInit`
-  // -----------------------------------------------------------------------------
-
-
+  // === Event Handlers ===
   /**
- * Scrolls the view smoothly to the bottom of the message list.
- * 
- * - Waits for 1 second to ensure that all dynamic content (e.g. messages) is rendered.
- * - If the scroll anchor element is available, scrolls to it with a smooth animation.
- */
-  scrollToBottom() {
-    setTimeout(() => {
-      if (this.scrollAnchor) {
-        this.scrollAnchor.nativeElement.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 1000);
-  }
-
+   * Adds a new post to the current conversation and scrolls down.
+   */
   addPost(post: Post) {
     this.firestoreService.addPostToConversation(post);
     setTimeout(() => {
@@ -94,15 +77,36 @@ export class ConversationComponent implements OnInit {
   }
 
 
+  // === State Management ===
   /**
- * Formats a given date into a localized string used as a visual divider.
- * 
- * - Converts the date into a human-readable format with weekday, day, and month.
- * - Example output: "Montag, 17. Juni"
- * 
- * @param date - The date to be formatted.
- * @returns A formatted date string.
- */
+   * Handles the display of the loading spinner depending on content readiness.
+   */
+  handleLoadingState(ready: boolean) {
+    if (ready) {
+      this.loadingSpinner.hide();
+    } else {
+      this.loadingSpinner.show();
+    }
+  }
+
+
+  // === Helper Methods ===
+  /**
+   * Scrolls the view smoothly to the bottom of the message list.
+   */
+  scrollToBottom() {
+    setTimeout(() => {
+      if (this.scrollAnchor) {
+        this.scrollAnchor.nativeElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 1000);
+  }
+
+
+  /**
+   * Formats a given date into a localized string used as a visual divider.
+   * Example output: "Montag, 17. Juni".
+   */
   createDateDivider(date: Date): string {
     const dateString: string = date.toLocaleDateString('de-DE', {
       month: 'long',
@@ -111,24 +115,22 @@ export class ConversationComponent implements OnInit {
     });
 
     return dateString;
-  };
+  }
 
+
+  /**
+   * Loads the correct content based on the type (direct messages or channel).
+   */
   loadContent(contentType: ConversationType, contentId: string) {
     switch (contentType) {
-      case 'direct-messages': this.firestoreService.setActiveChat(contentId)
+      case 'direct-messages': 
+        this.firestoreService.setActiveChat(contentId);
         break;
-      case 'channel': this.firestoreService.setActiveChannel(contentId);
+      case 'channel': 
+        this.firestoreService.setActiveChannel(contentId);
         break;
-      default: console.warn(`unbekannter Content Type: ${contentType}`)
+      default: 
+        console.warn(`unbekannter Content Type: ${contentType}`);
     }
   }
-
-  handleLoadingState(ready: boolean) {
-    if(ready) {
-      this.loadingSpinner.hide();
-    } else {
-      this.loadingSpinner.show()
-    }
-  }
-
 }

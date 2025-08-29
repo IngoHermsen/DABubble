@@ -33,7 +33,7 @@ export class DialogComponent implements OnInit {
   private router = inject(Router);
   public viewService = inject(ViewService);
   public authService = inject(AuthService);
-  public dataService = inject(DataService)
+  public dataService = inject(DataService);
 
   avatarPath: string;
   userName: string;
@@ -61,6 +61,7 @@ export class DialogComponent implements OnInit {
     })
   });
 
+
   /**
  * Angular lifecycle hook that runs after component initialization.
  * 
@@ -75,7 +76,6 @@ export class DialogComponent implements OnInit {
       this.firebaseUser = user;
       this.userMail = user?.email;
     });
-
   }
 
 
@@ -194,14 +194,22 @@ export class DialogComponent implements OnInit {
     }
   };
 
+
+  /**
+   * Displays the profile card for a given user.
+   * 
+   * - Looks up the user object in the Firestore users array using the provided email.
+   * - Logs the found user object for debugging.
+   * - Triggers the `viewService.modalHandler` to open the profile card modal.
+   * 
+   * @param userMail - The email of the user whose profile card should be shown.
+   */
   showProfileCard(userMail: string) {
     const usersArr = this.fsService.allFsUsersJsonArr;
     const userObj = usersArr.find(user => user.email === userMail)!;
-    console.log(userObj)
-    // this.dataService.profileCardData = this.;
+    console.log(userObj);
 
-    
-    this.viewService.modalHandler('cardProfile', 'modal-content-center')
+    this.viewService.modalHandler('cardProfile', 'modal-content-center');
   }
 }
 

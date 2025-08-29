@@ -27,6 +27,7 @@ export class AuthPostAnimationComponent {
    */
   hideElement = false;
 
+
   // === Navigation ===
   /**
    * Navigates the user to the login page.
@@ -35,6 +36,7 @@ export class AuthPostAnimationComponent {
     this.router.navigate(['main', 'login']);
   }
 
+  
   /**
    * Navigates the user to the signup page.
    */

@@ -31,9 +31,9 @@ export class SignupComponent {
   makeVisible = false;
 
   // === Lifecycle ===
-  /** 
-   * Uses setTimeout to ensure the class is applied after the initial view rendering.
-  */
+  /**
+   * Ensures animations trigger correctly after initial rendering.
+   */
   ngOnInit() {
     setTimeout(() => {
       this.makeVisible = true;
@@ -44,20 +44,6 @@ export class SignupComponent {
   // === Event Handlers ===
   /**
    * Handles the signup button press event and manages the registration flow.
-   * 
-   * - Extracts values for email, password, and username from the input elements.
-   * - Validates the `signupForm` and exits early if invalid.
-   * - Calls the `authService.registerUser` method to register the new user.
-   * - Runs validation checks on email, password, and username.
-   * - If registration is successful:
-   *   - Creates a user document in Firestore with the chosen username.
-   *   - Clears the form fields and displays a success message.
-   *   - After a short delay, navigates the user to the avatar setup page.
-   * 
-   * @param email - Input element containing the user’s email.
-   * @param password - Input element containing the user’s password.
-   * @param username - Input element containing the user’s chosen username.
-   * @param signupForm - Reference to the Angular form used for validation and state management.
    */
   async signupBtnPressed(
     email: HTMLInputElement,
@@ -92,6 +78,9 @@ export class SignupComponent {
 
 
   // === State Management ===
+  /**
+   * Displays a success message and clears the form after signup.
+   */
   clearFieldsShowMsgAfterSignUpSuccess(
     signupSuccess: boolean,
     signupForm: NgForm
@@ -106,17 +95,26 @@ export class SignupComponent {
   }
 
 
+  /**
+   * Shows the signup success message.
+   */
   showSignupSuccessMsg() {
     this.hideSignupSuccessMsg = false;
   }
 
-  
+
+  /**
+   * Resets all form fields.
+   */
   clearForm(form: NgForm) {
     form.reset();
   }
 
 
   // === Helper Methods ===
+  /**
+   * Runs validation checks for email and password values.
+   */
   validateMailPwName(
     emailValue: string,
     passwordValue: string
@@ -127,6 +125,9 @@ export class SignupComponent {
 
   
   // === Cleanup ===
+  /**
+   * Resets authentication errors when the component is destroyed.
+   */
   ngOnDestroy(): void {
     this.authService.resetErrors();
   }

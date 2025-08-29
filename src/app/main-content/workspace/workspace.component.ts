@@ -16,34 +16,45 @@ import { FsUsers } from '../../core/types/firestore_users';
   styleUrl: './workspace.component.scss'
 })
 export class WorkspaceComponent implements OnInit {
+
+  // === Injected Services ===
   public dataService = inject(DataService);
   public fsService = inject(FirestoreService);
   public router = inject(Router);
   authService = inject(AuthService);
   public viewService = inject(ViewService);
+
+  // === Local Data ===
   firebaseUser: FirebaseUser | null;
-
   channelNames: string[];
-
   showChannelEntries: boolean = true;
   showDirectMsgEntries: boolean = false;
   channelToggleClicked: boolean = false;
   directMsgToggleClicked: boolean = false;
-
   usersArray: FsUsers = [];
 
+
+  // === Lifecycle ===
+  /**
+   * Initializes the workspace, loads all users
+   * and filters/sorts them after the Firebase user is available.
+   */
   async ngOnInit() {
     this.showChannelEntries = true;
     this.authService.firebaseUser$.subscribe(user => {
       this.firebaseUser = user;
       this.fsService.getAllUsers().then(() => {
         this.usersArray = this.fsService.allFsUsersJsonArr;
-        this.sortFilterUsersArr(user)
+        this.sortFilterUsersArr(user);
       });
     });
   }
 
 
+  // === State Management ===
+  /**
+   * Filters out the logged-in user and sorts remaining users alphabetically.
+   */
   sortFilterUsersArr(user: FirebaseUser | null) {
     if (user) {
       this.usersArray = this.usersArray.filter(userJson => userJson.username != user.displayName);
@@ -51,6 +62,11 @@ export class WorkspaceComponent implements OnInit {
     this.usersArray.sort((a, b) => a.username.localeCompare(b.username));
   }
 
+
+  // === Event Handlers ===
+  /**
+   * Toggles visibility of channel or direct message entries.
+   */
   toggleEntries(content: string) {
     if (content == 'channels') {
       this.channelToggleClicked = true;
@@ -61,14 +77,23 @@ export class WorkspaceComponent implements OnInit {
     }
   }
 
+
+  /**
+   * Starts a direct chat with the selected user.
+   */
   startChatWithUser(userMail: any) {
     const userObj = this.usersArray.find(user => user.email == userMail);
     this.dataService.conversationTitle = userObj?.username!;
     this.fsService.initializeChat(userObj);
   }
 
+
+  /**
+   * Opens a channel, closes any active thread,
+   * and navigates to the selected channel.
+   */
   openChannel(channelName: string) {
     this.viewService.closeThread();
-    this.router.navigate([`/workspace/channel/${channelName}`])
+    this.router.navigate([`/workspace/channel/${channelName}`]);
   }
 }

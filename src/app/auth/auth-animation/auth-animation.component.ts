@@ -16,13 +16,10 @@ import { RouterLink, Router } from '@angular/router';
 export class AuthComponent {
 
   // === Local Data ===
-  /** Controls initial visibility of the component after rendering. */
   makeVisible = false;
 
-  /** Flag that becomes true after 2500ms, used for second animation stage. */
   trueAfter2500ms = false;
 
-  /** Hides the logo after 2700ms and prevents replay of animation on refresh. */
   hideLogo = false;
 
   // === Injected Services ===
