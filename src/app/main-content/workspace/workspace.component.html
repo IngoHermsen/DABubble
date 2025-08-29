@@ -5,8 +5,11 @@
         <img [routerLink]="'new-post'" type="icon" class="icon" src="assets/icons/edit_square.png" alt="editSquareIcon">
     </section>
     <div class="list-section-wrapper">
+
         <section class="list-section channels">
+
             <h3 class="title">
+
                 <div class="left" (click)="toggleEntries('channels')">
                     <span class="material-icons drop-btn" [ngClass]="{
                     'turnUpDropBtn': !showChannelEntries && channelToggleClicked,
@@ -21,7 +24,7 @@
             @if(showChannelEntries) {
             <div class="entries">
                 @for(channel of dataService.channelIds; let index = $index; track $index) {
-                <div class="entry no-wrap" (click)=this.openChannel(channel)>
+                <div class="entry no-wrap" (click)="this.openChannel(channel)">
                     # {{ channel }}
                 </div>
                 }

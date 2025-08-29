@@ -5,6 +5,9 @@ $divider-color: #ADB0D9;
 .card {
     @include dflex($fD: column);
     position: relative;
+    //!Delete
+    border: solid red 3px;
+    //!Delete
 };
 
 .conversation-name {

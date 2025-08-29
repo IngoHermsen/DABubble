@@ -65,6 +65,9 @@
   .list-section-wrapper {
     @include dflex($fD: column);
     overflow-y: scroll;
+    //!Delete
+    border: solid 3px blue;
+    //!Delete
   }
 
   .list-section {
