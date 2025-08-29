@@ -29,7 +29,7 @@ export class LoginComponent {
   authService = inject(AuthService);
   dataService = inject(DataService);
 
-  
+
   // === Local Data ===
   makeVisible = false;
   firebaseUser: any; 
@@ -47,14 +47,6 @@ export class LoginComponent {
     this.authService.firebaseUser$.subscribe(user => {
       this.firebaseUser = user;
     });
-  }
-
-
-  /**
-   * Clearing validation errors after component is destroyed.
-   */
-  ngOnDestroy(): void {
-    this.authService.resetErrors();
   }
 
 
@@ -79,5 +71,15 @@ export class LoginComponent {
     this.authService.logoutUser().then(() => {
     });
   }
+
+
+// === Cleanup ===  
+    /**
+   * Clearing validation errors after component is destroyed.
+   */
+  ngOnDestroy(): void {
+    this.authService.resetErrors();
+  }
+
 
 }
