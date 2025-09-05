@@ -93,9 +93,6 @@ export class WorkspaceComponent implements OnInit {
    * and navigates to the selected channel.
    */
   openChannel(channelName: string) {
-    //!Delete
-    console.log("Open Channel triggers");
-    //!Delete
     this.viewService.closeThread();
     this.router.navigate([`/workspace/channel/${channelName}`]);
   }

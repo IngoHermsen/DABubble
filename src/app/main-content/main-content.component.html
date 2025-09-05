@@ -1,3 +1,11 @@
+<!-- 
+  Modal overlay container:
+  - Rendered only if `viewService.showModal` is true.
+  - Displays a semi-transparent background and a centered dialog.
+  - The dialog type/position is controlled via `viewService.modalContentClass`.
+  - Clicking outside the dialog closes the modal,
+    while clicks inside the dialog are stopped from bubbling.
+-->
 @if(viewService.showModal) {
 <div [ngClass]="'modal'" (click)="viewService.showModal = false">
     <div class="modal-inner" [ngClass]="viewService.modalContentClass">
@@ -7,6 +15,7 @@
     </div>
 </div>
 }
+
 
 <div class="wrapper">
     @if (!viewService.mobileView) {
@@ -36,7 +45,7 @@
         <div class="flex-item">
             <app-search></app-search>
         </div>
-            <!-- <input placeholder="Devspace durchsuchen" class="flex-item" type="text"> -->
+        <!-- <input placeholder="Devspace durchsuchen" class="flex-item" type="text"> -->
         }
 
         <div class="user-menu">
