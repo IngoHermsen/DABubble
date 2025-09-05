@@ -66,14 +66,15 @@ export class MainComponent implements OnInit {
    * avatar, username, and workspace navigation handling.
    */
   ngOnInit(): void {
+    console.log('showDetailSection', this.viewService.showDetailSection);
     this.authService.firebaseUser$.subscribe(user => {
       this.userName = user?.displayName ?? "Guest";
       this.avatarPath = user?.photoURL ?? "../../assets/images/avatar_placeholder.png";
-      this.subscribeToWorkspaceNavigation();
-      if (this.router.url == "/workspace" && this.viewService.mobileView) {
-        this.viewService.showDetailSection = false;
-      } 
     });
+    this.subscribeToWorkspaceNavigation();
+    if (this.router.url == "/workspace" && this.viewService.mobileView) {
+      this.viewService.showDetailSection = false;
+    }
   }
 
 
