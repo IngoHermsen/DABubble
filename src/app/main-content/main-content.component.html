@@ -8,6 +8,7 @@
 </div>
 }
 
+
 <div class="wrapper">
     @if (!viewService.mobileView) {
     <span appShowOnHover (click)="viewService.showWorkspaceMenu = !viewService.showWorkspaceMenu" class="toggle-btn">
@@ -36,14 +37,14 @@
         <div class="flex-item">
             <app-search></app-search>
         </div>
-            <!-- <input placeholder="Devspace durchsuchen" class="flex-item" type="text"> -->
+        <!-- <input placeholder="Devspace durchsuchen" class="flex-item" type="text"> -->
         }
 
         <div class="user-menu">
             @if(!viewService.mobileView) {
             <span class="username">{{userName}}</span>
             }
-            <div class="wrapper--icons" (click)="viewService.modalHandler('logout', 'modal-content-top-right')">
+            <div class="wrapper--icons" (click)="openLogoutMenu(bubbleProfileLogout)">
                 <div class="wrapper--avatar">
                     <img class="img--avatar" [src]="'../../' + avatarPath" alt="">
                     <div class="dot online"></div>
@@ -51,6 +52,15 @@
                 <img class="arrow-down" src="../../assets/images/keyboard_arrow_down.png" alt="">
             </div>
         </div>
+    <!-- Profile and Logout Bubble Dialog -->
+        <ng-template #bubbleProfileLogout>
+            <div class="bubble--logout-profile red">
+                <span class="txt"> Profile </span>
+                <!-- <span class="txt" (click)="viewService.modalHandler('cardProfile', 'modal-content-center')"> Profile </span> -->
+                <span class="txt" (click)="handleLogout()"> Logout </span>
+            </div>
+        </ng-template>
+        <!--  -->
     </section>
 
     <section class="content">

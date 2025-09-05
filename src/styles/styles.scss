@@ -95,7 +95,7 @@ body {
 
 input::placeholder {
   text-align: left;
-  @include fontSizeWeight($s:18px, $w:500);
+  @include fontSizeWeight($s: 18px, $w: 500);
 }
 
 .input-icon {
@@ -132,6 +132,21 @@ button {
   user-select: none;
   background-color: #7A7A7A;
   cursor: not-allowed;
+}
+
+.top .close-button {
+  @include dflex($fD: row, $jC: center, $aI: center);
+  @include widthHeight($w: 32px, $h: 32px);
+  @include fontSizeWeightColor($s: 24px, $w: bold, $c: black);
+  border-radius: 50%;
+  background-color: white;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eceefe;
+    color: #535af1;
+  }
 }
 
 /******************************** Display Styles ********************************/
@@ -221,6 +236,10 @@ div.message-input {
 
 }
 
+.top {
+  @include dflex($fD: row, $jC: space-between, $aI: center);
+}
+
 //************************** Dialog Modal *****************************
 
 .modal {
@@ -290,7 +309,3 @@ div.message-input {
 }
 
 /************************* Responsivness *************************/
-
-
-
-

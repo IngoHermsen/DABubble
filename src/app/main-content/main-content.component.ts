@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { Component, inject, TemplateRef } from '@angular/core';
 import { WorkspaceComponent } from './workspace/workspace.component';
 import { ThreadComponent } from './thread/thread.component';
 import { OnInit } from '@angular/core';
@@ -12,6 +12,7 @@ import { AuthService } from '../core/services/auth.service';
 import { NgClass } from '@angular/common';
 import { filter } from 'rxjs';
 import { SearchComponent } from './search/search.component';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-main',
@@ -25,6 +26,7 @@ import { SearchComponent } from './search/search.component';
     SearchComponent,
     RouterLink,
     RouterOutlet,
+    MatDialogModule
   ],
   templateUrl: './main-content.component.html',
   styleUrl: './main-content.component.scss',
@@ -49,11 +51,12 @@ import { SearchComponent } from './search/search.component';
 })
 export class MainComponent implements OnInit {
 
-  // === Injected Services ===
+  // === Dependency Injections ===
   public viewService = inject(ViewService);
   public firestoreService = inject(FirestoreService);
   private authService = inject(AuthService);
   public router = inject(Router);
+  public dialog = inject(MatDialog)
 
   // === Local Data ===
   avatarPath: any;
@@ -72,7 +75,13 @@ export class MainComponent implements OnInit {
       this.subscribeToWorkspaceNavigation();
       if (this.router.url == "/workspace" && this.viewService.mobileView) {
         this.viewService.showDetailSection = false;
-      } 
+      }
+    });
+  };
+
+  openLogoutMenu(logoutTemplateRef: TemplateRef<any>) {
+    let dialogRef = this.dialog.open(logoutTemplateRef, {
+
     });
   }
 
@@ -101,5 +110,10 @@ export class MainComponent implements OnInit {
           this.viewService.showDetailSection = true;
         }
       });
+  };
+
+  handleLogout() {
+    this.authService.logoutUser();
+    this.router.navigate(['main/login']);
   }
 }
