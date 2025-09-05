@@ -7,11 +7,13 @@ import { DataService } from '../../core/services/data.service';
 import { Router, RouterLink } from '@angular/router';
 import { User as FirebaseUser } from '@angular/fire/auth';
 import { FsUsers } from '../../core/types/firestore_users';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { NewChannelDialogComponent } from '../dialog/new-channel-dialog/new-channel-dialog.component';
 
 @Component({
   selector: 'app-workspace',
   standalone: true,
-  imports: [NgClass, RouterLink],
+  imports: [NgClass, RouterLink, MatDialogModule],
   templateUrl: './workspace.component.html',
   styleUrl: './workspace.component.scss'
 })
@@ -21,8 +23,9 @@ export class WorkspaceComponent implements OnInit {
   public dataService = inject(DataService);
   public fsService = inject(FirestoreService);
   public router = inject(Router);
-  authService = inject(AuthService);
+  public authService = inject(AuthService);
   public viewService = inject(ViewService);
+  public dialog = inject(MatDialog)
 
   // === Local Data ===
   firebaseUser: FirebaseUser | null;
@@ -48,8 +51,11 @@ export class WorkspaceComponent implements OnInit {
         this.sortFilterUsersArr(user);
       });
     });
-  }
+  };
 
+  openNewChannelDialog() {
+    let dialogRef = this.dialog.open(NewChannelDialogComponent)
+  }
 
   // === State Management ===
   /**

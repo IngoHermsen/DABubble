@@ -1,11 +1,6 @@
 @import "../../../styles/mixins.scss";
 
 
-.input-styling {
-    padding-left: unset;
-    text-indent: 24px;
-}
-
 // Bubble logout and profile option
 .bubble--logout-profile {
     @include dflex($fD: column, $jC: space-evenly);

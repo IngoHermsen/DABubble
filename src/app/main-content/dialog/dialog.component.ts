@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule, FormsModule, Validators, FormGroup } from '@angular/forms';
 import { ViewService } from '../../core/services/view.service';
 import { FirestoreService } from '../../core/services/firestore.service';
-import { Channel } from '../../core/interfaces/channel';
 import { AuthService } from '../../core/services/auth.service';
 import { RouterLink, Router } from '@angular/router';
 
@@ -13,7 +12,6 @@ import {
   user
 } from '@angular/fire/auth';
 import { CommonModule } from '@angular/common';
-import { EMPTY_USER, User } from '../../core/interfaces/user';
 import { DataService } from '../../core/services/data.service';
 
 @Component({
@@ -76,28 +74,6 @@ export class DialogComponent implements OnInit {
       this.firebaseUser = user;
       this.userMail = user?.email;
     });
-  }
-
-
-  /**
- * Handles form submission to create a new channel.
- * 
- * - Retrieves values from the reactive form controls.
- * - Constructs a `Channel` object including the name, description, and a static creator name.
- * - Passes the object to the Firestore service for persistence.
- */
-  newChannelSubmit(): void {
-    const channelName = this.newChannelFormGroup.get('channelNameInput')!.value;
-    const channelDesc = this.newChannelFormGroup.get('channelDescInput')!.value;
-
-    const channel: Channel = {
-      channelName: channelName,
-      description: channelDesc,
-      creatorName: this.authService.firebaseUser?.displayName || 'Walter Falter (Gast)'
-    };
-
-    this.fsService.addChannelToFirestore(channel);
-    this.viewService.showModal = false;
   }
 
 

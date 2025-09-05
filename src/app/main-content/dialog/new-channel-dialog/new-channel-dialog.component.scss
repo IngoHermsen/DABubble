@@ -1,0 +1,27 @@
+@import "../../../../styles/mixins.scss";
+
+.card--new-channel {
+ display: flex;
+ flex-direction: column;
+ gap: 12px;
+ padding: 16px;
+ 
+};
+
+.form-styling {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 100%;
+}
+
+.input-block {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-styling {
+    width: 100%;
+    box-sizing: border-box;
+}
