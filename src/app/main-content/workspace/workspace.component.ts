@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { FirestoreService } from '../../core/services/firestore.service';
 import { AuthService } from '../../core/services/auth.service';
@@ -21,7 +21,7 @@ export class WorkspaceComponent implements OnInit {
   public dataService = inject(DataService);
   public fsService = inject(FirestoreService);
   public router = inject(Router);
-  authService = inject(AuthService);
+  public authService = inject(AuthService);
   public viewService = inject(ViewService);
 
   // === Local Data ===
@@ -33,8 +33,17 @@ export class WorkspaceComponent implements OnInit {
   directMsgToggleClicked: boolean = false;
   usersArray: FsUsers = [];
 
+  constructor() {
+    effect(() => {
+      const chatParticipantsEmail = this.dataService.chatParticipant();
+      if (chatParticipantsEmail) {
+        this.startChatWithUser(chatParticipantsEmail);
+      }
+    });
+  }
 
-  // === Lifecycle ===
+
+  // === Lifecycle Hooks ===
   /**
    * Initializes the workspace, loads all users
    * and filters/sorts them after the Firebase user is available.
@@ -48,6 +57,7 @@ export class WorkspaceComponent implements OnInit {
         this.sortFilterUsersArr(user);
       });
     });
+
   }
 
 

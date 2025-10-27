@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Channel } from '../interfaces/channel';
 import { Post } from '../interfaces/post';
 import { Timestamp } from 'firebase/firestore';
@@ -20,7 +20,7 @@ export class DataService {
   conversationContentReady = signal(false);
 
   chatData: any;
-  chatParticipant: string;
+  chatParticipant: WritableSignal<string | null> = signal(null);
 
   threadMainPost: Post;
   threadSubPosts: Post[];

@@ -35,6 +35,7 @@ export class SearchComponent implements AfterViewInit {
   searchTerm: string = "";
   searchResult: string[];
 
+
   // === Observable ===
 
   searchTerms$ = new Subject<string>();
@@ -106,5 +107,9 @@ export class SearchComponent implements AfterViewInit {
   handleUserClick(user: any) {
     this.searchTerm = '';
     this.searchTerms$.next('');
+  }
+
+  setChatParticipant(userMail: string) {
+   this.dataService.chatParticipant.set(userMail);
   }
 }

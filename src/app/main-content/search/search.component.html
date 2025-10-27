@@ -24,7 +24,7 @@
             <span class="placeholder" [hidden]="matchingUsers.length > 0">keine Ergebnisse</span>
             <div class="list">
                 @for (user of matchingUsers; track $index) {
-                <span class="result-entry" (click)="handleUserClick(user)">{{ user.username }}</span>
+                <span class="result-entry" (click)="setChatParticipant(user.email)">{{ user.username }}</span>
                 }
             </div>
         </div>
