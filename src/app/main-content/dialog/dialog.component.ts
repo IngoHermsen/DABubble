@@ -207,7 +207,6 @@ export class DialogComponent implements OnInit {
   showProfileCard(userMail: string) {
     const usersArr = this.fsService.allFsUsersJsonArr;
     const userObj = usersArr.find(user => user.email === userMail)!;
-    console.log(userObj);
 
     this.viewService.modalHandler('cardProfile', 'modal-content-center');
   }

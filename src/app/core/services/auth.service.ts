@@ -64,7 +64,7 @@ export class AuthService {
       this.firebaseUserSubject.next(user);
 
       if (user) {
-        console.log('AUTH USER');
+        // console.log('AUTH USER');
         this.mapFirebaseUserToUser(user);
 
       } else {
