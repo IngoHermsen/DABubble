@@ -9,9 +9,11 @@ import { ValidationService } from '../core/services/validation.service';
   imports: [
     RouterLink,
   ],
+
   templateUrl: './privacy.component.html',
   styleUrl: './privacy.component.scss'
 })
 export class PrivacyComponent {
   validation = inject(ValidationService);
+
 }
