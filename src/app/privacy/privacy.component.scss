@@ -13,7 +13,7 @@ h1, h2, h3, h4, em {
   cursor: pointer;
 }
 
-.privacy-container {
+.privacy-wrapper {
   position: relative;
   @include dflex($fD: column);
   @include loginSignupWindow($width: 80%, $padding: 40px 60px);
@@ -53,14 +53,14 @@ h1, h2, h3, h4, em {
 }
 
 @media (width <= 1200px) {
-  .privacy-container {
+  .privacy-wrapper {
     width: 90%;
     padding: 40px;
   }
 }
 
 @media (width <= 768px) {
-  .privacy-container {
+  .privacy-wrapper {
     width: 95%;
     padding: 30px;
     margin-top: 20px;
@@ -68,20 +68,20 @@ h1, h2, h3, h4, em {
 }
 
 @media (width <= 570px) {
-  .privacy-container {
+  .privacy-wrapper {
     width: 100%;
     padding: 20px 15px;
     margin-top: 15px;
   }
 
-  .privacy-container ul {
+  .privacy-wrapper ul {
     padding-left: 15px;
     margin-right: 10px;
   }
 }
 
 @media (width <= 400px) {
-  .privacy-container {
+  .privacy-wrapper {
     padding: 15px 10px;
   }
 
@@ -103,7 +103,7 @@ h1, h2, h3, h4, em {
 }
 
 @media (width <= 320px) {
-  .privacy-container {
+  .privacy-wrapper {
     padding: 10px 8px;
   }
 
